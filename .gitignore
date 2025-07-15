@@ -1,0 +1,8 @@
+# Ignore sensitive PHP files
+config.php
+server.php
+
+# Optional: ignore backup or temp files
+*.bak
+*.tmp
+*.log
