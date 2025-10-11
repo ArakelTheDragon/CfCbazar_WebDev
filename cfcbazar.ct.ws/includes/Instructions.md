@@ -37,7 +37,7 @@ htdocs
 - projects.json // feature DIY projects and guides json
 - r.php // feature url shortner
 - register.php // registration
-- server.php // depreciated, left for compatibility issues until removal
+- server.php // depreciated, left for compatibility issues until removal, not available on repo
 - slot.php // game
 - speed.php // feature internet speedtest
 - survival.php // feature survival budget calculator
