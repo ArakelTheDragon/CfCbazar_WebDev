@@ -48,7 +48,7 @@ cfcbazar.ct.ws/
 ├── tv.php              # YouTube playlist viewer
 ├── about.php           # About CfCbazar
 ├── admin.php           # Admin panel
-├── server.php          # Deprecated legacy compatibility
+├── server.php          # Deprecated legacy compatibility, not included on repo
 ```
 
 ---
