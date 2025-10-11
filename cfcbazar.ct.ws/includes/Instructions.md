@@ -46,7 +46,7 @@ htdocs
 - tv.php // feature YT TV playlists
 - type.php // game
 - verify.php // verify email on registration
-- w.php
+- w.php // withdraw platform credit as WorkTokens or WorkTHR
 - wheel.php // game
 - word.php // game
 - work_value.php // feature value of work per hour for different services, products and positions
