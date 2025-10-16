@@ -18,11 +18,11 @@ include_header();
   <section class="welcome-card">
     <h2>Your Hub for Smart Deals and Tools</h2>
     <?php if ($userEmail): ?>
-      <p>Welcome back, <strong><?= htmlspecialchars($userEmail) ?></strong>! Explore our <a href="/r.php">URL shortener</a>, <a href="/games.php">games</a>, <a href="/orpg.php">WorkToken ORPG</a>, and <a href="/power.php">power usage calculator</a>. By using this site, you agree to our <a href="/t.php" aria-label="Terms of Service">Terms of Service</a>, <a href="/t.php" aria-label="Privacy Policy">Privacy Policy</a>, and <a href="/c.php" aria-label="Cookies Policy">Cookies Policy</a>.</p>
+      <p>Welcome back, <strong><?= htmlspecialchars($userEmail) ?></strong>! Explore our <a href="https://www.facebook.com/share/1FVqQ43L35/">Smart deals</a>, <a href="/projects/">DIY</>, <a href="/games.php">games</a>, <a href="https://youtube.com/playlist?list=PLY4e42xsZig5Yu7GZ6VN1OSn-0cy90yJu&si=3q_vMZ9cayg-su2W">Music</a>, and <a href="/miner/">the WorkToken</a>. By using this site, you agree to our <a href="/t.php" aria-label="Terms of Service">Terms of Service</a>, <a href="/t.php" aria-label="Privacy Policy">Privacy Policy</a>, and <a href="/c.php" aria-label="Cookies Policy">Cookies Policy</a>.</p>
     <?php else: ?>
-      <p>Welcome to <strong>CfCbazar</strong>, your hub for <a href="/r.php">URL shortening</a>, <a href="/games.php">games</a>, <a href="/orpg.php">WorkToken ORPG</a>, <a href="/power.php">power usage calculators</a>, smart deals, DIY tools, and music. Sign up to unlock exclusive features! By using this site, you agree to our <a href="/t.php" aria-label="Terms of Service">Terms of Service</a>, <a href="/t.php" aria-label="Privacy Policy">Privacy Policy</a>, and <a href="/c.php" aria-label="Cookies Policy">Cookies Policy</a>.</p>
+      <p>Welcome to <strong>CfCbazar</strong>! Explore our <a href="https://www.facebook.com/share/1FVqQ43L35/">Smart deals</a>, <a href="/projects/">DIY</>, <a href="/games.php">games</a>, <a href="https://youtube.com/playlist?list=PLY4e42xsZig5Yu7GZ6VN1OSn-0cy90yJu&si=3q_vMZ9cayg-su2W">Music</a>, and <a href="/d.php">the WorkToken</a>. By using this site, you agree to our <a href="/t.php" aria-label="Terms of Service">Terms of Service</a>, <a href="/t.php" aria-label="Privacy Policy">Privacy Policy</a>, and <a href="/c.php" aria-label="Cookies Policy">Cookies Policy</a>.</p>
     <?php endif; ?>
-    <p>Join the users already enjoying our platform for seamless URL management, gaming, and WorkToken rewards. <a href="/register.php">Sign up now</a> or explore our <a href="/features.php">features</a>.</p>
+    <p>Join the users already enjoying our platform for seamless URL management, gaming, and WorkToken rewards. <a href="/help/how-cfcbazar-works-what-we-provide-and-how-to-get-worktokens-workthr-.php">Check what we do</a> & explore all of our <a href="/features.php">features</a>.</p>
   </section>
 
   <section class="links-grid" aria-label="Explore CfCbazar Features">
@@ -30,7 +30,7 @@ include_header();
     <a href="/speed.php" target="_blank" class="link-card" aria-label="Internet Speed Test">📡 <span>Internet Speed Test</span></a>
     <a href="/orpg.php" target="_blank" class="link-card" aria-label="WorkToken ORPG and Token Quest">🎲 <span>WorkToken ORPG / Token Quest</span></a>
     <a href="/d.php" target="_blank" rel="noopener" class="link-card" aria-label="WorkToken Platform">💰 <span>WorkToken Platform</span></a>
-    <a href="/pow" target="_blank" rel="noopener" class="link-card" aria-label="Mine Platform Credits">⛏️ <span>Mine Platform Credits</span></a>
+    <a href="/pow" target="_blank" rel="noopener" class="link-card" aria-label="Mine Platform Credits">⛏️ <span>Mine</span></a>
     <a href="https://fb.com/workthrp" target="_blank" rel="noopener" class="link-card" aria-label="Smart Deals on Facebook">🔗 <span>Smart Deals</span></a>
     <a href="/features.php" target="_blank" rel="noopener" class="link-card" aria-label="DIY Tools and Features">🔧 <span>DIY & Features</span></a>
     <a href="/games.php" target="_blank" rel="noopener" class="link-card" aria-label="Online Games">🎮 <span>Online Games</span></a>
