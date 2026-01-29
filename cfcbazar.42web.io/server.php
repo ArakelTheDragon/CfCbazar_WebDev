@@ -8,7 +8,7 @@
 	$_SESSION['success'] = "";
 	
 	// connect to database
-$db = mysqli_connect('sql313.infinityfree.com', 'if0_39103611', '53098516', 'if0_39103611_db1');
+$db = mysqli_connect('host', 'user', 'pw', 'database);
 
 	// REGISTER USER
 	if (isset($_POST['reg_user'])) {
