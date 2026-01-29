@@ -115,41 +115,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $correctAnswer = $_SESSION['question']['answer'];
 
             // === Cheat codes (all numeric):
-            // 9879 -> +99 to all gear
-            // 9878 -> +99 levels
-            // 9877 -> +990 XP
-            // 1337 -> +1 WT
-            // 4242 -> +100 XP
-            // 7777 -> +10 random gear
-            if ($input === 9879.00) {
+            //  -> +99 to all gear
+            //  -> +99 levels
+            //  -> +990 XP
+            //  -> +1 WT
+            //  -> +100 XP
+            //  -> +10 random gear
+            if ($input === $CheatGear) {
                 upgradeAllGear($email, 99);
-                $message = "Cheat 9879: +99 applied to all gear.";
+                $message = "Cheat $CheatGear: +99 applied to all gear.";
 
-            } elseif ($input === 9878.00) {
+            } elseif ($input === $CheatLevel) {
                 // bump level by 99
                 $stmt = $conn->prepare("UPDATE workers SET level = COALESCE(level,1) + 99 WHERE email = ?");
                 $stmt->bind_param('s', $email);
                 $stmt->execute();
                 $stmt->close();
-                $message = "Cheat 9878: +99 levels applied.";
+                $message = "Cheat $CheatLevel: +99 levels applied.";
 
-            } elseif ($input === 9877.00) {
+            } elseif ($input === $CheatXP) {
                 addExp($email, 990);
                 checkLevelUp($email);
-                $message = "Cheat 9877: +990 XP applied.";
+                $message = "Cheat $CheatXP: +990 XP applied.";
 
-            } elseif ($input === 1337.00) {
+            } elseif ($input === $CheatWT) {
                 addTokens($email, 1.0);
-                $message = "Cheat 1337: +1.0 WT.";
+                $message = "Cheat $CheatWT: +1.0 WT.";
 
-            } elseif ($input === 4242.00) {
+            } elseif ($input === $CheatGearXPXP) {
                 addExp($email, 100);
                 checkLevelUp($email);
-                $message = "Cheat 4242: +100 XP.";
+                $message = "Cheat $CheatGearXPXP: +100 XP.";
 
-            } elseif ($input === 7777.00) {
+            } elseif ($input === $CheatGearGear) {
                 upgradeRandomGear($email, 10);
-                $message = "Cheat 7777: +10 to a random gear slot.";
+                $message = "Cheat $CheatGearGear: +10 to a random gear slot.";
 
             } else {
                 // normal answer processing
