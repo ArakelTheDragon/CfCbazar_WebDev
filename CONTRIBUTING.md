@@ -8,7 +8,8 @@ Thank you for your interest in contributing to the CfCbazar & WorkToken project!
 
 CfCbazar is a modular PHP-based platform that integrates:
 
-- ESP8266-compatible token mining (WorkToken & WorkTHR)
+-  [`Web Miner`](http://cfcbazar.42web.io/pow/). which mines other coins and this is converted to WorkTHR and WTK WorkTokens for trading.
+- ESP8266-compatible token mining (WorkToken & WorkTHR) under development.
 - A user dashboard with deposits, withdrawals, and balances
 - Games, utilities, and DIY tools
 - A decentralized reward system backed by platform-controlled token reserves
