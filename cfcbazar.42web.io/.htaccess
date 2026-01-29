@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Redirect Googlebot and Facebook crawler to a warning page
+RewriteCond %{HTTP_USER_AGENT} "Googlebot" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "facebookexternalhit" [NC]
+RewriteCond %{REQUEST_URI} !^/bot-warning\.php$
+RewriteRule ^.*$ /bot-warning.html [R=302,L]

@@ -1,0 +1,572 @@
+[26-Aug-2025 12:34:42 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[26-Aug-2025 12:36:24 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[26-Aug-2025 12:49:31 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[26-Aug-2025 12:50:08 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[26-Aug-2025 12:50:32 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[26-Aug-2025 12:50:36 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[26-Aug-2025 12:51:10 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[26-Aug-2025 12:51:26 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[26-Aug-2025 12:51:30 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[26-Aug-2025 12:57:32 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[26-Aug-2025 12:57:33 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[26-Aug-2025 12:57:49 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[26-Aug-2025 12:57:51 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[31-Aug-2025 10:57:24 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[01-Sep-2025 14:07:24 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[01-Sep-2025 14:07:27 America/New_York] Included testapi.php for email: cfcbazar@gmail.com
+[01-Sep-2025 14:07:28 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[01-Sep-2025 14:07:28 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[01-Sep-2025 14:07:28 America/New_York] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:00 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:05 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:06 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:06 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:06 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:10 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[05-Sep-2025 13:53:45 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[05-Sep-2025 13:53:49 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 10:30:49 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[07-Sep-2025 10:31:22 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 10:31:26 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[07-Sep-2025 10:31:26 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[07-Sep-2025 10:31:27 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[07-Sep-2025 12:31:48 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 12:39:34 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 12:43:02 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 12:43:07 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 12:46:41 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 13:15:55 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 14:09:45 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[07-Sep-2025 14:10:19 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[07-Sep-2025 14:11:23 Europe/London] Included testapi.php for email: cfcbazar@gmail.com
+[08-Sep-2025 09:35:31 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 09:35:41 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 09:35:57 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 09:36:02 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 11:20:55 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 11:21:01 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 11:24:44 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[08-Sep-2025 11:24:45 Europe/London] Skipped testapi.php inclusion. Email: none, go: none
+[09-Sep-2025 21:14:37 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:14:37 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:14:37 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:14:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:14:42 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:14:42 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:14:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:14:42 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:14:42 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:14:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:14:42 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:14:42 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:15:10 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:15:10 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:15:10 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:15:13 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:15:13 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:15:13 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:15:49 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:15:49 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:15:49 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:22:02 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:22:02 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:22:02 Europe/London] Full insert test succeeded: INSERT INTO if0_39103611_db1.click_logs (short_id, ip, user_agent, referrer, platform, utm_source) VALUES (1, '127.0.0.1', 'Test Agent', 'https://example.com', 'test', 'test_source')
+[09-Sep-2025 21:22:07 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:22:07 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:22:07 Europe/London] Full insert test succeeded: INSERT INTO if0_39103611_db1.click_logs (short_id, ip, user_agent, referrer, platform, utm_source) VALUES (1, '127.0.0.1', 'Test Agent', 'https://example.com', 'test', 'test_source')
+[09-Sep-2025 21:22:07 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:22:07 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:22:07 Europe/London] Full insert test succeeded: INSERT INTO if0_39103611_db1.click_logs (short_id, ip, user_agent, referrer, platform, utm_source) VALUES (1, '127.0.0.1', 'Test Agent', 'https://example.com', 'test', 'test_source')
+[09-Sep-2025 21:22:07 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:22:07 Europe/London] Minimal insert test succeeded for click_logs
+[09-Sep-2025 21:22:07 Europe/London] Full insert test succeeded: INSERT INTO if0_39103611_db1.click_logs (short_id, ip, user_agent, referrer, platform, utm_source) VALUES (1, '127.0.0.1', 'Test Agent', 'https://example.com', 'test', 'test_source')
+[09-Sep-2025 21:26:34 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:26:34 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:26:38 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:26:38 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:26:48 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:26:48 Europe/London] click_logs table is accessible for SELECT
+[09-Sep-2025 21:27:14 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[09-Sep-2025 21:27:14 Europe/London] click_logs table is accessible for SELECT
+[11-Sep-2025 09:11:40 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[11-Sep-2025 09:11:40 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:19:14 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:19:14 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:19:18 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:19:18 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:19:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:19:19 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:19:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:19:19 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:31:55 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:31:55 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:32:11 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:32:11 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:32:16 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:32:16 Europe/London] click_logs table is accessible for SELECT
+[14-Sep-2025 08:32:17 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Sep-2025 08:32:17 Europe/London] click_logs table is accessible for SELECT
+[15-Sep-2025 08:09:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[15-Sep-2025 08:09:35 Europe/London] click_logs table is accessible for SELECT
+[17-Sep-2025 20:23:46 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Sep-2025 20:23:46 Europe/London] click_logs table is accessible for SELECT
+[17-Sep-2025 20:23:58 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Sep-2025 20:23:58 Europe/London] click_logs table is accessible for SELECT
+[17-Sep-2025 20:26:45 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Sep-2025 20:26:45 Europe/London] click_logs table is accessible for SELECT
+[17-Sep-2025 20:26:45 Europe/London] Updated clicks for short_links, id: 58
+[17-Sep-2025 20:26:45 Europe/London] Attempting to log click for short_id=58, ip=176.222.7.195, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/orpg.php, platform=mobile, utm=
+[17-Sep-2025 20:26:45 Europe/London] Successfully logged click for short_id=58, ip=176.222.7.195
+[17-Sep-2025 21:57:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Sep-2025 21:57:35 Europe/London] click_logs table is accessible for SELECT
+[17-Sep-2025 22:52:48 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Sep-2025 22:52:48 Europe/London] click_logs table is accessible for SELECT
+[17-Sep-2025 22:52:48 Europe/London] Updated clicks for short_links, id: 58
+[17-Sep-2025 22:52:48 Europe/London] Attempting to log click for short_id=58, ip=176.222.7.195, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/, platform=mobile, utm=
+[17-Sep-2025 22:52:48 Europe/London] Successfully logged click for short_id=58, ip=176.222.7.195
+[18-Sep-2025 07:44:37 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 07:44:37 Europe/London] click_logs table is accessible for SELECT
+[18-Sep-2025 07:45:15 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 07:45:15 Europe/London] click_logs table is accessible for SELECT
+[18-Sep-2025 07:45:41 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 07:45:41 Europe/London] click_logs table is accessible for SELECT
+[18-Sep-2025 07:45:41 Europe/London] Updated clicks for short_links, id: 58
+[18-Sep-2025 07:45:41 Europe/London] Attempting to log click for short_id=58, ip=176.222.7.195, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php, platform=mobile, utm=
+[18-Sep-2025 07:45:41 Europe/London] Successfully logged click for short_id=58, ip=176.222.7.195
+[18-Sep-2025 07:45:51 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 07:45:51 Europe/London] click_logs table is accessible for SELECT
+[18-Sep-2025 07:45:58 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 07:45:58 Europe/London] click_logs table is accessible for SELECT
+[18-Sep-2025 07:45:58 Europe/London] Updated clicks for short_links, id: 57
+[18-Sep-2025 07:45:58 Europe/London] Attempting to log click for short_id=57, ip=176.222.7.195, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php, platform=mobile, utm=
+[18-Sep-2025 07:45:58 Europe/London] Successfully logged click for short_id=57, ip=176.222.7.195
+[18-Sep-2025 07:46:06 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 07:46:06 Europe/London] click_logs table is accessible for SELECT
+[18-Sep-2025 10:28:23 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[18-Sep-2025 10:28:23 Europe/London] click_logs table is accessible for SELECT
+[19-Sep-2025 06:47:21 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Sep-2025 06:47:21 Europe/London] click_logs table is accessible for SELECT
+[19-Sep-2025 06:47:26 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Sep-2025 06:47:26 Europe/London] click_logs table is accessible for SELECT
+[19-Sep-2025 06:47:26 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Sep-2025 06:47:26 Europe/London] click_logs table is accessible for SELECT
+[19-Sep-2025 06:47:26 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Sep-2025 06:47:26 Europe/London] click_logs table is accessible for SELECT
+[19-Sep-2025 17:01:17 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Sep-2025 17:01:17 Europe/London] click_logs table is accessible for SELECT
+[19-Sep-2025 17:20:13 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Sep-2025 17:20:13 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:35:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:35:35 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:35:38 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:35:38 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:40:33 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:40:33 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:40:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:40:35 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:42:15 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:42:15 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:51:43 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:51:43 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:55:21 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:55:21 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:57:04 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:57:04 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:57:12 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:57:12 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 08:57:12 Europe/London] Updated clicks for short_links, id: 1
+[21-Sep-2025 08:57:12 Europe/London] Attempting to log click for short_id=1, ip=176.222.10.62, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php, platform=mobile, utm=
+[21-Sep-2025 08:57:12 Europe/London] Successfully logged click for short_id=1, ip=176.222.10.62
+[21-Sep-2025 08:57:23 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 08:57:23 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 13:43:36 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 13:43:36 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 13:57:01 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 13:57:01 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 13:57:03 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 13:57:03 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 13:57:30 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 13:57:30 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 13:57:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 13:57:35 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 13:57:35 Europe/London] Updated clicks for short_links, id: 1
+[21-Sep-2025 13:57:35 Europe/London] Attempting to log click for short_id=1, ip=176.222.10.62, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php, platform=mobile, utm=
+[21-Sep-2025 13:57:35 Europe/London] Successfully logged click for short_id=1, ip=176.222.10.62
+[21-Sep-2025 13:57:48 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 13:57:48 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 14:08:28 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 14:08:28 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 15:01:26 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 15:01:26 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 15:01:30 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 15:01:30 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 15:01:30 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 15:01:30 Europe/London] click_logs table is accessible for SELECT
+[21-Sep-2025 15:01:31 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[21-Sep-2025 15:01:31 Europe/London] click_logs table is accessible for SELECT
+[22-Sep-2025 18:29:12 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[22-Sep-2025 18:29:12 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:07:44 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:07:44 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:07:46 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:07:46 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:07:47 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:07:47 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:07:47 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:07:47 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:08:11 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:08:11 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:08:15 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:08:15 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:18:57 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:18:57 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:18:57 Europe/London] Updated clicks for short_links, id: 59
+[28-Sep-2025 11:18:57 Europe/London] Attempting to log click for short_id=59, ip=66.249.83.130, ua=Google-Safety, ref=, platform=unknown, utm=
+[28-Sep-2025 11:18:57 Europe/London] Successfully logged click for short_id=59, ip=66.249.83.130
+[28-Sep-2025 11:19:00 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:19:00 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:19:00 Europe/London] Updated clicks for short_links, id: 59
+[28-Sep-2025 11:19:00 Europe/London] Attempting to log click for short_id=59, ip=103.189.123.8, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=59, platform=windows, utm=
+[28-Sep-2025 11:19:00 Europe/London] Successfully logged click for short_id=59, ip=103.189.123.8
+[28-Sep-2025 11:19:02 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:19:02 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:19:02 Europe/London] Updated clicks for short_links, id: 59
+[28-Sep-2025 11:19:02 Europe/London] Attempting to log click for short_id=59, ip=1.37.67.201, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=59, platform=windows, utm=
+[28-Sep-2025 11:19:02 Europe/London] Successfully logged click for short_id=59, ip=1.37.67.201
+[28-Sep-2025 11:21:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 11:21:42 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 11:21:42 Europe/London] Updated clicks for short_links, id: 59
+[28-Sep-2025 11:21:42 Europe/London] Attempting to log click for short_id=59, ip=1.37.67.135, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=59, platform=windows, utm=
+[28-Sep-2025 11:21:42 Europe/London] Successfully logged click for short_id=59, ip=1.37.67.135
+[28-Sep-2025 16:29:31 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 16:29:31 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 16:29:38 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 16:29:38 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 16:30:09 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 16:30:09 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 16:30:09 Europe/London] Updated clicks for short_links, id: 59
+[28-Sep-2025 16:30:09 Europe/London] Attempting to log click for short_id=59, ip=85.118.78.182, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php, platform=mobile, utm=
+[28-Sep-2025 16:30:09 Europe/London] Successfully logged click for short_id=59, ip=85.118.78.182
+[28-Sep-2025 16:32:09 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 16:32:09 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 16:32:09 Europe/London] Updated clicks for short_links, id: 59
+[28-Sep-2025 16:32:09 Europe/London] Attempting to log click for short_id=59, ip=85.118.78.182, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=, platform=mobile, utm=
+[28-Sep-2025 16:32:09 Europe/London] Successfully logged click for short_id=59, ip=85.118.78.182
+[28-Sep-2025 17:44:27 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 17:44:27 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 17:44:33 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 17:44:33 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 17:53:11 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 17:53:11 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 17:53:11 Europe/London] Updated clicks for short_links, id: 60
+[28-Sep-2025 17:53:11 Europe/London] Attempting to log click for short_id=60, ip=64.233.172.107, ua=Google-Safety, ref=, platform=unknown, utm=
+[28-Sep-2025 17:53:11 Europe/London] Successfully logged click for short_id=60, ip=64.233.172.107
+[28-Sep-2025 17:53:17 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 17:53:17 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 17:53:17 Europe/London] Updated clicks for short_links, id: 60
+[28-Sep-2025 17:53:17 Europe/London] Attempting to log click for short_id=60, ip=103.130.118.36, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=60, platform=windows, utm=
+[28-Sep-2025 17:53:17 Europe/London] Successfully logged click for short_id=60, ip=103.130.118.36
+[28-Sep-2025 17:53:20 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 17:53:20 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 17:53:20 Europe/London] Updated clicks for short_links, id: 60
+[28-Sep-2025 17:53:20 Europe/London] Attempting to log click for short_id=60, ip=202.173.122.4, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=60, platform=windows, utm=
+[28-Sep-2025 17:53:20 Europe/London] Successfully logged click for short_id=60, ip=202.173.122.4
+[28-Sep-2025 17:57:15 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 17:57:15 Europe/London] click_logs table is accessible for SELECT
+[28-Sep-2025 17:57:15 Europe/London] Updated clicks for short_links, id: 60
+[28-Sep-2025 17:57:15 Europe/London] Attempting to log click for short_id=60, ip=103.130.118.36, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=60, platform=windows, utm=
+[28-Sep-2025 17:57:15 Europe/London] Successfully logged click for short_id=60, ip=103.130.118.36
+[28-Sep-2025 18:11:29 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[28-Sep-2025 18:11:29 Europe/London] click_logs table is accessible for SELECT
+[01-Oct-2025 17:06:13 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[01-Oct-2025 17:06:13 Europe/London] click_logs table is accessible for SELECT
+[02-Oct-2025 06:41:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[02-Oct-2025 06:41:35 Europe/London] click_logs table is accessible for SELECT
+[04-Oct-2025 17:16:20 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[04-Oct-2025 17:16:20 Europe/London] click_logs table is accessible for SELECT
+[04-Oct-2025 17:16:20 Europe/London] Updated clicks for short_links, id: 39
+[04-Oct-2025 17:16:20 Europe/London] Attempting to log click for short_id=39, ip=40.77.167.25, ua=Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36, ref=, platform=unknown, utm=
+[04-Oct-2025 17:16:20 Europe/London] Successfully logged click for short_id=39, ip=40.77.167.25
+[07-Oct-2025 08:39:05 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[07-Oct-2025 08:39:05 Europe/London] click_logs table is accessible for SELECT
+[07-Oct-2025 08:39:17 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[07-Oct-2025 08:39:17 Europe/London] click_logs table is accessible for SELECT
+[07-Oct-2025 08:39:22 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[07-Oct-2025 08:39:22 Europe/London] click_logs table is accessible for SELECT
+[11-Oct-2025 03:50:09 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[11-Oct-2025 03:50:09 Europe/London] click_logs table is accessible for SELECT
+[11-Oct-2025 03:50:09 Europe/London] Updated clicks for short_links, id: 41
+[11-Oct-2025 03:50:09 Europe/London] Attempting to log click for short_id=41, ip=40.77.167.25, ua=Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36, ref=, platform=unknown, utm=
+[11-Oct-2025 03:50:09 Europe/London] Successfully logged click for short_id=41, ip=40.77.167.25
+[12-Oct-2025 10:48:02 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 10:48:02 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:16 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:16 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:19 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:19 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:19 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:19 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:44 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:44 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:06:50 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:06:50 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:15:40 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:15:40 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:15:40 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:15:40 Europe/London] Attempting to log click for short_id=61, ip=74.125.210.201, ua=Google-Safety, ref=, platform=unknown, utm=
+[12-Oct-2025 17:15:40 Europe/London] Successfully logged click for short_id=61, ip=74.125.210.201
+[12-Oct-2025 17:15:43 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:15:43 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:15:43 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:15:43 Europe/London] Attempting to log click for short_id=61, ip=66.249.87.5, ua=Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Google-Safety; +http://www.google.com/bot.html), ref=, platform=mobile, utm=
+[12-Oct-2025 17:15:43 Europe/London] Successfully logged click for short_id=61, ip=66.249.87.5
+[12-Oct-2025 17:16:54 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:16:54 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:16:54 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:16:54 Europe/London] Attempting to log click for short_id=61, ip=199.16.157.181, ua=Twitterbot/1.0, ref=, platform=unknown, utm=
+[12-Oct-2025 17:16:54 Europe/London] Successfully logged click for short_id=61, ip=199.16.157.181
+[12-Oct-2025 17:18:13 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:13 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:13 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:13 Europe/London] Attempting to log click for short_id=61, ip=170.23.26.191, ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=61, platform=mac, utm=
+[12-Oct-2025 17:18:13 Europe/London] Successfully logged click for short_id=61, ip=170.23.26.191
+[12-Oct-2025 17:18:19 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:19 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:19 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:19 Europe/London] Attempting to log click for short_id=61, ip=69.171.249.116, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:19 Europe/London] Successfully logged click for short_id=61, ip=69.171.249.116
+[12-Oct-2025 17:18:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:35 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:35 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:35 Europe/London] Attempting to log click for short_id=61, ip=69.171.249.114, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:35 Europe/London] Successfully logged click for short_id=61, ip=69.171.249.114
+[12-Oct-2025 17:18:39 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:39 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:39 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:39 Europe/London] Attempting to log click for short_id=61, ip=69.171.249.4, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:39 Europe/London] Successfully logged click for short_id=61, ip=69.171.249.4
+[12-Oct-2025 17:18:39 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:39 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:39 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:39 Europe/London] Attempting to log click for short_id=61, ip=69.171.249.5, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:39 Europe/London] Successfully logged click for short_id=61, ip=69.171.249.5
+[12-Oct-2025 17:18:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:42 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:42 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:42 Europe/London] Attempting to log click for short_id=61, ip=31.13.127.113, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:42 Europe/London] Successfully logged click for short_id=61, ip=31.13.127.113
+[12-Oct-2025 17:18:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:42 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:42 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:42 Europe/London] Attempting to log click for short_id=61, ip=31.13.127.114, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:42 Europe/London] Successfully logged click for short_id=61, ip=31.13.127.114
+[12-Oct-2025 17:18:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:42 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:42 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:42 Europe/London] Attempting to log click for short_id=61, ip=173.252.95.19, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:42 Europe/London] Successfully logged click for short_id=61, ip=173.252.95.19
+[12-Oct-2025 17:18:42 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:42 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:42 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:42 Europe/London] Attempting to log click for short_id=61, ip=173.252.95.19, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:42 Europe/London] Successfully logged click for short_id=61, ip=173.252.95.19
+[12-Oct-2025 17:18:43 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:43 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:43 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:43 Europe/London] Attempting to log click for short_id=61, ip=31.13.127.41, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:43 Europe/London] Successfully logged click for short_id=61, ip=31.13.127.41
+[12-Oct-2025 17:18:43 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:18:43 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:18:43 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:18:43 Europe/London] Attempting to log click for short_id=61, ip=31.13.127.4, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:18:43 Europe/London] Successfully logged click for short_id=61, ip=31.13.127.4
+[12-Oct-2025 17:19:14 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:19:14 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:19:14 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:19:14 Europe/London] Attempting to log click for short_id=61, ip=31.13.115.7, ua=Mozilla/5.0 (Linux; Android 12; T431A Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/140.0.7339.207 Mobile Safari/537.36 [FBAN/EMA;FBLC/en_US;FBAV/318.0.0.16.105;FBDM/DisplayMetrics{density=1.5, width=480, height=888,, ref=https://www.facebook.com/, platform=mobile, utm=
+[12-Oct-2025 17:19:14 Europe/London] Successfully logged click for short_id=61, ip=31.13.115.7
+[12-Oct-2025 17:19:30 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:19:30 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:19:30 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:19:30 Europe/London] Attempting to log click for short_id=61, ip=173.252.127.16, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36, ref=https://www.facebook.com/, platform=windows, utm=
+[12-Oct-2025 17:19:30 Europe/London] Successfully logged click for short_id=61, ip=173.252.127.16
+[12-Oct-2025 17:19:33 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:19:33 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:19:33 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:19:33 Europe/London] Attempting to log click for short_id=61, ip=173.252.95.17, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36, ref=http://m.facebook.com, platform=mobile, utm=
+[12-Oct-2025 17:19:33 Europe/London] Successfully logged click for short_id=61, ip=173.252.95.17
+[12-Oct-2025 17:19:58 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:19:58 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:19:58 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:19:58 Europe/London] Attempting to log click for short_id=61, ip=31.13.127.19, ua=Mozilla/5.0 (Linux; Android 12; Hisense E32 Pro Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.43 Mobile Safari/537.36 [FBAN/AudienceNetworkForWindows;FBDV/Hisense E32 Pro;FBSV/12;FBAV/399.0.0.16.120;FBLC/e, ref=https://www.facebook.com/, platform=mobile, utm=
+[12-Oct-2025 17:19:58 Europe/London] Successfully logged click for short_id=61, ip=31.13.127.19
+[12-Oct-2025 17:21:10 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:21:10 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:21:10 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:21:10 Europe/London] Attempting to log click for short_id=61, ip=17.241.219.87, ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15 (Applebot/0.1; +http://www.apple.com/go/applebot), ref=https://cfcbazar.ct.ws/r.php?go=61, platform=mac, utm=
+[12-Oct-2025 17:21:10 Europe/London] Successfully logged click for short_id=61, ip=17.241.219.87
+[12-Oct-2025 17:33:48 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:33:48 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:33:48 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:33:48 Europe/London] Attempting to log click for short_id=61, ip=69.171.234.9, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:33:48 Europe/London] Successfully logged click for short_id=61, ip=69.171.234.9
+[12-Oct-2025 17:33:59 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:33:59 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:33:59 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:33:59 Europe/London] Attempting to log click for short_id=61, ip=31.13.103.116, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:33:59 Europe/London] Successfully logged click for short_id=61, ip=31.13.103.116
+[12-Oct-2025 17:34:00 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 17:34:00 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 17:34:00 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 17:34:00 Europe/London] Attempting to log click for short_id=61, ip=31.13.103.10, ua=facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), ref=, platform=unknown, utm=
+[12-Oct-2025 17:34:00 Europe/London] Successfully logged click for short_id=61, ip=31.13.103.10
+[12-Oct-2025 20:40:41 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[12-Oct-2025 20:40:41 Europe/London] click_logs table is accessible for SELECT
+[12-Oct-2025 20:40:41 Europe/London] Updated clicks for short_links, id: 61
+[12-Oct-2025 20:40:41 Europe/London] Attempting to log click for short_id=61, ip=66.249.69.35, ua=Googlebot-Image/1.0, ref=, platform=unknown, utm=
+[12-Oct-2025 20:40:41 Europe/London] Successfully logged click for short_id=61, ip=66.249.69.35
+[13-Oct-2025 04:53:39 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 04:53:39 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 04:53:39 Europe/London] Updated clicks for short_links, id: 61
+[13-Oct-2025 04:53:39 Europe/London] Attempting to log click for short_id=61, ip=222.254.96.235, ua=Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/537.36 (KHTML, like Gecko)  VivoBrowser/14.2.2.6 Chrome/123.0.6312.118 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=61, platform=windows, utm=
+[13-Oct-2025 04:53:39 Europe/London] Successfully logged click for short_id=61, ip=222.254.96.235
+[13-Oct-2025 04:54:29 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 04:54:29 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 04:54:29 Europe/London] Updated clicks for short_links, id: 61
+[13-Oct-2025 04:54:29 Europe/London] Attempting to log click for short_id=61, ip=222.254.96.235, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=61, platform=mobile, utm=
+[13-Oct-2025 04:54:29 Europe/London] Successfully logged click for short_id=61, ip=222.254.96.235
+[13-Oct-2025 05:00:41 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 05:00:41 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 05:00:41 Europe/London] Updated clicks for short_links, id: 61
+[13-Oct-2025 05:00:41 Europe/London] Attempting to log click for short_id=61, ip=222.254.96.235, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36, ref=, platform=mobile, utm=
+[13-Oct-2025 05:00:41 Europe/London] Successfully logged click for short_id=61, ip=222.254.96.235
+[13-Oct-2025 12:39:22 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 12:39:22 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 12:39:50 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 12:39:50 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 12:39:58 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 12:39:58 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 12:40:35 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 12:40:35 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 15:39:28 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 15:39:28 Europe/London] click_logs table is accessible for SELECT
+[13-Oct-2025 15:39:28 Europe/London] Updated clicks for short_links, id: 7
+[13-Oct-2025 15:39:28 Europe/London] Attempting to log click for short_id=7, ip=40.77.167.5, ua=Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36, ref=, platform=unknown, utm=
+[13-Oct-2025 15:39:28 Europe/London] Successfully logged click for short_id=7, ip=40.77.167.5
+[13-Oct-2025 15:41:09 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[13-Oct-2025 15:41:09 Europe/London] click_logs table is accessible for SELECT
+[14-Oct-2025 21:52:27 Europe/London] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[14-Oct-2025 21:52:27 Europe/London] click_logs table is accessible for SELECT
+[14-Oct-2025 21:52:27 Europe/London] Updated clicks for short_links, id: 61
+[14-Oct-2025 21:52:27 Europe/London] Attempting to log click for short_id=61, ip=66.249.69.34, ua=Googlebot-Image/1.0, ref=, platform=unknown, utm=
+[14-Oct-2025 21:52:27 Europe/London] Successfully logged click for short_id=61, ip=66.249.69.34
+[17-Oct-2025 14:04:35 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Oct-2025 14:04:35 America/New_York] click_logs table is accessible for SELECT
+[17-Oct-2025 14:05:07 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Oct-2025 14:05:07 America/New_York] click_logs table is accessible for SELECT
+[17-Oct-2025 15:02:20 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Oct-2025 15:02:20 America/New_York] click_logs table is accessible for SELECT
+[17-Oct-2025 15:18:59 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Oct-2025 15:18:59 America/New_York] click_logs table is accessible for SELECT
+[17-Oct-2025 15:19:02 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Oct-2025 15:19:02 America/New_York] click_logs table is accessible for SELECT
+[17-Oct-2025 15:19:05 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[17-Oct-2025 15:19:05 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 00:01:30 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 00:01:30 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 00:17:32 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 00:17:32 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 00:17:33 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 00:17:33 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:20:03 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:20:03 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:20:19 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:20:19 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:32:49 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:32:49 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:32:55 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:32:55 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:33:04 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:33:04 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:33:22 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:33:22 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:33:31 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:33:31 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:33:57 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:33:57 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:37:28 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:37:28 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:38:12 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:38:12 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:48:40 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:48:40 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 01:48:45 America/New_York] click_logs table exists in database if0_39103611_db1 for user if0_39103611
+[19-Oct-2025 01:48:45 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 03:56:31 America/New_York] click_logs table exists
+[19-Oct-2025 03:56:31 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 03:56:49 America/New_York] click_logs table exists
+[19-Oct-2025 03:56:49 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 03:57:26 America/New_York] click_logs table exists
+[19-Oct-2025 03:57:26 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 06:59:34 America/New_York] click_logs table exists
+[19-Oct-2025 06:59:34 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:01:21 America/New_York] click_logs table exists
+[19-Oct-2025 07:01:21 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:01:33 America/New_York] click_logs table exists
+[19-Oct-2025 07:01:33 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:22:39 America/New_York] click_logs table exists
+[19-Oct-2025 07:22:39 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:22:39 America/New_York] Updated clicks for id: 65
+[19-Oct-2025 07:22:39 America/New_York] Logging click: id=65, ip=66.249.93.232, ua=Google-Safety, ref=, platform=unknown, utm=
+[19-Oct-2025 07:22:42 America/New_York] click_logs table exists
+[19-Oct-2025 07:22:42 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:22:42 America/New_York] Updated clicks for id: 65
+[19-Oct-2025 07:22:42 America/New_York] Logging click: id=65, ip=66.249.87.234, ua=Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Google-Safety; +http://www.google.com/bot.html), ref=, platform=mobile, utm=
+[19-Oct-2025 07:22:42 America/New_York] click_logs table exists
+[19-Oct-2025 07:22:42 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:22:42 America/New_York] Updated clicks for id: 65
+[19-Oct-2025 07:22:42 America/New_York] Logging click: id=65, ip=49.44.80.137, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=65, platform=windows, utm=
+[19-Oct-2025 07:22:42 America/New_York] click_logs table exists
+[19-Oct-2025 07:22:42 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 07:22:42 America/New_York] Updated clicks for id: 65
+[19-Oct-2025 07:22:42 America/New_York] Logging click: id=65, ip=123.176.33.198, ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=65, platform=windows, utm=
+[19-Oct-2025 13:34:31 America/New_York] click_logs table exists
+[19-Oct-2025 13:34:31 America/New_York] click_logs table is accessible for SELECT
+[19-Oct-2025 16:13:09 America/New_York] click_logs table exists
+[19-Oct-2025 16:13:09 America/New_York] click_logs table is accessible for SELECT
+[20-Oct-2025 12:23:02 America/New_York] click_logs table exists
+[20-Oct-2025 12:23:02 America/New_York] click_logs table is accessible for SELECT
+[20-Oct-2025 12:23:04 America/New_York] click_logs table exists
+[20-Oct-2025 12:23:04 America/New_York] click_logs table is accessible for SELECT
+[20-Oct-2025 12:32:35 America/New_York] click_logs table exists
+[20-Oct-2025 12:32:35 America/New_York] click_logs table is accessible for SELECT
+[20-Oct-2025 12:32:35 America/New_York] Updated clicks for id: 65
+[20-Oct-2025 12:32:35 America/New_York] Logging click: id=65, ip=90.198.220.203, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=65, platform=mobile, utm=
+[21-Oct-2025 05:28:47 America/New_York] click_logs table exists
+[21-Oct-2025 05:28:47 America/New_York] click_logs table is accessible for SELECT
+[21-Oct-2025 05:28:47 America/New_York] Updated clicks for id: 65
+[21-Oct-2025 05:28:47 America/New_York] Logging click: id=65, ip=94.195.232.137, ua=Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0.1 Mobile/15E148 Safari/604.1, ref=https://cfcbazar.ct.ws/r.php?go=65, platform=mobile, utm=
+[21-Oct-2025 17:36:00 America/New_York] click_logs table exists
+[21-Oct-2025 17:36:00 America/New_York] click_logs table is accessible for SELECT
+[21-Oct-2025 17:36:00 America/New_York] Updated clicks for id: 44
+[21-Oct-2025 17:36:00 America/New_York] Logging click: id=44, ip=40.77.167.116, ua=Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36, ref=, platform=unknown, utm=
+[26-Oct-2025 11:39:41 America/New_York] click_logs table exists
+[26-Oct-2025 11:39:41 America/New_York] click_logs table is accessible for SELECT
+[26-Oct-2025 11:39:41 America/New_York] Updated clicks for id: 61
+[26-Oct-2025 11:39:41 America/New_York] Logging click: id=61, ip=176.222.8.60, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36, ref=, platform=mobile, utm=
+[27-Oct-2025 06:47:25 America/New_York] click_logs table exists
+[27-Oct-2025 06:47:25 America/New_York] click_logs table is accessible for SELECT
+[27-Oct-2025 06:47:25 America/New_York] Updated clicks for id: 63
+[27-Oct-2025 06:47:25 America/New_York] Logging click: id=63, ip=176.222.8.60, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36, ref=, platform=mobile, utm=
+[30-Oct-2025 10:17:56 America/New_York] click_logs table exists
+[30-Oct-2025 10:17:56 America/New_York] click_logs table is accessible for SELECT
+[30-Oct-2025 10:17:56 America/New_York] Updated clicks for id: 61
+[30-Oct-2025 10:17:56 America/New_York] Logging click: id=61, ip=176.222.11.93, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36, ref=https://www.youtube.com/, platform=mobile, utm=
+[03-Nov-2025 07:35:43 America/New_York] click_logs table exists
+[03-Nov-2025 07:35:43 America/New_York] click_logs table is accessible for SELECT
+[03-Nov-2025 07:35:43 America/New_York] Updated clicks for id: 61
+[03-Nov-2025 07:35:43 America/New_York] Logging click: id=61, ip=84.202.177.238, ua=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36, ref=https://cfcbazar.ct.ws/r.php?go=61, platform=mobile, utm=

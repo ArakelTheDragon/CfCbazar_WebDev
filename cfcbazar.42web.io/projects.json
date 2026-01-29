@@ -1,0 +1,16 @@
+[
+  {
+    "title": "WiFi Weather Station",
+    "description": "Displays temperature and humidity using DHT22 and sends data to ThingSpeak.",
+    "link": "https://github.com/yourusername/weather-station",
+    "sketch": "images/weather_station_sketch.png",
+    "schematic": "banner.jpg"
+  },
+  {
+    "title": "Smart Light Controller",
+    "description": "Control lights via web interface using ESP8266 and relay module.",
+    "link": "https://github.com/yourusername/smart-light",
+    "sketch": "images/smart_light_sketch.png",
+    "schematic": "images/smart_light_schematic.png"
+  }
+]

@@ -1,0 +1,4342 @@
+[
+    {
+        "ip": "192.168.1.23",
+        "time": "2025-10-18 09:54:12",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 Chrome\/117.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/example.com\/referral-page"
+    },
+    {
+        "ip": "203.0.113.45",
+        "time": "2025-10-18 09:55:01",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Linux; Android 13; SM-G991B) AppleWebKit\/537.36 Chrome\/117.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct"
+    },
+    {
+        "ip": "176.222.8.207",
+        "time": "2025-10-18 02:56:09",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct"
+    },
+    {
+        "ip": "176.222.8.207",
+        "time": "2025-10-18 02:56:10",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct"
+    },
+    {
+        "ip": "176.222.8.207",
+        "time": "2025-10-18 02:56:13",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct"
+    },
+    {
+        "ip": "90.216.134.192",
+        "time": "2025-10-18 03:01:01",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/140.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/"
+    },
+    {
+        "ip": "176.222.8.207",
+        "time": "2025-10-18 05:37:00",
+        "uri": "\/maintenance.php",
+        "agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/track.php"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-25 08:03:21"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-25 08:56:53"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-25 08:57:24"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-25 08:57:26"
+    },
+    {
+        "ip": "64.71.166.35",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/137.0.7151.55 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-25 10:12:16"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:11:30"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:13:32"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:15:26"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:17:28"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:18:04"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:18:44"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:19:00"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:21:06"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-25 12:31:33"
+    },
+    {
+        "ip": "17.246.23.224",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/17.4 Safari\/605.1.15 (Applebot\/0.1; +http:\/\/www.apple.com\/go\/applebot)",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-25 15:44:56"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-25 16:04:04"
+    },
+    {
+        "ip": "66.220.149.6",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAAR70lpUcUu3vnFNi7-k6rqwC5BAHJ-eX-qvyA7e5JIk-2b1fmtRjskeaCXUEZw_aem_JN9MkjeYoqBNTFu6BPzPeQ",
+        "time": "2025-10-25 18:29:32"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-10-26 03:23:53"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=2",
+        "uri": "\/?i=2",
+        "time": "2025-10-26 03:24:01"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=2",
+        "uri": "\/",
+        "time": "2025-10-26 03:24:03"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 03:26:13"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=1",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 03:26:20"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=1",
+        "uri": "\/",
+        "time": "2025-10-26 03:26:22"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-26 03:48:49"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-26 03:52:31"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 03:55:08"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 04:02:26"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 04:08:03"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 04:10:16"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/",
+        "time": "2025-10-26 04:10:16"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=1",
+        "uri": "\/",
+        "time": "2025-10-26 04:10:32"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/",
+        "time": "2025-10-26 04:10:32"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 04:12:33"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/",
+        "time": "2025-10-26 04:12:33"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=1",
+        "uri": "\/",
+        "time": "2025-10-26 04:12:40"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/",
+        "time": "2025-10-26 04:12:40"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 04:13:55"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/",
+        "time": "2025-10-26 04:13:55"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php",
+        "time": "2025-10-26 04:14:46"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:23:37"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:23:58"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:00"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:00"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:00"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:00"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:01"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:01"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:16"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:17"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:17"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:17"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:24:42"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/?i=1",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 04:26:04"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/?i=1",
+        "uri": "\/",
+        "time": "2025-10-26 04:26:06"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.iceiy.com\/?i=1",
+        "uri": "\/",
+        "time": "2025-10-26 04:39:27"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/?i=1",
+        "uri": "\/",
+        "time": "2025-10-26 05:06:51"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-26 05:45:30"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-26 05:51:37"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-26 07:16:00"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-26 11:39:29"
+    },
+    {
+        "ip": "192.133.77.16",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-26 13:11:46"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-26 13:11:46"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-26 14:24:20"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-26 15:25:15"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-26 15:44:05"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 03:08:08"
+    },
+    {
+        "ip": "192.133.77.18",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 03:08:32"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 03:28:12"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 06:48:46"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Android 15; Mobile; rv:144.0) Gecko\/144.0 Firefox\/144.0",
+        "referrer": "http:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 07:47:01"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Android 15; Mobile; rv:144.0) Gecko\/144.0 Firefox\/144.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 07:47:21"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Android 15; Mobile; rv:144.0) Gecko\/144.0 Firefox\/144.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 07:47:28"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 07:47:47"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 08:27:59"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 08:28:01"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 08:28:35"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 08:41:25"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 08:45:43"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-27 18:53:29"
+    },
+    {
+        "ip": "49.216.191.32",
+        "user_agent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/26.0 Mobile\/15E148 Safari\/604.1",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 18:57:46"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 19:17:10"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-27 19:17:51"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-27 21:29:35"
+    },
+    {
+        "ip": "176.222.8.60",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-27 22:37:04"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-28 11:02:53"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-28 13:32:32"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-28 17:45:51"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-28 18:04:28"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-28 18:07:30"
+    },
+    {
+        "ip": "34.105.51.4",
+        "user_agent": "unknown",
+        "referrer": "https:\/\/t.co\/Oz6BxY5czz",
+        "uri": "\/",
+        "time": "2025-10-28 18:07:34"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-29 08:32:04"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-29 09:23:32"
+    },
+    {
+        "ip": "40.77.167.0",
+        "user_agent": "Mozilla\/5.0 AppleWebKit\/537.36 (KHTML, like Gecko; compatible; bingbot\/2.0; +http:\/\/www.bing.com\/bingbot.htm) Chrome\/116.0.1938.76 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-29 15:55:10"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-10-29 23:26:58"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-30 00:05:20"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-30 04:07:17"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-30 04:27:25"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-10-30 04:32:32"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-30 07:20:29"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-30 07:28:26"
+    },
+    {
+        "ip": "176.222.7.129",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-30 07:28:27"
+    },
+    {
+        "ip": "176.222.11.93",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-30 12:47:09"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-10-30 18:36:03"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-10-31 10:50:26"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-01 06:47:07"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-02 12:45:55"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-02 13:49:56"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-02 14:25:30"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Android 13; Mobile; rv:144.0) Gecko\/144.0 Firefox\/144.0",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-02 14:35:25"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-02 14:57:21"
+    },
+    {
+        "ip": "74.125.208.99",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-02 14:57:21"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-02 17:46:15"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-02 18:25:00"
+    },
+    {
+        "ip": "84.202.177.238",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-03 08:35:28"
+    },
+    {
+        "ip": "176.222.8.13",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-05 09:35:40"
+    },
+    {
+        "ip": "2.120.41.75",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-08 22:01:09"
+    },
+    {
+        "ip": "176.222.8.94",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-09 03:09:40"
+    },
+    {
+        "ip": "176.222.8.94",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-09 04:45:26"
+    },
+    {
+        "ip": "176.222.8.94",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-09 04:45:37"
+    },
+    {
+        "ip": "173.252.87.8",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "http:\/\/m.facebook.com",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEeGdzsCvhk7aR6k2NlIX0Sra1vrNyrTAvm6AEfFUpbk5rdXNU4xmWcX2Psah8_aem_IeV3EM-lWxWVysWLyZi_cw",
+        "time": "2025-11-09 06:21:45"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-09 13:08:37"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-09 14:43:21"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-10 02:25:39"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-10 03:42:45"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-10 06:16:56"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-10 11:04:45"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-10 11:04:46"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-10 11:54:44"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-11 08:14:33"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-11 08:14:33"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-12 22:24:54"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-12 23:28:21"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-12 23:29:48"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-12 23:34:35"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-12 23:39:23"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-12 23:54:40"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-13 00:02:22"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-13 00:38:58"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-13 00:44:39"
+    },
+    {
+        "ip": "151.251.252.88",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-13 01:45:53"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-13 01:45:56"
+    },
+    {
+        "ip": "66.102.9.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-13 01:45:57"
+    },
+    {
+        "ip": "66.249.83.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-13 01:45:57"
+    },
+    {
+        "ip": "151.251.252.79",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-13 12:51:19"
+    },
+    {
+        "ip": "151.251.252.79",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-14 02:02:07"
+    },
+    {
+        "ip": "151.251.252.79",
+        "user_agent": "Mozilla\/5.0 (Android 15; Mobile; rv:144.0) Gecko\/144.0 Firefox\/144.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-11-14 02:09:33"
+    },
+    {
+        "ip": "90.216.134.195",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-14 05:09:06"
+    },
+    {
+        "ip": "90.216.134.195",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/141.0.0.0 Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.42web.io\/",
+        "uri": "\/",
+        "time": "2025-11-14 05:09:11"
+    },
+    {
+        "ip": "151.251.251.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-15 05:32:08"
+    },
+    {
+        "ip": "192.133.77.18",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-15 11:47:04"
+    },
+    {
+        "ip": "202.76.178.171",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/137.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-15 12:39:30"
+    },
+    {
+        "ip": "84.202.177.238",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-15 17:55:35"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-15 17:55:37"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-15 17:55:37"
+    },
+    {
+        "ip": "84.202.177.238",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/news.php",
+        "uri": "\/",
+        "time": "2025-11-15 17:56:05"
+    },
+    {
+        "ip": "151.251.251.17",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 01:04:30"
+    },
+    {
+        "ip": "151.251.243.158",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 07:58:23"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 07:58:26"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 07:58:26"
+    },
+    {
+        "ip": "74.125.213.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 07:58:26"
+    },
+    {
+        "ip": "151.251.243.158",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-16 08:00:26"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-16 15:33:02"
+    },
+    {
+        "ip": "151.251.243.158",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 18:23:12"
+    },
+    {
+        "ip": "151.251.243.158",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-16 18:23:25"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 03:28:47"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 03:30:46"
+    },
+    {
+        "ip": "192.133.77.18",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 03:33:35"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 03:33:37"
+    },
+    {
+        "ip": "66.249.83.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 03:33:41"
+    },
+    {
+        "ip": "66.249.83.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 03:33:41"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-11-17 03:34:00"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-17 03:34:02"
+    },
+    {
+        "ip": "66.249.83.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-17 03:34:02"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-17 03:34:03"
+    },
+    {
+        "ip": "87.246.1.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 14; Pixel 6 Pro) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/122.0.6261.119 Mobile Safari\/537.36 OPR\/81.2.4292.78581",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-11-17 03:34:04"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 04:02:33"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-11-17 06:18:57"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 06:19:48"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 07:45:47"
+    },
+    {
+        "ip": "31.13.115.18",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4CGNhbGxzaXRlAjM5AAEeUf7yj3sRlKjQ7XQZ-kdlVvsRzpegv2IkENjq7h2cyj5UI5B35t_XMMQI6_I_aem_ehhP6GQGjq0SThb4y_w2WA",
+        "time": "2025-11-17 13:55:47"
+    },
+    {
+        "ip": "173.252.87.18",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4CGNhbGxzaXRlAjM5AAEeYFZov9mKRLlA730BMPzo4eGpvaWEGyAAABAzuJkhvqET99RsM-12b2Fp3t0_aem_WV0Xx_w8yGfhwktV9GEQGw",
+        "time": "2025-11-17 13:55:47"
+    },
+    {
+        "ip": "173.252.127.5",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4CGNhbGxzaXRlAjM5AAEe7VlE-lrUCPYO564SQHBF3nPP9aaPNl2Yp3DqBjpevoU0KL4vurFU0nY4T-A_aem_5TYvc5F-K4TdQLqD2ahP_w",
+        "time": "2025-11-17 13:56:27"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 17:37:17"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 15; moto g34 5G Build\/V1UGS35H.75-14-3-4; wv) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/141.0.7390.122 Mobile Safari\/537.36 WebView MetaMaskMobile",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-17 19:20:32"
+    },
+    {
+        "ip": "45.196.46.163",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/96.0.4664.110 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-17 19:20:33"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 15; moto g34 5G Build\/V1UGS35H.75-14-3-4; wv) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/141.0.7390.122 Mobile Safari\/537.36 WebView MetaMaskMobile",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/",
+        "time": "2025-11-17 19:20:41"
+    },
+    {
+        "ip": "37.63.27.197",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-17 21:00:11"
+    },
+    {
+        "ip": "202.76.132.83",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/137.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-11-19 02:12:30"
+    },
+    {
+        "ip": "199.16.157.183",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-19 14:14:07"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-20 01:44:32"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-20 01:44:34"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-20 01:44:35"
+    },
+    {
+        "ip": "66.249.83.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-20 01:44:35"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-11-20 11:46:37"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-20 11:46:41"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-20 11:46:45"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-20 11:46:45"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-20 12:56:25"
+    },
+    {
+        "ip": "212.5.158.71",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-21 13:06:58"
+    },
+    {
+        "ip": "202.76.185.253",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/137.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-21 16:13:08"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-22 03:29:43"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-22 12:08:17"
+    },
+    {
+        "ip": "212.5.158.47",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-11-23 01:13:20"
+    },
+    {
+        "ip": "212.39.86.69",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/134.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-11-23 01:13:27"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-11-23 06:49:17"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-11-23 06:49:19"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-11-23 06:49:19"
+    },
+    {
+        "ip": "66.249.83.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-11-23 06:49:20"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/games.php",
+        "uri": "\/index.php",
+        "time": "2025-11-23 07:07:31"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-23 07:07:34"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-23 07:07:35"
+    },
+    {
+        "ip": "66.249.83.101",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-23 07:07:35"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-11-23 07:09:25"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:26:52"
+    },
+    {
+        "ip": "74.125.213.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:26:55"
+    },
+    {
+        "ip": "74.125.213.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:26:55"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:29:54"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:41:29"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:41:44"
+    },
+    {
+        "ip": "192.133.77.18",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 07:43:40"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/squares.php",
+        "time": "2025-11-23 09:26:30"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/squares.php",
+        "uri": "\/squares.php",
+        "time": "2025-11-23 09:26:30"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/squares.php",
+        "uri": "\/squares.php",
+        "time": "2025-11-23 09:26:34"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/squares.php",
+        "time": "2025-11-23 09:26:50"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/squares.php",
+        "uri": "\/squares.php",
+        "time": "2025-11-23 09:26:51"
+    },
+    {
+        "ip": "37.63.27.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/squares.php",
+        "uri": "\/squares.php",
+        "time": "2025-11-23 09:26:51"
+    },
+    {
+        "ip": "37.63.24.243",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=2",
+        "uri": "\/?i=3",
+        "time": "2025-11-23 13:13:24"
+    },
+    {
+        "ip": "37.63.24.243",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=2",
+        "uri": "\/?i=3",
+        "time": "2025-11-23 13:26:38"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-23 17:19:45"
+    },
+    {
+        "ip": "199.16.157.183",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-24 17:45:14"
+    },
+    {
+        "ip": "17.22.237.40",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/17.4 Safari\/605.1.15 (Applebot\/0.1; +http:\/\/www.apple.com\/go\/applebot)",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-11-25 03:12:38"
+    },
+    {
+        "ip": "104.252.202.2",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 13; 22111317PG Build\/TKQ1.221114.001; wv) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/118.0.0.0 Mobile Safari\/537.36 musical_ly_2023108040 JsSdk\/1.0 NetType\/WIFI Channel\/googleplay AppName\/musical_ly app_version\/31.8.4 ByteLocale\/pt ByteFullLocale\/pt Region\/BR AppId\/1233 Spark\/1.4.3-alpha.5 AppVersion\/31.8.4 BytedanceWebview\/d8a21c6",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-25 13:42:42"
+    },
+    {
+        "ip": "40.160.52.198",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-26 04:42:12"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-27 04:50:39"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-27 08:49:14"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-27 08:49:17"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-27 08:49:17"
+    },
+    {
+        "ip": "66.249.83.12",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-27 08:49:18"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-27 08:50:53"
+    },
+    {
+        "ip": "199.16.157.183",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-27 10:35:52"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-28 02:26:50"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-28 02:28:23"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-28 02:29:10"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 06:06:30"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-30 06:08:44"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 09:15:25"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 09:15:27"
+    },
+    {
+        "ip": "74.125.213.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 09:15:27"
+    },
+    {
+        "ip": "74.125.215.198",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 09:15:28"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 09:16:01"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-11-30 09:16:24"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-30 09:16:27"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-30 09:16:27"
+    },
+    {
+        "ip": "74.125.213.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-11-30 09:16:27"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-11-30 09:51:12"
+    },
+    {
+        "ip": "192.133.77.17",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-30 09:52:30"
+    },
+    {
+        "ip": "212.5.158.71",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-11-30 16:28:32"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-30 16:28:44"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-30 17:23:51"
+    },
+    {
+        "ip": "52.48.53.137",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/92.0.4515.107 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-11-30 22:15:22"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-01 03:04:54"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-01 03:59:38"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-01 04:35:00"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-01 05:20:48"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-01 05:20:58"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-01 06:31:50"
+    },
+    {
+        "ip": "66.102.9.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-01 06:31:57"
+    },
+    {
+        "ip": "74.125.213.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-01 06:31:58"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/help\/how-cfcbazar-works-what-we-provide-and-how-to-get-worktokens-workthr-.php",
+        "uri": "\/index.php",
+        "time": "2025-12-01 07:35:52"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/help\/how-cfcbazar-works-what-we-provide-and-how-to-get-worktokens-workthr-.php",
+        "uri": "\/index.php",
+        "time": "2025-12-01 07:36:01"
+    },
+    {
+        "ip": "37.63.27.213",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-01 07:36:37"
+    },
+    {
+        "ip": "40.77.167.132",
+        "user_agent": "Mozilla\/5.0 AppleWebKit\/537.36 (KHTML, like Gecko; compatible; bingbot\/2.0; +http:\/\/www.bing.com\/bingbot.htm) Chrome\/116.0.1938.76 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-01 21:17:18"
+    },
+    {
+        "ip": "151.251.240.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-02 03:41:57"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-02 15:23:24"
+    },
+    {
+        "ip": "151.251.240.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-02 22:27:58"
+    },
+    {
+        "ip": "62.73.103.230",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-02 22:28:11"
+    },
+    {
+        "ip": "85.118.80.31",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-12-04 12:46:28"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-04 12:46:30"
+    },
+    {
+        "ip": "66.102.6.4",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-04 12:46:31"
+    },
+    {
+        "ip": "66.102.6.3",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-04 12:46:31"
+    },
+    {
+        "ip": "151.251.240.143",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-05 15:35:34"
+    },
+    {
+        "ip": "151.251.240.143",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-05 15:36:01"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-05 15:36:04"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-05 15:36:04"
+    },
+    {
+        "ip": "66.102.6.2",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-05 15:36:04"
+    },
+    {
+        "ip": "151.251.240.143",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-06 02:45:55"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-06 03:53:31"
+    },
+    {
+        "ip": "154.93.37.101",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-06 06:15:34"
+    },
+    {
+        "ip": "154.93.37.101",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/",
+        "time": "2025-12-06 06:15:46"
+    },
+    {
+        "ip": "151.251.240.143",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-07 09:21:12"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-07 17:29:58"
+    },
+    {
+        "ip": "151.251.240.143",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-12-08 09:56:44"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-08 09:56:49"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-08 09:56:49"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-08 09:56:49"
+    },
+    {
+        "ip": "212.39.86.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=2",
+        "uri": "\/?i=3",
+        "time": "2025-12-08 09:56:54"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-09 14:41:59"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-09 14:42:19"
+    },
+    {
+        "ip": "37.63.24.146",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-10 06:38:22"
+    },
+    {
+        "ip": "212.39.86.69",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-10 06:38:34"
+    },
+    {
+        "ip": "205.143.214.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 13; XQ-BC72 Build\/61.2.A.0.472A; wv) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/118.0.0.0 Mobile Safari\/537.36 trill_310804 JsSdk\/1.0 NetType\/WIFI Channel\/googleplay AppName\/trill app_version\/31.8.4 ByteLocale\/zh-TW ByteFullLocale\/zh-Hant-TW Region\/TW AppId\/1180 Spark\/1.4.3-alpha.5 AppVersion\/31.8.4 BytedanceWebview\/d8a21c6",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-10 18:12:47"
+    },
+    {
+        "ip": "90.216.134.192",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-12 03:00:38"
+    },
+    {
+        "ip": "37.63.27.188",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-14 07:19:51"
+    },
+    {
+        "ip": "37.63.27.188",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-14 07:20:13"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-14 07:20:15"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-14 07:20:16"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-14 07:20:16"
+    },
+    {
+        "ip": "37.63.27.188",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-14 11:46:06"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-14 13:54:21"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-14 13:54:52"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-15 06:08:13"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-15 06:08:46"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-15 06:13:43"
+    },
+    {
+        "ip": "37.63.27.188",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-15 15:16:28"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-15 15:16:30"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-15 15:16:31"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-15 15:16:31"
+    },
+    {
+        "ip": "37.63.27.188",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-15 15:17:06"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-20 09:27:42"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-12-20 09:47:27"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-20 09:47:29"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-20 09:47:30"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-20 09:47:30"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-21 06:47:16"
+    },
+    {
+        "ip": "1.92.207.40",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/130.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-21 20:53:09"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-22 05:35:05"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-22 05:35:08"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-22 05:35:08"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-23 07:32:34"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-23 07:32:45"
+    },
+    {
+        "ip": "1.92.198.11",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/132.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?utm_medium=company_profile&utm_source=trustpilot&utm_campaign=domain_click",
+        "uri": "\/?utm_medium=company_profile&utm_source=trustpilot&utm_campaign=domain_click&i=1",
+        "time": "2025-12-23 09:15:07"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-24 07:57:27"
+    },
+    {
+        "ip": "192.133.77.16",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-24 08:10:00"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-24 08:10:00"
+    },
+    {
+        "ip": "192.133.77.16",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-24 08:10:30"
+    },
+    {
+        "ip": "49.218.88.103",
+        "user_agent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/26.1 Mobile\/15E148 Safari\/604.1",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-24 08:12:45"
+    },
+    {
+        "ip": "49.218.88.103",
+        "user_agent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/26.1 Mobile\/15E148 Safari\/604.1",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-24 08:12:55"
+    },
+    {
+        "ip": "82.23.180.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 12; SM-G990U2 Build\/SP1A.210812.016; wv) AppleWebKit\/537.36 (KHTML, like Gecko) Version\/4.0 Chrome\/118.0.0.0 Mobile Safari\/537.36 musical_ly_2023109030 JsSdk\/1.0 NetType\/WIFI Channel\/googleplay AppName\/musical_ly app_version\/31.9.3 ByteLocale\/en ByteFullLocale\/en Region\/JM AppId\/1233 Spark\/1.4.3.5-bugfix AppVersion\/31.9.3 BytedanceWebview\/d8a21c6",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-25 00:47:52"
+    },
+    {
+        "ip": "38.18.29.101",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/116.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 00:48:15"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 04:19:36"
+    },
+    {
+        "ip": "192.133.77.16",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-25 06:14:59"
+    },
+    {
+        "ip": "192.133.77.18",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-25 06:17:46"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-25 12:45:43"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 12:45:43"
+    },
+    {
+        "ip": "62.73.103.229",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 4.4.4; Nexus 5 Build\/KTU84P) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/34.0.1847.114 Mobile Safari\/537.36 GSA\/7.0.55539",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-12-25 12:45:46"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 12:45:47"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 12:45:48"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 12:45:48"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-25 12:58:27"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-25 12:59:58"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-25 13:00:00"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-25 13:00:01"
+    },
+    {
+        "ip": "66.102.9.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-25 13:00:01"
+    },
+    {
+        "ip": "192.133.77.16",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-25 23:38:07"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-25 23:38:20"
+    },
+    {
+        "ip": "192.133.77.14",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-27 03:40:05"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-27 05:17:21"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-27 05:17:49"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2025-12-27 13:33:39"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-12-27 13:33:40"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2025-12-28 12:17:00"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-28 12:17:02"
+    },
+    {
+        "ip": "66.102.9.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-28 12:17:02"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2025-12-28 12:17:02"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-28 15:05:34"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 03:23:30"
+    },
+    {
+        "ip": "192.133.77.17",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 03:26:27"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 03:50:26"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-29 06:09:17"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 06:09:19"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 06:09:20"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-29 06:09:22"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-29 06:09:22"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2025-12-29 06:09:22"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2025-12-29 06:10:00"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-29 06:10:03"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-29 06:10:04"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2025-12-29 06:10:04"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 06:19:43"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2025-12-29 08:08:07"
+    },
+    {
+        "ip": "192.133.77.18",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-29 08:09:04"
+    },
+    {
+        "ip": "199.16.157.183",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-30 14:25:55"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2025-12-31 19:40:51"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-01 05:17:32"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-01 05:17:35"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-01 05:17:35"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-01 05:17:37"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-01 05:17:37"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-01 05:17:39"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-01 06:16:52"
+    },
+    {
+        "ip": "151.251.243.112",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/109.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-01 07:36:34"
+    },
+    {
+        "ip": "151.251.240.250",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-03 03:13:53"
+    },
+    {
+        "ip": "151.251.240.250",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-03 05:23:51"
+    },
+    {
+        "ip": "94.239.155.236",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 5.0; SM-G900P Build\/LRX21T) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/47.0.9252.1036 Mobile Safari\/537.36",
+        "referrer": "http:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-03 15:51:29"
+    },
+    {
+        "ip": "151.251.240.250",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-04 08:54:30"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-04 08:54:32"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-04 08:54:33"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-04 08:54:33"
+    },
+    {
+        "ip": "151.251.251.122",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-05 09:50:49"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-05 09:50:52"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-05 09:50:52"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-05 09:50:52"
+    },
+    {
+        "ip": "151.251.251.122",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-05 13:50:34"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-05 13:50:36"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-05 13:50:37"
+    },
+    {
+        "ip": "66.102.8.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-05 13:50:37"
+    },
+    {
+        "ip": "151.251.251.122",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-05 13:58:46"
+    },
+    {
+        "ip": "199.16.157.183",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-05 14:11:09"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-05 14:11:40"
+    },
+    {
+        "ip": "90.216.134.196",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-06 03:28:58"
+    },
+    {
+        "ip": "90.216.134.196",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-06 03:29:01"
+    },
+    {
+        "ip": "37.63.21.118",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-06 11:41:15"
+    },
+    {
+        "ip": "31.13.127.117",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEem6e7Bado2PTpav_6KJLx8ufFQlehGSXqZQg9kbLxBzxbsPMlBGRCuxTAxEI_aem_H_IZAGGUhNtGXai3r81wsg",
+        "time": "2026-01-06 12:04:26"
+    },
+    {
+        "ip": "173.252.127.50",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "http:\/\/m.facebook.com",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEeSFvju4KINSeIgssa81ofaV9gdRlGO82VTQJkhWybdIgtq2gqiaSeznQrxag_aem_GBqQwatGU9_GyLxUyjkZyQ",
+        "time": "2026-01-06 12:04:33"
+    },
+    {
+        "ip": "173.252.127.8",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "http:\/\/m.facebook.com",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEeWRygKxzeDxp4J8nHJOQoqT3c5nUYk4gbIdFboqePtNVM_odDyeJ6o8Eaj1I_aem_sVYZ-LB6Rw40bkv8HGHALA",
+        "time": "2026-01-06 12:04:36"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-07 23:52:47"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-07 23:52:47"
+    },
+    {
+        "ip": "90.216.134.193",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-08 03:18:47"
+    },
+    {
+        "ip": "82.25.241.219",
+        "user_agent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Mobile\/15E148 BytedanceWebview\/d8a21c6 trill_31.7.0 JsSdk\/2.0 NetType\/WIFI Channel\/App Store ByteLocale\/id Region\/ID FalconTag\/B01A80E7-4BCD-4660-A50A-8FC7551A9C2F TTP_H5_URLPROTOCOL",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-09 10:02:45"
+    },
+    {
+        "ip": "85.118.77.71",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-10 04:57:45"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-10 04:57:48"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-10 04:57:48"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-10 04:57:48"
+    },
+    {
+        "ip": "142.147.172.134",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-10 04:58:08"
+    },
+    {
+        "ip": "185.47.94.212",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-10 04:58:16"
+    },
+    {
+        "ip": "138.226.27.3",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-10 04:58:57"
+    },
+    {
+        "ip": "45.41.133.70",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-10 04:59:06"
+    },
+    {
+        "ip": "45.82.197.238",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-10 04:59:14"
+    },
+    {
+        "ip": "50.114.44.73",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-10 04:59:21"
+    },
+    {
+        "ip": "66.225.238.205",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-10 20:40:36"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-11 02:14:32"
+    },
+    {
+        "ip": "147.136.76.231",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-11 06:51:30"
+    },
+    {
+        "ip": "84.37.134.52",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-11 17:36:44"
+    },
+    {
+        "ip": "85.254.84.154",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-12 15:29:50"
+    },
+    {
+        "ip": "185.226.214.121",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 00:21:40"
+    },
+    {
+        "ip": "45.131.219.234",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-13 06:05:40"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 11:59:29"
+    },
+    {
+        "ip": "212.39.86.104",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 11:59:33"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 11:59:35"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 11:59:37"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 11:59:37"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:03:16"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:03:19"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:03:23"
+    },
+    {
+        "ip": "66.102.6.2",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:03:23"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:45:19"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:47:08"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:47:31"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-13 12:47:50"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-13 12:47:55"
+    },
+    {
+        "ip": "66.102.6.4",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-13 12:48:00"
+    },
+    {
+        "ip": "66.102.6.4",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-13 12:48:01"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:54:20"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-13 12:54:23"
+    },
+    {
+        "ip": "104.194.200.193",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-13 21:28:39"
+    },
+    {
+        "ip": "45.41.164.248",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-13 23:02:52"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 02:08:38"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 02:08:48"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 02:08:49"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 02:08:49"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 02:10:10"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 02:10:13"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-14 02:11:11"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-14 02:11:29"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-14 02:12:40"
+    },
+    {
+        "ip": "90.216.134.197",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-14 02:55:00"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-14 12:05:30"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-14 12:05:38"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/d.php",
+        "uri": "\/index.php",
+        "time": "2026-01-14 12:06:44"
+    },
+    {
+        "ip": "68.167.133.210",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-14 16:16:13"
+    },
+    {
+        "ip": "45.145.136.103",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-14 23:59:41"
+    },
+    {
+        "ip": "46.250.168.173",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/132.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2026-01-15 06:34:24"
+    },
+    {
+        "ip": "204.93.209.213",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-15 08:54:51"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-15 11:41:22"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-15 11:41:24"
+    },
+    {
+        "ip": "64.233.172.37",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-15 11:41:26"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-15 11:58:18"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-15 11:58:28"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-15 11:58:29"
+    },
+    {
+        "ip": "64.233.172.38",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-15 11:58:30"
+    },
+    {
+        "ip": "84.37.123.134",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-15 19:09:04"
+    },
+    {
+        "ip": "104.238.32.66",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-16 06:26:29"
+    },
+    {
+        "ip": "216.218.141.228",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.7444.162 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-16 09:26:48"
+    },
+    {
+        "ip": "216.218.191.228",
+        "user_agent": "Mozilla\/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.2) Gecko\/20090729 Firefox\/3.5.2 (.NET CLR 3.5.30729; Diffbot\/0.1; +http:\/\/www.diffbot.com)",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-16 09:26:48"
+    },
+    {
+        "ip": "64.62.158.120",
+        "user_agent": "Mozilla\/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.2) Gecko\/20090729 Firefox\/3.5.2 (.NET CLR 3.5.30729; Diffbot\/0.1; +http:\/\/www.diffbot.com)",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-16 09:26:53"
+    },
+    {
+        "ip": "34.83.63.252",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 12; Pixel 6) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/114.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-16 21:15:17"
+    },
+    {
+        "ip": "206.195.138.28",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-16 22:40:08"
+    },
+    {
+        "ip": "192.133.77.15",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-17 02:28:47"
+    },
+    {
+        "ip": "84.37.232.47",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-17 05:01:10"
+    },
+    {
+        "ip": "185.226.214.117",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/139.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-17 12:30:45"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=2",
+        "uri": "\/?i=3",
+        "time": "2026-01-17 13:33:31"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-18 08:25:16"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 08:28:58"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 08:44:39"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 08:53:51"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-18 08:55:05"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 08:55:06"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-18 08:55:07"
+    },
+    {
+        "ip": "66.102.9.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 08:55:08"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 08:55:08"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-18 08:55:08"
+    },
+    {
+        "ip": "64.233.172.36",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-18 08:55:09"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 09:00:49"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 09:07:21"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 09:46:25"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 10:06:22"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-18 18:01:51"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-18 18:02:08"
+    },
+    {
+        "ip": "74.125.208.166",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-18 18:02:08"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-18 18:02:08"
+    },
+    {
+        "ip": "136.117.175.14",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 12; Pixel 6) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/114.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-18 22:53:33"
+    },
+    {
+        "ip": "17.246.23.119",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/17.4 Safari\/605.1.15 (Applebot\/0.1; +http:\/\/www.apple.com\/go\/applebot)",
+        "referrer": "https:\/\/cfcbazar.ct.ws\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-18 23:32:57"
+    },
+    {
+        "ip": "17.246.19.220",
+        "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/17.4 Safari\/605.1.15 (Applebot\/0.1; +http:\/\/www.apple.com\/go\/applebot)",
+        "referrer": "http:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-18 23:33:10"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-19 01:55:49"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-19 02:53:56"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-19 12:15:29"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-19 14:02:25"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-19 14:02:57"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-19 14:03:07"
+    },
+    {
+        "ip": "31.13.115.9",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEeVHy_EIhlLFPmrS5j6ZKMKNIthaxoE4_Ad1EQS4z_mUT4Atilb9LhaQ66SFw_aem_zajP42YvN3YSEREKULmLEA",
+        "time": "2026-01-19 14:24:30"
+    },
+    {
+        "ip": "31.13.115.17",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEek3JwF-Wz04phv_EpBh5YDuxbscAO7PiIENfD9EBeW0SszUlOvWMWXdMNRiA_aem_qpHx-4NAXXJVabGjI4HVDA",
+        "time": "2026-01-19 14:24:30"
+    },
+    {
+        "ip": "173.252.95.55",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36 Edg\/143.0.0.0",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEe8OQqLGLW2z4UVtGBCkIV2964mCSKrC9qrA5f3a-a-Jg0stPwHWNt9BYvt4s_aem_Xn2U0YGHhCvruexMP1T-mQ",
+        "time": "2026-01-19 14:24:30"
+    },
+    {
+        "ip": "66.220.149.26",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko\/20100101 Firefox\/147.0",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEegSA6XcqMSnVeiOBz70wcKQsRUCn2Gg9I7knlpebaX0AMQqAyOch39Aq_lq0_aem_Pq7h8DqdMY6l7n2wNkf9FQ",
+        "time": "2026-01-19 14:24:31"
+    },
+    {
+        "ip": "173.252.127.50",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/www.facebook.com\/",
+        "uri": "\/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEe0sHspp0ylqIgWOPWp_7ekgHZbmJLBFYJCDlgTEITZpgSiDCMj0LrvJfAX7w_aem_i1os86bq1eKk7UbE-Hsq2w",
+        "time": "2026-01-19 14:28:20"
+    },
+    {
+        "ip": "37.63.22.17",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=1",
+        "uri": "\/?i=2",
+        "time": "2026-01-20 02:29:10"
+    },
+    {
+        "ip": "74.125.208.168",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-20 02:29:10"
+    },
+    {
+        "ip": "74.125.208.168",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-20 02:29:11"
+    },
+    {
+        "ip": "66.102.9.4",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-20 02:29:11"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-20 02:29:13"
+    },
+    {
+        "ip": "66.249.83.100",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-20 02:29:15"
+    },
+    {
+        "ip": "66.102.8.69",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=2",
+        "time": "2026-01-20 02:29:15"
+    },
+    {
+        "ip": "90.216.134.198",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-20 08:17:31"
+    },
+    {
+        "ip": "151.251.247.220",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/?i=2",
+        "uri": "\/?i=3",
+        "time": "2026-01-20 12:36:45"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=3",
+        "time": "2026-01-20 17:21:31"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=3",
+        "time": "2026-01-20 17:21:32"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=3",
+        "time": "2026-01-20 17:21:32"
+    },
+    {
+        "ip": "151.251.247.220",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-22 02:01:30"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-22 02:01:32"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-22 02:01:33"
+    },
+    {
+        "ip": "66.249.83.133",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-22 02:01:33"
+    },
+    {
+        "ip": "37.63.25.124",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-22 09:59:24"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-22 09:59:26"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-22 09:59:27"
+    },
+    {
+        "ip": "66.102.8.68",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-22 09:59:27"
+    },
+    {
+        "ip": "176.222.14.229",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-23 02:43:21"
+    },
+    {
+        "ip": "46.55.174.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-23 02:46:29"
+    },
+    {
+        "ip": "46.55.174.70",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-23 02:47:08"
+    },
+    {
+        "ip": "90.216.134.197",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-23 04:18:02"
+    },
+    {
+        "ip": "176.222.14.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 01:29:25"
+    },
+    {
+        "ip": "176.222.14.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/143.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 01:29:27"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 01:29:32"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 01:29:33"
+    },
+    {
+        "ip": "66.249.83.38",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 01:29:33"
+    },
+    {
+        "ip": "90.216.134.195",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/transport\/index.php?action=line&line=10&city=Plovdiv",
+        "uri": "\/index.php",
+        "time": "2026-01-24 05:36:26"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 11:43:12"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-24 11:43:14"
+    },
+    {
+        "ip": "64.233.172.37",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-24 11:43:15"
+    },
+    {
+        "ip": "64.233.172.38",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-24 11:43:16"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-24 12:16:10"
+    },
+    {
+        "ip": "66.249.93.196",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-24 12:16:12"
+    },
+    {
+        "ip": "74.125.213.5",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-24 12:16:14"
+    },
+    {
+        "ip": "74.125.213.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-24 12:16:14"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-24 15:27:17"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:39:43"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:44:04"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:44:08"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:44:44"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:44:50"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:46:25"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:57:39"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 15:57:42"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/transport\/",
+        "uri": "\/index.php",
+        "time": "2026-01-24 16:06:57"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 16:07:02"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-24 16:07:17"
+    },
+    {
+        "ip": "104.252.204.199",
+        "user_agent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Mobile\/15E148 BytedanceWebview\/d8a21c6 trill_31.7.0 JsSdk\/2.0 NetType\/WIFI Channel\/App Store ByteLocale\/id Region\/ID FalconTag\/B01A80E7-4BCD-4660-A50A-8FC7551A9C2F TTP_H5_URLPROTOCOL",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-24 17:01:58"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-24 18:17:12"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 02:29:11"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/transport\/index.php",
+        "uri": "\/index.php",
+        "time": "2026-01-25 03:16:18"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 04:08:08"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 04:08:18"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/index.php",
+        "time": "2026-01-25 04:11:17"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/index.php",
+        "time": "2026-01-25 04:11:45"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/help\/faq.php",
+        "uri": "\/index.php",
+        "time": "2026-01-25 05:21:42"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.atwebpages.com\/",
+        "uri": "\/",
+        "time": "2026-01-25 05:49:07"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-25 06:49:33"
+    },
+    {
+        "ip": "199.16.157.182",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 12:57:02"
+    },
+    {
+        "ip": "199.16.157.181",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 12:57:34"
+    },
+    {
+        "ip": "199.16.157.183",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 15:16:58"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 15:17:36"
+    },
+    {
+        "ip": "199.16.157.180",
+        "user_agent": "Twitterbot\/1.0",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 15:18:28"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-25 19:03:20"
+    },
+    {
+        "ip": "151.251.253.211",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-25 19:03:43"
+    },
+    {
+        "ip": "212.39.86.71",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/index.php",
+        "uri": "\/index.php?i=1",
+        "time": "2026-01-25 19:03:53"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-26 05:34:02"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-26 05:50:53"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:146.0) Gecko\/20100101 Firefox\/146.0",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-26 06:02:58"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-26 06:21:20"
+    },
+    {
+        "ip": "74.125.208.164",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-26 06:21:22"
+    },
+    {
+        "ip": "66.249.83.132",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-26 06:21:25"
+    },
+    {
+        "ip": "66.249.83.134",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-26 06:21:25"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-26 13:46:26"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-27 01:48:24"
+    },
+    {
+        "ip": "74.125.208.161",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-27 01:48:26"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-27 01:48:28"
+    },
+    {
+        "ip": "66.102.9.7",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/?i=1",
+        "time": "2026-01-27 01:48:28"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-27 01:59:32"
+    },
+    {
+        "ip": "74.125.208.165",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-27 01:59:34"
+    },
+    {
+        "ip": "66.102.9.6",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-27 01:59:37"
+    },
+    {
+        "ip": "66.249.83.36",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/138.0.0.0 Mobile Safari\/537.36 (compatible; Google-Read-Aloud; +https:\/\/support.google.com\/webmasters\/answer\/1061943)",
+        "referrer": "direct",
+        "uri": "\/index.php",
+        "time": "2026-01-27 01:59:37"
+    },
+    {
+        "ip": "90.216.134.195",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/",
+        "uri": "\/?i=1",
+        "time": "2026-01-28 03:02:03"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-28 12:38:29"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "https:\/\/cfcbazar.42web.io\/login.php",
+        "uri": "\/index.php",
+        "time": "2026-01-28 23:57:36"
+    },
+    {
+        "ip": "176.222.7.24",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/144.0.0.0 Mobile Safari\/537.36",
+        "referrer": "direct",
+        "uri": "\/",
+        "time": "2026-01-29 01:57:03"
+    }
+]

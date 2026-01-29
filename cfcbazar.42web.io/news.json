@@ -1,0 +1,29 @@
+{
+    "articles": [
+        {
+            "id": 5,
+            "title": "Articles Archive temporarily suspended due to high usage",
+            "content": "#Update #Notice #Important\r\nOur articles archive website is currently offline due to high usage. It will be back online after 24h when the usage returns to normal. This is not due to a SCAM or any illegal activities!\r\n\r\nVisit us on https:\/\/articles.22web.org."
+        },
+        {
+            "id": 1,
+            "title": "\ud83d\udd27 Deposit BNB to platform disabled",
+            "content": "Due to the BNB API stopped and the etherscan API heavily used at the moment we can no longer give WorkTokens for depositing BNB to the platform. <a href=\"#\">No guide available<\/a>."
+        },
+        {
+            "id": 2,
+            "title": "\ud83d\udcb1 WTK and WorkTHR are our primary tokens",
+            "content": "We\u2019ve officially transitioned from WorkTH (mintme chain) to <strong>WorkTHR & WTK (BNB chain)<\/strong> as our primary reward and valuation token. Mining, trading, and platform credit logic now reflects WTK WorkTHR. <a href=\"\/pow\/trade.php\">Learn how to trade WTK & WorkTHR<\/a>."
+        },
+        {
+            "id": 3,
+            "title": "Users can use our speed test for free",
+            "content": "The speed test will not use WorkTokens. <a href=\"\/speed.php\">Try it now.<\/a>."
+        },
+        {
+            "id": 4,
+            "title": "We are working on an ESP8266 miner",
+            "content": "We are working on an ESP8266 mining system but that project is not with a certain outcome. If we find a good proof & usefulness for the ESP project it will go to alpha stage, otherwise it will be discontinued. <a href=\"#\">No guide available<\/a>."
+        }
+    ]
+}

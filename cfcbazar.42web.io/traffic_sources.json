@@ -1,0 +1,7 @@
+[
+  { "source": "Facebook", "referrer": "facebook.com", "hits": 0 },
+  { "source": "Google Search", "referrer": "google.com", "hits": 0 },
+  { "source": "Telegram", "referrer": "t.me", "hits": 0 },
+  { "source": "Twitter", "referrer": "x.com", "hits": 0 },
+  { "source": "Direct", "referrer": "direct", "hits": 0 }
+]
