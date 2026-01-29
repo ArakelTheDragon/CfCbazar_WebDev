@@ -11,7 +11,7 @@ CfCbazar is a modular PHP-based platform that integrates:
 -  [`Web Miner`](http://cfcbazar.42web.io/pow/) which mines other coins and this is converted to WorkTHR and WTK WorkTokens for trading.
 - ESP8266-compatible token mining (WorkToken & WorkTHR) under development.
 - A [`user dashboard`](http://cfcbazar.42web.io/d.php)  with deposits, withdrawals, and balances
-- [`Games`](http://cfcbazar.42web.io/games.php) , utilities, and DIY tools
+- [`Games`](http://cfcbazar.42web.io/games.php) , [`our DIY tools`](http://cfcbazar.42web.io/features.php) thst you can use on our website, and [`DIY projects`](https://cfcbazar.42web.io/projects/) for you to try.
 - A decentralized reward system backed by platform-controlled token reserves
 
 This repository contains the full web platform powering [`cfcbazar.ct.ws`](http://cfcbazar.42web.io).
