@@ -13,7 +13,7 @@ CfCbazar is a modular PHP-based platform that integrates:
 - Games, utilities, and DIY tools
 - A decentralized reward system backed by platform-controlled token reserves
 
-This repository contains the full web platform powering [`cfcbazar.ct.ws`](http://cfcbazar.ct.ws).
+This repository contains the full web platform powering [`cfcbazar.ct.ws`](http://cfcbazar.42web.io).
 
 ---
 
