@@ -1,0 +1,22 @@
+[
+    {
+        "title": "How to get WTK or WorkTHR WorkTokens by mining BNB?",
+        "content": "See how to mine WTK & WorkTHR WorkTokens for tools & games by mining BNB, depositing BNB to the platform for WorkTokens and withdrawing WorkTokens from the platform.",
+        "link": "mine.php"
+    },
+      {
+        "title": "How to mine WorkTokens & WorkTHR with our full web miner?",
+        "content": "See how to mine WTK and WorkTHR WorkTokens for tools & games or withdraw to your Metamask wallet by registering for our full miner.",
+        "link": "miner-coinimp.php"
+    },	
+      {
+        "title": "How to mine with our light web miner?",
+        "content": "See how to mine WorkTokens for tools & games and withdraw to your Metamask wallet without a registration.",
+        "link": "/miner-light/"
+    },
+    {
+        "title": "How to trade BNB, ETH and other coins for WTK & WorkTHR WorkTokens on pancake swap?",
+        "content": "See how to get WorkTokens for tools & games by trading on the pancake swap.",
+        "link": "trade.php"
+    }	
+]
