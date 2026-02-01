@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorkToken Game v8</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>WorkToken Game v8</h1>
+  </header>
+
+  <section id="classSelector">
+    <h2>Select Your Class</h2>
+    <button onclick="selectClass('Worker')">Worker</button>
+    <button onclick="selectClass('Warrior')">Warrior</button>
+    <button onclick="selectClass('Farmer')">Farmer</button>
+    <button onclick="selectClass('StoreOwner')">Store Owner</button>
+  </section>
+
+  <section id="questionBox" class="hidden">
+    <h2 id="questionText">Question will appear here</h2>
+    <div id="answerOptions">
+      <button onclick="answerQuestion(true)">Correct</button>
+      <button onclick="answerQuestion(false)">Wrong</button>
+    </div>
+  </section>
+
+  <section id="dashboard" class="hidden">
+    <h2>Dashboard</h2>
+    <div class="dashboard">
+      <div>Questions Answered: <span id="answeredCount">0</span>/20</div>
+      <div>Total Earned: <span id="totalEarned">0</span> WorkTokens</div>
+      <div>Fails: <span id="failedAttempts">0</span></div>
+    </div>
+  </section>
+
+  <section id="gameSummary" class="hidden">
+    <h2>Game Summary</h2>
+    <p id="summaryText">You earned X WorkTokens!</p>
+  </section>
+
+  <section id="fetchTokensSection" class="hidden">
+    <button id="fetchTokensBtn">Claim WorkTokens</button>
+    <p id="fetchResult"></p>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>

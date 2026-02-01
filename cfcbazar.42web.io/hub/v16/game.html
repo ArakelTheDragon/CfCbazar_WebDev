@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkTokens Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>WorkTokens Game</h1>
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Enter email">
+      <button id="loadBtn">Load Profile</button>
+    </div>
+    <div id="profile" class="profile"></div>
+    <div id="game" class="game" hidden>
+      <div id="question" class="question"></div>
+      <input type="text" id="answer" placeholder="Your answer">
+      <button id="submitBtn">Submit Answer</button>
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

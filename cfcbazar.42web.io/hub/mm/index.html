@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lyra2 WASM Miner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Lyra2 WASM Debug Miner</h1>
+  <button id="runBtn" disabled>Run Lyra2 Hash</button>
+  <div id="console">Loading WebAssembly module…</div>
+
+  <!-- Emscripten loader defines global Module -->
+  <script src="lyra2.js"></script>
+  <!-- Your app logic -->
+  <script src="app.js"></script>
+</body>
+</html>
+

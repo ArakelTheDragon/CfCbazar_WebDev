@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f4;
+    }
+
+    #game {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #dashboard {
+      margin-top: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="login">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter your username">
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="game">
+    <h3 id="welcome"></h3>
+    <div id="experience">Experience: 10000</div>
+
+    <div id="questionForm"></div>
+    <button onclick="rollDice()">Roll Dice</button>
+    <p id="diceResult"></p>
+    <p id="outcome"></p>
+
+    <!-- Dashboard -->
+    <div id="dashboard">
+      <table>
+        <tr><td>Username:</td><td id="dash_username"></td></tr>
+        <tr><td>Experience:</td><td id="dash_experience"></td></tr>
+        <tr><td>Question 0 Answer:</td><td id="dash_q0"></td></tr>
+        <tr><td>Question 1 Answer:</td><td id="dash_q1"></td></tr>
+        <tr><td>Question 2 Answer:</td><td id="dash_q2"></td></tr>
+        <tr><td>Question 3 Answer:</td><td id="dash_q3"></td></tr>
+        <tr><td>Question 4 Answer:</td><td id="dash_q4"></td></tr>
+        <tr><td>Question 5 Answer:</td><td id="dash_q5"></td></tr>
+        <tr><td>Question 6 Answer:</td><td id="dash_q6"></td></tr>
+        <tr><td>Question 7 Answer:</td><td id="dash_q7"></td></tr>
+        <tr><td>Question 8 Answer:</td><td id="dash_q8"></td></tr>
+        <tr><td>Question 9 Answer:</td><td id="dash_q9"></td></tr>
+        <tr><td>Question 10 Answer:</td><td id="dash_q10"></td></tr>
+        <tr><td>Question 11 Answer:</td><td id="dash_q11"></td></tr>
+        <tr><td>Question 12 Answer:</td><td id="dash_q12"></td></tr>
+        <tr><td>Question 13 Answer:</td><td id="dash_q13"></td></tr>
+        <tr><td>Question 14 Answer:</td><td id="dash_q14"></td></tr>
+        <tr><td>Question 15 Answer:</td><td id="dash_q15"></td></tr>
+        <tr><td>Question 16 Answer:</td><td id="dash_q16"></td></tr>
+        <tr><td>Question 17 Answer:</td><td id="dash_q17"></td></tr>
+        <tr><td>Question 18 Answer:</td><td id="dash_q18"></td></tr>
+        <tr><td>Question 19 Answer:</td><td id="dash_q19"></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
+

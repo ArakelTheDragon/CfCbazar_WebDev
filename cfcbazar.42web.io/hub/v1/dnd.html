@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D&D Style Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      text-align: center;
+      padding: 20px;
+    }
+    #game {
+      display: none;
+    }
+    input[type="text"] {
+      padding: 8px;
+      margin: 10px;
+      width: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #questionForm {
+      margin-top: 20px;
+      text-align: left;
+      display: inline-block;
+    }
+    #diceResult, #outcome {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #experienceBox {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="login">
+    <h1>Welcome to the Adventure!</h1>
+    <input type="text" id="username" placeholder="Enter your username">
+    <br>
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="game">
+    <h2 id="welcome"></h2>
+    <div id="experienceBox">
+      <strong>Experience:</strong> <span id="experience">0</span>
+    </div>
+    <h3>Question will appear here...</h3>
+    <form id="questionForm"></form>
+    <button onclick="rollDice()">Roll Dice</button>
+    <div id="diceResult"></div>
+    <div id="outcome"></div>
+  </div>
+
+  <script src="game.js"></script>
+
+</body>
+</html>

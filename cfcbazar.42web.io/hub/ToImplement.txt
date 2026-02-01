@@ -1,0 +1,2 @@
+To implement:
+rare gear drops, faction choices, or an event system, XP difficulty 1 xp per question or 10xp per question. Multiplayer pvp with bonus stats based on bonus for equipment type and stack, if user has Legendary x5 and Epic x1 he gets 2 bonus for every stack of Legendary and 5 bonus for every stack of Epic.

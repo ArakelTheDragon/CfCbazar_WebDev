@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorkToken RPG</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top-menu">
+    <h1>WorkToken RPG</h1>
+  </header>
+
+  <main class="main-container">
+    <aside class="dashboard">
+      <h2>Player Dashboard</h2>
+
+      <label for="emailInput" class="input-label">Email:</label>
+      <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="email" />
+
+      <button id="fetchTokensBtn" class="btn-primary">Check WorkTokens</button>
+
+      <div class="stats">
+        <p><strong>WorkTokens:</strong> <span id="workTokens">Enter email to check</span></p>
+        <p><strong>Level:</strong> <span id="playerLevel">1</span></p>
+        <p><strong>XP:</strong> <span id="playerXP">0</span></p>
+      </div>
+
+      <div class="gear">
+        <h3>Gear & Location</h3>
+        <ul>
+          <li><strong>Helmet:</strong> <span id="helmet">None</span></li>
+          <li><strong>Armor:</strong> <span id="armor">None</span></li>
+          <li><strong>Weapon:</strong> <span id="weapon">None</span></li>
+          <li><strong>2nd Weapon:</strong> <span id="secondWeapon">None</span></li>
+          <li><strong>Pants:</strong> <span id="pants">None</span></li>
+          <li><strong>Boots:</strong> <span id="boots">None</span></li>
+          <li><strong>Gloves:</strong> <span id="gloves">None</span></li>
+          <li><strong>Base Location:</strong> <span id="baseLocation">Unknown</span></li>
+        </ul>
+      </div>
+
+      <div class="answered-questions">
+        <h3>Answers History</h3>
+        <ul id="answersList"></ul>
+      </div>
+    </aside>
+
+    <section class="content">
+      <h2>Answer the Question</h2>
+      <div id="gameContent">
+        <button onclick="startRound()" class="btn-primary btn-large">Start Round</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p> <a href="howto.html">How to play</a>
+    <p>WorkToken RPG v14 &copy; All Rights Reserved</p>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
+

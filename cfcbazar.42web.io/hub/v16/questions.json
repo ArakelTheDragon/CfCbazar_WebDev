@@ -1,0 +1,25 @@
+{
+  "questions": [
+    { "id": "3_01", "text": "You meet a mob, kill or run?" },
+    { "id": "7_02", "text": "What is 2 + 2?" },
+    { "id": "3_03", "text": "You meet a corpse, loot or run?" },
+    { "id": "6_04", "text": "Tired of walking, start running?" },
+    { "id": "3_05", "text": "You don't have any weapons, want to find some?" },
+    { "id": "3_06", "text": "Found a knife, take it or leave it?" },
+    { "id": "3_07", "text": "You see a kid, kill or run?" },
+    { "id": "6_08", "text": "Rest or keep walking/running?" },
+    { "id": "8_09", "text": "You see a forest, city, unknown and a battlefield, where to?" },
+    { "id": "3_10", "text": "You meet 2 mobs, kill or run?" },
+    { "id": "2_11", "text": "What do you have to eat?" },
+    { "id": "2_12", "text": "Need a set, go find one?" },
+    { "id": "2_13", "text": "Upgrade armor to +11/16?" },
+    { "id": "8_14", "text": "Set up a base or continue as rogue?" },
+    { "id": "3_15", "text": "Go to grind, go to hunt, go to kill for fun?" },
+    { "id": "7_16", "text": "Want to play a game of poker?" },
+    { "id": "7_17", "text": "Beer, whiskey or rum?" },
+    { "id": "6_18", "text": "Take a break?" },
+    { "id": "4_19", "text": "You found a new knife, now you have 2?" },
+    { "id": "1_20", "text": "You see a dopple, what do you do?" }
+  ]
+}
+

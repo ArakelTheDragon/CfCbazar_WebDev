@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Worker Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px 0;
+    }
+    #profile {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+    .item {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Worker Profile Lookup</h2>
+
+  <label for="email">Enter worker email:</label><br>
+  <input type="email" id="email" placeholder="user@example.com" required>
+  <button onclick="fetchProfile()">Get Profile</button>
+
+  <div id="profile"></div>
+
+  <script>
+    function fetchProfile() {
+      const email = document.getElementById('email').value;
+      const profileDiv = document.getElementById('profile');
+      profileDiv.innerHTML = "Loading...";
+
+      fetch(`https://cfcbazar.atwebpages.com/worker_address.php?email=${encodeURIComponent(email)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data || Object.keys(data).length === 0) {
+            profileDiv.innerHTML = "No profile found.";
+            return;
+          }
+
+          let html = '';
+          for (const [key, value] of Object.entries(data)) {
+            html += `<div class="item"><strong>${key}:</strong> ${value}</div>`;
+          }
+          profileDiv.innerHTML = html;
+        })
+        .catch(err => {
+          profileDiv.innerHTML = "Error loading profile.";
+        });
+    }
+  </script>
+</body>
+</html>
+

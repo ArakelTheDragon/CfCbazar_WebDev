@@ -1,0 +1,149 @@
+:root {
+  --bg: #181818;
+  --text: #f2f2f2;
+  --accent: #00b894;
+  --danger: #ff7675;
+  --card-bg: #2d2d2d;
+  --btn-bg: #333;
+  --btn-hover: #444;
+  --font-main: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-menu {
+  background: var(--accent);
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
+}
+
+.dashboard {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.dashboard h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.dashboard input,
+.dashboard button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+}
+
+.dashboard input {
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dashboard button {
+  background: var(--btn-bg);
+  color: white;
+  cursor: pointer;
+}
+
+.dashboard button:hover {
+  background: var(--btn-hover);
+}
+
+#answersList {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.content {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+.content h2 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+button {
+  background: var(--btn-bg);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: var(--btn-hover);
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #111;
+  color: white;
+  margin-top: 10px;
+}
+
+#diceResult {
+  margin: 15px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #111;
+  color: #aaa;
+  font-size: 0.9em;
+}
+
+#playerLevel {
+  color: #feca57;
+  font-weight: bold;
+}
+
+#playerXP {
+  color: #54a0ff;
+}
+
