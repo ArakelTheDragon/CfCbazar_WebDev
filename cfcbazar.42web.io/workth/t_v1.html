@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Escape the Maze</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    #maze {
+      display: grid;
+      grid-template-columns: repeat(10, 8vw);
+      gap: 0.5vw;
+      justify-content: center;
+      margin: 5vh auto;
+    }
+
+    .cell {
+      width: 8vw;
+      height: 8vw;
+      background: #333;
+      border-radius: 4px;
+    }
+
+    .wall { background: #555; }
+    .player { background: limegreen; }
+    .goal { background: gold; }
+
+    #controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 5vh;
+      gap: 1vh;
+    }
+
+    .arrow-row {
+      display: flex;
+      justify-content: center;
+      gap: 5vw;
+    }
+
+    .arrow-btn {
+      font-size: 6vw;
+      width: 20vw;
+      height: 20vw;
+      border: none;
+      background-color: #222;
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #000;
+    }
+
+    .arrow-btn:active {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="margin-top: 20px;">Escape the Maze</h1>
+  <div id="maze"></div>
+  <div id="controls">
+    <div class="arrow-row">
+      <button class="arrow-btn" onclick="move(0, -1)"></button>
+    </div>
+    <div class="arrow-row">
+      <button class="arrow-btn" onclick="move(-1, 0)"></button>
+      <button class="arrow-btn" onclick="move(1, 0)"></button>
+    </div>
+    <div class="arrow-row">
+      <button class="arrow-btn" onclick="move(0, 1)"></button>
+    </div>
+  </div>
+
+  <script>
+    const width = 10;
+    const height = 10;
+    const maze = [
+      1,1,1,1,1,1,1,1,1,1,
+      1,0,0,0,1,0,0,0,0,1,
+      1,0,1,0,1,0,1,1,0,1,
+      1,0,1,0,0,0,0,1,0,1,
+      1,0,1,1,1,1,0,1,0,1,
+      1,0,0,0,0,1,0,1,0,1,
+      1,1,1,1,0,1,0,1,0,1,
+      1,0,0,1,0,0,0,1,0,1,
+      1,0,1,1,1,1,0,0,0,1,
+      1,1,1,1,1,1,1,1,1,1
+    ];
+
+    const playerPos = { x: 1, y: 1 };
+    const goalPos = { x: 8, y: 8 };
+    const mazeDiv = document.getElementById('maze');
+
+    function drawMaze() {
+      mazeDiv.innerHTML = '';
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const index = y * width + x;
+          const div = document.createElement('div');
+          div.className = 'cell';
+          if (maze[index] === 1) div.classList.add('wall');
+          if (x === playerPos.x && y === playerPos.y) div.classList.add('player');
+          if (x === goalPos.x && y === goalPos.y) div.classList.add('goal');
+          mazeDiv.appendChild(div);
+        }
+      }
+    }
+
+    function move(dx, dy) {
+      const newX = playerPos.x + dx;
+      const newY = playerPos.y + dy;
+      if (maze[newY * width + newX] === 0) {
+        playerPos.x = newX;
+        playerPos.y = newY;
+        drawMaze();
+        if (playerPos.x === goalPos.x && playerPos.y === goalPos.y) {
+          setTimeout(() => alert(" You escaped the maze!"), 100);
+        }
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') move(0, -1);
+      else if (e.key === 'ArrowDown') move(0, 1);
+      else if (e.key === 'ArrowLeft') move(-1, 0);
+      else if (e.key === 'ArrowRight') move(1, 0);
+    });
+
+    drawMaze();
+  </script>
+</body>
+</html>

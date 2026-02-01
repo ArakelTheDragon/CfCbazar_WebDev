@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WTK DApp</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.15.0/ethers.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    h1 { color: #333; }
+    .section { margin-bottom: 30px; }
+    input, button { padding: 10px; margin: 5px 0; width: 200px; }
+    button { cursor: pointer; }
+    #status { margin-top: 10px; color: green; }
+  </style>
+</head>
+<body>
+  <h1>WTK Token DApp</h1>
+
+  <div class="section">
+    <button id="connectWallet">Connect Wallet</button>
+    <div id="account"></div>
+  </div>
+
+  <div class="section">
+    <h2>Market Price</h2>
+    <div id="marketPrice">Loading...</div>
+  </div>
+
+  <div class="section">
+    <h2>Your Balances</h2>
+    <div>BNB: <span id="bnbBalance">-</span></div>
+    <div>WTK: <span id="wtkBalance">-</span></div>
+  </div>
+
+  <div class="section">
+    <h2>Buy WTK (Enter the amount of BNB to buy WTK!)</h2>
+    <input id="buyAmount" type="number" placeholder="BNB for WTK" step="any" style="color: red;" />
+    <button id="buyButton">Buy</button>
+  </div>
+
+  <div class="section">
+    <h2>Sell WTK (Enter the amount of WTK to sell for BNB.)</h2>
+    <input id="sellAmount" type="number" placeholder="WTK for BNB" step="any" />
+    <button id="sellButton">Sell</button>
+  </div>
+
+  <div id="status"></div>
+
+  <script>
+    const CONTRACT_ADDRESS = "0xecbD4E86EE8583c8681E2eE2644FC778848B237D";
+    const implementationAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"target","type":"address"}],"name":"AddressEmptyCode","type":"error"},{"inputs":[{"internalType":"address","name":"implementation","type":"address"}],"name":"ERC1967InvalidImplementation","type":"error"},{"inputs":[],"name":"ERC1967NonPayable","type":"error"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"allowance","type":"uint256"},{"internalType":"uint256","name":"needed","type":"uint256"}],"name":"ERC20InsufficientAllowance","type":"error"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"uint256","name":"balance","type":"uint256"},{"internalType":"uint256","name":"needed","type":"uint256"}],"name":"ERC20InsufficientBalance","type":"error"},{"inputs":[{"internalType":"address","name":"approver","type":"address"}],"name":"ERC20InvalidApprover","type":"error"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"}],"name":"ERC20InvalidReceiver","type":"error"},{"inputs":[{"internalType":"address","name":"sender","type":"address"}],"name":"ERC20InvalidSender","type":"error"},{"inputs":[{"internalType":"address","name":"spender","type":"address"}],"name":"ERC20InvalidSpender","type":"error"},{"inputs":[],"name":"FailedCall","type":"error"},{"inputs":[],"name":"InvalidInitialization","type":"error"},{"inputs":[],"name":"NotInitializing","type":"error"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"inputs":[],"name":"UUPSUnauthorizedCallContext","type":"error"},{"inputs":[{"internalType":"bytes32","name":"slot","type":"bytes32"}],"name":"UUPSUnsupportedProxiableUUID","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"buyer","type":"address"},{"indexed":false,"internalType":"uint256","name":"bnbSent","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"wtkReceived","type":"uint256"}],"name":"Bought","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Burned","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint64","name":"version","type":"uint64"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"newPrice","type":"uint256"}],"name":"MarketPriceSet","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"bnb","type":"uint256"}],"name":"OwnerFunded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"bnb","type":"uint256"}],"name":"OwnerWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Recycled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"seller","type":"address"},{"indexed":false,"internalType":"uint256","name":"wtkSold","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"bnbReturned","type":"uint256"}],"name":"Sold","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"inputs":[],"name":"UPGRADE_INTERFACE_VERSION","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burnFromRecycle","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"buy","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fund","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"initialOwner","type":"address"},{"internalType":"uint256","name":"initialPrice","type":"uint256"}],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"marketPrice","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"recycledWTK","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"sell","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newPrice","type":"uint256"}],"name":"setMarketPrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}];
+
+    let provider, signer, account, vaultContract, tokenDecimals = 18;
+
+    async function connectWallet() {
+      if (!window.ethereum) return alert("Please install MetaMask");
+      await ethereum.request({ method: "eth_requestAccounts" });
+      provider = new ethers.BrowserProvider(window.ethereum);
+      signer = await provider.getSigner();
+      account = await signer.getAddress();
+      document.getElementById("account").innerText = `Connected: ${account}`;
+      vaultContract = new ethers.Contract(CONTRACT_ADDRESS, implementationAbi, signer);
+      await updateInfo();
+    }
+
+    async function updateInfo() {
+      const bnb = await provider.getBalance(account);
+      const wtk = await vaultContract.balanceOf(account);
+      const price = await vaultContract.marketPrice();
+
+      document.getElementById("bnbBalance").innerText = ethers.formatEther(bnb);
+      document.getElementById("wtkBalance").innerText = ethers.formatUnits(wtk, tokenDecimals);
+      document.getElementById("marketPrice").innerText = `${ethers.formatUnits(price, tokenDecimals)} WTK per BNB`;
+    }
+
+    async function buyWTK() {
+      const amt = document.getElementById("buyAmount").value;
+      if (!amt || isNaN(amt) || Number(amt) <= 0) return;
+
+      try {
+        const value = ethers.parseUnits(amt, "ether");
+        const tx = await vaultContract.buy({ value });
+        document.getElementById("status").innerText = "Buying WTK...";
+        await tx.wait();
+        document.getElementById("status").innerText = "WTK bought successfully!";
+        await updateInfo();
+      } catch (err) {
+        document.getElementById("status").innerText = "Buy failed: " + err.message;
+      }
+    }
+
+    async function sellWTK() {
+      const amt = document.getElementById("sellAmount").value;
+      if (!amt || isNaN(amt) || Number(amt) <= 0) return;
+
+      try {
+        const value = ethers.parseUnits(amt, tokenDecimals);
+        const allowance = await vaultContract.allowance(account, CONTRACT_ADDRESS);
+        if (allowance < value) {
+          const txA = await vaultContract.approve(CONTRACT_ADDRESS, value);
+          document.getElementById("status").innerText = "Approving WTK...";
+          await txA.wait();
+        }
+
+        const tx = await vaultContract.sell(value);
+        document.getElementById("status").innerText = "Selling WTK...";
+        await tx.wait();
+        document.getElementById("status").innerText = "WTK sold successfully!";
+        await updateInfo();
+      } catch (err) {
+        document.getElementById("status").innerText = "Sell failed: " + err.message;
+      }
+    }
+
+    document.getElementById("connectWallet").onclick = connectWallet;
+    document.getElementById("buyButton").onclick = buyWTK;
+    document.getElementById("sellButton").onclick = sellWTK;
+  </script>
+</body>
+</html>

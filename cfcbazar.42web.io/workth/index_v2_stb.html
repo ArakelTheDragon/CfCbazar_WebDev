@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WTK DApp</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #f9f9f9; color: #333; }
+    h1 { color: #2c3e50; }
+    button { padding: 10px 20px; margin: 10px 0; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background-color: #2980b9; }
+    #walletAddress, #marketPrice, #status { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🚀 WTK Token DApp</h1>
+
+  <button onclick="connectWallet()">🔗 Connect Wallet</button>
+  <div id="walletAddress">Not connected</div>
+
+  <hr>
+
+  <button onclick="getMarketPrice()">📈 Get Market Price</button>
+  <div id="marketPrice">Market price will appear here</div>
+
+  <div id="status"></div>
+
+  <!-- Load ethers.js BEFORE your script -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+  <script>
+    let provider, signer, contract;
+
+    const proxyAddress = "0xecbD4E86EE8583c8681E2eE2644FC778848B237D";
+
+    const logicAbi = [
+      "function marketPrice() view returns (uint256)",
+      "function decimals() view returns (uint8)"
+    ];
+
+    async function connectWallet() {
+      try {
+        if (!window.ethereum) {
+          document.getElementById("status").innerText = "❌ MetaMask not detected. Please install it.";
+          return;
+        }
+
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        signer = provider.getSigner();
+        contract = new ethers.Contract(proxyAddress, logicAbi, signer);
+
+        const address = accounts[0];
+        document.getElementById("walletAddress").innerText = `✅ Connected: ${address}`;
+        document.getElementById("status").innerText = "";
+      } catch (err) {
+        console.error("Connection error:", err);
+        document.getElementById("walletAddress").innerText = "❌ Connection failed";
+        document.getElementById("status").innerText = err.message || "Unknown error";
+      }
+    }
+
+    async function getMarketPrice() {
+      try {
+        if (!contract) {
+          document.getElementById("status").innerText = "❌ Connect your wallet first.";
+          return;
+        }
+
+        const price = await contract.marketPrice();
+        const decimals = await contract.decimals();
+        const formattedPrice = ethers.utils.formatUnits(price, decimals);
+
+        document.getElementById("marketPrice").innerText = `💰 Market Price: ${formattedPrice} BNB`;
+        document.getElementById("status").innerText = "";
+      } catch (err) {
+        console.error("Error fetching market price:", err);
+        document.getElementById("marketPrice").innerText = "❌ Failed to fetch price";
+        document.getElementById("status").innerText = err.message || "Unknown error";
+      }
+    }
+
+    window.ethereum?.on("accountsChanged", connectWallet);
+    window.ethereum?.on("chainChanged", () => window.location.reload());
+  </script>
+</body>
+</html>

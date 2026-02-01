@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Maze Escape</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1vh 4vw;
+      font-size: 4vw;
+      background: #000;
+      height: 6vh;
+      box-sizing: border-box;
+    }
+
+    #maze {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: 1px;
+      width: 95vw;
+      margin: auto;
+      max-height: 60vh;
+    }
+
+    .cell {
+      background: #333;
+      width: 100%;
+      height: calc(60vh / 11); /* Ensures 11 rows fit in 60% screen height */
+    }
+
+    .wall { background: #555; }
+    .player { background: limegreen; }
+    .goal { background: gold; }
+    .prize { background: deeppink; }
+
+    #controls {
+      height: 34vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1vh;
+      padding: 1vh 4vw;
+      box-sizing: border-box;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 4vw;
+    }
+
+    .arrow-btn, #refreshBtn {
+      font-size: 6vw;
+      width: 20vw;
+      height: 6vh;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .arrow-btn:active, #refreshBtn:active {
+      background: #444;
+    }
+
+    #refreshBtn {
+      width: auto;
+      font-size: 4vw;
+      padding: 1vh 2vw;
+      align-self: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <div>Moves: <span id="moves">0</span></div>
+    <div>Balance: <span id="balance">0.00</span> WT</div>
+  </div>
+
+  <div id="maze"></div>
+
+  <div id="controls">
+    <div class="button-row">
+      <button class="arrow-btn" onclick="move(0,-1)"></button>
+    </div>
+    <div class="button-row">
+      <button class="arrow-btn" onclick="move(-1,0)"></button>
+      <button class="arrow-btn" onclick="move(1,0)"></button>
+    </div>
+    <div class="button-row">
+      <button class="arrow-btn" onclick="move(0,1)"></button>
+    </div>
+    <button id="refreshBtn" onclick="location.reload()"> New Maze</button>
+  </div>
+
+  <script>
+    const width = 11, height = 11;
+    const maze = new Array(width * height).fill(1);
+    const playerPos = { x: 0, y: 0 };
+    const goalPos = { x: width - 1, y: height - 1 };
+    const prizeMap = {};
+    let moves = 0, balance = 0;
+
+    const mazeDiv = document.getElementById('maze');
+    const moveCounter = document.getElementById('moves');
+    const balanceCounter = document.getElementById('balance');
+
+    function index(x, y) {
+      return y * width + x;
+    }
+
+    function generateMaze() {
+      const visited = new Array(width * height).fill(false);
+
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function carve(x, y) {
+        visited[index(x, y)] = true;
+        maze[index(x, y)] = 0;
+        for (const [dx, dy] of shuffle([[0,-2],[2,0],[0,2],[-2,0]])) {
+          const nx = x + dx, ny = y + dy;
+          if (nx >= 0 && ny >= 0 && nx < width && ny < height && !visited[index(nx, ny)]) {
+            maze[index(x + dx / 2, y + dy / 2)] = 0;
+            carve(nx, ny);
+          }
+        }
+      }
+
+      carve(0, 0);
+
+      for (let i = 0; i < 4; i++) {
+        let px, py;
+        do {
+          px = Math.floor(Math.random() * width);
+          py = Math.floor(Math.random() * height);
+        } while (
+          maze[index(px, py)] !== 0 ||
+          prizeMap[index(px, py)] ||
+          (px === 0 && py === 0) ||
+          (px === goalPos.x && py === goalPos.y)
+        );
+        prizeMap[index(px, py)] = (Math.floor(Math.random() * 4) + 1) * 0.05;
+      }
+    }
+
+    function drawMaze() {
+      mazeDiv.innerHTML = '';
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const div = document.createElement('div');
+          div.className = 'cell';
+          if (maze[index(x, y)] === 1) div.classList.add('wall');
+          if (prizeMap[index(x, y)]) div.classList.add('prize');
+          if (x === playerPos.x && y === playerPos.y) div.classList.add('player');
+          if (x === goalPos.x && y === goalPos.y) div.classList.add('goal');
+          mazeDiv.appendChild(div);
+        }
+      }
+    }
+
+    function move(dx, dy) {
+      const nx = playerPos.x + dx;
+      const ny = playerPos.y + dy;
+      if (nx >= 0 && ny >= 0 && nx < width && ny < height && maze[index(nx, ny)] === 0) {
+        playerPos.x = nx;
+        playerPos.y = ny;
+        moves++;
+        moveCounter.textContent = moves;
+
+        const prize = prizeMap[index(nx, ny)];
+        if (prize) {
+          balance += prize;
+          delete prizeMap[index(nx, ny)];
+          balanceCounter.textContent = balance.toFixed(2);
+        }
+
+        drawMaze();
+
+        if (nx === goalPos.x && ny === goalPos.y) {
+          setTimeout(() =>
+            alert(` Escaped in ${moves} moves!\nCollected: ${balance.toFixed(2)} WorkTokens`),
+            150
+          );
+        }
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') move(0, -1);
+      else if (e.key === 'ArrowDown') move(0, 1);
+      else if (e.key === 'ArrowLeft') move(-1, 0);
+      else if (e.key === 'ArrowRight') move(1, 0);
+    });
+
+    generateMaze();
+    drawMaze();
+  </script>
+</body>
+</html>
