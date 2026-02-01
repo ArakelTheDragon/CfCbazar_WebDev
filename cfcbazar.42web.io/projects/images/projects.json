@@ -1,0 +1,23 @@
+[
+  {
+    "title": "ESP8266 Web Site Server",
+    "description": "A web site hosted on an ESP8266 with html/js files premade and uploaded on the ESP with LittleFS. Files can be made separately and re-uploaded to the server. 2mb hosting space. Additions ESP can be setup with an external SMTP server to send emails as well. It's a full ESP8266 html/js hosting solution for static websites. Domain is the public or local IP. Can be used as a local server for corporate, schools, restricted hosting solutions.",
+    "link": "https://github.com/ArakelTheDragon/Library_Other/tree/ee2077ade98dcba6bdb11a8740bad367d5fc606d/ESP8266_WebServer",
+    "article": "esp-webserver.php",
+    "schematic": "images/nodemcu-pinout.png"
+  },
+  {
+    "title": "ESP8266 LCD 16x2",
+    "description": "The project works, display address is 0x27, 16x2 LCD, after many attempts I finally managed to get it to work, VCC to Vin(5V), SDA to D4, SCL D3. The only thing you might want to change is the address from 0x27 to your LCD. Check with the I2C scanner sketch what is your LCD address.",
+    "link": "https://github.com/ArakelTheDragon/Library_Other/tree/b6212712b9454bfd231270174a19c5f978fbfdad/ESP_8266_LCD",
+    "article": "esp-lcd.php",
+    "schematic": "images/ESP_LCD.png"
+  },
+  {
+    "title": "DIY pet food",
+    "description": "Make your own pet food for dogs & cat with easy cheap ingredients. Replace with cheaper or more suitable for best results.",
+    "link": "na",
+    "article": "diy-pet-food.php",
+    "schematic": "images/diy-pet-food.jpeg"
+  }
+]

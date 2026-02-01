@@ -1,0 +1,7 @@
+[
+  {
+    "name": "ESP Web Server",
+    "url": "https://github.com/ArakelTheDragon/Library_Other/tree/df8161074e9ce40690fb50805a711ff44f165743/ESP8266_WebServer",
+    "description": "An HTML/JS web server max 2MB hosted on an ESP8266. Uses your public IP or internal IP as the web site IP, connects to your WiFi. You can use it as a base for an easy game arcade, internal server. If accessed by internal IP only available from local network, ideal for schools, corporate, prisons. If accessed by external IP available from all net. Open the link, press ctrl+f and search for ESP8266_WebServer.zip."
+  }
+]

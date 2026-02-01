@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Understanding MOS 2n7000",
+    "description": "The 2n7000 is the common MOS voltage controlled transistor used to switch circuits by an MCU pin. This article costed 2 WorkTokens(Thats us working for 2 hours).",
+    "link": "2n7000.php",
+    "article": "2n7000.php",
+    "schematic": "images/2n7000.png"
+  },
+  {
+    "title": "ESP8266 BTC Solo Luck Miner",
+    "description": "An ESP8266 SHA256d hash system, can't be used for real mining but chanes you hit a block that you can validate first are small. It uses a random generated nonce trying to find the nonce instead of brute forcing the nonce from 0 to max value. Alpha tested. We haven't hit a real block. Has a web dashboard(IP can be found from serial monitor), connects to eu3.solopool.org:8005. 200 WorkTokens were used to make  this project.(Thats us working for 200 hours).",
+    "link": "https://github.com/ArakelTheDragon/CfCbazar-Tokens/tree/46c9fc3c710027beab4033f89ff74f1875530d94/BTCSoloLuckMiner",
+    "article": "https://github.com/ArakelTheDragon/CfCbazar-Tokens/tree/46c9fc3c710027beab4033f89ff74f1875530d94/BTCSoloLuckMiner",
+    "schematic": "images/nodemcu-pinout.png"
+  },
+  {
+    "title": "ESP8266 SHA3 hasher",
+    "description": "An ESP8266 SHA3 hash system, can't be used for real mining as 1 valid accepted share will take years but good for educational purposes. 200 WorkTokens were used to make this project.(Thats us working for 200 hours).",
+    "link": "https://github.com/ArakelTheDragon/CfCbazar-Tokens/tree/fec5770e852e49931eba789a321580aa64f16ac3/Projects/ESP8266_SHA3_Miner",
+    "article": "https://github.com/ArakelTheDragon/CfCbazar-Tokens/tree/fec5770e852e49931eba789a321580aa64f16ac3/Projects/ESP8266_SHA3_Miner",
+    "schematic": "images/nodemcu-pinout.png"
+  },
+  {
+    "title": "ESP8266 Web Site Server",
+    "description": "A web site hosted on an ESP8266 with html/js files premade and uploaded on the ESP with LittleFS. Files can be made separately and re-uploaded to the server. 2mb hosting space. Additions ESP can be setup with an external SMTP server to send emails as well. It's a full ESP8266 html/js hosting solution for static websites. Domain is the public or local IP. Can be used as a local server for corporate, schools, restricted hosting solutions.50 WorkTokens were used to make  this project.(Thats us working for 50 hours).",
+    "link": "https://github.com/ArakelTheDragon/Library_Other/tree/ee2077ade98dcba6bdb11a8740bad367d5fc606d/ESP8266_WebServer",
+    "article": "esp-webserver.php",
+    "schematic": "images/nodemcu-pinout.png"
+  },
+  {
+    "title": "ESP8266 LCD 16x2",
+    "description": "The project works, display address is 0x27, 16x2 LCD, after many attempts I finally managed to get it to work, VCC to Vin(5V), SDA to D4, SCL D3. The only thing you might want to change is the address from 0x27 to your LCD. Check with the I2C scanner sketch what is your LCD address.50 WorkTokens were used to make  this project.(Thats us working for 50 hours).",
+    "link": "https://github.com/ArakelTheDragon/Library_Other/tree/b6212712b9454bfd231270174a19c5f978fbfdad/ESP_8266_LCD",
+    "article": "esp-lcd.php",
+    "schematic": "images/ESP_LCD.png"
+  },
+  {
+    "title": "DIY pet food",
+    "description": "Make your own pet food for dogs & cat with easy cheap ingredients. Replace with cheaper or more suitable for best results. 20 WorkTokens were used to make  this project.(Thats us working for 20 hours).",
+    "link": "na",
+    "article": "diy-pet-food.php",
+    "schematic": "images/diy-pet-food.jpeg"
+  }
+]
