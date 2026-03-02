@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/reusable.php';
 
 // --- HELPERS ---
 function generateTrackingNumber(): string {
-    return 'CFC-' . rand(100000, 999999);
+    return '1234' . rand(100000, 999999);
 }
 
 // Status: 0 = guest, 1 = admin, 2–5 = logged-in users
@@ -125,13 +125,13 @@ include_menu();
 
 <main class="container">
     <h2>Digital Product Tracking</h2>
-    <p>Track and download your digital purchases from CfCbazar using your CFC tracking number.</p>
+    <p>Track and download your digital purchases using your tracking number.</p>
 
     <!-- PUBLIC SEARCH FORM -->
     <section>
         <h3>Track your order</h3>
         <form method="get" action="/track/index.php">
-            <label for="track">Tracking number (format CFC-123456):</label>
+            <label for="track">Tracking number (format 1234123456):</label>
             <input type="text" id="track" name="track" required>
             <button type="submit">Track</button>
         </form>
@@ -170,15 +170,16 @@ include_menu();
     <hr>
 
     <!-- CREATION / ADMIN AREA -->
+    <br>
     <section>
-        <h3>Creator & Admin area</h3>
+        <i><h3>Gen a new number & Admin area</h3></I>
 
         <?php if ($status === 0): ?>
             <p>You must be logged in to create tracking numbers.</p>
             <p><a href="/track/index.php?need_login=1">Login to your CfCbazar account</a></p>
         <?php else: ?>
 
-            <h4>Create new tracking number</h4>
+            <h4>Make a new tracking number</h4>
             <p>All new entries start as <strong>pending</strong> and must be approved by an admin before users can download.</p>
 
             <?php if ($created_tracking): ?>
@@ -205,6 +206,7 @@ include_menu();
                 <button type="submit" name="create_tracking" value="1">Generate tracking</button>
             </form>
 
+            <br>
             <?php if ($status === 1): ?>
                 <hr>
                 <h4>Pending approvals (Admin)</h4>
