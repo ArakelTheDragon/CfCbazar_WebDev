@@ -3,16 +3,16 @@ This is the API backend that our other sites connect to. In some cases users can
 
 - /track - this API provides third party services with info about tracking numbers generated from cfcbazar.42web.io/track. The API is located on [http://cfcbazar.atwebpages.com/track/json.php?go=TrackingNumber](http://cfcbazar.atwebpages.com/track/json.php?go=CFC-262945), **do not use HTTPS!**
 - JSON response format:
-  {
-    "id": 5,
-    "tracking_number": "CFC-262945",
-    "product_name": "Test3",
-    "description": "NA",
-    "download_link": "https:\/\/cfcbazar.42web.io",
-    "status": "delivered",
-    "created_by": "181",
-    "created_at": "2026-02-01 13:35:34",
-    "email_downloader": "cfcbazar.payments@gmail.com"
+{
+  "id": 5,
+  "tracking_number": "CFC-262945",
+  "product_name": "Test3",
+  "description": "NA",
+  "download_link": "https://cfcbazar.42web.io",
+  "status": "delivered",
+  "created_by": "181",
+  "created_at": "2026-02-01 13:35:34",
+  "email_downloader": "cfcbazar.payments@gmail.com"
 }
 
 # 📁 GitHub Repository Structure
