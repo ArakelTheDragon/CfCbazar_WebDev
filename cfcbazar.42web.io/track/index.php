@@ -1,30 +1,45 @@
 <?php
-// No local session_start or CSRF generation here;
-// reusable.php already does that and sets $_SESSION['csrf_token'].
 require_once __DIR__ . '/../includes/reusable.php';
 
+// Backend API
+$API = "http://cfcbazar.atwebpages.com/track/json.php";
+
 // --- HELPERS ---
-function generateTrackingNumber(): string {
-    return '1234' . rand(100000, 999999);
+function api_get($url) {
+    $json = @file_get_contents($url);
+    return $json ? json_decode($json, true) : null;
+}
+
+function api_post($url, $data) {
+    $opts = [
+        "http" => [
+            "method"  => "POST",
+            "header"  => "Content-Type: application/x-www-form-urlencoded",
+            "content" => http_build_query($data)
+        ]
+    ];
+    $ctx = stream_context_create($opts);
+    $json = @file_get_contents($url, false, $ctx);
+    return $json ? json_decode($json, true) : null;
 }
 
 // Status: 0 = guest, 1 = admin, 2–5 = logged-in users
 $status = getUserStatus($conn);
 
-// Handle login redirect trigger
+// LOGIN REDIRECT
 if (isset($_GET['need_login'])) {
     setReturnUrlCookie('/track/index.php');
     header('Location: /login.php');
     exit;
 }
 
-// =====================================================
-// DOWNLOAD HANDLER WITH EMAIL CAPTURE (GET → POST)
-// =====================================================
+/* =====================================================
+   DOWNLOAD HANDLER
+   ===================================================== */
 if (isset($_GET['download'])) {
     $track = trim($_GET['download']);
 
-    // STEP 1: First hit is GET → show email form
+    // STEP 1: Show email form
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         include_header();
         include_menu();
@@ -44,80 +59,86 @@ if (isset($_GET['download'])) {
         exit;
     }
 
-    // STEP 2: POST request — validate CSRF
+    // STEP 2: CSRF check
     if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
         die("Invalid CSRF token");
     }
 
-    $email_downloader = trim($_POST['email_downloader'] ?? '');
-    if ($email_downloader === '') {
-        die("Email is required.");
-    }
+    $email = trim($_POST['email_downloader'] ?? '');
+    if ($email === '') die("Email required.");
 
-    // STEP 3: Fetch download link
-    $stmt = $conn->prepare("SELECT id, download_link, status FROM tracking WHERE tracking_number = ? AND status <> 'pending' LIMIT 1");
-    $stmt->bind_param('s', $track);
-    $stmt->execute();
-    $stmt->bind_result($id, $download_link, $current_status);
-    $found = $stmt->fetch();
-    $stmt->close();
+    // STEP 3: Ask backend API
+    $api = api_get("$API?download=$track&email=" . urlencode($email));
 
-    if ($found) {
-        // STEP 4: Save downloader email + mark delivered
-        $up = $conn->prepare("UPDATE tracking SET email_downloader = ?, status = 'delivered' WHERE id = ?");
-        $up->bind_param('si', $email_downloader, $id);
-        $up->execute();
-        $up->close();
-
-        // STEP 5: Redirect to file
-        header("Location: " . $download_link);
-        exit;
-    } else {
+    if (!$api || empty($api['download_link'])) {
         die("Tracking not found or not approved yet.");
     }
-}
 
-// =====================================================
-// ADMIN APPROVAL (status 1 only)
-// =====================================================
-if ($status === 1 && isset($_GET['approve'])) {
-    $id = (int)$_GET['approve'];
-    $stmt = $conn->prepare("UPDATE tracking SET status = 'in_transit' WHERE id = ? AND status = 'pending'");
-    $stmt->bind_param('i', $id);
+    // STEP 4: Mirror update to local SQL
+    $stmt = $conn->prepare("
+        UPDATE tracking SET email_downloader=?, status='delivered'
+        WHERE tracking_number=?
+    ");
+    $stmt->bind_param("ss", $email, $track);
     $stmt->execute();
     $stmt->close();
+
+    // STEP 5: Redirect to file
+    header("Location: " . $api['download_link']);
+    exit;
+}
+
+/* =====================================================
+   ADMIN APPROVAL
+   ===================================================== */
+if ($status === 1 && isset($_GET['approve'])) {
+    $id = (int)$_GET['approve'];
+
+    // Update backend
+    api_get("$API?approve=$id");
+
+    // Mirror to local SQL
+    $stmt = $conn->prepare("UPDATE tracking SET status='in_transit' WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+
     header("Location: /track/index.php");
     exit;
 }
 
-// =====================================================
-// CREATE TRACKING (any logged-in user: status 1–5)
-// =====================================================
+/* =====================================================
+   CREATE TRACKING
+   ===================================================== */
 $created_tracking = null;
 if ($status > 0 && isset($_POST['create_tracking'])) {
-    $product_name  = trim($_POST['product_name'] ?? '');
-    $description   = trim($_POST['description'] ?? '');
-    $download_link = trim($_POST['download_link'] ?? '');
-    $creator_email = trim($_POST['creator_email'] ?? ''); // NEW FIELD
+    $data = [
+        "product_name"  => trim($_POST['product_name']),
+        "description"   => trim($_POST['description']),
+        "download_link" => trim($_POST['download_link']),
+        "creator_email" => trim($_POST['creator_email'])
+    ];
 
-    if ($product_name !== '' && $download_link !== '') {
-        $tracking = generateTrackingNumber();
+    // Create on backend
+    $api = api_post($API, $data);
 
+    if ($api && !empty($api['tracking_number'])) {
+        $created_tracking = $api['tracking_number'];
+
+        // Mirror to local SQL
         $stmt = $conn->prepare("
             INSERT INTO tracking (tracking_number, product_name, description, download_link, status, created_by)
             VALUES (?, ?, ?, ?, 'pending', ?)
         ");
-        $stmt->bind_param('sssss', $tracking, $product_name, $description, $download_link, $creator_email);
+        $stmt->bind_param("sssss", $created_tracking, $data['product_name'], $data['description'], $data['download_link'], $data['creator_email']);
         $stmt->execute();
         $stmt->close();
-
-        $created_tracking = $tracking;
     }
 }
 
-// =====================================================
-// SEO + HEADER
-// =====================================================
+/* =====================================================
+   PAGE HEADER
+   ===================================================== */
 $title = "CfCbazar – Digital Product Tracking & Delivery";
 include_header();
 include_menu();
@@ -131,7 +152,7 @@ include_menu();
     <section>
         <h3>Track your order</h3>
         <form method="get" action="/track/index.php">
-            <label for="track">Tracking number (format 1234123456):</label>
+            <label for="track">Tracking number:</label>
             <input type="text" id="track" name="track" required>
             <button type="submit">Track</button>
         </form>
@@ -139,28 +160,51 @@ include_menu();
         <?php
         if (!empty($_GET['track'])) {
             $track = trim($_GET['track']);
+            $api = api_get("$API?go=$track");
 
-            $stmt = $conn->prepare("SELECT tracking_number, product_name, description, status FROM tracking WHERE tracking_number = ? LIMIT 1");
-            $stmt->bind_param('s', $track);
-            $stmt->execute();
-            $stmt->bind_result($t_num, $p_name, $desc, $t_status);
-            $found = $stmt->fetch();
-            $stmt->close();
-
-            if (!$found) {
+            if (!$api || ($api['status'] ?? '') === 'not_found') {
                 echo "<p><strong>Status:</strong> Not found.</p>";
             } else {
-                echo "<h4>" . htmlspecialchars($p_name) . "</h4>";
-                if ($desc !== '') {
-                    echo "<p>" . nl2br(htmlspecialchars($desc)) . "</p>";
+                echo "<h4>" . htmlspecialchars($api['product_name']) . "</h4>";
+
+                if (!empty($api['description'])) {
+                    echo "<p>" . nl2br(htmlspecialchars($api['description'])) . "</p>";
                 }
 
-                if ($t_status === 'pending') {
+                // Mirror backend data to local SQL
+                $stmt = $conn->prepare("
+                    INSERT INTO tracking (id, tracking_number, product_name, description, download_link, status, created_by, created_at, email_downloader)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE
+                        product_name=VALUES(product_name),
+                        description=VALUES(description),
+                        download_link=VALUES(download_link),
+                        status=VALUES(status),
+                        created_by=VALUES(created_by),
+                        created_at=VALUES(created_at),
+                        email_downloader=VALUES(email_downloader)
+                ");
+                $stmt->bind_param(
+                    "issssssss",
+                    $api['id'],
+                    $api['tracking_number'],
+                    $api['product_name'],
+                    $api['description'],
+                    $api['download_link'],
+                    $api['status'],
+                    $api['created_by'],
+                    $api['created_at'],
+                    $api['email_downloader']
+                );
+                $stmt->execute();
+                $stmt->close();
+
+                if ($api['status'] === 'pending') {
                     echo "<p><strong>Status:</strong> Waiting for admin approval.</p>";
                 } else {
-                    $label = ($t_status === 'in_transit') ? 'In transit' : 'Delivered';
+                    $label = ($api['status'] === 'in_transit') ? 'In transit' : 'Delivered';
                     echo "<p><strong>Status:</strong> " . htmlspecialchars($label) . ".</p>";
-                    echo '<p><a href="/track/index.php?download=' . htmlspecialchars($t_num) . '">Download product</a></p>';
+                    echo '<p><a href="/track/index.php?download=' . htmlspecialchars($api['tracking_number']) . '">Download product</a></p>';
                 }
             }
         }
@@ -172,34 +216,32 @@ include_menu();
     <!-- CREATION / ADMIN AREA -->
     <br>
     <section>
-        <i><h3>Gen a new number & Admin area</h3></I>
+        <i><h3>Gen a new number & Admin area</h3></i>
 
         <?php if ($status === 0): ?>
             <p>You must be logged in to create tracking numbers.</p>
             <p><a href="/track/index.php?need_login=1">Login to your CfCbazar account</a></p>
+
         <?php else: ?>
 
             <h4>Make a new tracking number</h4>
-            <p>All new entries start as <strong>pending</strong> and must be approved by an admin before users can download.</p>
 
             <?php if ($created_tracking): ?>
                 <p><strong>Tracking created:</strong> <?= htmlspecialchars($created_tracking) ?></p>
             <?php endif; ?>
 
             <form method="post" action="/track/index.php">
+                <label>Product name:</label>
+                <input type="text" name="product_name" required>
 
-                <label for="product_name">Product name:</label>
-                <input type="text" id="product_name" name="product_name" required>
+                <label>Description (optional):</label>
+                <textarea name="description" rows="3"></textarea><br>
 
-                <label for="description">Short description (optional):</label>
-                <textarea id="description" name="description" rows="3"></textarea><br>
+                <label>Download URL:</label>
+                <input type="url" name="download_link" required>
 
-                <label for="download_link">Download URL:</label>
-                <input type="url" id="download_link" name="download_link" required>
-
-                <!-- ⭐ NEW FIELD: generate EMAIL -->
-                <label for="creator_email">Your email (generator):</label>
-                <input type="email" id="creator_email" name="creator_email"
+                <label>Your email:</label>
+                <input type="email" name="creator_email"
                        value="<?= htmlspecialchars($_SESSION['email'] ?? '') ?>"
                        required readonly>
 
@@ -207,13 +249,14 @@ include_menu();
             </form>
 
             <br>
+
             <?php if ($status === 1): ?>
                 <hr>
                 <h4>Pending approvals (Admin)</h4>
                 <?php
-                $res = $conn->query("SELECT id, tracking_number, product_name FROM tracking WHERE status = 'pending' ORDER BY id DESC");
-                if ($res && $res->num_rows > 0):
-                    while ($row = $res->fetch_assoc()):
+                $pending = api_get("$API?list=pending");
+                if ($pending && count($pending) > 0):
+                    foreach ($pending as $row):
                 ?>
                         <div class="box">
                             <strong><?= htmlspecialchars($row['tracking_number']) ?></strong> –
@@ -221,7 +264,7 @@ include_menu();
                             <a href="/track/index.php?approve=<?= (int)$row['id'] ?>">Approve</a>
                         </div>
                 <?php
-                    endwhile;
+                    endforeach;
                 else:
                     echo "<p>No pending submissions.</p>";
                 endif;
@@ -230,9 +273,9 @@ include_menu();
                 <hr>
                 <h4>All tracking entries</h4>
                 <?php
-                $resAll = $conn->query("SELECT tracking_number, product_name, status FROM tracking ORDER BY id DESC LIMIT 100");
-                if ($resAll && $resAll->num_rows > 0):
-                    while ($row = $resAll->fetch_assoc()):
+                $all = api_get("$API?list=all");
+                if ($all && count($all) > 0):
+                    foreach ($all as $row):
                 ?>
                         <div class="box">
                             <strong><?= htmlspecialchars($row['tracking_number']) ?></strong> –
@@ -240,7 +283,7 @@ include_menu();
                             Status: <?= htmlspecialchars($row['status']) ?>
                         </div>
                 <?php
-                    endwhile;
+                    endforeach;
                 else:
                     echo "<p>No tracking entries yet.</p>";
                 endif;
