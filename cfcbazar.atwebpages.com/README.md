@@ -1,4 +1,9 @@
-# 📁 Recommended GitHub Repository Structure
+# cfcbazar.atwebpages.com
+This is the API backend that our other sites connect to. In some cases users can also connect to an API and read data or write date for some of the site's features.
+
+- /track - this API provides third party services with info about tracking numbers generated from cfcbazar.42web.io/track. The API is located on [http://cfcbazar.atwebpages.com/track/json.php?go=TrackingNumber](http://cfcbazar.atwebpages.com/track/json.php?go=CFC-262945)
+
+# 📁 GitHub Repository Structure
 
 ```
 cfcbazar-tracking-system/
