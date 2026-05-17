@@ -3,8 +3,6 @@ Web site and services for CfCbazar. Platform address is https://cfcbazar.ct.ws a
 
 The repo is under development. All files are not uploaded. Ignored are config files.
 
-Thanks Arak — I’ve reviewed the [CfCbazar_WebDev repository](https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/cfcbazar.ct.ws), and here’s a refined GitHub project description you can use for your repo’s README or landing page:
-
 ---
 
 ## 💼 CfCbazar Web Platform
