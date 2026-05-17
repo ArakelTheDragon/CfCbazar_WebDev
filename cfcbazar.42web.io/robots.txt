@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin.php
-Disallow: /includes/
-Disallow: /private/
-Disallow: /vendor/
-Sitemap: https://CfCbazar.ct.ws/sitemap.xml
