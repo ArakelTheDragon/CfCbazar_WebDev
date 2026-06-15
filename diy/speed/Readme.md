@@ -1,4 +1,4 @@
-[# CfCbazar Web Development Repository 🌐
+# CfCbazar Web Development Repository 🌐
 Welcome to the official repository for the open-source web utilities powering our tool ecosystem. This repository serves as a centralized hub for developer-focused performance scripts, featuring modular implementations of lightweight network analytics tools.
 ## ⚡ CC Free Speed Test
 The centerpiece of this repository is a custom-engineered, multi-threaded client-side diagnostic suite designed to accurately calculate network throughput directly inside a browser context, completely free of bulky runtime frameworks or intrusive ad networks.
