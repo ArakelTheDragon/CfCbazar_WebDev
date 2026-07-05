@@ -27,9 +27,8 @@ Messages automatically expire after **1 hour**.
 ## 📁 File Structure
 
 /diy/mtool/
-│── index.php        # Main tool (frontend + backend)
-│── messages.json    # Auto‑generated storage file
-
+├── index.php        # Main tool (frontend + backend)
+└── messages.json    # Auto‑generated storage file
 
 ---
 
