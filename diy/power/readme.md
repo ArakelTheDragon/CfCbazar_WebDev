@@ -35,7 +35,7 @@ This tool is part of the **CfCbazar DIY Utilities** collection.
 ## 🚀 Live Demo
 
 ```
-https://cfcbazar.ct.ws/diy/power.php
+https://cfcbazar.42web.io/diy/power.php
 ```
 
 ---
