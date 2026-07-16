@@ -12,7 +12,7 @@ A modular PHP-based platform for CfCbazar that integrates token mining, games, u
 ### 🌐 Live Endpoints
 
 - **Mining API**: [`http://cfc-api.atwebpages.com/api.php`](http://cfc-api.atwebpages.com/api.php)  
-- **Dashboard**: [`http://cfcbazar.ct.ws/d.php`](http://cfcbazar.ct.ws/d.php)
+- **Dashboard**: [`http://cfcbazar.42wwb.io/d.php`](http://cfcbazar.42web.io/d.php)
 
 ---
 
