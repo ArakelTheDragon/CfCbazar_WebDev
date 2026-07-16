@@ -25,8 +25,4 @@ A modular PHP-based platform for CfCbazar that integrates token mining, games, u
 - 🎮 Mini-games with token rewards
 - 🛠️ DIY guides, calculators, and utilities
 - 📺 Media features like YouTube playlists and speed tests
-- 🔐 Full user system with registration, login, email verification, and password recovery
-
----
-
-Let me know if you’d like this turned into a full `README.md` with badges, setup instructions, or contributor guidelines. I can also help you generate a landing page or GitHub Pages site to showcase the platform.
+- 🔐 Full user system with registration, login, email verification, and password recovery 
