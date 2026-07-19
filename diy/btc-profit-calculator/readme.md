@@ -1,7 +1,4 @@
 `/diy/btc-profit-calculator/readme.md`
-
-It explains exactly what the tool does, how inputs work, and what outputs mean — perfect for noobs and consistent with your CfCbazar style.
-
 ---
 
 # 📘 BTC Profit Calculator — README
