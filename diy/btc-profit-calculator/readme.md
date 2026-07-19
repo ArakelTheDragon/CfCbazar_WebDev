@@ -78,10 +78,10 @@ Final Profit (BTC): -0.0010380952381
 ---
 
 ## 📁 File Location  
-Place the calculator here:
+GitHub location is here:
 
 ```
-/tools/btc-profit-calculator/index.php
+/diy/btc-profit-calculator/index.php
 ```
 
 This README belongs in:
