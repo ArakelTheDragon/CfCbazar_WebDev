@@ -1,0 +1,16 @@
+[
+    {
+        "log_id": "LOG-249390",
+        "contact_name": "Phone Verification",
+        "phone": "N\/A",
+        "notes": "Phone Access: Verified via 16-Digit Card (Last 4 Digits).",
+        "timestamp": "2026-08-03 07:58:08"
+    },
+    {
+        "log_id": "LOG-898222",
+        "contact_name": "System Access",
+        "phone": "N\/A",
+        "notes": "Opened directly via Backoffice.",
+        "timestamp": "2026-08-03 09:45:25"
+    }
+]
