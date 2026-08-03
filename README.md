@@ -3,6 +3,16 @@ Web site and services for CfCbazar. Platform address is https://cc.free.bg and h
 
 The repo is under development. All files are not uploaded. Ignored are config files.
 
+## 🧩 Architecture & Shared Assets
+
+This repository is structured as a collection of modular, independent tools and projects:
+
+* **Standalone Projects (`/diy/` & `/games/`):** Each individual subfolder inside `/diy/` and `/games/` functions as a separate, self-contained tool or mini-application.
+* **Global Shared Dependencies:** To keep the codebase DRY (Don't Repeat Yourself) and ensure UI consistency, all projects tap into shared root assets:
+  * 🎨 `/css/styles.css` — Central stylesheet providing unified layout and UI styling.
+  * 🛠️ `/includes/reusable.php` — Shared backend helper functions, global components, and utilities.
+  * ⚡ `/js/scripts.js` — Common JavaScript logic and interactive scripts.
+   * 
 ---
 
 ## 💼 CfCbazar Web Platform
