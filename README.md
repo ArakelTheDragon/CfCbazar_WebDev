@@ -17,7 +17,7 @@ This repository is structured as a collection of modular, independent tools and 
 
 ## 💼 CfCbazar Web Platform
 
-A modular PHP-based platform for CfCbazar that integrates token mining, games, utilities, and DIY tools. Designed for ESP8266 compatibility, decentralized rewards, and user engagement through creative features.
+A modular PHP-based platform for CfCbazar that integrates token mining, games, utilities, and DIY tools. Designed for ESP8266 compatibility, rewards, and user engagement through creative features.
 
 ### 🌐 Live Endpoints
 
