@@ -1,0 +1,15 @@
+<?php
+declare(strict_types=1);
+
+function getTrackingRecord(string $trackingNumber): ?array {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM tracking WHERE tracking_number = ? LIMIT 1");
+    $stmt->bind_param("s", $trackingNumber);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row ?: null;
+}
