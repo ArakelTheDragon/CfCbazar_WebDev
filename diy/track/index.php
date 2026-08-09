@@ -1,291 +1,239 @@
 <?php
-// /track/index.php
+/**
+ * ============================================================================
+ * CfCbazar Digital Product Tracking & Delivery
+ * File: /track/index.php
+ * ============================================================================
+ */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . '/../../includes/reusable.php';
 
-// ------------------------
-// Load Reusable Engine
-// ------------------------
-$reusablePath = __DIR__ . '/../../includes/reusable.php';
+/* --------------------------------------------------------------------------
+   Bootstrap & Request Processing
+--------------------------------------------------------------------------- */
 
-if (file_exists($reusablePath)) {
-    require_once $reusablePath;
-} else {
-    die("Error: Core library missing.");
-}
+track_bootstrap();
 
-// ------------------------
-// System & Security
-// ------------------------
-enforce_https();
-checkSystemFlags(); // Check if maintenance is disabled
-require_database_connection(); // Connect to the database
-trackVisit("track-main"); // Track the visit 
+process_download();
+process_admin_approval();
 
-// ------------------------
-// User & Session
-// ------------------------
-session_check(); // If the session is not started, start the session, needed for DB connections or logging in
-$email = $_SESSION['email'] ?? null;
-$is_logged_in = is_logged_in($email, true);
-$status = getUserStatus($email);
-setReturnUrlCookie('/track/index.php'); // sets cookie for 5 minutes
+$created_tracking = process_create_tracking();
 
-// Helper function
-function generateTrackingNumber(): string {
-    return '1234' . rand(100000, 999999);
-}
+// Mirror database tracking table into index.json via API
+updateTrackingJson();
 
-// =====================================================
-// DOWNLOAD HANDLER WITH EMAIL CAPTURE (GET → POST)
-// =====================================================
-if (isset($_GET['download'])) {
-    $track = trim($_GET['download']);
+/* --------------------------------------------------------------------------
+   Page Layout & Navigation
+--------------------------------------------------------------------------- */
 
-    // STEP 1: First hit is GET → show email form
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        $title = "Download Digital Product - CfCbazar";
-        include_header($title);
-        include_menu();
-        render_top_userbar();
-        ?>
-        <main class="container">
-            <div class="card">
-                <h3>Enter your email to download</h3>
-                <form method="post" action="/track/index.php?download=<?= htmlspecialchars($track) ?>">
-                    <label>Your email:</label>
-                    <input type="email" name="email_downloader" required>
-
-                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
-                    <button type="submit">Continue to download</button>
-                </form>
-            </div>
-        </main>
-        <?php
-        include_footer();
-        cfc_footer(
-            "https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/track/index.php",
-            "Track Source Code"
-        );
-        close_database();
-        exit;
-    }
-
-    // STEP 2: POST request — validate CSRF
-    if (!hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'] ?? '')) {
-        die("Invalid CSRF token");
-    }
-
-    $email_downloader = trim($_POST['email_downloader'] ?? '');
-    if ($email_downloader === '') {
-        die("Email is required.");
-    }
-
-    // STEP 3: Fetch download link
-    $stmt = $conn->prepare("SELECT id, download_link, status FROM tracking WHERE tracking_number = ? AND status <> 'pending' LIMIT 1");
-    $stmt->bind_param('s', $track);
-    $stmt->execute();
-    $stmt->bind_result($id, $download_link, $current_status);
-    $found = $stmt->fetch();
-    $stmt->close();
-
-    if ($found) {
-        // STEP 4: Save downloader email + mark delivered
-        $up = $conn->prepare("UPDATE tracking SET email_downloader = ?, status = 'delivered' WHERE id = ?");
-        $up->bind_param('si', $email_downloader, $id);
-        $up->execute();
-        $up->close();
-
-        // STEP 5: Redirect to file
-        header("Location: " . $download_link);
-        exit;
-    } else {
-        die("Tracking not found or not approved yet.");
-    }
-}
-
-// =====================================================
-// ADMIN APPROVAL (status 1 only)
-// =====================================================
-if ($status === 1 && isset($_GET['approve'])) {
-    $id = (int)$_GET['approve'];
-    $stmt = $conn->prepare("UPDATE tracking SET status = 'in_transit' WHERE id = ? AND status = 'pending'");
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
-    $stmt->close();
-    header("Location: /track/index.php");
-    exit;
-}
-
-// =====================================================
-// CREATE TRACKING (any logged-in user: status 1–5)
-// =====================================================
-$created_tracking = null;
-if ($status > 0 && isset($_POST['create_tracking'])) {
-    // CSRF Validation
-    if (!hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'] ?? '')) {
-        die("Invalid CSRF token");
-    }
-
-    $product_name  = trim($_POST['product_name'] ?? '');
-    $description   = trim($_POST['description'] ?? '');
-    $download_link = trim($_POST['download_link'] ?? '');
-    
-    // Server-side identity enforcement
-    $creator_email = $_SESSION['email'] ?? ''; 
-
-    if ($product_name !== '' && $download_link !== '' && $creator_email !== '') {
-        $tracking = generateTrackingNumber();
-
-        $stmt = $conn->prepare("
-            INSERT INTO tracking (tracking_number, product_name, description, download_link, status, created_by)
-            VALUES (?, ?, ?, ?, 'pending', ?)
-        ");
-        $stmt->bind_param('sssss', $tracking, $product_name, $description, $download_link, $creator_email);
-        $stmt->execute();
-        $stmt->close();
-
-        $created_tracking = $tracking;
-    }
-}
-
-// =====================================================
-// SEO + HEADER
-// =====================================================
 $title = "CfCbazar – Digital Product Tracking & Delivery";
+
 include_header($title);
 include_menu();
 showAdvertPopup();
 render_top_userbar();
+
 ?>
 
 <main class="container">
-    <h2>Digital Product Tracking</h2>
-    <p>Track and download your digital purchases using your tracking number.</p>
 
     <section class="card">
-        <h3>Track your order</h3>
-        <form method="get" action="/track/index.php">
-            <label for="track">Tracking number (format 1234123456):</label>
-            <input type="text" id="track" name="track" required>
-            <button type="submit">Track</button>
+        <h1>Digital Product Tracking</h1>
+        <p>Track your digital purchases using your tracking number.</p>
+    </section>
+
+    <section class="card">
+        <h2>Track Your Order</h2>
+
+        <form method="get">
+            <label for="track">Tracking Number</label>
+            <input
+                type="text"
+                id="track"
+                name="track"
+                placeholder="1234123456"
+                value="<?= e($_GET['track'] ?? '') ?>"
+                required
+            >
+            <button type="submit">Track Order</button>
         </form>
 
-        <?php
-        if (!empty($_GET['track'])) {
-            $track = trim($_GET['track']);
+        <?php if (!empty($_GET['track'])): ?>
+            <?php $tracking = findTracking(trim($_GET['track'])); ?>
+            
+            <?php if (!$tracking): ?>
+                <div class="notice error">
+                    Tracking number not found.
+                </div>
+            <?php else: ?>
+                <hr>
+                <h3><?= e($tracking['product_name']) ?></h3>
 
-            $stmt = $conn->prepare("SELECT tracking_number, product_name, description, status FROM tracking WHERE tracking_number = ? LIMIT 1");
-            $stmt->bind_param('s', $track);
-            $stmt->execute();
-            $stmt->bind_result($t_num, $p_name, $desc, $t_status);
-            $found = $stmt->fetch();
-            $stmt->close();
+                <?php if (!empty($tracking['description'])): ?>
+                    <p><?= nl2br(e($tracking['description'])) ?></p>
+                <?php endif; ?>
 
-            if (!$found) {
-                echo "<p><strong>Status:</strong> Not found.</p>";
-            } else {
-                echo "<h4>" . htmlspecialchars($p_name) . "</h4>";
-                if ($desc !== '') {
-                    echo "<p>" . nl2br(htmlspecialchars($desc)) . "</p>";
-                }
+                <p>
+                    <strong>Status:</strong>
+                    <?= getTrackingStatusLabel($tracking['status']) ?>
+                </p>
 
-                if ($t_status === 'pending') {
-                    echo "<p><strong>Status:</strong> Waiting for admin approval.</p>";
-                } else {
-                    $label = ($t_status === 'in_transit') ? 'In transit' : 'Delivered';
-                    echo "<p><strong>Status:</strong> " . htmlspecialchars($label) . ".</p>";
-                    echo '<p><a href="/track/index.php?download=' . htmlspecialchars($t_num) . '">Download product</a></p>';
-                }
-            }
-        }
-        ?>
+                <?php if (!empty($tracking['delivered_at'])): ?>
+                    <p>
+                        <strong>Delivered At:</strong>
+                        <?= e(date('M d, Y - h:i A', strtotime($tracking['delivered_at']))) ?>
+                    </p>
+                <?php endif; ?>
+
+                <?php if (!empty($tracking['email_downloader'])): ?>
+                    <p>
+                        <strong>Delivered To:</strong>
+                        <?= e($tracking['email_downloader']) ?>
+                    </p>
+                <?php endif; ?>
+
+                <?php if (canDownload($tracking)): ?>
+                    <p>
+                        <a
+                            class="button"
+                            href="<?= trackingDownloadUrl($tracking['tracking_number']) ?>"
+                        >
+                            Download Product
+                        </a>
+                    </p>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endif; ?>
     </section>
 
     <section class="card">
-        <h3>Generate Tracking & Admin Area</h3>
+        <h2>Create Tracking Number</h2>
 
-        <?php if ($status === 0): ?>
-            <p>You must be logged in to create tracking numbers.</p>
-            <p><a href="/login.php">Login to your CfCbazar account</a></p>
+        <?php if (($status ?? 0) <= 0): ?>
+            <p>You must be logged in to generate tracking numbers.</p>
+            <p>
+                <a class="button" href="/login.php">Login</a>
+            </p>
         <?php else: ?>
-
-            <h4>Make a new tracking number</h4>
-            <p>All new entries start as <strong>pending</strong> and must be approved by an admin before users can download.</p>
-
-            <?php if ($created_tracking): ?>
-                <p><strong>Tracking created:</strong> <?= htmlspecialchars($created_tracking) ?></p>
+            <?php if (!empty($created_tracking)): ?>
+                <div class="notice success">
+                    <strong>Tracking Number Created</strong><br><br>
+                    <?= e($created_tracking) ?>
+                </div>
             <?php endif; ?>
 
-            <form method="post" action="/track/index.php">
-                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+            <p>
+                New tracking numbers are created with a <strong>Pending</strong> status until an administrator approves them.
+            </p>
 
-                <label for="product_name">Product name:</label>
-                <input type="text" id="product_name" name="product_name" required>
+            <form method="post">
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="<?= e($_SESSION['csrf_token'] ?? '') ?>"
+                >
 
-                <label for="description">Short description (optional):</label>
-                <textarea id="description" name="description" rows="3"></textarea>
+                <label for="product_name">Product Name</label>
+                <input
+                    type="text"
+                    id="product_name"
+                    name="product_name"
+                    required
+                >
 
-                <label for="download_link">Download URL:</label>
-                <input type="url" id="download_link" name="download_link" required>
+                <label for="description">Description (optional)</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                ></textarea>
 
-                <label for="creator_email">Your email (generator):</label>
-                <input type="email" id="creator_email" value="<?= htmlspecialchars($email ?? '') ?>" required readonly>
+                <label for="download_link">Download URL</label>
+                <input
+                    type="url"
+                    id="download_link"
+                    name="download_link"
+                    required
+                >
 
-                <button type="submit" name="create_tracking" value="1">Generate tracking</button>
+                <label for="creator_email">Creator</label>
+                <input
+                    type="email"
+                    id="creator_email"
+                    value="<?= e($email ?? '') ?>"
+                    readonly
+                >
+
+                <button
+                    type="submit"
+                    name="create_tracking"
+                    value="1"
+                >
+                    Generate Tracking Number
+                </button>
             </form>
-
-            <?php if ($status === 1): ?>
-                <hr>
-                <h4>Pending approvals (Admin)</h4>
-                <?php
-                $res = $conn->query("SELECT id, tracking_number, product_name FROM tracking WHERE status = 'pending' ORDER BY id DESC");
-                if ($res && $res->num_rows > 0):
-                    while ($row = $res->fetch_assoc()):
-                ?>
-                        <div class="box card">
-                            <strong><?= htmlspecialchars($row['tracking_number']) ?></strong> –
-                            <?= htmlspecialchars($row['product_name']) ?>
-                            <a href="/track/index.php?approve=<?= (int)$row['id'] ?>">Approve</a>
-                        </div>
-                <?php
-                    endwhile;
-                else:
-                    echo "<p>No pending submissions.</p>";
-                endif;
-                ?>
-
-                <hr>
-                <h4>All tracking entries</h4>
-                <?php
-                $resAll = $conn->query("SELECT tracking_number, product_name, status FROM tracking ORDER BY id DESC LIMIT 100");
-                if ($resAll && $resAll->num_rows > 0):
-                    while ($row = $resAll->fetch_assoc()):
-                ?>
-                        <div class="box card">
-                            <strong><?= htmlspecialchars($row['tracking_number']) ?></strong> –
-                            <?= htmlspecialchars($row['product_name']) ?> –
-                            Status: <?= htmlspecialchars($row['status']) ?>
-                        </div>
-                <?php
-                    endwhile;
-                else:
-                    echo "<p>No tracking entries yet.</p>";
-                endif;
-                ?>
-            <?php endif; ?>
-
         <?php endif; ?>
     </section>
+
+    <?php if (($status ?? 0) === 1): ?>
+        <section class="card">
+            <h2>Admin Tracking Management</h2>
+
+            <h3>Pending Approvals</h3>
+            <?php $pending = getPendingTracking(); ?>
+
+            <?php if (empty($pending)): ?>
+                <p>No pending tracking submissions.</p>
+            <?php else: ?>
+                <?php foreach ($pending as $item): ?>
+                    <div class="box card">
+                        <strong><?= e($item['tracking_number']) ?></strong><br>
+                        <?= e($item['product_name']) ?><br><br>
+                        <a
+                            class="button"
+                            href="<?= trackingApproveUrl((int)$item['id']) ?>"
+                        >
+                            Approve
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            <hr>
+
+            <h3>All Tracking Entries</h3>
+            <?php $allTracking = getAllTracking(100); ?>
+
+            <?php if (empty($allTracking)): ?>
+                <p>No tracking entries found.</p>
+            <?php else: ?>
+                <?php foreach ($allTracking as $item): ?>
+                    <div class="box card">
+                        <strong><?= e($item['tracking_number']) ?></strong><br>
+                        <?= e($item['product_name']) ?><br>
+                        Status: <?= e($item['status']) ?>
+                        <?php if (!empty($item['delivered_at'])): ?>
+                            <br><small>Delivered: <?= e(date('M d, Y - h:i A', strtotime($item['delivered_at']))) ?></small>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </section>
+    <?php endif; ?>
+
 </main>
 
 <?php
+/* --------------------------------------------------------------------------
+   Footer & Cleanup
+--------------------------------------------------------------------------- */
+
 cfc_footer(
-    "https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/track/index.php",
+    "https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/diy/track",
     "Track Source Code"
 );
+
 include_footer();
-close_database();
+
+track_shutdown();
 ?>
