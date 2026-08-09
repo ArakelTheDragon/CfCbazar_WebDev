@@ -281,4 +281,4 @@ Reusable functions should validate database availability and avoid fatal applica
 This directory is part of the **CfCbazar Web Development** project.
 
 See the repository license for usage, modification, and distribution terms.
-````0
+````
