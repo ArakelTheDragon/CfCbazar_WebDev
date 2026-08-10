@@ -11,7 +11,7 @@ https://cfcbazar.42web.io/diy/track/
 GET [http://cfcbazar.atwebpages.com/diy/track/index.json](http://cfcbazar.atwebpages.com/diy/track/index.json)
 
 Simple read the endpoint, expected output format:
-````
+```
 {
     "status": "success",
     "last_updated": "2026-08-09 15:00:00",
@@ -31,4 +31,4 @@ Simple read the endpoint, expected output format:
         }
     ]
 }
-````
+
