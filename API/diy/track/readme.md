@@ -1,8 +1,3 @@
----
-
-### File: `README.md`
-
-```markdown
 # 📦 Delivery Status API
 
 A lightweight, read-only JSON API for checking real-time delivery statuses from the **CfCbazar DIY Tracking System**.
