@@ -1,102 +1,163 @@
-# 📦 Delivery Status API
+# CfCbazar DIY Package Tracking API
 
-A lightweight, read-only JSON API for checking real-time delivery statuses from the **CfCbazar DIY Tracking System**.
+A lightweight, high-performance PHP-based JSON API for creating and querying package tracking records. Designed to handle individual tracking records as lightweight, isolated `.json` files for instant $O(1)$ lookups without database overhead.
 
 ---
 
-## 🌐 Base Endpoint
+## 🚀 Features
 
-```http
-GET [http://cfcbazar.atwebpages.com/diy/track/index.json](http://cfcbazar.atwebpages.com/diy/track/index.json)
+* **Instant File-Based Lookups:** Fetches package status directly from lightweight JSON files without looping or querying a database.
+* **Isolated Storage:** Automatically creates and organizes records into a dedicated `/numbers/` directory (`/diy/track/numbers/{TRACKING_NUMBER}.json`).
+* **Secure Bulk/Single Ingestion:** Endpoint secured with custom HTTP Header API Key validation (`X-API-KEY`).
+* **Cross-Origin Ready:** Pre-configured CORS headers (`Access-Control-Allow-Origin: *`) for easy frontend integration.
+
+---
+
+## 📁 Directory Structure
+
+```text
+diy/
+└── track/
+    ├── index.php         # Public GET endpoint to retrieve tracking details
+    ├── update.php        # Secured POST endpoint to create/update tracking files
+    └── numbers/          # Auto-created folder containing individual tracking JSON files
+        ├── 1413383877.json
+        └── 1234768032.json
 
 ```
 
-* **Method:** `GET`
-* **Content-Type:** `application/json`
-* **Authentication:** None (Public Read-Only)
+---
+
+## ⚙️ Configuration & Setup
+
+1. Upload `index.php` and `update.php` to your web server under `/diy/track/`.
+2. Open `update.php` and set a strong secret key:
+```php
+define('API_SECRET_KEY', 'YOUR_STRONG_SECRET_KEY_HERE');
+
+```
+
+
+3. Ensure write permissions (`0755` or `0777`) are granted to the `/diy/track/` directory so PHP can automatically create the `numbers/` directory on the first update.
 
 ---
 
-## 📥 Response Format
+## 📡 API Endpoints
 
-A successful request returns a JSON object containing delivery details and current tracking statuses.
+### 1. Retrieve Tracking Details
 
-### Example JSON Response
+Fetch status and details for a specific package.
+
+* **Endpoint:** `GET /diy/track/index.php`
+* **Query Parameters:**
+| Parameter | Type | Required | Description | Example |
+| --- | --- | --- | --- | --- |
+| `track` | String | **Yes** | The tracking number to look up | `1413383877` |
+
+
+
+#### Example Request
+
+```http
+GET /diy/track/index.php?track=1413383877 HTTP/1.1
+Host: cfcbazar.atwebpages.com
+
+```
+
+#### Success Response (`200 OK`)
 
 ```json
 {
-  "status": "success",
-  "data": [
+    "status": "success",
+    "data": {
+        "id": 30,
+        "tracking_number": "1413383877",
+        "product_name": "Sample Product",
+        "description": "Digital Download",
+        "download_link": "[https://example.com/download](https://example.com/download)",
+        "status": "delivered",
+        "created_at": "2026-08-09 05:41:55",
+        "delivered_at": "2026-08-09 05:42:31"
+    }
+}
+
+```
+
+#### Error Response (`404 Not Found`)
+
+```json
+{
+    "status": "error",
+    "message": "Tracking number '1413383877' not found."
+}
+
+```
+
+---
+
+### 2. Update / Push Tracking Records
+
+Create or update individual package JSON files. Supports single records or bulk updates under a `tracking` array.
+
+* **Endpoint:** `POST /diy/track/update.php`
+* **Required Headers:**
+* `Content-Type: application/json`
+* `X-API-KEY: YOUR_STRONG_SECRET_KEY_HERE`
+
+
+
+#### Example Request Payload (Bulk or Single)
+
+```json
+{
+  "tracking": [
     {
-      "tracking_id": "CFC123456789",
-      "carrier": "Post / Courier",
-      "status": "In Transit",
-      "origin": "Bulgaria",
-      "destination": "United Kingdom",
-      "last_update": "2026-08-10 10:30:00",
-      "estimated_delivery": "2026-08-15"
+      "id": 30,
+      "tracking_number": "1413383877",
+      "product_name": "Sample Product",
+      "description": "Digital Download",
+      "download_link": "[https://example.com/download](https://example.com/download)",
+      "status": "delivered",
+      "created_at": "2026-08-09 05:41:55",
+      "delivered_at": "2026-08-09 05:42:31"
     }
   ]
 }
 
 ```
 
----
+#### Success Response (`200 OK`)
 
-## 📊 Field Descriptions
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `status` | `string` | API response status (`success` or `error`) |
-| `data` | `array` | List of active tracking records |
-| `tracking_id` | `string` | Unique package tracking code |
-| `carrier` | `string` | Postal or courier service provider |
-| `status` | `string` | Current delivery stage (e.g., *Pending*, *In Transit*, *Delivered*) |
-| `last_update` | `string` | Timestamp of the latest status update (`YYYY-MM-DD HH:MM:SS`) |
-
----
-
-## 💻 Code Examples
-
-### 1. cURL (Terminal)
-
-```bash
-curl -X GET [http://cfcbazar.atwebpages.com/diy/track/index.json](http://cfcbazar.atwebpages.com/diy/track/index.json)
-
-```
-
-### 2. JavaScript (`fetch`)
-
-```javascript
-fetch('[http://cfcbazar.atwebpages.com/diy/track/index.json](http://cfcbazar.atwebpages.com/diy/track/index.json)')
-  .then(response => response.json())
-  .then(data => {
-    console.log('Delivery Statuses:', data);
-  })
-  .catch(error => console.error('Error fetching status:', error));
-
-```
-
-### 3. PHP
-
-```php
-<?php
-$apiUrl = '[http://cfcbazar.atwebpages.com/diy/track/index.json](http://cfcbazar.atwebpages.com/diy/track/index.json)';
-$response = file_get_contents($apiUrl);
-
-if ($response !== false) {
-    $trackingData = json_decode($response, true);
-    print_r($trackingData);
+```json
+{
+    "status": 200,
+    "message": "1 tracking file(s) updated in /numbers/",
+    "saved": [
+        "numbers/1413383877.json"
+    ],
+    "failed": [],
+    "timestamp": "2026-08-10 11:58:33"
 }
-?>
+
+```
+
+#### Error Response (`403 Unauthorized`)
+
+```json
+{
+    "status": 403,
+    "error": "Unauthorized: Invalid API Key"
+}
 
 ```
 
 ---
 
-## 🔒 Rate Limits & Usage Notes
+## 🔒 Security Best Practices
 
-* This endpoint is strictly **read-only**.
-* Cache responses locally where possible to minimize bandwidth.
+* Always keep your `API_SECRET_KEY` safe and avoid committing sensitive keys directly to public git repositories.
+* Use HTTPS for all production requests to prevent key exposure over plain text.
+
+```
 
 ```
