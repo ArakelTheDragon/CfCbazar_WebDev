@@ -2,7 +2,7 @@
 // diy/track/update.php — Receiver on atwebpages.com
 
 // 1. Define your Secret Key (Change this to a strong random string)
-define('API_SECRET_KEY', 'CfCbazar_Secure_Track_Key_2026_X9z');
+define('API_SECRET_KEY', 'HiddenConfigInfoCanBeFoundOnTheServer');
 
 header('Content-Type: application/json');
 
