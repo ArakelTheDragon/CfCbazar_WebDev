@@ -10,6 +10,7 @@ https://cfcbazar.42web.io/diy/track/
 ```http
 GET [http://cfcbazar.atwebpages.com/diy/track/index.json](http://cfcbazar.atwebpages.com/diy/track/index.json)
 
+```
 Simple read the endpoint, expected output format:
 ```
 {
@@ -31,4 +32,4 @@ Simple read the endpoint, expected output format:
         }
     ]
 }
-
+```
