@@ -1,5 +1,3 @@
-Here is a clean, standard `README.md` file tailored for your repository.
-
 ---
 
 ### File: `README.md`
