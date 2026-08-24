@@ -17,11 +17,11 @@ An interactive, single-file PHP schematic simulator that visualizes hardware int
 
 | Component | Pin | Label | Function / Destination |
 | --- | --- | --- | --- |
-| **Sky Puck** | Pin 1 | `5V_DC_IN / PWR` | Power Supply Connection |
-|  | Pin 2 | `ETH_100M` | Ethernet Port (Optional) |
+| **Sky Puck** | Pin 1 | `Power` | Power Supply Connection |
+|  | Pin 2 | `Ethernet` | Ethernet Port (Optional) |
 |  | Pin 3 | `RF_AERIAL` | Unused |
-|  | Pin 4 | `HDMI_2.1_OUT` | Video Output → **TV HDMI 1** |
-| **Smart TV** | Pin 1 | `HDMI1_IN` | Primary Input (Sky Puck) |
+|  | Pin 4 | `HDMI` | Video Output → **TV HDMI 1** |
+| **Smart TV** | Pin 1 | `HDMI1` | Primary Input (Sky Puck) |
 |  | Pin 2 | `HDMI2_IN` | Auxiliary Input |
 |  | Pin 3 | `HDMI3_IN` | Auxiliary Input |
 |  | Pin 4 | `OPTICAL_OUT` | Digital Audio Output (Soundbar) |
