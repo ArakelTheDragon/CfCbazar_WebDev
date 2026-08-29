@@ -88,10 +88,10 @@ $errors   = array();
 $_SESSION['success'] = "";
 
 // Database Connection Settings
-$db_host = "YOUR_DATABASE_HOST";     // e.g., sql313.infinityfree.com
-$db_user = "YOUR_DATABASE_USER";     // e.g., if0_39103611
-$db_pass = "YOUR_DATABASE_PASSWORD"; // e.g., YourDatabasePassword
-$db_name = "YOUR_DATABASE_NAME";     // e.g., if0_39103611_db1
+$db_host = "YOUR_DATABASE_HOST";     // 
+$db_user = "YOUR_DATABASE_USER";     // 
+$db_pass = "YOUR_DATABASE_PASSWORD"; // 
+$db_name = "YOUR_DATABASE_NAME";     // 
 
 // Connect to database
 $db = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
