@@ -152,12 +152,11 @@ if ($upd) {
   <h1>💸 Survival Budget Tool</h1>
   <p>Select a category to explore budget guidance:</p>
 
-    <select id="category" onchange="if(this.value.endsWith('.php')) window.location.href=this.value;">
+  <select id="category" onchange="if(this.value.endsWith('.php')) window.location.href=this.value;">
     <option value="" disabled selected>Choose category...</option>
     <option value="calculator">🧮 Budget Calculator</option>
     <option value="/diy/survival/business.php">🏢 Business Profit Calculator</option>
   </select>
-
 
   <button id="showBtn">Show Selection</button>
 
@@ -167,9 +166,15 @@ if ($upd) {
     <h2>🧮 Budget Calculator</h2>
 
     <form id="calcForm">
-      <div class="field">
-        <label>💼 Income (monthly):</label>
-        <input type="number" name="income" />
+      <div class="grid">
+        <div class="field">
+          <label>💼 Income (monthly):</label>
+          <input type="number" name="income" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>🎯 Target Budget (monthly):</label>
+          <input type="number" name="target" placeholder="600" value="600" />
+        </div>
       </div>
 
       <div class="grid">
@@ -221,8 +226,6 @@ if ($upd) {
   </div>
 
   <script>
-    const baseBudget = 600; // reference survival baseline
-
     const conv = {
       food:30,       // daily → monthly
       mobile:1,
@@ -270,8 +273,9 @@ if ($upd) {
     }
 
     function calculateBudget() {
-      const form  = document.getElementById('calcForm');
+      const form   = document.getElementById('calcForm');
       const income = parseFloat(form.income.value) || 0;
+      const baseBudget = parseFloat(form.target.value) > 0 ? parseFloat(form.target.value) : 600;
 
       let totalMonthly = 0;
       let details = '';
@@ -291,7 +295,7 @@ if ($upd) {
           <div class="bar-row">
             <div class="bar-label">
               <span><strong>${label}:</strong> $${monthAmt.toFixed(2)}</span>
-              <span>${pctBase.toFixed(1)}% of $${baseBudget}</span>
+              <span>${pctBase.toFixed(1)}% of $${baseBudget.toFixed(2)}</span>
             </div>
             <div class="bar">
               <div class="bar-fill" style="width:${width}%;background:${color};"></div>
@@ -304,7 +308,7 @@ if ($upd) {
       const weekly  = totalMonthly / 4.345;
       const yearly  = totalMonthly * 12;
 
-      const pctOfBase   = ((totalMonthly / baseBudget) * 100).toFixed(1);
+      const pctOfBase    = ((totalMonthly / baseBudget) * 100).toFixed(1);
       const remainingBase = (baseBudget - totalMonthly).toFixed(2);
 
       let incomeBlock = '';
@@ -335,15 +339,15 @@ if ($upd) {
           </div>
           <div class="summary-box">
             <strong>Monthly Spend</strong>
-            $${totalMonthly.toFixed(2)} (${pctOfBase}% of $${baseBudget})
+            $${totalMonthly.toFixed(2)} (${pctOfBase}% of $${baseBudget.toFixed(2)})
           </div>
           <div class="summary-box">
             <strong>Yearly Spend</strong>
             $${yearly.toFixed(2)}
           </div>
           <div class="summary-box">
-            <strong>Remaining vs Base Budget</strong>
-            From $${baseBudget}/mo: $${remainingBase}
+            <strong>Remaining vs Target Budget</strong>
+            From $${baseBudget.toFixed(2)}/mo: $${remainingBase}
           </div>
           ${incomeBlock}
         </div>
@@ -394,7 +398,7 @@ if ($upd) {
 
 <?php
 cfc_footer(
-    "https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/index.php",
-    "Main Index Source Code"
+    "https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/diy/survival",
+    "GitHub+ Source Code"
 );
 ?>
