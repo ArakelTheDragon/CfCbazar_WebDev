@@ -37,12 +37,12 @@ A modular PHP-based platform for CfCbazar that integrates token mining, games, u
 - 📺 Media features like YouTube playlists and speed tests
 - 🔐 Full user system with registration, login, email verification, and password recovery
 
-#### Instructions
+# Instructions
 Here is a clean, structured guide for setting up the web services using your GitHub repository and configuration files.
 
 ---
 
-# Web Services Setup Guide
+## Web Services Setup Guide
 
 Follow these steps to deploy and configure the web application on your web server.
 
