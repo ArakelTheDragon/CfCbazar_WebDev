@@ -40,7 +40,7 @@ This module provides a fully responsive AI chat page with:
 │── ... (many more)
 │
 /config.php            # Contains $API_openrouter
-/styles.css            # Global CfCbazar stylesheet
+/css/styles.css            # Global CfCbazar stylesheet
 ```
 
 ---
