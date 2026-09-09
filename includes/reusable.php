@@ -56,6 +56,14 @@ require_once __DIR__ . '/process_download.php';
 // markDownloadDelivered($id, $email) -> bool: Marks record status as 'delivered' and updates buyer email
 require_once __DIR__ . '/markDownloadDelivered.php';
 
+// ============================================================================
+// --- AI skills ---
+// ============================================================================
+// AI Agent Skills
+require_once __DIR__ . '/agent_generate_pdf.php'; // generate a pdf
+require_once __DIR__ . '/agent_feed_info.php';     // feed and process agent info
+require_once __DIR__ . '/agent_get_search.php';    // perform web searches via SerpApi
+
 
 // ============================================================================
 // --- 🗄️ Database Queries & Fetchers ---
@@ -271,6 +279,13 @@ require_once __DIR__ . '/getWorkTokenStatus.php';
 
 // getStakingStatus($conn, $wallet) -> array: Retrieves active staked balances, yields, and lock periods
 require_once __DIR__ . '/getStakingStatus.php';
+
+
+// Adds status, learn level, build time, learn time
+require_once __DIR__ . '/project_stats.php';
+
+// Load Add-Item module
+require_once __DIR__ . '/add-item.php';
 
 // ============================================================================
 // GLOBAL INITIALIZATION & ROUTING HANDLERS

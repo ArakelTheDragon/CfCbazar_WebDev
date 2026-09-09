@@ -9,7 +9,7 @@
 function updateTrackingJson() {
     global $conn;
 
-    $apiKey = ''; // Can be viewed on http://cfcbazar.atwebpages.com/diy/track/update.php
+    $apiKey = 'CfCbazar_Secure_Track_Key_2026_X9z';
     $remoteUrl = 'http://cfcbazar.atwebpages.com/diy/track/update.php';
 
     // Verify database connection is active

@@ -10,32 +10,49 @@
 declare(strict_types=1);
 
 if (!function_exists('include_header')) {
-    /**
-     * Outputs HTML document head, metadata, scripts, styles, and opening layout header.
-     *
-     * @param string|null $title Custom page title (falls back to default marketplace title if null)
-     * @return void
-     */
+
     function include_header(?string $title = null): void
     {
-        // Local fallback if no title was passed
-        $title = $title ?? 'CfCbazar - Your marketplace for Smart Deals, DIY, games, music & the WorkToken';
+        // Updated default title (no WorkToken)
+        $title = $title ?? 'CfCbazar – Smart Deals, DIY eGuides, Open‑Source Tools, Games & Free Entertainment';
 
-        $description = 'CfCbazar offers URL shortening, power usage calc, survivor tool calc, value of work per hour for different professions, products and services and the WorkToken ecosystem for mining and spending WTK. Join now!';
-        $csrfToken   = $_SESSION['csrf_token'] ?? '';
-        $requestUri  = $_SERVER['REQUEST_URI'] ?? '';
+        // Updated SEO description
+        $description = 'CfCbazar offers DIY eGuides for cooking, budgeting, survival planning, electronics, PCB projects, open‑source tools, smart deals, free browser games, and free TV entertainment. Discover practical digital tools made for everyday people.';
+
+        // Updated SEO keywords
+        $keywords = implode(', ', [
+            'CfCbazar',
+            'DIY eGuides',
+            'cooking guides',
+            'budget planners',
+            'survival calculators',
+            'open source tools',
+            'PCB projects',
+            'electronics circuits',
+            'smart deals',
+            'printable products',
+            'free browser games',
+            'free TV',
+            'entertainment',
+            'digital downloads',
+            'online tools'
+        ]);
+
+        $csrfToken  = $_SESSION['csrf_token'] ?? '';
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '';
 
         echo '<!doctype html><html lang="en"><head><meta charset="utf-8">';
         echo '<meta name="viewport" content="width=device-width,initial-scale=1">';
-        echo '<meta name="trustpilot-one-time-domain-verification-id" content="4c6c3303-6308-414f-b3f4-9735179a3877"/>';
         echo '<meta name="csrf_token" content="' . htmlspecialchars($csrfToken) . '">';
+
+        // Title & SEO
         echo '<title>' . htmlspecialchars($title) . '</title>';
         echo '<meta name="description" content="' . htmlspecialchars($description) . '">';
-        echo '<meta name="keywords" content="CfCbazar, smart deals, DIY tools, games, music, WorkToken, platform credits, online tools, power usage calc, survival budget calc, value of 1h of work table">';
+        echo '<meta name="keywords" content="' . htmlspecialchars($keywords) . '">';
         echo '<meta name="robots" content="index, follow">';
         echo '<meta name="author" content="CfCbazar">';
 
-        // Open Graph for social media
+        // Open Graph
         echo '<meta property="og:title" content="' . htmlspecialchars($title) . '">';
         echo '<meta property="og:description" content="' . htmlspecialchars($description) . '">';
         echo '<meta property="og:type" content="website">';
@@ -52,8 +69,9 @@ if (!function_exists('include_header')) {
         echo '<link rel="stylesheet" href="/css/styles.css">';
         echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
         echo '<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>';
+
         echo '</head><body>';
-        echo '<header class="header">';
-        echo '</header>';
+        echo '<header class="header"></header>';
     }
 }
+

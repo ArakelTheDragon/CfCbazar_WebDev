@@ -28,13 +28,13 @@ if (!function_exists('getUserStatus')) {
     {
         global $conn;
 
-        // --- SAFETY PATCH ---
-        // If a mysqli object was passed instead of an email → auto-fix using active session
-        if ($email instanceof mysqli) {
+        // --- SAFETY & SESSION FALLBACK PATCH ---
+        // If no email was passed OR if a mysqli object was accidentally passed -> pull from session
+        if ($email === null || $email instanceof mysqli) {
             $email = $_SESSION['email'] ?? null;
         }
 
-        // If email is missing or invalid → user is not logged in
+        // If email is missing or invalid -> user is not logged in
         if (!is_string($email) || trim($email) === '') {
             return 0;
         }
