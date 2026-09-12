@@ -41,106 +41,29 @@ interface AISkillInterface {
 }
 
 /* ============================================================
-   Modular Memory Storage Helpers (Folder + JSON Index)
+   Memory System (Safe + Auto-Recovery)
    ============================================================ */
 
-$memoryIndexFile = __DIR__ . "/local_memory.json";
-$memoryDir        = __DIR__ . "/memory_topics";
-$skillListFile   = __DIR__ . "/skills/skill_list.json";
+$memoryFile = __DIR__ . "/local_memory.json";
+$skillListFile = __DIR__ . "/skills/skill_list.json";
 
-// Ensure memory directory exists
-if (!is_dir($memoryDir)) {
-    @mkdir($memoryDir, 0755, true);
-}
-
-/**
- * Clean topic names into safe, standardized filenames
- */
-function sanitizeTopicFilename(string $topic): string {
-    $clean = strtolower(trim($topic));
-    $clean = preg_replace('/[^a-z0-9\-_]/', '_', $clean);
-    return trim($clean, '_') . ".json";
-}
-
-/**
- * Retrieve detailed memory topic payload from memory_topics/ folder
- */
-function getMemoryDetail(string $filename): ?array {
-    global $memoryDir;
-    
-    $cleanFilename = basename($filename);
-    $filePath = $memoryDir . "/" . $cleanFilename;
-
-    if (file_exists($filePath)) {
-        $raw = file_get_contents($filePath);
-        $data = json_decode($raw, true);
-        return is_array($data) ? $data : null;
-    }
-    return null;
-}
-
-/**
- * Save lightweight index to local_memory.json and full payload to memory_topics/
- */
-function saveMemoryTopic(string $topic, string $summary, string $fullDetail): void {
-    global $memoryIndexFile, $memoryDir, $memory;
-
-    $cleanTopic = strtolower(trim($topic));
-    $filename   = sanitizeTopicFilename($cleanTopic);
-    $filePath   = $memoryDir . "/" . $filename;
-    $now        = date("Y-m-d H:i:s");
-
-    if (file_exists($filePath)) {
-        $topicData = json_decode(file_get_contents($filePath), true) ?: [];
-        $topicData["topic"]        = $cleanTopic;
-        $topicData["summary"]      = $summary;
-        $topicData["content"]      = $fullDetail;
-        $topicData["detail"]       = $fullDetail;
-        $topicData["last_updated"] = $now;
-        $topicData["updates"][]    = [
-            "timestamp" => $now,
-            "source"    => "Engine System",
-            "note"      => "Topic memory content updated."
-        ];
-    } else {
-        $topicData = [
-            "topic"        => $cleanTopic,
-            "summary"      => $summary,
-            "content"      => $fullDetail,
-            "detail"       => $fullDetail,
-            "last_updated" => $now,
-            "updates"      => [
-                [
-                    "timestamp" => $now,
-                    "source"    => "Engine System",
-                    "note"      => "Initial topic created."
-                ]
-            ]
-        ];
-    }
-
-    file_put_contents($filePath, json_encode($topicData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), LOCK_EX);
-
-    $memory["knowledge"][$cleanTopic] = [
-        "summary" => $summary,
-        "file"    => "memory_topics/" . $filename
-    ];
-
-    file_put_contents($memoryIndexFile, json_encode($memory, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), LOCK_EX);
-}
-
-/* Load memory index */
 $memory = [];
-if (file_exists($memoryIndexFile)) {
-    $raw = file_get_contents($memoryIndexFile);
+
+/* Load memory */
+if (file_exists($memoryFile)) {
+    $raw = file_get_contents($memoryFile);
     $memory = json_decode($raw, true);
 }
 
 if (!is_array($memory)) {
     $memory = [
         "history" => [],
-        "knowledge" => []
+        "knowledge" => [
+            "proxima" => "Deep space is quiet — but not silent. A faint signal can change everything.",
+            "stock market" => "Stock markets facilitate equity trading; fundamental analysis focuses on balance sheets and earnings."
+        ]
     ];
+    file_put_contents($memoryFile, json_encode($memory, JSON_PRETTY_PRINT));
 }
 
 if (!isset($memory["knowledge"]) || !is_array($memory["knowledge"])) {
@@ -164,7 +87,7 @@ function loadSkillFile(string $className): bool {
 }
 
 /* ============================================================
-   Plugin Loader
+   Plugin Loader (InfinityFree Safe)
    ============================================================ */
 
 function loadPlugins($ai) {
@@ -194,21 +117,49 @@ function loadPlugins($ai) {
 }
 
 /* ============================================================
-   OpenRouter Integration Helper (With NULL return on Failure)
+   OpenRouter Error Formatter
+   ============================================================ */
+
+function format_openrouter_error($response, $httpCode = 0)
+{
+    $parts = [];
+    $parts[] = 'OpenRouter request failed.';
+
+    if ($httpCode > 0) {
+        $parts[] = 'HTTP status: ' . $httpCode;
+    }
+
+    if (is_array($response)) {
+        if (!empty($response['error']['message'])) {
+            $parts[] = 'Message: ' . $response['error']['message'];
+        }
+        if (isset($response['error']['code']) && $response['error']['code'] !== '') {
+            $parts[] = 'Error code: ' . $response['error']['code'];
+        }
+        if (!empty($response['error']['type'])) {
+            $parts[] = 'Error type: ' . $response['error']['type'];
+        }
+        if (!empty($response['error']['param'])) {
+            $parts[] = 'Parameter: ' . $response['error']['param'];
+        }
+    }
+
+    return implode(' | ', $parts);
+}
+
+/* ============================================================
+   OpenRouter Integration Helper
    ============================================================ */
 
 function queryOpenRouter(string $userPrompt): ?string {
     global $API_openrouter;
 
     if (empty($API_openrouter)) {
-        error_log("OpenRouter Error: API key missing.");
-        return null;
+        return "OpenRouter Error: API key missing.";
     }
 
     $url = 'https://openrouter.ai/api/v1/chat/completions';
-    
-    // Updated default model fallback if not defined in config
-    $model = defined('CFCBAZAR_AI_MODEL') ? CFCBAZAR_AI_MODEL : 'meta-llama/llama-3.1-8b-instruct';
+    $model = defined('CFCBAZAR_AI_MODEL') ? CFCBAZAR_AI_MODEL : 'openrouter/free';
 
     $payload = [
         'model' => $model,
@@ -226,10 +177,13 @@ function queryOpenRouter(string $userPrompt): ?string {
 
     $jsonPayload = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+    if ($jsonPayload === false) {
+        return "OpenRouter Error: Failed to encode JSON payload.";
+    }
+
     $ch = curl_init($url);
     if ($ch === false) {
-        error_log("OpenRouter Error: Unable to initialize cURL.");
-        return null;
+        return "OpenRouter Error: Unable to initialize cURL.";
     }
 
     $headers = [
@@ -245,8 +199,8 @@ function queryOpenRouter(string $userPrompt): ?string {
         CURLOPT_POSTFIELDS => $jsonPayload,
         CURLOPT_HTTPHEADER => $headers,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CONNECTTIMEOUT => 8,
-        CURLOPT_TIMEOUT => 20,
+        CURLOPT_CONNECTTIMEOUT => 20,
+        CURLOPT_TIMEOUT => 120,
         CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2
     ]);
@@ -258,22 +212,27 @@ function queryOpenRouter(string $userPrompt): ?string {
     curl_close($ch);
 
     if ($rawResponse === false) {
-        error_log("OpenRouter cURL Error ({$httpCode}): " . $curlError);
-        return null;
+        return "cURL Error ({$httpCode}): " . $curlError;
     }
 
     $decoded = json_decode($rawResponse, true);
-    if (!is_array($decoded) || $httpCode < 200 || $httpCode >= 300 || isset($decoded['error'])) {
-        $errMsg = is_array($decoded) && isset($decoded['error']['message']) ? $decoded['error']['message'] : $rawResponse;
-        error_log("OpenRouter API Failed (HTTP {$httpCode}): " . $errMsg);
-        return null;
+    if (!is_array($decoded)) {
+        return "OpenRouter Error (HTTP {$httpCode}): Invalid JSON returned.";
+    }
+
+    if ($httpCode < 200 || $httpCode >= 300) {
+        return format_openrouter_error($decoded, $httpCode);
+    }
+
+    if (isset($decoded['error'])) {
+        return format_openrouter_error($decoded, $httpCode);
     }
 
     if (isset($decoded['choices'][0]['message']['content'])) {
         return trim($decoded['choices'][0]['message']['content']);
     }
 
-    return null;
+    return "OpenRouter Error: Unexpected response structure.";
 }
 
 /* ============================================================
@@ -294,7 +253,7 @@ class LocalAIEngine {
         $bestSkill = null;
         $bestScore = 0;
 
-        // 1. Check registered local skills first
+        // 1. Check registered modular skills first
         foreach ($this->skills as $skill) {
             $score = 0;
 
@@ -315,81 +274,40 @@ class LocalAIEngine {
             return $bestSkill->execute($input, $memory);
         }
 
-        // 2. Local database search in memory_topics / local_memory.json
-        $matchedTopicKey = null;
-        $matchedIndex    = null;
+        // 2. Check local memory database for existing match
+        $localMatchKey = null;
+        $localResponse = null;
 
         if (isset($memory["knowledge"]) && is_array($memory["knowledge"])) {
-            foreach ($memory["knowledge"] as $topic => $meta) {
+            foreach ($memory["knowledge"] as $topic => $info) {
                 if (str_contains($inputLower, strtolower($topic))) {
-                    $matchedTopicKey = $topic;
-                    $matchedIndex    = $meta;
+                    $localMatchKey = $topic;
+                    $localResponse = $info;
                     break;
                 }
             }
         }
 
-        $localDetail = null;
-        if ($matchedIndex !== null) {
-            if (is_array($matchedIndex) && !empty($matchedIndex["file"])) {
-                $detailData = getMemoryDetail($matchedIndex["file"]);
-                if ($detailData) {
-                    $localDetail = $detailData["content"] ?? $detailData["detail"] ?? $detailData["summary"] ?? null;
-                }
-            } elseif (is_string($matchedIndex)) {
-                $localDetail = $matchedIndex;
-            }
-        }
-
-        // 3. Query OpenRouter API
+        // 3. Query OpenRouter to compare, update existing memory, or ingest new facts
         $openRouterReply = queryOpenRouter($input);
 
-        // If local topic exists and OpenRouter updated it
-        if ($localDetail !== null) {
-            if ($openRouterReply !== null && trim($openRouterReply) !== trim($localDetail)) {
-                $lines = explode("\n", trim($openRouterReply));
-                $summary = substr(trim($lines[0]), 0, 120);
-
-                saveMemoryTopic($matchedTopicKey, $summary, $openRouterReply);
-                return "Updated Knowledge Topic [{$matchedTopicKey}]:\n\n" . $openRouterReply;
+        if ($localResponse !== null) {
+            if ($openRouterReply && trim($openRouterReply) !== trim($localResponse) && !str_contains($openRouterReply, 'OpenRouter Error')) {
+                // Update local memory with refreshed OpenRouter response
+                $memory["knowledge"][$localMatchKey] = $openRouterReply;
+                return "Updated Knowledge [{$localMatchKey}] via OpenRouter:\n\n" . $openRouterReply;
             }
-
-            return "Knowledge Base [{$matchedTopicKey}]:\n\n{$localDetail}";
+            
+            return "Knowledge [{$localMatchKey}]:\n\n{$localResponse}";
         }
 
-        // If new topic and OpenRouter responded successfully
-        if ($openRouterReply !== null) {
-            $lines = explode("\n", trim($openRouterReply));
-            $summary = substr(trim($lines[0]), 0, 120);
-
-            saveMemoryTopic($inputLower, $summary, $openRouterReply);
-            return "OpenRouter AI (Saved to Knowledge Folder):\n\n" . $openRouterReply;
+        // 4. If no local response exists, save new answer directly
+        if ($openRouterReply && !str_contains($openRouterReply, 'OpenRouter Error')) {
+            $memory["knowledge"][$inputLower] = $openRouterReply;
+            return "OpenRouter AI (New Fact Learned):\n\n" . $openRouterReply;
         }
 
-        // 4. FALLBACK: OpenRouter is unavailable/failed -> Use Local Engine Keyword Scan
-        $localMatches = [];
-        if (isset($memory["knowledge"]) && is_array($memory["knowledge"])) {
-            $words = explode(" ", $inputLower);
-            foreach ($words as $w) {
-                if (strlen($w) < 4) continue;
-                foreach ($memory["knowledge"] as $topic => $meta) {
-                    if (str_contains(strtolower($topic), $w)) {
-                        $localMatches[$topic] = $meta;
-                    }
-                }
-            }
-        }
-
-        if (!empty($localMatches)) {
-            $fallbackText = "### Local Engine Fallback (OpenRouter Offline)\n\nFound relevant local topics in memory:\n\n";
-            foreach ($localMatches as $tName => $tMeta) {
-                $tDetail = is_array($tMeta) ? ($tMeta["summary"] ?? "Local memory entry") : $tMeta;
-                $fallbackText .= "* **" . ucfirst($tName) . "**: " . $tDetail . "\n";
-            }
-            return $fallbackText;
-        }
-
-        return "### Local AI Engine (Offline Mode)\n\nOpenRouter is currently unavailable, and no matching topic was found in local memory.\n\nYou can teach me new facts using:\n`remember [topic] is [information]`";
+        return "General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info].";
     }
 }
 
@@ -399,12 +317,15 @@ class LocalAIEngine {
 
 $ai = new LocalAIEngine();
 
+/* Load skill list from JSON */
 $skillList = [];
+
 if (file_exists($skillListFile)) {
     $json = file_get_contents($skillListFile);
     $skillList = json_decode($json, true);
 }
 
+/* Fallback default skills if JSON missing (Updated with ImageGenerationSkill) */
 if (!is_array($skillList)) {
     $skillList = [
         "CalculatorSkill",
@@ -420,6 +341,7 @@ if (!is_array($skillList)) {
     ];
 }
 
+/* Load skills */
 foreach ($skillList as $skillClass) {
     if (loadSkillFile($skillClass)) {
         if (class_exists($skillClass)) {
@@ -428,6 +350,7 @@ foreach ($skillList as $skillClass) {
     }
 }
 
+/* Load plugins */
 loadPlugins($ai);
 
 /* ============================================================
@@ -443,13 +366,14 @@ if (!empty($prompt)) {
     $response = $ai->process($promptClean, $memory);
 
     $memory["history"][] = [
-        "time"   => date("Y-m-d H:i:s"),
-        "user"   => $promptClean,
+        "time" => date("Y-m-d H:i:s"),
+        "user" => $promptClean,
         "engine" => $response
     ];
 
-    file_put_contents($memoryIndexFile, json_encode($memory, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), LOCK_EX);
+    file_put_contents($memoryFile, json_encode($memory, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
+    // Handle JSON response format for API calls
     if ($isApiRequest) {
         echo json_encode(["engine" => $response]);
         exit;
@@ -471,11 +395,11 @@ if (!empty($prompt)) {
     textarea { width:100%; height:110px; padding:12px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:#fff; font-size:15px; box-sizing:border-box; resize:vertical; }
     .btn-submit { width:100%; padding:12px; margin-top:12px; background:#2563eb; color:white; border:none; border-radius:8px; font-size:16px; font-weight:bold; cursor:pointer; }
     .btn-submit:hover { background:#1d4ed8; }
-
+    
     .response-card { margin-top:25px; padding:20px; background:#334155; border-left:4px solid #38bdf8; border-radius:8px; position:relative; }
     .response-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #475569; padding-bottom:10px; }
     .response-title { font-weight:bold; color:#38bdf8; font-size:16px; }
-
+    
     .btn-copy { background:#475569; color:#f8fafc; border:none; padding:6px 14px; border-radius:5px; font-size:13px; font-weight:bold; cursor:pointer; transition:background 0.2s; }
     .btn-copy:hover { background:#64748b; }
     .btn-copy.copied { background:#16a34a; }
@@ -494,7 +418,7 @@ if (!empty($prompt)) {
     .md-body th, .md-body td { border:1px solid #475569; padding:8px 12px; text-align:left; }
     .md-body th { background:#1e293b; }
     .md-body img { max-width:100%; height:auto; border-radius:8px; margin:10px 0; border:1px solid #475569; display:block; }
-
+    
     .code-box-header { display:flex; justify-content:flex-end; margin-bottom:5px; }
     .btn-code-copy { background:#334155; color:#94a3b8; border:1px solid #475569; font-size:11px; padding:3px 8px; border-radius:4px; cursor:pointer; }
     .btn-code-copy:hover { color:#fff; background:#475569; }
@@ -520,15 +444,6 @@ if (!empty($prompt)) {
             <div id="formatted-response" class="md-body"></div>
         </div>
     <?php endif; ?>
-
-    <?php
-    if (function_exists('cfc_footer')) {
-        cfc_footer(
-            'https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/diy/ai2',
-            'CfCbazar AI Agent'
-        );
-    }
-    ?>
 </div>
 
 <script>
@@ -537,7 +452,8 @@ if (!empty($prompt)) {
         var targetElem = document.getElementById("formatted-response");
         if (rawElem && targetElem) {
             targetElem.innerHTML = marked.parse(rawElem.textContent);
-
+            
+            // Attach copy action to code blocks inside response
             targetElem.querySelectorAll("pre").forEach(function(preBlock) {
                 var btn = document.createElement("button");
                 btn.className = "btn-code-copy";
