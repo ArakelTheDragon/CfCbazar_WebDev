@@ -1,0 +1,125 @@
+{
+    "knowledge": {
+        "proxima": {
+            "file": "memory_topics/proxima.json",
+            "summary": "Deep space is quiet — but not silent. A faint signal can change everything."
+        },
+        "stock market": {
+            "file": "memory_topics/stock_market.json",
+            "summary": "Stock markets facilitate equity trading; fundamental analysis focuses on balance sheets and earnings."
+        },
+        "bitcoin": {
+            "file": "memory_topics/bitcoin.json",
+            "summary": "digital money"
+        },
+        "cats": {
+            "file": "memory_topics/cats.json",
+            "summary": "animals"
+        },
+        "prague": {
+            "file": "memory_topics/prague.json",
+            "summary": "Prague is the capital and largest city of the Czech Republic."
+        },
+        "copilot": {
+            "file": "memory_topics/copilot.json",
+            "summary": "Microsoft Copilot is an AI-powered assistant designed to aid with code completion, text generation, and productivity across software suites."
+        },
+        "ollama": {
+            "file": "memory_topics/ollama.json",
+            "summary": "Ollama is an open-source framework that enables running large language models locally on individual devices."
+        },
+        "markov": {
+            "file": "memory_topics/markov.json",
+            "summary": "A Markov chain is a stochastic model describing a sequence of possible events..."
+        },
+        "can i run ai only on php?": {
+            "file": "memory_topics/can_i_run_ai_only_on_php.json",
+            "summary": "Feasibility, options, and best practices for running local machine learning and LLM orchestration in PHP."
+        },
+        "what can you do": {
+            "file": "memory_topics/what_can_you_do.json",
+            "summary": "Overview of local AI agent skills, deterministic processing, and OpenRouter API capabilities."
+        },
+        "random_topic": {
+            "file": "memory_topics/random_topic.json",
+            "summary": "Procedural SVG artwork generation and sky village themes."
+        },
+        "do you have google search?": {
+            "file": "memory_topics/do_you_have_google_search.json",
+            "summary": "Capabilities regarding live search engines and external connectivity."
+        }
+    },
+    "history": [
+        {
+            "time": "2026-09-12 08:23:40",
+            "user": "Diagnostic.",
+            "topic": "diagnostic",
+            "file": "memory_topics/diagnostic.json"
+        },
+        {
+            "time": "2026-09-12 09:13:44",
+            "user": "Question Can I run AI only on PHP?",
+            "topic": "can i run ai only on php?",
+            "file": "memory_topics/can_i_run_ai_only_on_php.json"
+        },
+        {
+            "time": "2026-09-12 10:09:27",
+            "user": "Tell me what can you do?",
+            "topic": "what can you do",
+            "file": "memory_topics/what_can_you_do.json"
+        },
+        {
+            "time": "2026-09-12 10:25:05",
+            "user": "Generate an image on a random topic.",
+            "topic": "random_topic",
+            "file": "memory_topics/random_topic.json"
+        },
+        {
+            "time": "2026-09-12 11:32:29",
+            "user": "Do you have google search?",
+            "topic": "do you have google search?",
+            "file": "memory_topics/do_you_have_google_search.json"
+        },
+        {
+            "time": "2026-09-12 11:34:15",
+            "user": "Remember what you can do.",
+            "topic": "what can you do",
+            "file": "memory_topics/what_can_you_do.json"
+        },
+        {
+            "time": "2026-09-12 11:42:24",
+            "user": "Diagnostic.",
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (6 entries)\nKnowledge OK (12 topics)\n\n[CalculatorSkill]\nLoaded ✔\nTest: calculate 2+2 → Math Engine: 2+2 = 4\n\n[KnowledgeSkill]\nLoaded ✔\nTest: tell me about proxima → Knowledge [proxima]: Array\n\n[GeneratorSkill]\nLoaded ✔\nTest: generate a short story → Story Blueprint: 3 Acts — Setup, Conflict, Resolution.\n\n[SummarizerSkill]\nLoaded ✔\nTest: summarize text → Summary: summarize this: I walked to the store\n\n[SelfLearningSkill]\nLoaded ✔\nTest: learn testkey is testvalue → Learned (via learn): [testkey] = testvalue\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → PROJECT CONFIGURATION\n\n[BayesSkill]\nLoaded ✔\nTest: bayes classify → Intent Detection: I think this message is about **general**.\n\n[MLPatternSkill]\nLoaded ✔\nTest: ML classify → ML Prediction: This message is about **general**.\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-12 11:44:25",
+            "user": "Diagnostic.",
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (7 entries)\nKnowledge OK (12 topics)\n\n[CalculatorSkill]\nLoaded ✔\nTest: calculate 2+2 → Math Engine: 2+2 = 4\n\n[KnowledgeSkill]\nLoaded ✔\nTest: tell me about proxima → Knowledge [proxima]: Deep space is quiet — but not silent. A faint signal can change everything.\n\n[GeneratorSkill]\nLoaded ✔\nTest: generate a short story → Story Blueprint: 3 Acts — Setup, Conflict, Resolution.\n\n[SummarizerSkill]\nLoaded ✔\nTest: summarize text → Summary: summarize this: I walked to the store\n\n[SelfLearningSkill]\nLoaded ✔\nTest: learn testkey is testvalue → Learned (via learn): [testkey] = testvalue\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → PROJECT CONFIGURATION\n\n[BayesSkill]\nLoaded ✔\nTest: bayes classify → Intent Detection: I think this message is about **general**.\n\n[MLPatternSkill]\nLoaded ✔\nTest: ML classify → ML Prediction: This message is about **general**.\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-12 11:45:18",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **knowledge**."
+        },
+        {
+            "time": "2026-09-12 11:45:26",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:45:28",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:46:56",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:48:20",
+            "user": "What topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        }
+    ]
+}
