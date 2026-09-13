@@ -39,6 +39,14 @@ require_once __DIR__ . '/generateTrackingNumber.php';
 // e($value) -> string: Escapes HTML special characters for safe output (htmlspecialchars wrapper)
 require_once __DIR__ . '/e.php';
 
+// ============================================================================
+// --- 📁 File System & Code Scanner ---
+// ============================================================================
+
+// analyzeFileContent($filePath, $extension) -> Evaluates code indicators to derive file purpose
+// scanDirectoryMap($dir, $allowedExts, $ignoredDirs, $nested) -> Recursively scans directory tree
+// getFileSystemScanJson($rootDir, $returnArray) -> Outputs JSON report of scanned file structure
+require_once __DIR__ . '/scan_files.php';
 
 // ============================================================================
 // --- ⚡ Handlers & Processors ---
@@ -57,13 +65,38 @@ require_once __DIR__ . '/process_download.php';
 require_once __DIR__ . '/markDownloadDelivered.php';
 
 // ============================================================================
-// --- AI skills ---
+// --- AI skills OpenRouter Old Implementation---
 // ============================================================================
 // AI Agent Skills
-require_once __DIR__ . '/agent_generate_pdf.php'; // generate a pdf
-require_once __DIR__ . '/agent_feed_info.php';     // feed and process agent info
-require_once __DIR__ . '/agent_get_search.php';    // perform web searches via SerpApi
+require_once __DIR__ . '/skills/agent_generate_pdf.php'; // generate a pdf
+require_once __DIR__ . '/skills/agent_feed_info.php';     // feed and process agent info
+require_once __DIR__ . '/skills/agent_get_search.php';    // perform web searches via SerpApi
+require_once __DIR__ . '/skills/agent_generate_image.php'; // generate images
 
+// ============================================================================
+// --- AI reusables Local ---
+// ============================================================================
+// AI Agent Core & Framework Components
+require_once __DIR__ . '/skills/ai_helpers.php';           // AI general utilities & error formatting
+require_once __DIR__ . '/skills/agent_local_system.php';    // Local system offline simulation engine
+require_once __DIR__ . '/skills/agent_openrouter.php';      // OpenRouter API client integration
+
+// AI Agent Skills & Tools
+require_once __DIR__ . '/skills/agent_scan_files.php';      // scan local server directory structures
+
+// Implemented Local Skills[cite: 4]
+require_once __DIR__ . '/skills/ImageGenerationSkill.php';
+require_once __DIR__ . '/skills/PromptUnderstandingSkill.php';
+require_once __DIR__ . '/skills/SummarizerSkill.php';
+require_once __DIR__ . '/skills/FileUploadSkill.php';
+require_once __DIR__ . '/skills/CalculatorSkill.php';
+require_once __DIR__ . '/skills/DiagnosticSkill.php';
+require_once __DIR__ . '/skills/KnowledgeSkill.php';
+require_once __DIR__ . '/skills/GeneratorSkill.php';
+require_once __DIR__ . '/skills/MLPatternSkill.php';
+require_once __DIR__ . '/skills/MarkovSkill.php';
+require_once __DIR__ . '/skills/BayesSkill.php';
+require_once __DIR__ . '/skills/SelfLearningSkill.php';
 
 // ============================================================================
 // --- 🗄️ Database Queries & Fetchers ---
@@ -286,6 +319,14 @@ require_once __DIR__ . '/project_stats.php';
 
 // Load Add-Item module
 require_once __DIR__ . '/add-item.php';
+
+// ============================================================================
+// Main Reusable Aggregator File
+// File: /includes/reusable.php
+// ============================================================================
+
+// Include the task card component handler
+require_once __DIR__ . '/task.php';
 
 // ============================================================================
 // GLOBAL INITIALIZATION & ROUTING HANDLERS
