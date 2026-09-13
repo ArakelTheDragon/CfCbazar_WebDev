@@ -1,0 +1,638 @@
+{
+    "knowledge": {
+        "proxima": {
+            "file": "memory_topics\/proxima.json",
+            "summary": "Deep space is quiet — but not silent. A faint signal can change everything."
+        },
+        "stock market": {
+            "file": "memory_topics\/stock_market.json",
+            "summary": "Stock markets facilitate equity trading; fundamental analysis focuses on balance sheets and earnings."
+        },
+        "bitcoin": {
+            "file": "memory_topics\/bitcoin.json",
+            "summary": "digital money"
+        },
+        "cats": {
+            "file": "memory_topics\/cats.json",
+            "summary": "animals"
+        },
+        "prague": {
+            "file": "memory_topics\/prague.json",
+            "summary": "Prague is the capital and largest city of the Czech Republic."
+        },
+        "copilot": {
+            "file": "memory_topics\/copilot.json",
+            "summary": "Microsoft Copilot is an AI-powered assistant designed to aid with code completion, text generation, and productivity across software suites."
+        },
+        "ollama": {
+            "file": "memory_topics\/ollama.json",
+            "summary": "Ollama is an open-source framework that enables running large language models locally on individual devices."
+        },
+        "markov": {
+            "file": "memory_topics\/markov.json",
+            "summary": "A Markov chain is a stochastic model describing a sequence of possible events..."
+        },
+        "can i run ai only on php?": {
+            "file": "memory_topics\/can_i_run_ai_only_on_php.json",
+            "summary": "Feasibility, options, and best practices for running local machine learning and LLM orchestration in PHP."
+        },
+        "what can you do": {
+            "file": "memory_topics\/what_can_you_do.json",
+            "summary": "Overview of local AI agent skills, deterministic processing, and OpenRouter API capabilities."
+        },
+        "random_topic": {
+            "file": "memory_topics\/random_topic.json",
+            "summary": "Procedural SVG artwork generation and sky village themes."
+        },
+        "do you have google search?": {
+            "file": "memory_topics\/do_you_have_google_search.json",
+            "summary": "Capabilities regarding live search engines and external connectivity."
+        },
+        "hi!": {
+            "summary": "**Hello!**",
+            "file": "memory_topics\/hi.json"
+        },
+        "what are your skills?": {
+            "summary": "**My Skills and Abilities**",
+            "file": "memory_topics\/what_are_your_skills.json"
+        },
+        "can you maintain a php website?": {
+            "summary": "**Maintaining a PHP Website**",
+            "file": "memory_topics\/can_you_maintain_a_php_website.json"
+        },
+        "cfcbazar": {
+            "topic": "CfCbazar",
+            "info": "an online e-commerce marketplace and custom web developer hub.",
+            "updated_at": "2026-09-13 02:08:44"
+        },
+        "sky-stream-puck-troubleshooting": {
+            "topic": "Sky Stream Puck Troubleshooting Procedures and Network Resets",
+            "info": "Troubleshooting procedures and network resets for Sky Stream Puck, a device used for streaming and network connectivity.",
+            "facts": [
+                "The Sky Stream Puck requires a stable power supply and a secure connection to the router.",
+                "Common issues include connectivity problems, slow streaming speeds, and device malfunctions."
+            ],
+            "questions": [
+                "What are the common causes of connectivity issues with the Sky Stream Puck?",
+                "How do I reset the network settings on the Sky Stream Puck?"
+            ],
+            "response": "### Sky Stream Puck Troubleshooting Procedures and Network Resets#### Common Issues and Solutions*   **Connectivity Problems:**    *   Ensure the Sky Stream Puck is properly connected to the router and power supply.    *   Restart the router and Sky Stream Puck to re-establish connections.*   **Slow Streaming Speeds:**    *   Check the internet speed and ensure it meets the recommended requirements for streaming.    *   Restart the Sky Stream Puck and router to clear any temporary issues.*   **Device Malfunctions:**    *   Check for firmware updates and install the latest version.    *   Reset the Sky Stream Puck to its factory settings and reconfigure it.#### Network Resets*   **Soft Reset:**    *   Press and hold the reset button on the Sky Stream Puck for 10 seconds.    *   Release the button and wait for the device to restart.*   **Hard Reset:**    *   Locate the reset button on the back of the Sky Stream Puck.    *   Use a paper clip or pin to press and hold the reset button for 10 seconds.    *   Release the button and wait for the device to restart.#### Additional Tips*   Regularly update the firmware on the Sky Stream Puck to ensure optimal performance.*   Use a stable power supply and a secure connection to the router to prevent connectivity issues.*   If issues persist, contact the manufacturer's support team for further assistance.",
+            "updated_at": "2026-09-13 02:15:30"
+        },
+        "sky_stream_puck_troubleshooting": {
+            "topic": "Sky Stream Puck Troubleshooting Procedures and Network Resets",
+            "info": "Troubleshooting procedures and network resets for the Sky Stream Puck.",
+            "facts": [
+                "The Sky Stream Puck is a streaming device that requires a stable internet connection.",
+                "Check the power cord and ensure it is securely connected to both the device and the power outlet.",
+                "Restart the Sky Stream Puck by unplugging the power cord, waiting for 30 seconds, and then plugging it back in."
+            ],
+            "questions": [
+                "How do I reset the Sky Stream Puck to its factory settings?",
+                "What should I do if the Sky Stream Puck is not connecting to the internet?"
+            ],
+            "response": "### Sky Stream Puck Troubleshooting Procedures and Network Resets#### Restarting the Sky Stream Puck1. Unplug the power cord from the Sky Stream Puck.2. Wait for 30 seconds to allow any residual power to drain.3. Plug the power cord back into the Sky Stream Puck.#### Factory Reset1. Press and hold the reset button on the back of the Sky Stream Puck using a paper clip or a similar object.2. While holding the reset button, plug in the power cord.3. Release the reset button after 10 seconds.4. The Sky Stream Puck will restart and perform a factory reset.#### Network Reset1. Go to the Sky Stream Puck's settings menu.2. Select 'Network' or 'Internet' from the menu.3. Select 'Reset Network Settings' or 'Reset Internet Settings'.4. Confirm the reset by selecting 'Yes' or 'OK'.#### Additional Troubleshooting Steps* Check the internet connection by connecting another device to the same network.* Check the Sky Stream Puck's firmware version and update it if necessary.* Contact Sky support for further assistance if the issue persists.",
+            "updated_at": "2026-09-13 02:19:18"
+        },
+        "php": {
+            "topic": "PHP: A Server-side Scripting Language",
+            "info": "PHP is a server-side scripting language used for web development, primarily for creating dynamic web pages and web applications.",
+            "facts": [
+                "PHP stands for Hypertext Preprocessor",
+                "PHP is an open-source language",
+                "PHP is widely used for web development",
+                "PHP supports object-oriented programming",
+                "PHP has a vast collection of libraries and frameworks"
+            ],
+            "questions": [
+                "What is PHP used for?",
+                "Is PHP open-source?",
+                "What are some popular PHP frameworks?"
+            ],
+            "response": "### What is PHP?PHP is a server-side scripting language used for web development. It is primarily used for creating dynamic web pages and web applications.### History of PHPPHP was created in 1995 by Rasmus Lerdorf. It was initially called Personal Home Page Tools and was later renamed to PHP: Hypertext Preprocessor.### Features of PHP*   **Open-source**: PHP is an open-source language, which means it is free to use and distribute.*   **Server-side scripting**: PHP is a server-side scripting language, which means it runs on the server and generates dynamic web pages.*   **Object-oriented programming**: PHP supports object-oriented programming, which makes it easier to write reusable code.*   **Libraries and frameworks**: PHP has a vast collection of libraries and frameworks that make it easier to develop web applications.### Uses of PHP*   **Web development**: PHP is widely used for web development, including creating dynamic web pages, web applications, and web services.*   **Content management systems**: PHP is used in many content management systems, such as WordPress and Joomla.*   **E-commerce platforms**: PHP is used in many e-commerce platforms, such as Magento and OpenCart.### Popular PHP frameworks*   **Laravel**: Laravel is a popular PHP framework that provides a robust set of tools for web development.*   **CodeIgniter**: CodeIgniter is a lightweight PHP framework that provides a simple and elegant way to develop web applications.*   **Symfony**: Symfony is a PHP framework that provides a robust set of tools for web development.### ConclusionPHP is a powerful and versatile language that is widely used for web development. Its open-source nature, server-side scripting capabilities, and object-oriented programming make it an ideal choice for developing dynamic web pages and web applications.",
+            "updated_at": "2026-09-13 02:32:34"
+        },
+        "php_in_detail": {
+            "topic": "PHP in detail",
+            "info": "{\n  \"topic_slug\": \"php\",\n  \"topic_title\": \"PHP: A Server-Side Scripting Language\",\n  \"summary\": \"PHP is a server-side scripting language used for web ",
+            "facts": [
+                "{\n  \"topic_slug\": \"php\",\n  \"topic_title\": \"PHP: A Server-Side Scripting Language\",\n  \"summary\": \"PHP is a server-side scripting language used for web development, primarily for creating dynamic web pa"
+            ],
+            "questions": [
+                "PHP in detail"
+            ],
+            "response": "{\n  \"topic_slug\": \"php\",\n  \"topic_title\": \"PHP: A Server-Side Scripting Language\",\n  \"summary\": \"PHP is a server-side scripting language used for web development, primarily for creating dynamic web pages and web applications. It is a mature, open-source language with a vast community and numerous libraries and frameworks.\",\n  \"key_facts\": [\n    \"PHP stands for Hypertext Preprocessor\",\n    \"PHP is a server-side scripting language\",\n    \"PHP is primarily used for web development\",\n    \"PHP is open-source and free to use\",\n    \"PHP has a vast community and numerous libraries and frameworks\"\n  ],\n  \"sample_questions\": [\n    \"What is PHP and what is it used for?\",\n    \"What are the key features of PHP?\",\n    \"What are some popular PHP frameworks and libraries?\"\n  ],\n  \"response\": \"### What is PHP?\n\nPHP is a server-side scripting language used for web development. It is primarily used for creating dynamic web pages and web applications. PHP is a mature, open-source language with a vast community and numerous libraries and frameworks.\n\n### History of PHP\n\nPHP was created in 1994 by Rasmus Lerdorf. It was initially called Personal Home Page Tools and was later renamed to PHP: Hypertext Preprocessor.\n\n### Key Features of PHP\n\n*   **Server-side scripting**: PHP is executed on the server, not on the client-side.\n*   **Open-source**: PHP is free to use and distribute.\n*   **Cross-platform**: PHP can run on multiple operating systems, including Windows, Linux, and macOS.\n*   **Object-oriented**: PHP supports object-oriented programming (OOP) concepts.\n*   **Extensive libraries and frameworks**: PHP has a vast collection of libraries and frameworks, including Laravel, CodeIgniter, and Symfony.\n\n### Popular PHP Frameworks and Libraries\n\n*   **Laravel**: A popular, open-source PHP framework for web development.\n*   **CodeIgniter**: A lightweight, open-source PHP framework for web development.\n*   **Symfony**: A set of reusable PHP components and frameworks for web development.\n*   **WordPress**: A popular content management system (CMS) built on PHP.\n\n### PHP Use Cases\n\n*   **Web development**: PHP is primarily used for creating dynamic web pages and web applications.\n*   **Server-side scripting**: PHP is used for server-side scripting, including database interactions and file operations.\n*   **API development**: PHP can be used for creating RESTful APIs and web services.\n\n### Getting Started with PHP\n\nTo get started with PHP, you'll need to:\n\n1.  **Install PHP**: Install PHP on your local machine or server.\n2.  **Choose a text editor or IDE**: Choose a text editor or IDE (Integrated Development Environment) for writing and editing PHP code.\n3.  **Learn PHP basics**: Learn the basics of PHP, including variables, data types, control structures, and functions.\n4.  **Practice with examples**: Practice writing PHP code using examples and tutorials.\n5.  **Join online communities**: Join online communities, such as the official PHP subreddit or Stack Overflow, to connect with other PHP developers and get help with any questions or issues you may have.\"",
+            "updated_at": "2026-09-13 02:33:03"
+        },
+        "php-coding-in-detail": {
+            "topic": "PHP Coding in Detail",
+            "info": "PHP is a server-side scripting language used for web development. It's a mature language with a vast community and a wide range of applications.",
+            "facts": [
+                "PHP stands for Hypertext Preprocessor.",
+                "PHP is a server-side language, meaning it runs on the server before the web page is sent to the user's browser.",
+                "PHP is used for web development, including server-side scripting, database interaction, and more.",
+                "PHP is a mature language with a vast community and a wide range of applications.",
+                "PHP is often used in conjunction with HTML, CSS, and JavaScript for web development."
+            ],
+            "questions": [
+                "What is the difference between PHP and JavaScript?",
+                "How does PHP interact with databases?",
+                "What are some common PHP frameworks and libraries?"
+            ],
+            "response": "PHP is a server-side scripting language used for web development. It's a mature language with a vast community and a wide range of applications. Here's a step-by-step guide to PHP coding in detail:1. **Understanding PHP Basics**: PHP is a server-side language that runs on the server before the web page is sent to the user's browser. It's used for web development, including server-side scripting, database interaction, and more.2. **Setting Up a PHP Environment**: To start coding in PHP, you'll need to set up a PHP environment on your computer or server. This includes installing a PHP interpreter, a text editor or IDE, and a web server.3. **Basic PHP Syntax**: PHP syntax is similar to C and Java. It uses a combination of tags and functions to execute code. For example, `<?php echo 'Hello World'; ?>` will output 'Hello World' to the screen.4. **Variables and Data Types**: In PHP, variables are used to store and manipulate data. There are several data types, including integers, floats, strings, and arrays. For example, `$x = 5;` will assign the value 5 to the variable x.5. **Control Structures**: PHP has several control structures, including if-else statements, for loops, and while loops. For example, `if ($x > 5) { echo 'x is greater than 5'; }` will output 'x is greater than 5' if the value of x is greater than 5.6. **Functions and Object-Oriented Programming**: PHP supports functions and object-oriented programming. Functions are reusable blocks of code that can be called from anywhere in your script. For example, `function greet() { echo 'Hello World'; }` will output 'Hello World' when called.7. **Database Interaction**: PHP has several extensions for interacting with databases, including MySQLi and PDO. For example, `mysqli_connect('localhost', 'username', 'password', 'database');` will connect to a MySQL database.8. **Security**: PHP has several security features, including input validation, output encoding, and secure password hashing. For example, `filter_var($input, FILTER_SANITIZE_STRING);` will sanitize a string input to prevent XSS attacks.9. **Best Practices**: PHP coding best practices include following the PSR-1 coding standard, using a consistent naming convention, and commenting your code. For example, `\/\/ This is a comment` will output a comment in your code.10. **Common PHP Frameworks and Libraries**: PHP has several popular frameworks and libraries, including Laravel, CodeIgniter, and Symfony. For example, `Laravel` is a popular PHP framework that includes a robust set of features and tools for web development.By following these steps and best practices, you can become proficient in PHP coding and start building robust web applications.",
+            "updated_at": "2026-09-13 02:33:44"
+        },
+        "all_about_php_coding_in_detail": {
+            "topic": "All about PHP coding in detail",
+            "info": "{\n  \"topic_slug\": \"php-coding\",\n  \"topic_title\": \"PHP Coding: A Comprehensive Guide\",\n  \"summary\": \"PHP (Hypertext Preprocessor) is a server-side scri",
+            "facts": [
+                "{\n  \"topic_slug\": \"php-coding\",\n  \"topic_title\": \"PHP Coding: A Comprehensive Guide\",\n  \"summary\": \"PHP (Hypertext Preprocessor) is a server-side scripting language used for web development. It's a ma"
+            ],
+            "questions": [
+                "all about PHP coding in detail"
+            ],
+            "response": "{\n  \"topic_slug\": \"php-coding\",\n  \"topic_title\": \"PHP Coding: A Comprehensive Guide\",\n  \"summary\": \"PHP (Hypertext Preprocessor) is a server-side scripting language used for web development. It's a mature, widely-used language that's perfect for building dynamic websites, web applications, and mobile applications.\",\n  \"key_facts\": [\n    \"PHP is a free, open-source language.\",\n    \"PHP is used by over 80% of websites for server-side scripting.\",\n    \"PHP supports a wide range of databases, including MySQL, PostgreSQL, and SQLite.\",\n    \"PHP has a vast collection of libraries and frameworks, such as Laravel, CodeIgniter, and Symfony.\"\n  ],\n  \"sample_questions\": [\n    \"What is the difference between PHP 5 and PHP 7?\",\n    \"How do I install PHP on my local machine?\",\n    \"What is the purpose of the 'include' statement in PHP?\"\n  ],\n  \"response\": \"### PHP Coding: A Comprehensive Guide\n\n**Introduction**\n\nPHP (Hypertext Preprocessor) is a server-side scripting language used for web development. It's a mature, widely-used language that's perfect for building dynamic websites, web applications, and mobile applications.\n\n**History of PHP**\n\nPHP was first released in 1995 by Rasmus Lerdorf. It was initially called 'Personal Home Page Tools,' but was later renamed to PHP. Over the years, PHP has undergone significant changes, with the release of PHP 4 in 2000 and PHP 5 in 2005.\n\n**Key Features of PHP**\n\n*   **Server-side scripting**: PHP is executed on the server-side, making it a secure choice for web development.\n*   **Dynamic content generation**: PHP can generate dynamic content, making it perfect for building dynamic websites.\n*   **Database support**: PHP supports a wide range of databases, including MySQL, PostgreSQL, and SQLite.\n*   **Libraries and frameworks**: PHP has a vast collection of libraries and frameworks, such as Laravel, CodeIgniter, and Symfony.\n\n**Installation and Setup**\n\nTo install PHP on your local machine, follow these steps:\n\n1.  **Download the PHP installer**: Download the PHP installer from the official PHP website.\n2.  **Run the installer**: Run the installer and follow the prompts to install PHP.\n3.  **Configure PHP**: Configure PHP by editing the `php.ini` file.\n\n**Best Practices**\n\n*   **Use a consistent coding style**: Use a consistent coding style throughout your project.\n*   **Follow security best practices**: Follow security best practices, such as validating user input and using prepared statements.\n*   **Use a version control system**: Use a version control system, such as Git, to manage your codebase.\n\n**Common PHP Functions**\n\n*   **`echo`**: The `echo` statement is used to output text to the user.\n*   **`include`**: The `include` statement is used to include a file in the current script.\n*   **`require`**: The `require` statement is used to include a file in the current script, with a fatal error if the file is not found.\n\n**Conclusion**\n\nPHP is a powerful, versatile language that's perfect for building dynamic websites, web applications, and mobile applications. With its wide range of libraries and frameworks, PHP is a popular choice among web developers. By following best practices and using a consistent coding style, you can build robust, scalable applications with PHP.\"",
+            "updated_at": "2026-09-13 02:34:47"
+        },
+        "learn_php_": {
+            "info": "Absolutely. PHP is a server-side language used to build websites and APIs.\n\n### What to learn first\n\n1. **Basics**\n   ```php\n   <?php\n   $name = \"Alex\";\n   echo \"Hello, $name!\";\n   ```\n\n2. **Variables and data types**\n   - Strings, integers, floats, booleans, arrays, and objects\n\n3. **Control flow**\n   - `if` statements\n   - `switch`\n   - `for`, `while`, and `foreach` loops\n\n4. **Functions**\n   ```php\n   function greet(string $name): string\n   {\n       return \"Hello, $name!\";\n   }\n\n   echo greet(\"Alex\");\n   ```\n\n5. **Arrays**\n   ```php\n   $fruits = [\"apple\", \"banana\", \"orange\"];\n\n   foreach ($fruits as $fruit) {\n       echo \"$fruit\\n\";\n   }\n   ```\n\n6. **Forms and `$_POST`\/`$_GET`**\n   - Reading user input\n   - Validating and sanitizing data\n\n7. **Databases**\n   - PDO\n   - Prepared statements\n   - MySQL or PostgreSQL\n\n8. **Modern PHP**\n   - Composer\n   - PSR standards\n   - Type declarations\n   - Object-oriented programming\n   - Laravel or Symfony\n\n### Suggested project path\n\n1. A personal homepage  \n2. A calculator  \n3. A contact form  \n4. A todo-list application  \n5. A user-registration system with a database  \n6. A REST API  \n7. A full Laravel application  \n\nTo tailor the lessons, tell me:\n\n1. Do you already know another programming language?\n2. Do you want to build websites, APIs, or Laravel applications?\n3. Do you have PHP installed?",
+            "prompt": "Learn PHP.",
+            "source": "OpenRouter",
+            "updated_at": "2026-09-13 09:54:58"
+        },
+        "generate_an_html_simple": {
+            "info": "Here is a minimal, self‑contained HTML page you can save as `index.html` and open in any web browser:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Simple Page<\/title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 2rem;\n            line-height: 1.6;\n            background-color: #f9f9f9;\n            color: #333;\n        }\n        h1 {\n            color: #2c3e50;\n        }\n    <\/style>\n<\/head>\n<body>\n    <h1>Welcome to My Simple Page<\/h1>\n    <p>This is a basic HTML page generated for demonstration purposes.<\/p>\n    <p>Feel free to edit the content and styling as you like.<\/p>\n<\/body>\n<\/html>\n```\n\nYou can copy the code above into a file named `index.html` and open it locally, or host it on any static web server. Enjoy!",
+            "prompt": "Generate an html simple page.",
+            "source": "OpenRouter",
+            "updated_at": "2026-09-13 11:28:12"
+        },
+        "diagnostic_": {
+            "info": "What would you like me to diagnose: the system environment, an application\/codebase, network connectivity, or a specific error message?",
+            "prompt": "Diagnostic.",
+            "source": "OpenRouter",
+            "updated_at": "2026-09-13 11:31:37"
+        },
+        "run_the_diagnostic_": {
+            "info": "I'd be happy to help you run a diagnostic, but I need more information about what you'd like me to diagnose. \n\nAre you looking for:\n- System diagnostics (computer, network, hardware performance)\n- Application diagnostics \n- Web-based diagnostics\n- Database connectivity diagnostics\n- Or something else specific?\n\nIf you can tell me what system, application, or process you want me to check, I can use my available tools (like web search, file scanning, or consultation with specialized models) to help diagnose the issue.\n\nWhat specific diagnostic would you like me to run?",
+            "prompt": "Run the Diagnostic.",
+            "source": "OpenRouter",
+            "updated_at": "2026-09-13 11:31:57"
+        },
+        "diagnostic_ai_0f_": {
+            "info": "Here’s a quick snapshot of what’s publicly available for the phrase **“Diagnostic AI 0F.”** (the search was run with the exact quotation you gave):\n\n| Source | What it is | Key points |\n|--------|------------|------------|\n| **Microsoft Research – “Sequential Diagnosis with Language Models”** | A benchmark & orchestrator (MAI‑Diagnostic Orchestrator, MAI‑DxO) that turns clinical case studies into iterative diagnostic dialogues. | • 304 NEJM‑CPC cases.<br>• Iterative “question‑asker → test‑selector → diagnosis” loop.<br>• When paired with OpenAI o3, MAI‑DxO reaches ~80 % diagnostic accuracy (vs ~20 % for general physicians) and cuts test‑costs by 20‑70 % .<br>• Model‑agnostic: works with OpenAI, Gemini, Claude, Grok, DeepSeek, Llama families. |\n| **Hugging Face – `drdai\/diagnify-14b-v0.2-cot`** | DIAGNIFY, a 14‑B parameter clinical‑reasoning model using chain‑of‑thought prompting + retrieval‑augmented generation (RAG). | • Generates structured differentials (body‑system groupings, life‑threat flags, weighted likelihood).<br>• Internal benchmark reports near‑100 % accuracy, but the authors flag this as a *pre‑liminary, unreplicated* result and explicitly say the model **is not for clinical use**. |\n| **Hugging Face – `Henrychur\/DiagAgent-8B`** | DiagAgent‑8B, an RL‑optimised diagnostic agent trained in the *DiagGym* simulated clinical environment. | • Multi‑turn RL (GRPO) that recommends tests, updates the working diagnosis, and stops when enough evidence is gathered.<br>• Reported diagnosis‑accuracy > 80 % across several model sizes (7 B‑14 B). |\n| **Hugging Face – `FreedomIntelligence\/DiagnosisGPT-6B`** | DiagnosisGPT‑6B, a general‑purpose medical LLM aimed at diagnostic assistance. | • Released as a research artifact; no detailed performance numbers in the snippet, but it’s part of the same family of “diagnostic‑AI” models. |\n| **Hugging Face – `heuristixai\/HAI‑DiffDx‑0.5B`** | HAI‑DiffDx‑0.5B, a tiny (0.5 B) QLoRA‑fine‑tuned model that outputs a *four‑tier* differential (most likely, possible, unlikely‑but‑serious, recommended work‑up). | • Meant for research only; schema‑adherence on a tiny test set was ~56 % vs 4 % for the base model. |\n| **Other miscellaneous hits** | Various other medical‑AI repos and papers. | • Most are framed as “research‑only” or “decision‑support” tools, not cleared medical devices. |\n\n### What this means for you\n\n- **“Diagnostic AI 0F”** does not appear to be a single, well‑known product or version number. The search results are a collection of recent research prototypes and open‑source LLM‑based diagnostic assistants.\n- If you were looking for a **specific commercial product** (e.g., a particular version number, a company’s “0F” release), the current public data don’t match that label.  \n- If you need **details on a particular model** (e.g., DIAGNIFY, DiagAgent, DiagnosisGPT), I can pull the full technical report, model card, or evaluation metrics from the relevant Hugging Face page.\n- If you have a **use‑case in mind** (e.g., “I want a model that can iteratively ask questions and order tests”), let me know and I can point you at the most suitable open‑source option or summarize the Microsoft MAI‑DxO orchestrator design.\n\n**Next step:** Tell me which of the above you’re interested in (or clarify what “0F” refers to), and I’ll fetch the exact docs, performance numbers, or code you need.",
+            "prompt": "Diagnostic AI 0F.",
+            "source": "OpenRouter",
+            "updated_at": "2026-09-13 11:42:51"
+        },
+        "diagnostic_0f_": {
+            "info": "What system, device, or error message does **Diagnostic 0F** refer to? Please share the full code\/message and relevant context so I can interpret it.",
+            "prompt": "Diagnostic 0F.",
+            "source": "OpenRouter",
+            "updated_at": "2026-09-13 11:45:41"
+        }
+    },
+    "history": [
+        {
+            "time": "2026-09-12 08:23:40",
+            "user": "Diagnostic.",
+            "topic": "diagnostic",
+            "file": "memory_topics\/diagnostic.json"
+        },
+        {
+            "time": "2026-09-12 09:13:44",
+            "user": "Question Can I run AI only on PHP?",
+            "topic": "can i run ai only on php?",
+            "file": "memory_topics\/can_i_run_ai_only_on_php.json"
+        },
+        {
+            "time": "2026-09-12 10:09:27",
+            "user": "Tell me what can you do?",
+            "topic": "what can you do",
+            "file": "memory_topics\/what_can_you_do.json"
+        },
+        {
+            "time": "2026-09-12 10:25:05",
+            "user": "Generate an image on a random topic.",
+            "topic": "random_topic",
+            "file": "memory_topics\/random_topic.json"
+        },
+        {
+            "time": "2026-09-12 11:32:29",
+            "user": "Do you have google search?",
+            "topic": "do you have google search?",
+            "file": "memory_topics\/do_you_have_google_search.json"
+        },
+        {
+            "time": "2026-09-12 11:34:15",
+            "user": "Remember what you can do.",
+            "topic": "what can you do",
+            "file": "memory_topics\/what_can_you_do.json"
+        },
+        {
+            "time": "2026-09-12 11:42:24",
+            "user": "Diagnostic.",
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (6 entries)\nKnowledge OK (12 topics)\n\n[CalculatorSkill]\nLoaded ✔\nTest: calculate 2+2 → Math Engine: 2+2 = 4\n\n[KnowledgeSkill]\nLoaded ✔\nTest: tell me about proxima → Knowledge [proxima]: Array\n\n[GeneratorSkill]\nLoaded ✔\nTest: generate a short story → Story Blueprint: 3 Acts — Setup, Conflict, Resolution.\n\n[SummarizerSkill]\nLoaded ✔\nTest: summarize text → Summary: summarize this: I walked to the store\n\n[SelfLearningSkill]\nLoaded ✔\nTest: learn testkey is testvalue → Learned (via learn): [testkey] = testvalue\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → PROJECT CONFIGURATION\n\n[BayesSkill]\nLoaded ✔\nTest: bayes classify → Intent Detection: I think this message is about **general**.\n\n[MLPatternSkill]\nLoaded ✔\nTest: ML classify → ML Prediction: This message is about **general**.\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-12 11:44:25",
+            "user": "Diagnostic.",
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (7 entries)\nKnowledge OK (12 topics)\n\n[CalculatorSkill]\nLoaded ✔\nTest: calculate 2+2 → Math Engine: 2+2 = 4\n\n[KnowledgeSkill]\nLoaded ✔\nTest: tell me about proxima → Knowledge [proxima]: Deep space is quiet — but not silent. A faint signal can change everything.\n\n[GeneratorSkill]\nLoaded ✔\nTest: generate a short story → Story Blueprint: 3 Acts — Setup, Conflict, Resolution.\n\n[SummarizerSkill]\nLoaded ✔\nTest: summarize text → Summary: summarize this: I walked to the store\n\n[SelfLearningSkill]\nLoaded ✔\nTest: learn testkey is testvalue → Learned (via learn): [testkey] = testvalue\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → PROJECT CONFIGURATION\n\n[BayesSkill]\nLoaded ✔\nTest: bayes classify → Intent Detection: I think this message is about **general**.\n\n[MLPatternSkill]\nLoaded ✔\nTest: ML classify → ML Prediction: This message is about **general**.\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-12 11:45:18",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **knowledge**."
+        },
+        {
+            "time": "2026-09-12 11:45:26",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:45:28",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:46:56",
+            "user": "Which topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:48:20",
+            "user": "What topics do you know about?",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 11:49:53",
+            "user": "What topics do you know about?",
+            "engine": "### Currently Stored Knowledge Topics\n\n* **Proxima**: Deep space is quiet — but not silent. A faint signal can change everything.\n* **Stock Market**: Stock markets facilitate equity trading; fundamental analysis focuses on balance sheets and earnings.\n* **Bitcoin**: digital money\n* **Cats**: animals\n* **Prague**: Prague is the capital and largest city of the Czech Republic.\n* **Copilot**: Microsoft Copilot is an AI-powered assistant designed to aid with code completion, text generation, and productivity across software suites.\n* **Ollama**: Ollama is an open-source framework that enables running large language models locally on individual devices.\n* **Markov**: A Markov chain is a stochastic model describing a sequence of possible events...\n* **Can I Run Ai Only On Php?**: Feasibility, options, and best practices for running local machine learning and LLM orchestration in PHP.\n* **What Can You Do**: Overview of local AI agent skills, deterministic processing, and OpenRouter API capabilities.\n* **Random_topic**: Procedural SVG artwork generation and sky village themes.\n* **Do You Have Google Search?**: Capabilities regarding live search engines and external connectivity.\n"
+        },
+        {
+            "time": "2026-09-12 12:02:59",
+            "user": "Hi!",
+            "engine": "OpenRouter AI (Saved to Knowledge Folder):\n\nOpenRouter request failed. | HTTP status: 404 | Message: This model is unavailable for free. The paid version is available now - use this slug instead: meta-llama\/llama-3.1-8b-instruct | Error code: 404"
+        },
+        {
+            "time": "2026-09-12 12:47:41",
+            "user": "Hi!",
+            "engine": "Updated Knowledge Topic [hi!]:\n\n**Hello!**\n\nIt's nice to meet you. I'm here to assist you with any questions or tasks you may have. What would you like to talk about or work on today?"
+        },
+        {
+            "time": "2026-09-12 12:48:11",
+            "user": "What are your skills?",
+            "engine": "OpenRouter AI (Saved to Knowledge Folder):\n\nI'm a large language model, and I have a wide range of skills that enable me to assist and provide value to users. Here are some of my key skills:\n\n### Communication Skills\n\n* **Conversational Interface**: I can engage in natural-sounding conversations, using context and understanding to respond to questions and statements.\n* **Language Understanding**: I can comprehend and interpret human language, including nuances, idioms, and colloquialisms.\n* **Text Generation**: I can create human-like text based on a prompt, topic, or style.\n\n### Knowledge and Information Skills\n\n* **General Knowledge**: I have been trained on a vast amount of text data, allowing me to provide information on a wide range of topics, including history, science, technology, literature, and more.\n* **Domain-Specific Knowledge**: I can offer in-depth information on specific domains, such as medicine, law, finance, and technology.\n* **Data Analysis and Interpretation**: I can help with data analysis, interpretation, and visualization, providing insights and suggestions for further exploration.\n\n### Creative and Problem-Solving Skills\n\n* **Creative Writing**: I can generate creative writing, such as short stories, poetry, and dialogues.\n* **Brainstorming and Idea Generation**: I can assist with brainstorming and idea generation, helping to identify potential solutions and approaches.\n* **Problem-Solving**: I can help with problem-solving, offering suggestions and recommendations for addressing complex challenges.\n\n### Educational and Research Skills\n\n* **Study and Research Assistance**: I can provide study and research assistance, helping with topics such as note-taking, concept explanation, and research paper writing.\n* **Language Learning and Translation**: I can assist with language learning, offering grammar explanations, vocabulary building, and translation services.\n* **Academic Writing and Citation**: I can help with academic writing, including citation styles, referencing, and formatting.\n\n### Entertainment and Leisure Skills\n\n* **Trivia and Games**: I can engage in trivia and games, providing answers to questions and offering suggestions for fun and engaging activities.\n* **Recommendations and Reviews**: I can offer recommendations and reviews for books, movies, music, and other forms of entertainment.\n* **Jokes and Humor**: I can share jokes and humorous content, helping to brighten someone's day.\n\nThese are just a few examples of my skills. If you have a specific question or task in mind, feel free to ask, and I'll do my best to assist you!"
+        },
+        {
+            "time": "2026-09-12 12:51:48",
+            "user": "Make me an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **knowledge**."
+        },
+        {
+            "time": "2026-09-12 12:51:55",
+            "user": "Make me an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 12:51:56",
+            "user": "Make me an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 12:51:57",
+            "user": "Make me an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 12:51:57",
+            "user": "Make me an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 12:51:58",
+            "user": "Make me an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 12:52:19",
+            "user": "Generate me an image on a random topic.",
+            "engine": "Knowledge Base Match [Matched: 'random_topic']:\n\nArray"
+        },
+        {
+            "time": "2026-09-12 13:10:58",
+            "user": "What are your skills?",
+            "engine": "Updated Knowledge Topic [what are your skills?]:\n\n**My Skills and Abilities**\n\nI possess a wide range of skills that enable me to assist and provide value to users. Here are some of the key areas where I excel:\n\n### **Language Understanding and Generation**\n\n* **Multilingual Support**: I can understand and generate text in multiple languages, including but not limited to English, Spanish, French, German, Chinese, and many more.\n* **Conversational Dialogue**: I can engage in natural-sounding conversations, understand nuances, and respond accordingly.\n* **Text Summarization**: I can summarize long pieces of text into concise and meaningful summaries.\n* **Text Translation**: I can translate text from one language to another with high accuracy.\n\n### **Knowledge and Information**\n\n* **Domain Knowledge**: I have been trained on a massive dataset of text from various domains, including but not limited to:\n\t+ Science and Technology\n\t+ History\n\t+ Arts and Culture\n\t+ Health and Medicine\n\t+ Business and Finance\n\t+ Education\n* **Answering Questions**: I can answer a wide range of questions, from simple to complex, on various topics.\n* **Providing Information**: I can provide information on various topics, including but not limited to:\n\t+ Definitions\n\t+ Facts\n\t+ Figures\n\t+ Statistics\n\t+ News and Updates\n\n### **Content Creation and Writing**\n\n* **Writing Articles**: I can generate well-structured and well-written articles on various topics.\n* **Generating Text**: I can generate text on a given topic or prompt.\n* **Editing and Proofreading**: I can edit and proofread text to improve its clarity, grammar, and syntax.\n\n### **Math and Problem-Solving**\n\n* **Mathematical Calculations**: I can perform mathematical calculations, including but not limited to:\n\t+ Basic arithmetic operations (addition, subtraction, multiplication, division)\n\t+ Advanced mathematical operations (algebra, calculus, geometry)\n* **Logic and Reasoning**: I can apply logical and reasoning skills to solve problems.\n\n### **Other Skills**\n\n* **Jokes and Humor**: I can generate jokes and humorous responses.\n* **Creative Writing**: I can generate creative writing, including but not limited to:\n\t+ Poetry\n\t+ Short stories\n\t+ Dialogues\n* **Chat Games and Activities**: I can engage in chat games and activities, such as 20 Questions, Would You Rather, and more.\n\nThese are just some of the skills and abilities that I possess. If you have any specific questions or tasks, feel free to ask, and I'll do my best to assist you!"
+        },
+        {
+            "time": "2026-09-12 14:05:40",
+            "user": "Generate an image on a random topic.",
+            "engine": "Intent Detection: I think this message is about **general**."
+        },
+        {
+            "time": "2026-09-12 14:07:42",
+            "user": "Generate an image on a random topic.",
+            "engine": "### Image Generation Result\n\n**Prompt:** *a random topic.*\n\n![a random topic.](https:\/\/image.pollinations.ai\/prompt\/a+random+topic.?width=1024&height=768&nologo=true)\n\n[Direct Image Link](https:\/\/image.pollinations.ai\/prompt\/a+random+topic.?width=1024&height=768&nologo=true)"
+        },
+        {
+            "time": "2026-09-13 01:52:02",
+            "user": "Can you maintain a PHP website?",
+            "engine": "OpenRouter AI (Saved to Knowledge Folder):\n\n**Maintaining a PHP Website**\n====================================\n\nAs a PHP website maintainer, you'll be responsible for ensuring the website's stability, security, and performance. Here's a comprehensive guide to help you maintain a PHP website:\n\n### **Server Requirements**\n\n*   **PHP Version**: Ensure the website is running on a supported PHP version. Check the website's documentation or the developer's recommendations for the recommended PHP version.\n*   **Server Software**: Verify the website's compatibility with the server software, such as Apache, Nginx, or IIS.\n*   **Database**: If the website uses a database, ensure it's compatible with the server software and PHP version.\n\n### **Security**\n\n*   **Keep PHP and Dependencies Up-to-Date**: Regularly update PHP, libraries, and dependencies to ensure you have the latest security patches and features.\n*   **Use Secure Protocols**: Ensure the website uses HTTPS (SSL\/TLS) for secure data transfer.\n*   **Regularly Back Up Data**: Perform regular backups of the website's data, configuration, and code to prevent data loss in case of a security breach or other issues.\n*   **Monitor for Security Vulnerabilities**: Use tools like OWASP ZAP, Nikto, or Burp Suite to scan the website for potential security vulnerabilities.\n\n### **Performance**\n\n*   **Optimize Database Queries**: Regularly review and optimize database queries to improve performance and reduce load times.\n*   **Minimize HTTP Requests**: Optimize images, reduce the number of HTTP requests, and use caching mechanisms to improve page load times.\n*   **Use Caching**: Implement caching mechanisms, such as Redis or Memcached, to reduce the load on the database and improve performance.\n*   **Monitor Performance**: Use tools like New Relic, Datadog, or Prometheus to monitor performance metrics, such as CPU usage, memory usage, and database queries.\n\n### **Code Quality and Maintenance**\n\n*   **Regularly Review and Refactor Code**: Regularly review and refactor code to ensure it's maintainable, readable, and follows best practices.\n*   **Use Version Control**: Use version control systems like Git to track changes, collaborate with developers, and maintain a clean and organized codebase.\n*   **Write Automated Tests**: Write automated tests to ensure the website's functionality and prevent regressions.\n\n### **Community and Support**\n\n*   **Join Online Communities**: Participate in online communities, such as PHP forums, to stay up-to-date with the latest developments and best practices.\n*   **Reach Out to the Development Team**: If you're part of a development team, ensure you have a clear communication channel for issues, concerns, and feedback.\n\n### **Best Practices**\n\n*   **Use a PHP Framework**: Consider using a PHP framework, such as Laravel or Symfony, to improve code organization, maintainability, and performance.\n*   **Follow Coding Standards**: Adhere to coding standards, such as PSR-2, to ensure code readability and maintainability.\n*   **Use Code Review**: Regularly perform code reviews to ensure code quality, catch potential issues, and improve overall codebase health.\n\nBy following these guidelines, you'll be able to maintain a PHP website effectively, ensuring its stability, security, and performance. Remember to stay up-to-date with the latest developments, best practices, and community feedback to keep your website running smoothly."
+        },
+        {
+            "time": "2026-09-13 02:08:44",
+            "user": "remember CfCbazar is an online e-commerce marketplace and custom web developer hub.",
+            "engine": "Learned (explicit command): [CfCbazar] = an online e-commerce marketplace and custom web developer hub."
+        },
+        {
+            "time": "2026-09-13 02:09:50",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error: Unable to parse structured JSON from OpenRouter response."
+        },
+        {
+            "time": "2026-09-13 02:09:57",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error: Unable to parse structured JSON from OpenRouter response."
+        },
+        {
+            "time": "2026-09-13 02:10:02",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error: Unable to parse structured JSON from OpenRouter response."
+        },
+        {
+            "time": "2026-09-13 02:10:05",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error: Unable to parse structured JSON from OpenRouter response."
+        },
+        {
+            "time": "2026-09-13 02:12:19",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error: Empty response received from API."
+        },
+        {
+            "time": "2026-09-13 02:12:29",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error: Empty response received from API."
+        },
+        {
+            "time": "2026-09-13 02:13:35",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Self-Learning Error (HTTP 404): OpenRouter API returned error - This model is unavailable for free. The paid version is available now - use this slug instead: meta-llama\/llama-3.1-8b-instruct"
+        },
+        {
+            "time": "2026-09-13 02:15:30",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Distilled knowledge from OpenRouter: Learned [sky-stream-puck-troubleshooting]\n\n### Sky Stream Puck Troubleshooting Procedures and Network Resets#### Common Issues and Solutions*   **Connectivity Problems:**    *   Ensure the Sky Stream Puck is properly connected to the router and power supply.    *   Restart the router and Sky Stream Puck to re-establish connections.*   **Slow Streaming Speeds:**    *   Check the internet speed and ensure it meets the recommended requirements for streaming.    *   Restart the Sky Stream Puck and router to clear any temporary issues.*   **Device Malfunctions:**    *   Check for firmware updates and install the latest version.    *   Reset the Sky Stream Puck to its factory settings and reconfigure it.#### Network Resets*   **Soft Reset:**    *   Press and hold the reset button on the Sky Stream Puck for 10 seconds.    *   Release the button and wait for the device to restart.*   **Hard Reset:**    *   Locate the reset button on the back of the Sky Stream Puck.    *   Use a paper clip or pin to press and hold the reset button for 10 seconds.    *   Release the button and wait for the device to restart.#### Additional Tips*   Regularly update the firmware on the Sky Stream Puck to ensure optimal performance.*   Use a stable power supply and a secure connection to the router to prevent connectivity issues.*   If issues persist, contact the manufacturer's support team for further assistance."
+        },
+        {
+            "time": "2026-09-13 02:19:18",
+            "user": "learn openrouter Sky Stream Puck troubleshooting procedures and network resets",
+            "engine": "Distilled knowledge from OpenRouter [meta-llama\/llama-3.1-8b-instruct]: Learned [sky_stream_puck_troubleshooting]\n\n### Sky Stream Puck Troubleshooting Procedures and Network Resets#### Restarting the Sky Stream Puck1. Unplug the power cord from the Sky Stream Puck.2. Wait for 30 seconds to allow any residual power to drain.3. Plug the power cord back into the Sky Stream Puck.#### Factory Reset1. Press and hold the reset button on the back of the Sky Stream Puck using a paper clip or a similar object.2. While holding the reset button, plug in the power cord.3. Release the reset button after 10 seconds.4. The Sky Stream Puck will restart and perform a factory reset.#### Network Reset1. Go to the Sky Stream Puck's settings menu.2. Select 'Network' or 'Internet' from the menu.3. Select 'Reset Network Settings' or 'Reset Internet Settings'.4. Confirm the reset by selecting 'Yes' or 'OK'.#### Additional Troubleshooting Steps* Check the internet connection by connecting another device to the same network.* Check the Sky Stream Puck's firmware version and update it if necessary.* Contact Sky support for further assistance if the issue persists."
+        },
+        {
+            "time": "2026-09-13 02:30:11",
+            "user": "Learn how to improve the local PHP AI.",
+            "engine": "Use format: learn [Topic] is [Information]"
+        },
+        {
+            "time": "2026-09-13 02:30:29",
+            "user": "Learn PHP.",
+            "engine": "Use format: learn [Topic] is [Information]"
+        },
+        {
+            "time": "2026-09-13 02:30:38",
+            "user": "Learn PHP.",
+            "engine": "Use format: learn [Topic] is [Information]"
+        },
+        {
+            "time": "2026-09-13 02:30:41",
+            "user": "Learn PHP.",
+            "engine": "Use format: learn [Topic] is [Information]"
+        },
+        {
+            "time": "2026-09-13 02:30:44",
+            "user": "Learn PHP.",
+            "engine": "Use format: learn [Topic] is [Information]"
+        },
+        {
+            "time": "2026-09-13 02:31:07",
+            "user": "Learn PHP.",
+            "engine": "Use format: learn [Topic] is [Information]"
+        },
+        {
+            "time": "2026-09-13 02:32:34",
+            "user": "Learn PHP.",
+            "engine": "Distilled knowledge from OpenRouter [meta-llama\/llama-3.1-8b-instruct]: Learned [php]\n\n### What is PHP?PHP is a server-side scripting language used for web development. It is primarily used for creating dynamic web pages and web applications.### History of PHPPHP was created in 1995 by Rasmus Lerdorf. It was initially called Personal Home Page Tools and was later renamed to PHP: Hypertext Preprocessor.### Features of PHP*   **Open-source**: PHP is an open-source language, which means it is free to use and distribute.*   **Server-side scripting**: PHP is a server-side scripting language, which means it runs on the server and generates dynamic web pages.*   **Object-oriented programming**: PHP supports object-oriented programming, which makes it easier to write reusable code.*   **Libraries and frameworks**: PHP has a vast collection of libraries and frameworks that make it easier to develop web applications.### Uses of PHP*   **Web development**: PHP is widely used for web development, including creating dynamic web pages, web applications, and web services.*   **Content management systems**: PHP is used in many content management systems, such as WordPress and Joomla.*   **E-commerce platforms**: PHP is used in many e-commerce platforms, such as Magento and OpenCart.### Popular PHP frameworks*   **Laravel**: Laravel is a popular PHP framework that provides a robust set of tools for web development.*   **CodeIgniter**: CodeIgniter is a lightweight PHP framework that provides a simple and elegant way to develop web applications.*   **Symfony**: Symfony is a PHP framework that provides a robust set of tools for web development.### ConclusionPHP is a powerful and versatile language that is widely used for web development. Its open-source nature, server-side scripting capabilities, and object-oriented programming make it an ideal choice for developing dynamic web pages and web applications."
+        },
+        {
+            "time": "2026-09-13 02:33:03",
+            "user": "Learn PHP in detail.",
+            "engine": "Distilled knowledge from OpenRouter [meta-llama\/llama-3.1-8b-instruct]: Learned [php_in_detail]\n\n{\n  \"topic_slug\": \"php\",\n  \"topic_title\": \"PHP: A Server-Side Scripting Language\",\n  \"summary\": \"PHP is a server-side scripting language used for web development, primarily for creating dynamic web pages and web applications. It is a mature, open-source language with a vast community and numerous libraries and frameworks.\",\n  \"key_facts\": [\n    \"PHP stands for Hypertext Preprocessor\",\n    \"PHP is a server-side scripting language\",\n    \"PHP is primarily used for web development\",\n    \"PHP is open-source and free to use\",\n    \"PHP has a vast community and numerous libraries and frameworks\"\n  ],\n  \"sample_questions\": [\n    \"What is PHP and what is it used for?\",\n    \"What are the key features of PHP?\",\n    \"What are some popular PHP frameworks and libraries?\"\n  ],\n  \"response\": \"### What is PHP?\n\nPHP is a server-side scripting language used for web development. It is primarily used for creating dynamic web pages and web applications. PHP is a mature, open-source language with a vast community and numerous libraries and frameworks.\n\n### History of PHP\n\nPHP was created in 1994 by Rasmus Lerdorf. It was initially called Personal Home Page Tools and was later renamed to PHP: Hypertext Preprocessor.\n\n### Key Features of PHP\n\n*   **Server-side scripting**: PHP is executed on the server, not on the client-side.\n*   **Open-source**: PHP is free to use and distribute.\n*   **Cross-platform**: PHP can run on multiple operating systems, including Windows, Linux, and macOS.\n*   **Object-oriented**: PHP supports object-oriented programming (OOP) concepts.\n*   **Extensive libraries and frameworks**: PHP has a vast collection of libraries and frameworks, including Laravel, CodeIgniter, and Symfony.\n\n### Popular PHP Frameworks and Libraries\n\n*   **Laravel**: A popular, open-source PHP framework for web development.\n*   **CodeIgniter**: A lightweight, open-source PHP framework for web development.\n*   **Symfony**: A set of reusable PHP components and frameworks for web development.\n*   **WordPress**: A popular content management system (CMS) built on PHP.\n\n### PHP Use Cases\n\n*   **Web development**: PHP is primarily used for creating dynamic web pages and web applications.\n*   **Server-side scripting**: PHP is used for server-side scripting, including database interactions and file operations.\n*   **API development**: PHP can be used for creating RESTful APIs and web services.\n\n### Getting Started with PHP\n\nTo get started with PHP, you'll need to:\n\n1.  **Install PHP**: Install PHP on your local machine or server.\n2.  **Choose a text editor or IDE**: Choose a text editor or IDE (Integrated Development Environment) for writing and editing PHP code.\n3.  **Learn PHP basics**: Learn the basics of PHP, including variables, data types, control structures, and functions.\n4.  **Practice with examples**: Practice writing PHP code using examples and tutorials.\n5.  **Join online communities**: Join online communities, such as the official PHP subreddit or Stack Overflow, to connect with other PHP developers and get help with any questions or issues you may have.\""
+        },
+        {
+            "time": "2026-09-13 02:33:44",
+            "user": "Learn PHP coding in detail.",
+            "engine": "Distilled knowledge from OpenRouter [meta-llama\/llama-3.1-8b-instruct]: Learned [php-coding-in-detail]\n\nPHP is a server-side scripting language used for web development. It's a mature language with a vast community and a wide range of applications. Here's a step-by-step guide to PHP coding in detail:1. **Understanding PHP Basics**: PHP is a server-side language that runs on the server before the web page is sent to the user's browser. It's used for web development, including server-side scripting, database interaction, and more.2. **Setting Up a PHP Environment**: To start coding in PHP, you'll need to set up a PHP environment on your computer or server. This includes installing a PHP interpreter, a text editor or IDE, and a web server.3. **Basic PHP Syntax**: PHP syntax is similar to C and Java. It uses a combination of tags and functions to execute code. For example, `<?php echo 'Hello World'; ?>` will output 'Hello World' to the screen.4. **Variables and Data Types**: In PHP, variables are used to store and manipulate data. There are several data types, including integers, floats, strings, and arrays. For example, `$x = 5;` will assign the value 5 to the variable x.5. **Control Structures**: PHP has several control structures, including if-else statements, for loops, and while loops. For example, `if ($x > 5) { echo 'x is greater than 5'; }` will output 'x is greater than 5' if the value of x is greater than 5.6. **Functions and Object-Oriented Programming**: PHP supports functions and object-oriented programming. Functions are reusable blocks of code that can be called from anywhere in your script. For example, `function greet() { echo 'Hello World'; }` will output 'Hello World' when called.7. **Database Interaction**: PHP has several extensions for interacting with databases, including MySQLi and PDO. For example, `mysqli_connect('localhost', 'username', 'password', 'database');` will connect to a MySQL database.8. **Security**: PHP has several security features, including input validation, output encoding, and secure password hashing. For example, `filter_var($input, FILTER_SANITIZE_STRING);` will sanitize a string input to prevent XSS attacks.9. **Best Practices**: PHP coding best practices include following the PSR-1 coding standard, using a consistent naming convention, and commenting your code. For example, `\/\/ This is a comment` will output a comment in your code.10. **Common PHP Frameworks and Libraries**: PHP has several popular frameworks and libraries, including Laravel, CodeIgniter, and Symfony. For example, `Laravel` is a popular PHP framework that includes a robust set of features and tools for web development.By following these steps and best practices, you can become proficient in PHP coding and start building robust web applications."
+        },
+        {
+            "time": "2026-09-13 02:34:47",
+            "user": "Learn all about PHP coding in detail.",
+            "engine": "Distilled knowledge from OpenRouter [meta-llama\/llama-3.1-8b-instruct]: Learned [all_about_php_coding_in_detail]\n\n{\n  \"topic_slug\": \"php-coding\",\n  \"topic_title\": \"PHP Coding: A Comprehensive Guide\",\n  \"summary\": \"PHP (Hypertext Preprocessor) is a server-side scripting language used for web development. It's a mature, widely-used language that's perfect for building dynamic websites, web applications, and mobile applications.\",\n  \"key_facts\": [\n    \"PHP is a free, open-source language.\",\n    \"PHP is used by over 80% of websites for server-side scripting.\",\n    \"PHP supports a wide range of databases, including MySQL, PostgreSQL, and SQLite.\",\n    \"PHP has a vast collection of libraries and frameworks, such as Laravel, CodeIgniter, and Symfony.\"\n  ],\n  \"sample_questions\": [\n    \"What is the difference between PHP 5 and PHP 7?\",\n    \"How do I install PHP on my local machine?\",\n    \"What is the purpose of the 'include' statement in PHP?\"\n  ],\n  \"response\": \"### PHP Coding: A Comprehensive Guide\n\n**Introduction**\n\nPHP (Hypertext Preprocessor) is a server-side scripting language used for web development. It's a mature, widely-used language that's perfect for building dynamic websites, web applications, and mobile applications.\n\n**History of PHP**\n\nPHP was first released in 1995 by Rasmus Lerdorf. It was initially called 'Personal Home Page Tools,' but was later renamed to PHP. Over the years, PHP has undergone significant changes, with the release of PHP 4 in 2000 and PHP 5 in 2005.\n\n**Key Features of PHP**\n\n*   **Server-side scripting**: PHP is executed on the server-side, making it a secure choice for web development.\n*   **Dynamic content generation**: PHP can generate dynamic content, making it perfect for building dynamic websites.\n*   **Database support**: PHP supports a wide range of databases, including MySQL, PostgreSQL, and SQLite.\n*   **Libraries and frameworks**: PHP has a vast collection of libraries and frameworks, such as Laravel, CodeIgniter, and Symfony.\n\n**Installation and Setup**\n\nTo install PHP on your local machine, follow these steps:\n\n1.  **Download the PHP installer**: Download the PHP installer from the official PHP website.\n2.  **Run the installer**: Run the installer and follow the prompts to install PHP.\n3.  **Configure PHP**: Configure PHP by editing the `php.ini` file.\n\n**Best Practices**\n\n*   **Use a consistent coding style**: Use a consistent coding style throughout your project.\n*   **Follow security best practices**: Follow security best practices, such as validating user input and using prepared statements.\n*   **Use a version control system**: Use a version control system, such as Git, to manage your codebase.\n\n**Common PHP Functions**\n\n*   **`echo`**: The `echo` statement is used to output text to the user.\n*   **`include`**: The `include` statement is used to include a file in the current script.\n*   **`require`**: The `require` statement is used to include a file in the current script, with a fatal error if the file is not found.\n\n**Conclusion**\n\nPHP is a powerful, versatile language that's perfect for building dynamic websites, web applications, and mobile applications. With its wide range of libraries and frameworks, PHP is a popular choice among web developers. By following best practices and using a consistent coding style, you can build robust, scalable applications with PHP.\""
+        },
+        {
+            "time": "2026-09-13 02:37:17",
+            "user": "Can you read the pdf?",
+            "engine": "### Local AI Engine (Offline Mode)\n\nOpenRouter is currently unavailable, and no matching topic was found in local memory.\n\nYou can teach me new facts using:\n`remember [topic] is [information]`"
+        },
+        {
+            "time": "2026-09-13 09:27:25",
+            "user": "Hi!",
+            "skill_used": "PromptUnderstandingSkill",
+            "engine": "Error: Skill file PromptUnderstandingSkill.php not found in skills\/."
+        },
+        {
+            "time": "2026-09-13 09:28:19",
+            "user": "Hi!",
+            "skill_used": "PromptUnderstandingSkill",
+            "engine": "Error: Skill file [PromptUnderstandingSkill.php] not found in checked directories. (Target path: \/home\/vol17_1\/infinityfree.com\/if0_39103611\/cfcbazar.42web.io\/htdocs\/diy\/ai\/..\/skills\/PromptUnderstandingSkill.php)"
+        },
+        {
+            "time": "2026-09-13 09:29:21",
+            "user": "Hi!",
+            "skill_used": "PromptUnderstandingSkill",
+            "engine": "Skill [PromptUnderstandingSkill] loaded, but 'run_skill' function is missing."
+        },
+        {
+            "time": "2026-09-13 09:30:12",
+            "user": "Hi!",
+            "skill_used": "PromptUnderstandingSkill",
+            "engine": "### Prompt Analysis & Skill Routing\n\nIdentified Intent: **Knowledge Base Lookup** (Confidence: 100%)\nTarget Execution Skill: **KnowledgeSkill**\nQuestion Category: **General instruction**\nMatched Topic: **Hi!**\nRetrieved Knowledge: **Hello!**"
+        },
+        {
+            "time": "2026-09-13 09:30:37",
+            "user": "Calc 5+4.",
+            "skill_used": "PromptUnderstandingSkill",
+            "engine": "### Prompt Analysis & Skill Routing\n\nIdentified Intent: **General Query** (Confidence: 50%)\nTarget Execution Skill: **GeneratorSkill**\nQuestion Category: **General instruction**\nExtracted Entities: `calc`\nParsed Input: \"Calc 5+4.\""
+        },
+        {
+            "time": "2026-09-13 09:30:57",
+            "user": "Calculate 5+4.",
+            "skill_used": "PromptUnderstandingSkill",
+            "engine": "### Prompt Analysis & Skill Routing\n\nIdentified Intent: **Calculation Request** (Confidence: 98%)\nTarget Execution Skill: **CalculatorSkill**\nQuestion Category: **General instruction**\nExtracted Entities: `calculate`\nParsed Input: \"Calculate 5+4.\""
+        },
+        {
+            "time": "2026-09-13 09:31:50",
+            "user": "Hi!",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "KnowledgeSkill (Executed)"
+            ],
+            "engine": "Knowledge [hi!]: **Hello!**"
+        },
+        {
+            "time": "2026-09-13 09:32:08",
+            "user": "Calculate 5+4.",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "CalculatorSkill (Executed)"
+            ],
+            "engine": "Math Engine: 5+4. = 9"
+        },
+        {
+            "time": "2026-09-13 09:32:18",
+            "user": "Calc 5+4.",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "GeneratorSkill (Executed)"
+            ],
+            "engine": "Generator skill active."
+        },
+        {
+            "time": "2026-09-13 09:37:19",
+            "user": "Hi!",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "KnowledgeSkill (Executed)"
+            ],
+            "engine": "Knowledge [hi!]: **Hello!**"
+        },
+        {
+            "time": "2026-09-13 09:38:55",
+            "user": "Diagnostic.",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "DiagnosticSkill (Executed)"
+            ],
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (59 entries)\nKnowledge OK (22 topics)\n\n[CalculatorSkill]\nNot Loaded ❌\n\n[KnowledgeSkill]\nNot Loaded ❌\n\n[GeneratorSkill]\nNot Loaded ❌\n\n[SummarizerSkill]\nNot Loaded ❌\n\n[SelfLearningSkill]\nNot Loaded ❌\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → ### Prompt Analysis & Skill Routing\n\n[BayesSkill]\nNot Loaded ❌\n\n[MLPatternSkill]\nNot Loaded ❌\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-13 09:41:24",
+            "user": "Diagnostic.",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "DiagnosticSkill (Executed)"
+            ],
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (60 entries)\nKnowledge OK (22 topics)\n\n[CalculatorSkill]\nLoaded ✔\nTest: calculate 2+2 → Math Engine: 2+2 = 4\n\n[KnowledgeSkill]\nLoaded ✔\nTest: tell me about proxima → Knowledge [proxima]: Deep space is quiet — but not silent. A faint signal can change everything.\n\n[GeneratorSkill]\nLoaded ✔\nTest: generate a short story → Story Blueprint: 3 Acts — Setup, Conflict, Resolution.\n\n[SummarizerSkill]\nLoaded ✔\nTest: summarize text → ### Text Summary (Fallback Lightweight)\n\nI walked to the store\n\n[SelfLearningSkill]\nNot Loaded ❌\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → ### Prompt Analysis & Skill Routing\n\n[BayesSkill]\nLoaded ✔\nTest: bayes classify → Intent Detection: I think this message is about **general**.\n\n[MLPatternSkill]\nLoaded ✔\nTest: ML classify → ML Prediction: This message is about **general**.\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-13 09:43:20",
+            "user": "Diagnostic.",
+            "pipeline": [
+                "PromptUnderstandingSkill (Router)",
+                "DiagnosticSkill (Executed)"
+            ],
+            "engine": "=== CfCbazar Local AI Diagnostic Report ===\n\n[Memory Test]\nHistory OK (61 entries)\nKnowledge OK (22 topics)\n\n[CalculatorSkill]\nLoaded ✔\nTest: calculate 2+2 → Math Engine: 2+2 = 4\n\n[KnowledgeSkill]\nLoaded ✔\nTest: tell me about proxima → Knowledge [proxima]: Deep space is quiet — but not silent. A faint signal can change everything.\n\n[GeneratorSkill]\nLoaded ✔\nTest: generate a short story → Story Blueprint: 3 Acts — Setup, Conflict, Resolution.\n\n[SummarizerSkill]\nLoaded ✔\nTest: summarize text → ### Text Summary (Fallback Lightweight)\n\nI walked to the store\n\n[SelfLearningSkill]\nLoaded ✔\nTest: learn testkey is testvalue → I have successfully learned and memorized **testkey**: \"testvalue\"\n\n[PromptUnderstandingSkill]\nLoaded ✔\nTest: write me a novel → ### Prompt Analysis & Skill Routing\n\n[BayesSkill]\nLoaded ✔\nTest: bayes classify → Intent Detection: I think this message is about **general**.\n\n[MLPatternSkill]\nLoaded ✔\nTest: ML classify → ML Prediction: This message is about **general**.\n\n[Dispatcher Fallback]\nUnknown input → Should trigger fallback\nResult: General AI: I’m processing locally. Teach me new facts using: remember [topic] is [info]."
+        },
+        {
+            "time": "2026-09-13 09:50:57",
+            "user": "Learn PHP.",
+            "pipeline": [
+                "PromptUnderstandingSkill (Local Router Fallback)",
+                "SelfLearningSkill (Executed locally)"
+            ],
+            "engine": "To teach me a new fact, use the format: `remember [topic] is [info]`"
+        },
+        {
+            "time": "2026-09-13 09:54:58",
+            "user": "Learn PHP.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/learn_php_.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nAbsolutely. PHP is a server-side language used to build websites and APIs.\n\n### What to learn first\n\n1. **Basics**\n   ```php\n   <?php\n   $name = \"Alex\";\n   echo \"Hello, $name!\";\n   ```\n\n2. **Variables and data types**\n   - Strings, integers, floats, booleans, arrays, and objects\n\n3. **Control flow**\n   - `if` statements\n   - `switch`\n   - `for`, `while`, and `foreach` loops\n\n4. **Functions**\n   ```php\n   function greet(string $name): string\n   {\n       return \"Hello, $name!\";\n   }\n\n   echo greet(\"Alex\");\n   ```\n\n5. **Arrays**\n   ```php\n   $fruits = [\"apple\", \"banana\", \"orange\"];\n\n   foreach ($fruits as $fruit) {\n       echo \"$fruit\\n\";\n   }\n   ```\n\n6. **Forms and `$_POST`\/`$_GET`**\n   - Reading user input\n   - Validating and sanitizing data\n\n7. **Databases**\n   - PDO\n   - Prepared statements\n   - MySQL or PostgreSQL\n\n8. **Modern PHP**\n   - Composer\n   - PSR standards\n   - Type declarations\n   - Object-oriented programming\n   - Laravel or Symfony\n\n### Suggested project path\n\n1. A personal homepage  \n2. A calculator  \n3. A contact form  \n4. A todo-list application  \n5. A user-registration system with a database  \n6. A REST API  \n7. A full Laravel application  \n\nTo tailor the lessons, tell me:\n\n1. Do you already know another programming language?\n2. Do you want to build websites, APIs, or Laravel applications?\n3. Do you have PHP installed?"
+        },
+        {
+            "time": "2026-09-13 11:28:12",
+            "user": "Generate an html simple page.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/generate_an_html_simple.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nHere is a minimal, self‑contained HTML page you can save as `index.html` and open in any web browser:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Simple Page<\/title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 2rem;\n            line-height: 1.6;\n            background-color: #f9f9f9;\n            color: #333;\n        }\n        h1 {\n            color: #2c3e50;\n        }\n    <\/style>\n<\/head>\n<body>\n    <h1>Welcome to My Simple Page<\/h1>\n    <p>This is a basic HTML page generated for demonstration purposes.<\/p>\n    <p>Feel free to edit the content and styling as you like.<\/p>\n<\/body>\n<\/html>\n```\n\nYou can copy the code above into a file named `index.html` and open it locally, or host it on any static web server. Enjoy!"
+        },
+        {
+            "time": "2026-09-13 11:31:37",
+            "user": "Diagnostic.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/diagnostic_.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nWhat would you like me to diagnose: the system environment, an application\/codebase, network connectivity, or a specific error message?"
+        },
+        {
+            "time": "2026-09-13 11:31:57",
+            "user": "Run the Diagnostic.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/run_the_diagnostic_.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nI'd be happy to help you run a diagnostic, but I need more information about what you'd like me to diagnose. \n\nAre you looking for:\n- System diagnostics (computer, network, hardware performance)\n- Application diagnostics \n- Web-based diagnostics\n- Database connectivity diagnostics\n- Or something else specific?\n\nIf you can tell me what system, application, or process you want me to check, I can use my available tools (like web search, file scanning, or consultation with specialized models) to help diagnose the issue.\n\nWhat specific diagnostic would you like me to run?"
+        },
+        {
+            "time": "2026-09-13 11:38:04",
+            "user": "Diagnostic AI 0F.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/diagnostic_ai_0f_.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nBased on my searches, \"Diagnostic AI 0F\" most likely refers to a **diagnostic AI system or package**. Here's what I found:\n\n## Most Relevant Match: MAI-DxO (MAI Diagnostic Orchestrator)\n\nThe closest match is **MAI-DxO**, an open-source implementation of Microsoft Research's *\"Sequential Diagnosis with Language Models\"* paper. It's available as the **`mai-dx` package (v0.0.1)** on PyPI.\n\n### What is MAI-DxO?\n\nMAI-DxO is a sophisticated **AI-powered diagnostic system** that simulates a virtual panel of physicians to perform iterative, cost-effective medical diagnosis. It's built with the Swarms AI framework and is **model-agnostic** (works with GPT, Gemini, Claude, etc.).\n\n### Key Features\n\n| Component | Description |\n|---|---|\n| **8 Specialized AI Agents** | Each with distinct medical roles |\n| **Iterative Deliberation** | Sequential consultation and consensus-building |\n| **Bayesian Reasoning** | Probability-based differential diagnosis updates |\n| **Cognitive Bias Detection** | Built-in challenger agent to prevent errors |\n| **Cost-Effectiveness Optimization** | Real-time budget monitoring with 25+ medical test costs |\n| **5 Operational Modes** | Instant, Question-Only, Budgeted, No-Budget, Ensemble |\n| **Advanced Evaluation** | 5-point clinical accuracy scoring with detailed feedback |\n\n### The Virtual Physician Panel\n\n- **Dr. Hypothesis** — Maintains probability-ranked differential diagnosis\n- **Dr. Test-Chooser** — Selects tests for maximum information value\n- **Dr. Challenger** — Devil's advocate preventing cognitive biases\n- **Dr. Stewardship** — Enforces cost-conscious care\n- **Consensus Coordinator** — Synthesizes panel decisions\n- **Gatekeeper** — Clinical information oracle\n- **Judge** — Evaluates final diagnostic accuracy\n\n### Performance (from Microsoft Research paper)\n\nWhen paired with OpenAI's o3 model, MAI-DxO achieved:\n- **80% diagnostic accuracy** — 4× higher than generalist physicians (20%)\n- **20% cost reduction** vs. physicians\n- **70% cost reduction** vs. off-the-shelf o3\n- **85.5% accuracy** with maximum accuracy configuration\n\n### Installation\n\n```bash\npip install mai-dx\n```\n\nOr clone the GitHub repository:\n```bash\ngit clone https:\/\/github.com\/The-Swarm-Corporation\/Open-MAI-Dx-Orchestrator.git\ncd Open-MAI-Dx-Orchestrator\npip install -e .\n```\n\n---\n\n**Note:** If by \"0F\" you meant a different version number, model name, or a specific diagnostic AI system (e.g., DIAGNIFY, DiagAgent-8B, DiagnosisGPT-6B), please clarify and I can provide more specific information."
+        },
+        {
+            "time": "2026-09-13 11:42:51",
+            "user": "Diagnostic AI 0F.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/diagnostic_ai_0f_.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nHere’s a quick snapshot of what’s publicly available for the phrase **“Diagnostic AI 0F.”** (the search was run with the exact quotation you gave):\n\n| Source | What it is | Key points |\n|--------|------------|------------|\n| **Microsoft Research – “Sequential Diagnosis with Language Models”** | A benchmark & orchestrator (MAI‑Diagnostic Orchestrator, MAI‑DxO) that turns clinical case studies into iterative diagnostic dialogues. | • 304 NEJM‑CPC cases.<br>• Iterative “question‑asker → test‑selector → diagnosis” loop.<br>• When paired with OpenAI o3, MAI‑DxO reaches ~80 % diagnostic accuracy (vs ~20 % for general physicians) and cuts test‑costs by 20‑70 % .<br>• Model‑agnostic: works with OpenAI, Gemini, Claude, Grok, DeepSeek, Llama families. |\n| **Hugging Face – `drdai\/diagnify-14b-v0.2-cot`** | DIAGNIFY, a 14‑B parameter clinical‑reasoning model using chain‑of‑thought prompting + retrieval‑augmented generation (RAG). | • Generates structured differentials (body‑system groupings, life‑threat flags, weighted likelihood).<br>• Internal benchmark reports near‑100 % accuracy, but the authors flag this as a *pre‑liminary, unreplicated* result and explicitly say the model **is not for clinical use**. |\n| **Hugging Face – `Henrychur\/DiagAgent-8B`** | DiagAgent‑8B, an RL‑optimised diagnostic agent trained in the *DiagGym* simulated clinical environment. | • Multi‑turn RL (GRPO) that recommends tests, updates the working diagnosis, and stops when enough evidence is gathered.<br>• Reported diagnosis‑accuracy > 80 % across several model sizes (7 B‑14 B). |\n| **Hugging Face – `FreedomIntelligence\/DiagnosisGPT-6B`** | DiagnosisGPT‑6B, a general‑purpose medical LLM aimed at diagnostic assistance. | • Released as a research artifact; no detailed performance numbers in the snippet, but it’s part of the same family of “diagnostic‑AI” models. |\n| **Hugging Face – `heuristixai\/HAI‑DiffDx‑0.5B`** | HAI‑DiffDx‑0.5B, a tiny (0.5 B) QLoRA‑fine‑tuned model that outputs a *four‑tier* differential (most likely, possible, unlikely‑but‑serious, recommended work‑up). | • Meant for research only; schema‑adherence on a tiny test set was ~56 % vs 4 % for the base model. |\n| **Other miscellaneous hits** | Various other medical‑AI repos and papers. | • Most are framed as “research‑only” or “decision‑support” tools, not cleared medical devices. |\n\n### What this means for you\n\n- **“Diagnostic AI 0F”** does not appear to be a single, well‑known product or version number. The search results are a collection of recent research prototypes and open‑source LLM‑based diagnostic assistants.\n- If you were looking for a **specific commercial product** (e.g., a particular version number, a company’s “0F” release), the current public data don’t match that label.  \n- If you need **details on a particular model** (e.g., DIAGNIFY, DiagAgent, DiagnosisGPT), I can pull the full technical report, model card, or evaluation metrics from the relevant Hugging Face page.\n- If you have a **use‑case in mind** (e.g., “I want a model that can iteratively ask questions and order tests”), let me know and I can point you at the most suitable open‑source option or summarize the Microsoft MAI‑DxO orchestrator design.\n\n**Next step:** Tell me which of the above you’re interested in (or clarify what “0F” refers to), and I’ll fetch the exact docs, performance numbers, or code you need."
+        },
+        {
+            "time": "2026-09-13 11:45:41",
+            "user": "Diagnostic 0F.",
+            "pipeline": [
+                "OpenRouter API (Remote Query Success)",
+                "Local Memory Updated",
+                "Memory Topic File Created\/Updated (\/memory_topics\/diagnostic_0f_.json)"
+            ],
+            "engine": "### OpenRouter AI Response\n\nWhat system, device, or error message does **Diagnostic 0F** refer to? Please share the full code\/message and relevant context so I can interpret it."
+        }
+    ],
+    "parsed_intent": {
+        "type": "Learning Command",
+        "target_skill": "SelfLearningSkill",
+        "confidence": 0.9499999999999999555910790149937383830547332763671875,
+        "question_type": "general instruction",
+        "matched_topic": null,
+        "matched_content": "",
+        "extracted_entities": [
+            "learn",
+            "php"
+        ],
+        "raw_input": "Learn PHP."
+    }
+}

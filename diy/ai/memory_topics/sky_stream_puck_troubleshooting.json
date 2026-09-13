@@ -1,0 +1,16 @@
+{
+    "topic_slug": "sky_stream_puck_troubleshooting",
+    "topic_title": "Sky Stream Puck Troubleshooting Procedures and Network Resets",
+    "summary": "Troubleshooting procedures and network resets for the Sky Stream Puck.",
+    "key_facts": [
+        "The Sky Stream Puck is a streaming device that requires a stable internet connection.",
+        "Check the power cord and ensure it is securely connected to both the device and the power outlet.",
+        "Restart the Sky Stream Puck by unplugging the power cord, waiting for 30 seconds, and then plugging it back in."
+    ],
+    "sample_questions": [
+        "How do I reset the Sky Stream Puck to its factory settings?",
+        "What should I do if the Sky Stream Puck is not connecting to the internet?"
+    ],
+    "response": "### Sky Stream Puck Troubleshooting Procedures and Network Resets#### Restarting the Sky Stream Puck1. Unplug the power cord from the Sky Stream Puck.2. Wait for 30 seconds to allow any residual power to drain.3. Plug the power cord back into the Sky Stream Puck.#### Factory Reset1. Press and hold the reset button on the back of the Sky Stream Puck using a paper clip or a similar object.2. While holding the reset button, plug in the power cord.3. Release the reset button after 10 seconds.4. The Sky Stream Puck will restart and perform a factory reset.#### Network Reset1. Go to the Sky Stream Puck's settings menu.2. Select 'Network' or 'Internet' from the menu.3. Select 'Reset Network Settings' or 'Reset Internet Settings'.4. Confirm the reset by selecting 'Yes' or 'OK'.#### Additional Troubleshooting Steps* Check the internet connection by connecting another device to the same network.* Check the Sky Stream Puck's firmware version and update it if necessary.* Contact Sky support for further assistance if the issue persists.",
+    "updated_at": "2026-09-13 02:19:18"
+}
