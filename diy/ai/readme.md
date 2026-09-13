@@ -1,158 +1,88 @@
-# 🤖 CfCbazar AI Agent  
-Smart, lightweight PHP-based AI chat interface powered by the **OpenRouter API** and integrated into the CfCbazar ecosystem.
+### **`README.md`**
 
-This module provides a fully responsive AI chat page with:
-- CfCbazar global layout (header, menu, footer)
-- Session-based message history
-- Auto-scroll to latest message
-- Loading spinner animation
-- Secure API key handling via `/config.php`
-- Full reusable bootstrap integration
+```markdown
+# CfCbazar AI Hub 🚀
+A lightweight, high-performance hybrid AI router and local memory caching engine built entirely in **PHP**. Designed for standard LAMP/LEMP shared hosting environments (like cPanel or InfinityFree) without requiring Python, Node.js, or complex Docker containers.
 
 ---
 
-## 🚀 Features
+## 📂 Required Files & Directory Structure
 
-- **OpenRouter-powered AI chat**
-- **Session-based conversation memory**
-- **Auto-scroll to newest message**
-- **Loading spinner while generating responses**
-- **Fully integrated with CfCbazar reusable system**
-- **Secure API key loading from `/config.php`**
-- **Responsive UI using `/styles.css`**
-- **No external dependencies**
+To run the AI Hub successfully, ensure your server matches the following folder layout:
 
----
+```text
+project_root/
+├── ai/
+│   ├── index.php                 <-- Main UI & Execution Router (Required)
+│   ├── local_memory.json         <-- Auto-generated local cache log
+│   └── memory_topics/            <-- Auto-generated folder for topic JSONs (Must be writable: 0755)
+├── css/
+│   └── styles.css                <-- CfCbazar UI theme stylesheet
+├── includes/
+│   ├── reusable.php              <-- Global configuration / API key holder
+│   └── skills/
+│       ├── AISkillInterface.php  <-- Skill architecture interface
+│       ├── PromptUnderstandingSkill.php <-- Intent router
+│       ├── DiagnosticSkill.php   <-- Local diagnostic engine (Bypasses OpenRouter for 'diagnostic 0f')
+│       ├── KnowledgeSkill.php    <-- Fallback knowledge handler
+│       └── agent_openrouter.php  <-- OpenRouter API connector
+└── config.php                    <-- Alternative config file
 
-## 📂 File Structure
-
-```
-/diy/ai/
-│── index.php          # Main AI agent page
-│── readme.md          # This file
-│
-/includes/
-│── reusable.php       # CfCbazar master bootstrap
-│── include_header.php
-│── include_menu.php
-│── include_footer.php
-│── cfc_footer.php
-│── ... (many more)
-│
-/config.php            # Contains $API_openrouter
-/css/styles.css            # Global CfCbazar stylesheet
 ```
 
 ---
 
-## 🔧 Requirements
+## 🔑 How to Get a Free OpenRouter API Key
 
-- PHP 8.2+
-- CfCbazar reusable system
-- OpenRouter API key stored in:
+OpenRouter provides access to multiple top-tier AI models through a single unified API, and signing up is completely free.
 
-```
-$config['API_openrouter']
-```
-
-or
-
-```
-$API_openrouter
-```
-
-(depending on your config structure)
+1. **Visit OpenRouter:** Go to [openrouter.ai](https://openrouter.ai).
+2. **Register/Sign In:** Click **Sign In** or **Sign Up**. You can quickly create an account using your Google account, GitHub, or email address.
+3. **Navigate to API Keys:** Once logged in, go to your account dashboard and click on **Keys** (or visit `openrouter.ai/keys`).
+4. **Create a Key:** Click **Create Key**, give it a descriptive name (e.g., *CfCbazar AI Hub*), and generate it.
+5. **Copy Your Key:** Copy the generated API key (it typically starts with `sk-or-v1-...`). *Keep this key private and secure.*
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation & Configuration
 
-1. Place `index.php` inside:
+### Step 1: Upload Files
 
-```
-/diy/ai/
-```
+Upload the project folder structure to your web server via FTP or your hosting file manager into your document root (e.g., `/htdocs/ai/` or `/public_html/ai/`).
 
-2. Ensure your `/config.php` contains:
+### Step 2: Configure Your API Key
+
+Open your `reusable.php` (or `config.php`) file and define your OpenRouter API key variable, or let it fall back in `ai/index.php`:
 
 ```php
-$API_openrouter = "your_api_key_here";
-```
-
-3. Ensure `/includes/reusable.php` is present.
-
-4. Visit:
+<?php
+// Inside includes/reusable.php or config.php
+$API_openrouter = 'YOUR_OPENROUTER_API_KEY_HERE';
+?>
 
 ```
-https://yourdomain/diy/ai/
+
+### Step 3: Set File Permissions
+
+Ensure the `/ai/memory_topics/` folder has write permissions enabled (**chmod 755** or **777** if required by your host) so the script can dynamically save cached topic files.
+
+### Step 4: Launch
+
+Navigate in your browser to your deployment URL:
+
+```text
+[https://yourdomain.com/ai/index.php](https://yourdomain.com/ai/index.php)
+
 ```
 
 ---
 
-## 🧠 How It Works
+## 💡 Special Features
 
-### 1. Bootstrap  
-The page begins with the CfCbazar system loader:
+* **Smart API Bypass:** Typing prompts containing **"diagnostic 0f"** (case-insensitive) automatically bypasses remote cloud calls and instantly triggers local diagnostic skills.
+* **Local Memory Caching:** Automatically mirrors and stores successful AI responses into local JSON topic files to minimize API consumption and accelerate recurring queries.
+* **Instant Copy Utilities:** Built-in clipboard integration lets you copy user prompts and AI responses with a single click.
 
-- HTTPS enforcement  
-- Database connection  
-- System flags  
-- Visit tracking  
-- User session  
-- Header + menu + top userbar  
-
-### 2. AI Logic  
-The page sends user messages to OpenRouter:
-
-```php
-function call_openrouter($messages) {
-    global $API_openrouter;
-    ...
-}
 ```
 
-### 3. Chat History  
-Stored in:
-
-```php
-$_SESSION["messages"]
 ```
-
-### 4. Auto-scroll  
-After page load:
-
-```js
-window.onload = function() {
-    chatBox.scrollTop = chatBox.scrollHeight;
-};
-```
-
-### 5. Loading Spinner  
-Displayed during POST submission.
-
----
-
-## 🖼️ Screenshot (Example UI)
-NA
-
-MIT License
-
-Copyright (c) 2026 CfCbazar
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights  
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
-copies of the Software, and to permit persons to whom the Software is  
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in  
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  
-THE SOFTWARE.
