@@ -1,0 +1,22 @@
+{
+  "topic": "Wien Bridge Oscillator",
+  "slug": "wien_bridge_oscillator",
+  "last_updated": "2026-09-19 03:45:10",
+  "summary": "Analog RC oscillator circuit used for generating low-distortion sine waves.",
+  "content": "The Wien Bridge Oscillator uses a bridge circuit comprising four resistors and two capacitors for precise frequency output.",
+  "facts": [
+    {
+      "subject": "Wien Bridge Oscillator",
+      "relation": "uses",
+      "object": "positive feedback loop with RC bandpass network",
+      "metadata": { "source": "PromptUnderstanding Extractor" }
+    }
+  ],
+  "updates": [
+    {
+      "timestamp": "2026-09-19 03:45:10",
+      "source": "OpenRouter Diff Engine",
+      "note": "Initial ingestion from prompt"
+    }
+  ]
+}

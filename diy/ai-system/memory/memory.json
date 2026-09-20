@@ -1,0 +1,974 @@
+{
+    "topics": {
+        "general_topic": {
+            "facts": [
+                {
+                    "type": "general_knowledge",
+                    "value": "General topics encompass broad disciplines such as science, history, literature, mathematics, and social sciences.",
+                    "confidence": 0.9499999999999999555910790149937383830547332763671875,
+                    "source": "General encyclopedic knowledge",
+                    "created_at": "2026-09-19T14:22:18-04:00"
+                },
+                {
+                    "type": "query_category",
+                    "value": "The current request is a statement seeking general informational content.",
+                    "confidence": 0.92000000000000003996802888650563545525074005126953125,
+                    "source": "User intent classification",
+                    "created_at": "2026-09-19T14:22:18-04:00"
+                }
+            ],
+            "0": {
+                "type": "prompt_intent",
+                "value": "Hi!",
+                "confidence": 0.6999999999999999555910790149937383830547332763671875,
+                "source": "prompt",
+                "created_at": "2026-09-19T15:33:31-04:00"
+            },
+            "1": {
+                "type": "statement",
+                "value": "Hello",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:32-04:00"
+            },
+            "2": {
+                "type": "statement",
+                "value": "How can I help you today",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:32-04:00"
+            }
+        },
+        "php_programming": {
+            "facts": [
+                {
+                    "type": "basic_topic_information",
+                    "value": "PHP (Hypertext Preprocessor) is a server-side scripting language designed for web development and building dynamic websites.",
+                    "confidence": 0.9899999999999999911182158029987476766109466552734375,
+                    "source": "general_knowledge",
+                    "created_at": "2026-09-19T14:27:28-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "PHP was created by Rasmus Lerdorf in 1994 and is now maintained by The PHP Group.",
+                    "confidence": 0.9899999999999999911182158029987476766109466552734375,
+                    "source": "general_knowledge",
+                    "created_at": "2026-09-19T14:27:28-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "PHP is open-source software distributed under the PHP License v3.01.",
+                    "confidence": 0.9899999999999999911182158029987476766109466552734375,
+                    "source": "general_knowledge",
+                    "created_at": "2026-09-19T14:27:28-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "PHP can be embedded directly into HTML and integrates with databases such as MySQL, PostgreSQL, and SQLite.",
+                    "confidence": 0.9899999999999999911182158029987476766109466552734375,
+                    "source": "general_knowledge",
+                    "created_at": "2026-09-19T14:27:28-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "PHP runs on multiple platforms including Windows, macOS, Linux, and supports web servers like Apache and Nginx.",
+                    "confidence": 0.9899999999999999911182158029987476766109466552734375,
+                    "source": "general_knowledge",
+                    "created_at": "2026-09-19T14:27:28-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "As of 2024, PHP powers approximately 75% of websites that use a server-side programming language, including major platforms like WordPress.",
+                    "confidence": 0.9499999999999999555910790149937383830547332763671875,
+                    "source": "general_knowledge",
+                    "created_at": "2026-09-19T14:27:28-04:00"
+                }
+            ],
+            "0": {
+                "type": "prompt_intent",
+                "value": "What is PHP?",
+                "confidence": 0.6999999999999999555910790149937383830547332763671875,
+                "source": "prompt",
+                "created_at": "2026-09-20T01:33:57-04:00"
+            },
+            "1": {
+                "type": "statement",
+                "value": "PHP is a popular **server-side programming language** used mainly for building **dynamic websites and web applications**",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "2": {
+                "type": "statement",
+                "value": "It lets you write code that runs on a web server and generates HTML before sending it to the user\u2019s browser",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "3": {
+                "type": "statement",
+                "value": "PHP can also interact with databases, handle forms, manage sessions, and create login systems",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "4": {
+                "type": "statement",
+                "value": "For example:\n\n```php\n<",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "5": {
+                "type": "statement",
+                "value": "php\necho \"Hello, world",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "6": {
+                "type": "statement",
+                "value": "\";",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "7": {
+                "type": "statement",
+                "value": ">\n```\n\nThis would output:\n\n```text\nHello, world",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "8": {
+                "type": "statement",
+                "value": "```\n\nPHP is commonly used with:\n\n- **HTML** for web pages\n- **MySQL\/MariaDB** for databases\n- **Apache or Nginx** as web servers\n- Frameworks like **Laravel**, **Symfony**, and **CodeIgniter**\n\nPHP originally stood for **\u201cPersonal Home Page\u201d**, but today it commonly means **\u201cPHP: Hypertext Preprocessor",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            },
+            "9": {
+                "type": "statement",
+                "value": "\u201d**",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:34:04-04:00"
+            }
+        },
+        "ai_skill_architecture": {
+            "facts": [
+                {
+                    "type": "definition",
+                    "value": "AI skill architecture refers to the modular design pattern where AI capabilities are encapsulated as reusable, composable skills that can be orchestrated to perform complex tasks.",
+                    "confidence": 0.90000000000000002220446049250313080847263336181640625,
+                    "source": "AI systems design literature",
+                    "created_at": "2026-09-19T15:28:42-04:00"
+                },
+                {
+                    "type": "component",
+                    "value": "Key components include skill interfaces, skill registry, orchestration engine, and context management.",
+                    "confidence": 0.84999999999999997779553950749686919152736663818359375,
+                    "source": "AI agent frameworks",
+                    "created_at": "2026-09-19T15:28:42-04:00"
+                },
+                {
+                    "type": "purpose",
+                    "value": "Enables modularity, reusability, and scalability in AI systems by separating concerns and allowing dynamic skill composition.",
+                    "confidence": 0.90000000000000002220446049250313080847263336181640625,
+                    "source": "Software engineering principles applied to AI",
+                    "created_at": "2026-09-19T15:28:42-04:00"
+                },
+                {
+                    "type": "example",
+                    "value": "Examples include LangChain's tools, AutoGPT's skills, and Microsoft's Semantic Kernel plugins.",
+                    "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                    "source": "Popular AI frameworks",
+                    "created_at": "2026-09-19T15:28:42-04:00"
+                }
+            ]
+        },
+        "What": {
+            "facts": [
+                {
+                    "type": "basic_topic_information",
+                    "value": "What is an English interrogative pronoun used to ask questions about identity, nature, quantity, or specification.",
+                    "confidence": 0.9499999999999999555910790149937383830547332763671875,
+                    "source": "General linguistic knowledge",
+                    "created_at": "2026-09-19T15:28:56-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "What belongs to the category of wh-words (interrogative words) in English grammar.",
+                    "confidence": 0.93000000000000004884981308350688777863979339599609375,
+                    "source": "General linguistic knowledge",
+                    "created_at": "2026-09-19T15:28:56-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "What can function as a pronoun, determiner, adverb, or noun depending on context.",
+                    "confidence": 0.90000000000000002220446049250313080847263336181640625,
+                    "source": "General linguistic knowledge",
+                    "created_at": "2026-09-19T15:28:56-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "What is used to seek information, definitions, explanations, or to express surprise or deliberation.",
+                    "confidence": 0.88000000000000000444089209850062616169452667236328125,
+                    "source": "General linguistic knowledge",
+                    "created_at": "2026-09-19T15:28:56-04:00"
+                },
+                {
+                    "type": "basic_topic_information",
+                    "value": "What is one of the most commonly used interrogative words in the English language.",
+                    "confidence": 0.90000000000000002220446049250313080847263336181640625,
+                    "source": "General linguistic knowledge",
+                    "created_at": "2026-09-19T15:28:56-04:00"
+                }
+            ],
+            "0": {
+                "type": "prompt_intent",
+                "value": "What is html?",
+                "confidence": 0.6999999999999999555910790149937383830547332763671875,
+                "source": "prompt",
+                "created_at": "2026-09-19T15:33:45-04:00"
+            },
+            "1": {
+                "type": "statement",
+                "value": "## What is HTML",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "2": {
+                "type": "statement",
+                "value": "**HTML** stands for **HyperText Markup Language**",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "3": {
+                "type": "statement",
+                "value": "It is the standard markup language used to create and structure content on web pages",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "4": {
+                "type": "statement",
+                "value": "### Key Points:\n\n- **Not a programming language** \u2014 HTML is a *markup* language, meaning it uses tags to define the structure and layout of content rather than performing logic or computation",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "5": {
+                "type": "statement",
+                "value": "- **How it works** \u2014 HTML documents are made up of **elements**, each represented by opening and closing tags (e",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "6": {
+                "type": "statement",
+                "value": "g",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "7": {
+                "type": "statement",
+                "value": ", `<p>",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "8": {
+                "type": "statement",
+                "value": "<\/p>` for a paragraph, `<h1>",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "9": {
+                "type": "statement",
+                "value": "<\/h1>` for a heading, `<a href=\"",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "10": {
+                "type": "statement",
+                "value": "\">",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "11": {
+                "type": "statement",
+                "value": "<\/a>` for a hyperlink)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "12": {
+                "type": "statement",
+                "value": "Browsers read these tags and render the content accordingly",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "13": {
+                "type": "statement",
+                "value": "- **Core features include:**\n  - **Structure** \u2014 Defines headings, paragraphs, lists, tables, sections, and more",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "14": {
+                "type": "statement",
+                "value": "- **Hyperlinks** \u2014 Connects web pages to each other (the \"hypertext\" in its name)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "15": {
+                "type": "statement",
+                "value": "- **Multimedia** \u2014 Embeds images, audio, video, and other media",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "16": {
+                "type": "statement",
+                "value": "- **Forms** \u2014 Allows user input (text fields, buttons, checkboxes, etc",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "17": {
+                "type": "statement",
+                "value": ")",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "18": {
+                "type": "statement",
+                "value": "- **History** \u2014 HTML was created by **Tim Berners-Lee** in 1991",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "19": {
+                "type": "statement",
+                "value": "The latest major version is **HTML5**, which introduced support for multimedia, canvas drawing, local storage, and semantic elements",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "20": {
+                "type": "statement",
+                "value": "- **Works with other technologies:**\n  - **CSS** (Cascading Style Sheets) \u2014 handles the visual styling (colors, fonts, layout)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "21": {
+                "type": "statement",
+                "value": "- **JavaScript** \u2014 adds interactivity and dynamic behavior",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "22": {
+                "type": "statement",
+                "value": "### Simple Example:\n```html\n<",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "23": {
+                "type": "statement",
+                "value": "DOCTYPE html>\n<html>\n  <head>\n    <title>My First Page<\/title>\n  <\/head>\n  <body>\n    <h1>Hello, World",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "24": {
+                "type": "statement",
+                "value": "<\/h1>\n    <p>This is my first HTML page",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "25": {
+                "type": "statement",
+                "value": "<\/p>\n    <a href=\"https:\/\/example",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "26": {
+                "type": "statement",
+                "value": "com\">Click here<\/a> to visit example",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "27": {
+                "type": "statement",
+                "value": "com",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "28": {
+                "type": "statement",
+                "value": "<\/body>\n<\/html>\n```\n\nIn short, HTML is the **foundation of every web page** \u2014 it provides the skeleton that browsers use to display content to users",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:33:51-04:00"
+            },
+            "29": {
+                "type": "prompt_intent",
+                "value": "What is HTML?",
+                "confidence": 0.6999999999999999555910790149937383830547332763671875,
+                "source": "prompt",
+                "created_at": "2026-09-20T01:30:33-04:00"
+            },
+            "30": {
+                "type": "statement",
+                "value": "HTML stands for **HyperText Markup Language**",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:30:37-04:00"
+            },
+            "31": {
+                "type": "statement",
+                "value": "It is the standard language used to create and structure content on web pages",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:30:37-04:00"
+            },
+            "32": {
+                "type": "statement",
+                "value": "HTML uses **elements** made up of **tags** to tell a browser how to display things like headings, paragraphs, links, images, lists, forms, and other content",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:30:37-04:00"
+            },
+            "33": {
+                "type": "statement",
+                "value": "For example:\n\n```html\n<h1>Hello, world",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:30:37-04:00"
+            },
+            "34": {
+                "type": "statement",
+                "value": "<\/h1>\n<p>This is a paragraph",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:30:37-04:00"
+            },
+            "35": {
+                "type": "statement",
+                "value": "<\/p>\n```\n\nIn this example:\n\n- `<h1>` creates a main heading\n- `<p>` creates a paragraph\n\nHTML provides the basic structure of a webpage, while **CSS** is used for styling and **JavaScript** is used for interactivity",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:30:37-04:00"
+            },
+            "36": {
+                "type": "prompt_intent",
+                "value": "What is HTML?",
+                "confidence": 0.6999999999999999555910790149937383830547332763671875,
+                "source": "prompt",
+                "created_at": "2026-09-20T01:32:34-04:00"
+            },
+            "37": {
+                "type": "statement",
+                "value": "Of course",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "38": {
+                "type": "statement",
+                "value": "Here is a clear and comprehensive explanation of what HTML is",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "39": {
+                "type": "statement",
+                "value": "### The Simple Answer\n\n**HTML stands for HyperText Markup Language",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "40": {
+                "type": "statement",
+                "value": "**\n\nIt is the standard language used to create and structure the content of a web page",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "41": {
+                "type": "statement",
+                "value": "Think of it as the **skeleton** of a website",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "42": {
+                "type": "statement",
+                "value": "Everything you see on a webpage\u2014headings, paragraphs, images, links, lists, and forms\u2014is defined using HTML",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "43": {
+                "type": "statement",
+                "value": "---\n\n### A More Detailed Explanation\n\n#### 1",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "44": {
+                "type": "statement",
+                "value": "What Does \"Markup\" Mean",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "45": {
+                "type": "statement",
+                "value": "HTML is not a programming language like Python or JavaScript",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "46": {
+                "type": "statement",
+                "value": "It is a **markup language**",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "47": {
+                "type": "statement",
+                "value": "This means it uses **tags** to describe and define the different parts of a web page's content",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "48": {
+                "type": "statement",
+                "value": "*   **Content:** This is the actual text, images, or videos",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "49": {
+                "type": "statement",
+                "value": "*   **Tags:** These are keywords in angle brackets (`< >`) that tell the web browser how to display the content",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "50": {
+                "type": "statement",
+                "value": "For example:\n*   `<h1>` is a tag that says \"this is the main heading",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "51": {
+                "type": "statement",
+                "value": "\"\n*   `<p>` is a tag that says \"this is a paragraph",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "52": {
+                "type": "statement",
+                "value": "\"\n*   `<img src=\"",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "53": {
+                "type": "statement",
+                "value": "\">` is a tag that says \"display an image from this source",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "54": {
+                "type": "statement",
+                "value": "\"\n\n#### 2",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "55": {
+                "type": "statement",
+                "value": "The Basic Structure of an HTML Document\n\nEvery HTML document has a basic, repeating structure",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "56": {
+                "type": "statement",
+                "value": "Here is a simple example:\n\n```html\n<",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "57": {
+                "type": "statement",
+                "value": "DOCTYPE html>\n<html>\n<head>\n    <title>My First Webpage<\/title>\n<\/head>\n<body>\n    <h1>Hello, World",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "58": {
+                "type": "statement",
+                "value": "<\/h1>\n    <p>This is my first paragraph",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "59": {
+                "type": "statement",
+                "value": "<\/p>\n    <a href=\"https:\/\/www",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "60": {
+                "type": "statement",
+                "value": "example",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "61": {
+                "type": "statement",
+                "value": "com\">Click this link<\/a>\n<\/body>\n<\/html>\n```\n\nLet's break down the key parts:\n\n*   `<",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "62": {
+                "type": "statement",
+                "value": "DOCTYPE html>`: This is not a tag; it's a declaration that tells the browser \"This document is written in HTML5\" (the current standard version)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "63": {
+                "type": "statement",
+                "value": "*   `<html>`: The root element that wraps the entire page",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "64": {
+                "type": "statement",
+                "value": "*   `<head>`: Contains **metadata** (data about data) for the document, like the page title, links to CSS stylesheets, and other information not directly displayed on the page",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "65": {
+                "type": "statement",
+                "value": "*   `<title>`: The title that appears in the browser's tab",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "66": {
+                "type": "statement",
+                "value": "*   `<body>`: Contains all the **visible content** of the webpage that users see and interact with",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "67": {
+                "type": "statement",
+                "value": "*   `<h1>`: A level 1 heading",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "68": {
+                "type": "statement",
+                "value": "*   `<p>`: A paragraph",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "69": {
+                "type": "statement",
+                "value": "*   `<a href=\"",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "70": {
+                "type": "statement",
+                "value": "\">`: A hyperlink",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "71": {
+                "type": "statement",
+                "value": "The `href` attribute specifies the URL the link goes to",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "72": {
+                "type": "statement",
+                "value": "#### 3",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "73": {
+                "type": "statement",
+                "value": "HTML Tags Often Come in Pairs: Opening and Closing Tags\n\nMost HTML tags come in pairs:\n*   An **opening tag** (e",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "74": {
+                "type": "statement",
+                "value": "g",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "75": {
+                "type": "statement",
+                "value": ", `<p>`) marks the beginning of an element",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "76": {
+                "type": "statement",
+                "value": "*   A **closing tag** (e",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "77": {
+                "type": "statement",
+                "value": "g",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "78": {
+                "type": "statement",
+                "value": ", `<\/p>`) marks the end of the element",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "79": {
+                "type": "statement",
+                "value": "The content goes in between them",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "80": {
+                "type": "statement",
+                "value": "Some tags, like `<img>` for images, are \"void elements\" and don't have a closing tag",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "81": {
+                "type": "statement",
+                "value": "---\n\n### HTML in the Bigger Picture: HTML, CSS, and JavaScript\n\nHTML is one of the three core technologies of the World Wide Web, alongside CSS and JavaScript",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "82": {
+                "type": "statement",
+                "value": "*   **HTML:** Provides the **structure and content** (the skeleton)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "83": {
+                "type": "statement",
+                "value": "*   **CSS (Cascading Style Sheets):** Provides the **presentation, design, and layout** (the clothes and makeup)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "84": {
+                "type": "statement",
+                "value": "It controls how the HTML looks\u2014colors, fonts, spacing, etc",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "85": {
+                "type": "statement",
+                "value": "*   **JavaScript:** Provides **interactivity and functionality** (the muscles)",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "86": {
+                "type": "statement",
+                "value": "It can update content, respond to user actions, and create dynamic effects",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "87": {
+                "type": "statement",
+                "value": "A well-built website uses all three together",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "88": {
+                "type": "statement",
+                "value": "### Key Takeaways\n\n*   **Purpose:** To define the structure and content of a web page",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "89": {
+                "type": "statement",
+                "value": "*   **Nature:** It is a **markup language**, not a programming language",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "90": {
+                "type": "statement",
+                "value": "*   **Core Concept:** It uses **tags** (like `<h1>`, `<p>`, `<img>`) to describe elements",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "91": {
+                "type": "statement",
+                "value": "*   **Analogy:** It is the **skeleton** of a web page, providing the fundamental structure upon which CSS and JavaScript add style and behavior",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "92": {
+                "type": "statement",
+                "value": "HTML is the essential first step for anyone learning to build websites",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            },
+            "93": {
+                "type": "statement",
+                "value": "It's the foundation upon which everything else is built",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-20T01:32:46-04:00"
+            }
+        },
+        "Make": [
+            {
+                "type": "prompt_intent",
+                "value": "Make a simple html page.",
+                "confidence": 0.6999999999999999555910790149937383830547332763671875,
+                "source": "prompt",
+                "created_at": "2026-09-19T15:34:25-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "# Simple HTML Page\n\nHere's a clean, simple HTML page with basic elements:\n\n```html\n<",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "0\">\n    <title>My Simple Webpage<\/title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            max-width: 800px;\n            margin: 0 auto;\n            padding: 20px;\n            line-height: 1",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "6;\n            color: #333;\n        }\n        header {\n            text-align: center;\n            margin-bottom: 30px;\n        }\n        h1 {\n            color: #2c3e50;\n        }",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "content {\n            background-color: #f9f9f9;\n            padding: 20px;\n            border-radius: 5px;\n            box-shadow: 0 2px 5px rgba(0,0,0,0",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "1);\n        }\n        footer {\n            text-align: center;\n            margin-top: 30px;\n            font-size: 0",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "9em;\n            color: #7f8c8d;\n        }\n    <\/style>\n<\/head>\n<body>\n    <header>\n        <h1>Welcome to My Simple Webpage<\/h1>\n    <\/header>\n    \n    <div class=\"content\">\n        <h2>About This Page<\/h2>\n        <p>This is a simple HTML page created to demonstrate basic web development concepts",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "<\/p>\n        <p>You can edit this code to add your own content, images, or links",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "<\/p>\n        \n        <h2>Features<\/h2>\n        <ul>\n            <li>Responsive design that works on mobile and desktop<\/li>\n            <li>Basic styling with CSS<\/li>\n            <li>Semantic HTML structure<\/li>\n        <\/ul>\n    <\/div>\n    \n    <footer>\n        <p>&copy; 2023 My Simple Webpage<\/p>\n    <\/footer>\n<\/body>\n<\/html>\n```\n\nThis page includes:\n- Basic HTML structure (DOCTYPE, html, head, body)\n- Semantic elements (header, main, footer)\n- A simple CSS style section for basic styling\n- Responsive design that works on different screen sizes\n- Clean, readable layout with some visual styling\n\nYou can copy and paste this code into a text editor, save it as \"index",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "html\", and open it in any web browser to see how it looks",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            },
+            {
+                "type": "statement",
+                "value": "Feel free to modify the content and styling to make it your own",
+                "confidence": 0.8000000000000000444089209850062616169452667236328125,
+                "source": "openrouter",
+                "created_at": "2026-09-19T15:34:33-04:00"
+            }
+        ]
+    }
+}
