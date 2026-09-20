@@ -1,7 +1,0 @@
-{
-    "topic": "generate_an_html_simple",
-    "prompt": "Generate an html simple page.",
-    "content": "Here is a minimal, self‑contained HTML page you can save as `index.html` and open in any web browser:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Simple Page<\/title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 2rem;\n            line-height: 1.6;\n            background-color: #f9f9f9;\n            color: #333;\n        }\n        h1 {\n            color: #2c3e50;\n        }\n    <\/style>\n<\/head>\n<body>\n    <h1>Welcome to My Simple Page<\/h1>\n    <p>This is a basic HTML page generated for demonstration purposes.<\/p>\n    <p>Feel free to edit the content and styling as you like.<\/p>\n<\/body>\n<\/html>\n```\n\nYou can copy the code above into a file named `index.html` and open it locally, or host it on any static web server. Enjoy!",
-    "source": "OpenRouter",
-    "updated_at": "2026-09-13 11:28:12"
-}

@@ -1,7 +1,0 @@
-{
-    "topic": "diagnostic_",
-    "prompt": "Diagnostic.",
-    "content": "What would you like me to diagnose: the system environment, an application\/codebase, network connectivity, or a specific error message?",
-    "source": "OpenRouter",
-    "updated_at": "2026-09-13 11:31:37"
-}

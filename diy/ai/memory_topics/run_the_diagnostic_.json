@@ -1,7 +1,0 @@
-{
-    "topic": "run_the_diagnostic_",
-    "prompt": "Run the Diagnostic.",
-    "content": "I'd be happy to help you run a diagnostic, but I need more information about what you'd like me to diagnose. \n\nAre you looking for:\n- System diagnostics (computer, network, hardware performance)\n- Application diagnostics \n- Web-based diagnostics\n- Database connectivity diagnostics\n- Or something else specific?\n\nIf you can tell me what system, application, or process you want me to check, I can use my available tools (like web search, file scanning, or consultation with specialized models) to help diagnose the issue.\n\nWhat specific diagnostic would you like me to run?",
-    "source": "OpenRouter",
-    "updated_at": "2026-09-13 11:31:57"
-}
