@@ -1,0 +1,37 @@
+{
+    "knowledge": [],
+    "history": [
+        {
+            "time": "2026-09-20 01:40:33",
+            "user": "Hi!",
+            "pipeline": [
+                "PromptUnderstandingSkill (Executed First)",
+                "KnowledgeSkill (Memory/OpenRouter Stage)"
+            ],
+            "engine": "I couldn't retrieve an answer locally or from OpenRouter at this time. Reason: Local Memory: No matching topics found in local memory index or topic files. | OpenRouter API: OpenRouter error: OpenRouter request failed.\n\nHTTP status: 402\n\nMessage: Insufficient credits. This account never purchased credits. Make sure your key is on the correct account or org, and if so, purchase more at https://openrouter.ai/settings/credits\n\nError code: 402\n\nFull API response: {\n    \"error\": {\n        \"message\": \"Insufficient credits. This account never purchased credits. Make sure your key is on the correct account or org, and if so, purchase more at https://openrouter.ai/settings/credits\",\n        \"code\": 402,\n        \"metadata\": {\n            \"limit_source\": \"openrouter_credits\",\n            \"remedy_hint\": \"Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\"\n        }\n    }\n}"
+        }
+    ],
+    "parsed_intent": {
+        "intent": "general",
+        "type": "General Query",
+        "skill": null,
+        "target_skill": null,
+        "confidence": 0.5,
+        "question_type": "general instruction",
+        "matched_topic": null,
+        "matched_content": "",
+        "extracted_entities": [],
+        "keywords": [],
+        "raw_input": "Hi!"
+    },
+    "intent_history": [
+        {
+            "intent": "general",
+            "type": "General Query",
+            "skill": null,
+            "confidence": 0.5,
+            "timestamp": "2026-09-20 01:40:33"
+        }
+    ],
+    "knowledge_context": []
+}
