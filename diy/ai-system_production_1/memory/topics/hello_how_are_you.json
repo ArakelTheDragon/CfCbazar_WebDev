@@ -1,0 +1,107 @@
+[
+    {
+        "type": "prompt_intent",
+        "value": "Hello, how are you?",
+        "content": "Hello, how are you?",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-21T20:41:10+00:00",
+        "updated_at": "2026-09-21T20:41:10+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "prompt_intent",
+            "confidence": 0.6999999999999999555910790149937383830547332763671875,
+            "source": "prompt",
+            "created_at": "2026-09-21T20:41:10+00:00",
+            "updated_at": "2026-09-21T20:41:10+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_4fcaf5e6a537"
+    },
+    {
+        "type": "statement",
+        "value": "Hello!",
+        "content": "Hello!",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:41:17+00:00",
+        "updated_at": "2026-09-21T20:41:17+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:41:17+00:00",
+            "updated_at": "2026-09-21T20:41:17+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_62420a18c6ba"
+    },
+    {
+        "type": "statement",
+        "value": "I'm an AI assistant, and I'm functioning normally and ready to help.",
+        "content": "I'm an AI assistant, and I'm functioning normally and ready to help.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:41:17+00:00",
+        "updated_at": "2026-09-21T20:41:17+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:41:17+00:00",
+            "updated_at": "2026-09-21T20:41:17+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_b0fbf8197f72"
+    },
+    {
+        "type": "statement",
+        "value": "I don't have personal feelings or emotions, but I'm designed to process information and respond to questions as needed.",
+        "content": "I don't have personal feelings or emotions, but I'm designed to process information and respond to questions as needed.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:41:17+00:00",
+        "updated_at": "2026-09-21T20:41:17+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:41:17+00:00",
+            "updated_at": "2026-09-21T20:41:17+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_4fc144c3fd92"
+    },
+    {
+        "type": "statement",
+        "value": "If you have something specific you'd like to discuss or ask, just let me know!",
+        "content": "If you have something specific you'd like to discuss or ask, just let me know!",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:41:17+00:00",
+        "updated_at": "2026-09-21T20:41:17+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:41:17+00:00",
+            "updated_at": "2026-09-21T20:41:17+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_227e18336e8d"
+    }
+]

@@ -1,0 +1,52 @@
+# Database backups and exports
+*.sql
+*.sql.gz
+*.zip
+
+# Configuration files with sensitive data
+includes/secrets.php
+config_42web.io.php
+
+# Uploads and user content
+uploads/*
+diy/library/uploads/*
+images/*
+diy/ai-system/memory/*
+ai_images/*
+
+# Logs and temporary files
+*.log
+traffic_log.json
+system/traffic_log.json
+*.tmp
+*.temp
+
+# Cache and compiled files
+cache/*
+*.cache
+coinimp-cache/*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# PHP specific
+vendor/
+composer.lock
+
+# Node modules (if any)
+node_modules/
+npm-debug.log

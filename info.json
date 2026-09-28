@@ -1,0 +1,224 @@
+{
+  "brand": {
+    "name": "CfCbazar",
+    "type": "DIY digital provider brand",
+    "description": "CfCbazar is a DIY digital provider brand producing guides, tools, entertainment, and useful digital products.",
+    "ecosystem": [
+      "DIY eGuides and ebooks",
+      "PHP tools and utilities",
+      "CfC Free TV public-domain playlist",
+      "Games and music",
+      "WorkToken system"
+    ]
+  },
+  "platforms": {
+    "website": {
+      "url": "https://cfcbazar.42web.io",
+      "role": "Central DIY hub for tools, guides, entertainment and WorkToken.",
+      "features": [
+        "DIY articles",
+        "Download links",
+        "Tool demos",
+        "Cross-links to stores and YouTube"
+      ]
+    },
+    "youtube": {
+      "channel": "CfCbazar",
+      "playlists": [
+        {
+          "name": "CfC Free TV",
+          "url": "https://youtube.com/playlist?list=PLY4e42xsZig63V3ApQaBkjDLiBFB-C0eE",
+          "description": "Curated free shows, public-domain programs, documentaries, indie content, and open-access entertainment.",
+          "tags": [
+            "#FreeTV",
+            "#PublicDomainShows",
+            "#OpenMedia",
+            "#CfCbazar",
+            "#FreeEntertainment",
+            "#OnlineShows"
+          ]
+        }
+      ],
+      "role": "Traffic engine and trust builder for CfCbazar DIY ecosystem."
+    },
+    "etsy": {
+      "role": "DIY digital goods store for printables and eGuides.",
+      "strategy": [
+        "Convert DIY pages into printable PDFs.",
+        "List each guide as a digital download.",
+        "Link back to CfCbazar website and YouTube.",
+        "Use CfCbazar branding on covers and descriptions."
+      ]
+    },
+    "ebay": {
+      "role": "DIY bundles store for multi-pack digital products.",
+      "strategy": [
+        "Provide bundles of multiple DIY guides.",
+        "Offer themed packs (ESP8266, CAN tools, entertainment).",
+        "Use CfCbazar branding and cross-links to website."
+      ]
+    },
+    "shopify": {
+      "role": "Official CfCbazar store and central product catalog.",
+      "strategy": [
+        "List all digital products and bundles.",
+        "Add blog posts for DIY topics.",
+        "Build email list for CfCbazar updates.",
+        "Use Shopify as main store; others feed traffic into it."
+      ]
+    },
+    "amazon_kdp": {
+      "role": "Authority builder via DIY ebooks and guides.",
+      "author": "CfCbazar Group",
+      "search_url": "https://www.amazon.com/s?i=digital-text&rh=p_27%3ACfCbazar%2BGroup&s=relevancerank&text=CfCbazar+Group&ref=dp_byline_sr_ebooks_1",
+      "strategy": [
+        "Publish DIY electronics and digital tools guides.",
+        "Include links to CfCbazar website, YouTube, and Shopify in each book.",
+        "Use KDP to build long-term credibility and passive traffic."
+      ]
+    }
+  },
+  "products": {
+    "guides": [
+      "ESP8266 Flying Fish Sensor Guide",
+      "CAN Diagnostic Emulator Guide",
+      "CfC Free TV Setup Guide",
+      "WorkToken System Overview",
+      "ESP8266 DS18B20 Temperature Sensor Guide",
+      "Sky Stream Puck Troubleshooting Guide",
+      "BJT Motor Control & Transistor Circuit Guide",
+      "LM2576 & LM317 Adjustable Power Supply Guides"
+    ],
+    "tools": [
+      "PHP visit logger and analytics",
+      "DIY calculators and utilities",
+      "ESP8266 code examples",
+      "GLCD display demos",
+      "AI Prompt and Agent Tools",
+      "BTC Profit & Power Calculators",
+      "Goal Tracker & Survival Utilities",
+      "PDF Editor & Photo Converter Tools",
+      "Internet Speed & Ping Latency Test"
+    ],
+    "entertainment": {
+      "playlists": [
+        "CfC Free TV",
+        "Music / audio tools (future)",
+        "Games / browser tools (future)"
+      ],
+      "games": [
+        "Battle Fleet",
+        "WTK ORPG",
+        "Basketball",
+        "Dino Runner",
+        "Memory Match",
+        "Maze",
+        "Poker",
+        "Slot",
+        "Word Dictionary Game"
+      ]
+    }
+  },
+  "directory_structure": {
+    "root": "/",
+    "structure": {
+      "index.php": "Main homepage and hub routing traffic to e-commerce, tools, and media content",
+      "reusable.php": "Shared global functions, header/footer layouts, and navigation components",
+      "ping-api.php": "API endpoint for network latency diagnostic tools",
+      "cron.php": "Scheduled cron job script for background updates and site analytics",
+      "agent_get_search.php": "Backend script for fetching and processing SerpApi search data for AI prompts",
+      "diy/": {
+        "description": "Interactive web tools, calculators, and utility scripts",
+        "contents": {
+          "speed/index.php": "Internet speed test and ping latency diagnostic tool",
+          "goal-tracker/index.php": "Goal tracking and milestone management tool",
+          "power/index.php": "BTC mining power, consumption, and profitability calculator",
+          "survival/index.php": "Emergency budget and financial survival calculator",
+          "pdf-editor/index.php": "Web-based PDF utility and document tool",
+          "photo-converter/index.php": "Image conversion and client-side editing tool"
+        }
+      },
+      "guides/": {
+        "description": "Collection of technical eGuides, instructional manuals, and articles",
+        "contents": {
+          "esp8266/": "ESP8266 circuit guides, DS18B20 temp sensors, and GLCD displays",
+          "can-bus/": "CAN diagnostic emulator setup and usage guides",
+          "bjt-circuits/": "BJT transistor motor control and amplifier guides",
+          "power-supplies/": "LM2576 and LM317 adjustable power supply build guides",
+          "sky-stream/": "Sky Stream Puck troubleshooting and setup reference",
+          "worktoken/": "WorkToken ecosystem guide and smart contract specifications"
+        }
+      },
+      "games/": {
+        "description": "Browser-based lightweight games and interactive tools",
+        "contents": {
+          "battle-fleet/": "Battle Fleet strategy game web files",
+          "wtk-orpg/": "WorkToken online role-playing game client",
+          "basketball/": "Arcade-style basketball browser game",
+          "dino-runner/": "Infinite runner side-scroller game",
+          "memory-match/": "Card matching memory puzzle game",
+          "maze/": "Labyrinth and maze solver game",
+          "poker/": "Poker card game interface",
+          "slot/": "Slot machine simulator",
+          "word-dict/": "Word dictionary and vocabulary game"
+        }
+      }
+    }
+  },
+  "marketing_plan": {
+    "phases": [
+      {
+        "name": "Brand Foundation",
+        "order": 1,
+        "actions": [
+          "Define CfCbazar as a DIY digital provider brand.",
+          "Add CfCbazar logo and footer to all products and pages.",
+          "Add CfCbazar intro/outro to YouTube videos.",
+          "Add cross-links between website, YouTube, and all stores."
+        ]
+      },
+      {
+        "name": "Product Expansion",
+        "order": 2,
+        "actions": [
+          "Convert all DIY pages into printable PDFs for Etsy.",
+          "Provide bundles for eBay (multi-guide packs).",
+          "Publish key guides as ebooks on Amazon KDP.",
+          "List all products and bundles on Shopify."
+        ]
+      },
+      {
+        "name": "Traffic Loop",
+        "order": 3,
+        "actions": [
+          "Add YouTube links to all store listings.",
+          "Add store and website links to all YouTube descriptions.",
+          "Add CfC Free TV and other playlists to relevant pages.",
+          "Use the website as the central hub linking to all platforms."
+        ]
+      },
+      {
+        "name": "Marketing",
+        "order": 4,
+        "actions": [
+          "Share DIY guides and tools on Reddit and niche forums.",
+          "Post product previews and links in Facebook and Discord communities.",
+          "Use Pinterest for visual pins of guides and printables.",
+          "Experiment with short-form video (Shorts/Reels/TikTok) for CfCbazar highlights.",
+          "Build and grow an email list via Shopify."
+        ]
+      },
+      {
+        "name": "Optimization",
+        "order": 5,
+        "actions": [
+          "Use PHP visit logger to track page views and popular content.",
+          "Improve titles, thumbnails, and descriptions based on performance.",
+          "Refine SEO on CfCbazar pages and product listings.",
+          "Add new DIY tools, guides, and videos regularly.",
+          "Test bundles, pricing, and cross-promotions across platforms."
+        ]
+      }
+    ]
+  }
+}

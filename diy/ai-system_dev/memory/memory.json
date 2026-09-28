@@ -1,0 +1,467 @@
+{
+    "hi": {
+        "topic": "hi",
+        "file": "topics/hi.json",
+        "fact_count": 25,
+        "last_updated": "2026-09-25T05:25:09+00:00"
+    },
+    "hello_how_are_you": {
+        "topic": "hello_how_are_you",
+        "file": "topics/hello_how_are_you.json",
+        "fact_count": 5,
+        "last_updated": "2026-09-21T20:41:17+00:00"
+    },
+    "good_morning": {
+        "topic": "good_morning",
+        "file": "topics/good_morning.json",
+        "fact_count": 3,
+        "last_updated": "2026-09-21T20:42:11+00:00"
+    },
+    "thanks_for_your_help": {
+        "topic": "thanks_for_your_help",
+        "file": "topics/thanks_for_your_help.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-21T20:42:39+00:00"
+    },
+    "you_help_me_with": {
+        "topic": "you_help_me_with",
+        "file": "topics/you_help_me_with.json",
+        "fact_count": 41,
+        "last_updated": "2026-09-21T20:44:07+00:00"
+    },
+    "php_programming": {
+        "topic": "php_programming",
+        "file": "topics/php_programming.json",
+        "fact_count": 11,
+        "last_updated": "2026-09-24T16:39:34+00:00"
+    },
+    "artificial_intelligence": {
+        "topic": "artificial_intelligence",
+        "file": "topics/artificial_intelligence.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-24T16:40:29+00:00"
+    },
+    "you_know_about_the_cfcbazar_ai": {
+        "topic": "you_know_about_the_cfcbazar_ai",
+        "file": "topics/you_know_about_the_cfcbazar_ai.json",
+        "fact_count": 5,
+        "last_updated": "2026-09-21T20:46:51+00:00",
+        "updated_at": "2026-09-22T12:38:23-04:00"
+    },
+    "you_know_about_underwater_volcanoes": {
+        "topic": "you_know_about_underwater_volcanoes",
+        "file": "topics/you_know_about_underwater_volcanoes.json",
+        "fact_count": 30,
+        "last_updated": "2026-09-21T20:48:47+00:00"
+    },
+    "explain_quantum_computing_in_simple_english": {
+        "topic": "explain_quantum_computing_in_simple_english",
+        "file": "topics/explain_quantum_computing_in_simple_english.json",
+        "fact_count": 2,
+        "last_updated": "2026-09-21T20:49:17+00:00"
+    },
+    "make_me_a_simple_html_page": {
+        "topic": "make_me_a_simple_html_page",
+        "file": "topics/make_me_a_simple_html_page.json",
+        "fact_count": 40,
+        "last_updated": "2026-09-21T21:32:44+00:00",
+        "updated_at": "2026-09-22T12:38:23-04:00"
+    },
+    "a_sky_stream_puck": {
+        "topic": "a_sky_stream_puck",
+        "file": "topics/a_sky_stream_puck.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T16:40:10+00:00"
+    },
+    "i_get_a_software_error_on": {
+        "topic": "i_get_a_software_error_on",
+        "file": "topics/i_get_a_software_error_on.json",
+        "fact_count": 57,
+        "last_updated": "2026-09-22T14:01:19+00:00",
+        "updated_at": "2026-09-23T14:01:38-04:00"
+    },
+    "ai_router_system": {
+        "topic": "ai_router_system",
+        "file": "topics/ai_router_system.json",
+        "fact_count": 8,
+        "last_updated": "2026-09-22T14:04:26+00:00"
+    },
+    "remember": {
+        "topic": "remember",
+        "file": "topics/remember.json",
+        "fact_count": 9,
+        "last_updated": "2026-09-22T14:41:06+00:00"
+    },
+    "can_you_make_me_a_simple": {
+        "topic": "can_you_make_me_a_simple",
+        "file": "topics/can_you_make_me_a_simple.json",
+        "fact_count": 16,
+        "last_updated": "2026-09-23T07:01:45+00:00"
+    },
+    "can_you_make_me_a_fruit": {
+        "topic": "can_you_make_me_a_fruit",
+        "file": "topics/can_you_make_me_a_fruit.json",
+        "fact_count": 41,
+        "last_updated": "2026-09-23T07:03:16+00:00"
+    },
+    "vecrot_embedings": {
+        "topic": "vecrot_embedings",
+        "file": "topics/vecrot_embedings.json",
+        "fact_count": 12,
+        "last_updated": "2026-09-24T16:29:42+00:00"
+    },
+    "my_bb_was_suppose_to_be": {
+        "topic": "my_bb_was_suppose_to_be",
+        "file": "topics/my_bb_was_suppose_to_be.json",
+        "fact_count": 14,
+        "last_updated": "2026-09-23T07:12:51+00:00"
+    },
+    "to_improve_the_visibility_of_my": {
+        "topic": "to_improve_the_visibility_of_my",
+        "file": "topics/to_improve_the_visibility_of_my.json",
+        "fact_count": 47,
+        "last_updated": "2026-09-23T07:19:15+00:00"
+    },
+    "i_am_on_the_phone_with": {
+        "topic": "i_am_on_the_phone_with",
+        "file": "topics/i_am_on_the_phone_with.json",
+        "fact_count": 8,
+        "last_updated": "2026-09-23T08:08:28+00:00"
+    },
+    "macbook_neo_vs_macbook_air": {
+        "topic": "macbook_neo_vs_macbook_air",
+        "file": "topics/macbook_neo_vs_macbook_air.json",
+        "fact_count": 9,
+        "last_updated": "2026-09-23T08:47:24+00:00"
+    },
+    "much_space_and_server_resources_do": {
+        "topic": "much_space_and_server_resources_do",
+        "file": "topics/much_space_and_server_resources_do.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-23T10:04:40+00:00"
+    },
+    "many_pixels_does_a_standard_1024x1024": {
+        "topic": "many_pixels_does_a_standard_1024x1024",
+        "file": "topics/many_pixels_does_a_standard_1024x1024.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-23T10:13:08+00:00"
+    },
+    "a_trigger_look_like": {
+        "topic": "a_trigger_look_like",
+        "file": "topics/a_trigger_look_like.json",
+        "fact_count": 12,
+        "last_updated": "2026-09-23T10:29:51+00:00"
+    },
+    "good_are_these_bge_small_bge_large_nomic": {
+        "topic": "good_are_these_bge_small_bge_large_nomic",
+        "file": "topics/good_are_these_bge_small_bge_large_nomic.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-23T10:48:57+00:00"
+    },
+    "the_incremental_development_process_done": {
+        "topic": "the_incremental_development_process_done",
+        "file": "topics/the_incremental_development_process_done.json",
+        "fact_count": 26,
+        "last_updated": "2026-09-23T11:00:04+00:00"
+    },
+    "the_development_processes_except_incremental": {
+        "topic": "the_development_processes_except_incremental",
+        "file": "topics/the_development_processes_except_incremental.json",
+        "fact_count": 40,
+        "last_updated": "2026-09-23T11:04:16+00:00"
+    },
+    "hi_make_me_a_simple_html": {
+        "topic": "hi_make_me_a_simple_html",
+        "file": "topics/hi_make_me_a_simple_html.json",
+        "fact_count": 23,
+        "last_updated": "2026-09-24T09:52:45+00:00"
+    },
+    "hi_what_are_vector_embeddings": {
+        "topic": "hi_what_are_vector_embeddings",
+        "file": "topics/hi_what_are_vector_embeddings.json",
+        "fact_count": 14,
+        "last_updated": "2026-09-24T07:01:33+00:00"
+    },
+    "explain_about_fasttext": {
+        "topic": "explain_about_fasttext",
+        "file": "topics/explain_about_fasttext.json",
+        "fact_count": 6,
+        "last_updated": "2026-09-24T07:02:57+00:00"
+    },
+    "the_requirements_for_installing_and_using": {
+        "topic": "the_requirements_for_installing_and_using",
+        "file": "topics/the_requirements_for_installing_and_using.json",
+        "fact_count": 65,
+        "last_updated": "2026-09-24T07:03:59+00:00"
+    },
+    "technology": {
+        "topic": "technology",
+        "file": "topics/technology.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:24:48+00:00"
+    },
+    "geography": {
+        "topic": "geography",
+        "file": "topics/geography.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:25:00+00:00"
+    },
+    "space": {
+        "topic": "space",
+        "file": "topics/space.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:25:09+00:00"
+    },
+    "biology": {
+        "topic": "biology",
+        "file": "topics/biology.json",
+        "fact_count": 20,
+        "last_updated": "2026-09-24T07:50:43+00:00"
+    },
+    "mathematics": {
+        "topic": "mathematics",
+        "file": "topics/mathematics.json",
+        "fact_count": 16,
+        "last_updated": "2026-09-24T07:51:18+00:00"
+    },
+    "computing": {
+        "topic": "computing",
+        "file": "topics/computing.json",
+        "fact_count": 20,
+        "last_updated": "2026-09-24T07:51:00+00:00"
+    },
+    "business": {
+        "topic": "business",
+        "file": "topics/business.json",
+        "fact_count": 20,
+        "last_updated": "2026-09-24T07:51:26+00:00"
+    },
+    "physics": {
+        "topic": "physics",
+        "file": "topics/physics.json",
+        "fact_count": 17,
+        "last_updated": "2026-09-24T07:50:51+00:00"
+    },
+    "history": {
+        "topic": "history",
+        "file": "topics/history.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:26:04+00:00"
+    },
+    "similar_facts": {
+        "topic": "similar_facts",
+        "file": "topics/similar_facts.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-24T07:26:44+00:00"
+    },
+    "contradiction": {
+        "topic": "contradiction",
+        "file": "topics/contradiction.json",
+        "fact_count": 9,
+        "last_updated": "2026-09-24T07:40:23+00:00"
+    },
+    "question_answer_pairs": {
+        "topic": "question_answer_pairs",
+        "file": "topics/question_answer_pairs.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-24T07:27:33+00:00"
+    },
+    "i_increase_true": {
+        "topic": "i_increase_true",
+        "file": "topics/i_increase_true.json",
+        "fact_count": 22,
+        "last_updated": "2026-09-24T07:29:56+00:00"
+    },
+    "i_increase_true_in_my_system": {
+        "topic": "i_increase_true_in_my_system",
+        "file": "topics/i_increase_true_in_my_system.json",
+        "fact_count": 50,
+        "last_updated": "2026-09-24T07:31:13+00:00"
+    },
+    "give_me_a_couple_of_contradictions": {
+        "topic": "give_me_a_couple_of_contradictions",
+        "file": "topics/give_me_a_couple_of_contradictions.json",
+        "fact_count": 5,
+        "last_updated": "2026-09-24T07:40:55+00:00"
+    },
+    "a_car": {
+        "topic": "a_car",
+        "file": "topics/a_car.json",
+        "fact_count": 5,
+        "last_updated": "2026-09-24T07:41:19+00:00"
+    },
+    "science": {
+        "topic": "science",
+        "file": "topics/science.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:48:08+00:00"
+    },
+    "health": {
+        "topic": "health",
+        "file": "topics/health.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:48:26+00:00"
+    },
+    "deliberate_ambiguity_tests": {
+        "topic": "deliberate_ambiguity_tests",
+        "file": "topics/deliberate_ambiguity_tests.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:48:40+00:00"
+    },
+    "paraphrase_pairs": {
+        "topic": "paraphrase_pairs",
+        "file": "topics/paraphrase_pairs.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:48:55+00:00"
+    },
+    "astronomy": {
+        "topic": "astronomy",
+        "file": "topics/astronomy.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:50:36+00:00"
+    },
+    "networking": {
+        "topic": "networking",
+        "file": "topics/networking.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:51:08+00:00"
+    },
+    "transportation": {
+        "topic": "transportation",
+        "file": "topics/transportation.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-24T07:51:33+00:00"
+    },
+    "tell_me_about_good_and_agriculture": {
+        "topic": "tell_me_about_good_and_agriculture",
+        "file": "topics/tell_me_about_good_and_agriculture.json",
+        "fact_count": 33,
+        "last_updated": "2026-09-24T09:52:46+00:00"
+    },
+    "what": {
+        "topic": "what",
+        "file": "topics/what.json",
+        "fact_count": 12,
+        "last_updated": "2026-09-24T07:56:17+00:00"
+    },
+    "ai_memory_system": {
+        "topic": "ai_memory_system",
+        "file": "topics/ai_memory_system.json",
+        "fact_count": 44,
+        "last_updated": "2026-09-25T05:07:17+00:00"
+    },
+    "weather_climate": {
+        "topic": "weather_climate",
+        "file": "topics/weather_climate.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:53:53+00:00"
+    },
+    "space_exploration": {
+        "topic": "space_exploration",
+        "file": "topics/space_exploration.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:03+00:00"
+    },
+    "energy": {
+        "topic": "energy",
+        "file": "topics/energy.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:16+00:00"
+    },
+    "education": {
+        "topic": "education",
+        "file": "topics/education.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:24+00:00"
+    },
+    "cybersecurity": {
+        "topic": "cybersecurity",
+        "file": "topics/cybersecurity.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:33+00:00"
+    },
+    "telecommunications": {
+        "topic": "telecommunications",
+        "file": "topics/telecommunications.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:41+00:00"
+    },
+    "retail": {
+        "topic": "retail",
+        "file": "topics/retail.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:49+00:00"
+    },
+    "aviation": {
+        "topic": "aviation",
+        "file": "topics/aviation.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:54:58+00:00"
+    },
+    "banking": {
+        "topic": "banking",
+        "file": "topics/banking.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:55:06+00:00"
+    },
+    "manufacturing": {
+        "topic": "manufacturing",
+        "file": "topics/manufacturing.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T09:55:14+00:00"
+    },
+    "tv_broadband_and_customer_support": {
+        "topic": "tv_broadband_and_customer_support",
+        "file": "topics/tv_broadband_and_customer_support.json",
+        "fact_count": 20,
+        "last_updated": "2026-09-24T09:55:30+00:00"
+    },
+    "i_build_true": {
+        "topic": "i_build_true",
+        "file": "topics/i_build_true.json",
+        "fact_count": 22,
+        "last_updated": "2026-09-24T16:03:11+00:00"
+    },
+    "building_trust": {
+        "topic": "building_trust",
+        "file": "topics/building_trust.json",
+        "fact_count": 15,
+        "last_updated": "2026-09-24T16:38:56+00:00"
+    },
+    "food": {
+        "topic": "food",
+        "file": "topics/food.json",
+        "fact_count": 34,
+        "last_updated": "2026-09-25T04:09:17+00:00"
+    },
+    "php_array_vs_json_object": {
+        "topic": "php_array_vs_json_object",
+        "file": "topics/php_array_vs_json_object.json",
+        "fact_count": 13,
+        "last_updated": "2026-09-25T04:26:18+00:00"
+    },
+    "openrouter": {
+        "topic": "openrouter",
+        "file": "topics/openrouter.json",
+        "fact_count": 2,
+        "last_updated": "2026-09-25T05:05:19+00:00"
+    },
+    "ai_system": {
+        "topic": "ai_system",
+        "file": "topics/ai_system.json",
+        "fact_count": 10,
+        "last_updated": "2026-09-25T05:07:42+00:00"
+    },
+    "cfcbazar_ai_system": {
+        "topic": "cfcbazar_ai_system",
+        "file": "topics/cfcbazar_ai_system.json",
+        "fact_count": 28,
+        "last_updated": "2026-09-25T05:14:06+00:00"
+    },
+    "cfcbazar": {
+        "topic": "cfcbazar",
+        "file": "topics/cfcbazar.json",
+        "fact_count": 3,
+        "last_updated": "2026-09-25T07:25:50+00:00"
+    }
+}

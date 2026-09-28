@@ -1,0 +1,170 @@
+[
+    {
+        "type": "prompt_intent",
+        "value": "What is a Sky Stream Puck?",
+        "content": "What is a Sky Stream Puck?",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-22T14:00:05+00:00",
+        "updated_at": "2026-09-22T14:00:05+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "prompt_intent",
+            "confidence": 0.6999999999999999555910790149937383830547332763671875,
+            "source": "prompt",
+            "created_at": "2026-09-22T14:00:05+00:00",
+            "updated_at": "2026-09-22T14:00:05+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_01d98fd54ae8"
+    },
+    {
+        "type": "statement",
+        "value": "A Sky Stream Puck is a compact streaming device provided by Sky that allows users to access Sky TV content over the internet without the need for a traditional satellite dish.",
+        "content": "A Sky Stream Puck is a compact streaming device provided by Sky that allows users to access Sky TV content over the internet without the need for a traditional satellite dish.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_8dc98beac5c4"
+    },
+    {
+        "type": "statement",
+        "value": "Key facts about the Sky Stream Puck:",
+        "content": "Key facts about the Sky Stream Puck:",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_cf8723650a46"
+    },
+    {
+        "type": "statement",
+        "value": "Connection: It plugs directly into a standard television via an HDMI port and connects to the internet through Wi-Fi or an Ethernet cable.",
+        "content": "Connection: It plugs directly into a standard television via an HDMI port and connects to the internet through Wi-Fi or an Ethernet cable.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_243145d5a656"
+    },
+    {
+        "type": "statement",
+        "value": "Content: It provides access to live Sky channels, catch-up TV, on-demand content, and third-party streaming apps like Netflix, Disney+, and BBC iPlayer.",
+        "content": "Content: It provides access to live Sky channels, catch-up TV, on-demand content, and third-party streaming apps like Netflix, Disney+, and BBC iPlayer.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_584473c1e3b0"
+    },
+    {
+        "type": "statement",
+        "value": "Interface: It runs on the Sky Glass operating system, which integrates all available content into a single, unified playlist and features voice search capabilities.",
+        "content": "Interface: It runs on the Sky Glass operating system, which integrates all available content into a single, unified playlist and features voice search capabilities.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_342b4009c5ea"
+    },
+    {
+        "type": "statement",
+        "value": "Quality: The device supports 4K Ultra HD, HDR (High Dynamic Range) video, and Dolby Atmos audio for high-quality viewing and listening.",
+        "content": "Quality: The device supports 4K Ultra HD, HDR (High Dynamic Range) video, and Dolby Atmos audio for high-quality viewing and listening.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_adcc11ab64a5"
+    },
+    {
+        "type": "statement",
+        "value": "Multi-room viewing: It is often used to extend Sky Glass or Sky Stream services to additional televisions in a household.",
+        "content": "Multi-room viewing: It is often used to extend Sky Glass or Sky Stream services to additional televisions in a household.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:00:20+00:00",
+        "updated_at": "2026-09-22T14:00:20+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:00:20+00:00",
+            "updated_at": "2026-09-22T14:00:20+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_3121dc10f380"
+    }
+]

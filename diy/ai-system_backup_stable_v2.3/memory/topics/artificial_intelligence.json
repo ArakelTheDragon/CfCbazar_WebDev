@@ -1,0 +1,534 @@
+[
+    {
+        "type": "prompt_intent",
+        "value": "Hi! What is AI?",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-20T06:54:42-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "Hey there",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "\ud83d\udc4b\n\n**Artificial Intelligence (AI)** is a branch of computer science that focuses on creating systems capable of performing tasks that typically require human intelligence",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "Those tasks include things like:\n\n- **Learning** from data (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", recognizing patterns, improving over time)\n- **Reasoning** and problem\u2011solving (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", figuring out the best way to achieve a goal)\n- **Perception** (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", understanding images, speech, or video)\n- **Language understanding and generation** (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", chatting, translating, summarizing)\n- **Decision making** (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", recommending products, driving a car, diagnosing diseases)\n\nIn practice, AI can be categorized in a few ways:\n\n| Category | What it does | Example |\n|----------|--------------|---------|\n| **Narrow (or Weak) AI** | Excels at a specific, well\u2011defined task",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "| Voice assistants (Siri, Alexa), image classifiers, recommendation engines",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "|\n| **General (or Strong) AI** | Hypothetical systems that could understand, learn, and apply knowledge across any domain like a human",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "| Not yet realized; often discussed in science\u2011fiction and research",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "|\n| **Machine Learning (ML)** | A subset of AI where computers automatically improve from experience without being explicitly programmed for each task",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "| Training a neural network to detect cats in photos",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "|\n| **Deep Learning** | A type of ML that uses layered neural networks to model complex patterns",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "| Large language models like GPT\u20114, image\u2011generation models like DALL\u00b7E",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "|\n| **Rule\u2011based AI** | Uses explicit human\u2011crafted rules to make decisions",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "| Early expert systems for medical diagnosis",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "|\n\n### How AI Works (in a nutshell)\n\n1",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**Data Collection** \u2013 Gather lots of relevant data (text, images, sensor readings, etc",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ")",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "2",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**Model Building** \u2013 Choose an algorithm (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", a neural network) and configure it",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "3",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**Training** \u2013 Feed the data to the model so it can learn patterns (adjusting internal parameters)",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "4",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**Evaluation** \u2013 Test the model on new data to see how well it performs",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "5",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**Deployment** \u2013 Put the model into a product or service where it can make predictions or decisions in real time",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "### Everyday Examples\n\n- **Smartphones**: Face unlock, photo organization, voice-to\u2011text",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Streaming services**: Recommendations for movies or songs you might like",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Healthcare**: Analyzing medical images to spot tumors early",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Transportation**: Self\u2011driving cars that perceive the road and make driving decisions",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Finance**: Fraud detection by spotting unusual transaction patterns",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "### Why AI Matters\n\n- **Automation**: Frees humans from repetitive or dangerous tasks",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Insight**: Finds hidden patterns in massive datasets that people might miss",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Personalization**: Tailors experiences (content, products, services) to individual preferences",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "- **Scalability**: Handles tasks at speeds and volumes far beyond human capability",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "---\n\nIf you\u2019re curious about a particular aspect\u2014like how a specific AI model works, the ethics of AI, or how to get started learning AI\u2014just let me know",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "I\u2019m happy to dive deeper",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "\ud83d\ude80",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T06:54:58-04:00"
+    },
+    {
+        "type": "prompt_intent",
+        "value": "What is the CfCbazar AI system?",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-20T11:41:47-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "As of my last update, there is **no widely recognized or major AI system** publicly documented under the exact name **\"CfCbazar AI system\"** in mainstream technology literature, major AI research labs (like Google DeepMind, OpenAI, Meta AI, etc",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "), or standard industry directories",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "Here are a few possibilities for what you might be referring to:\n\n1",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**A Specific Startup or Niche Platform:** It could be the AI backend for a specific e-commerce marketplace (the suffix \"bazar\" suggests a marketplace) named **CfC Bazar** (perhaps standing for *Consumer-to-Consumer*, *Company-to-Consumer*, or a specific founder's initials)",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "Many small-to-medium e-commerce platforms build proprietary AI for recommendations, search ranking, fraud detection, or chatbots without publishing white papers on them",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "2",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**A Typo or Variation:**\n    *   **C2C Bazar AI:** Referring to a generic Consumer-to-Consumer marketplace AI",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "*   **Flipkart \/ Amazon \/ Meesho AI:** Major e-commerce players in regions where \"Bazar\" is a common term (South Asia, Middle East) have extensive AI systems, but they don't use this specific branding",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "*   **CF (Collaborative Filtering) Bazar:** A descriptive term for a marketplace using Collaborative Filtering algorithms",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "3",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**A Recent or Hyper-Local Project:** It may be a very new project, a university capstone project, a hackathon winner, or a system specific to a specific country\/region (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", Bangladesh, Pakistan, India, Iran) that hasn't gained global indexing",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "4",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**Internal\/Proprietary Tool:** An internal tool used by a company named **CfC** (e",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "g",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ", *CfC Stanbic Bank*, *Chemical Finance Corporation*, etc",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ") for their own \"Bazar\" initiative",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**To help me give you a precise answer, could you provide more context",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "**\n*   Where did you hear this name",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "(LinkedIn, a research paper, a job description, a specific app, a news article",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ")\n*   What is the **domain\/industry**",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "(E-commerce, Finance, Agriculture, Logistics",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ")\n*   What **region\/country** is it associated with",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "*   What **function** does it perform",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": "(Recommendations, Computer Vision, NLP\/Chatbot, Pricing, Supply Chain",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    },
+    {
+        "type": "statement",
+        "value": ")\n\nIf you have a link or a screenshot, describing the context around the name would allow me to infer the technical architecture likely being used",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-20T11:42:16-04:00"
+    }
+]

@@ -1,0 +1,25 @@
+index.php
+  │
+  ▼
+Router
+  │
+  ▼
+PromptUnderstandingSkill
+  │
+  ▼
+KnowledgeSkill (central AI)
+  │
+  ├── MemorySkill
+  │     └── Retrieve and assess stored knowledge
+  │
+  ├── FactSkill
+  │     └── Extract facts from acquired information
+  │
+  └── OpenRouter
+        └── Acquire missing or inadequate knowledge
+  │
+  ▼
+ResponseUnderstandingSkill
+  │
+  ▼
+Final response

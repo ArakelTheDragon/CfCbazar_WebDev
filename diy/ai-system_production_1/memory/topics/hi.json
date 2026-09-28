@@ -1,0 +1,380 @@
+[
+    {
+        "type": "prompt_intent",
+        "value": "Hi!",
+        "content": "Hi!",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-21T17:01:17+00:00",
+        "updated_at": "2026-09-21T17:01:17+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "prompt_intent",
+            "confidence": 0.6999999999999999555910790149937383830547332763671875,
+            "source": "prompt",
+            "created_at": "2026-09-21T17:01:17+00:00",
+            "updated_at": "2026-09-21T17:01:17+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_59e55e257dd7"
+    },
+    {
+        "type": "statement",
+        "value": "Hello!",
+        "content": "Hello!",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T17:01:29+00:00",
+        "updated_at": "2026-09-21T17:01:29+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T17:01:29+00:00",
+            "updated_at": "2026-09-21T17:01:29+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_8224eaf80651"
+    },
+    {
+        "type": "statement",
+        "value": "How can I help you today?",
+        "content": "How can I help you today?",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T17:01:29+00:00",
+        "updated_at": "2026-09-21T17:01:29+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T17:01:29+00:00",
+            "updated_at": "2026-09-21T17:01:29+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_47097e812c39"
+    },
+    {
+        "type": "statement",
+        "value": "Feel free to ask me any question — I'm here to provide useful, accurate information on a wide range of topics.",
+        "content": "Feel free to ask me any question — I'm here to provide useful, accurate information on a wide range of topics.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T17:01:29+00:00",
+        "updated_at": "2026-09-21T17:01:29+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T17:01:29+00:00",
+            "updated_at": "2026-09-21T17:01:29+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_96a95dd22f97"
+    },
+    {
+        "type": "prompt_intent",
+        "value": "Hi",
+        "content": "Hi",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-21T20:40:28+00:00",
+        "updated_at": "2026-09-21T20:40:28+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "prompt_intent",
+            "confidence": 0.6999999999999999555910790149937383830547332763671875,
+            "source": "prompt",
+            "created_at": "2026-09-21T20:40:28+00:00",
+            "updated_at": "2026-09-21T20:40:28+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_7a16f825a98f"
+    },
+    {
+        "type": "statement",
+        "value": "Hello.",
+        "content": "Hello.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:40:32+00:00",
+        "updated_at": "2026-09-21T20:40:32+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:40:32+00:00",
+            "updated_at": "2026-09-21T20:40:32+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_4e98179bd051"
+    },
+    {
+        "type": "statement",
+        "value": "I am a large language model built by Liquid AI.",
+        "content": "I am a large language model built by Liquid AI.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:40:32+00:00",
+        "updated_at": "2026-09-21T20:40:32+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:40:32+00:00",
+            "updated_at": "2026-09-21T20:40:32+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_3e55bda07f86"
+    },
+    {
+        "type": "statement",
+        "value": "My purpose is to assist users by generating helpful and accurate responses to their queries.",
+        "content": "My purpose is to assist users by generating helpful and accurate responses to their queries.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:40:32+00:00",
+        "updated_at": "2026-09-21T20:40:32+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:40:32+00:00",
+            "updated_at": "2026-09-21T20:40:32+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_67f595a035ef"
+    },
+    {
+        "type": "statement",
+        "value": "Here are a few useful facts:",
+        "content": "Here are a few useful facts:",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:05:18+00:00",
+        "updated_at": "2026-09-22T14:05:18+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:05:18+00:00",
+            "updated_at": "2026-09-22T14:05:18+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_6eff822c58f8"
+    },
+    {
+        "type": "statement",
+        "value": "The word \"hello\" became a standard greeting after Alexander Graham Bell popularized it as a phone greeting in the late 1800s.",
+        "content": "The word \"hello\" became a standard greeting after Alexander Graham Bell popularized it as a phone greeting in the late 1800s.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:05:18+00:00",
+        "updated_at": "2026-09-22T14:05:18+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:05:18+00:00",
+            "updated_at": "2026-09-22T14:05:18+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_a772b88db819"
+    },
+    {
+        "type": "statement",
+        "value": "The average person smiles about 20 times per day, while children smile over 400 times per day.",
+        "content": "The average person smiles about 20 times per day, while children smile over 400 times per day.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:05:18+00:00",
+        "updated_at": "2026-09-22T14:05:18+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:05:18+00:00",
+            "updated_at": "2026-09-22T14:05:18+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_a195cbc403a3"
+    },
+    {
+        "type": "statement",
+        "value": "Studies show that greeting someone warmly can improve mood and strengthen social bonds for both parties.",
+        "content": "Studies show that greeting someone warmly can improve mood and strengthen social bonds for both parties.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:05:18+00:00",
+        "updated_at": "2026-09-22T14:05:18+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:05:18+00:00",
+            "updated_at": "2026-09-22T14:05:18+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_bd5cc749daaf"
+    },
+    {
+        "type": "statement",
+        "value": "Hello! 👋 How can I help you today?",
+        "content": "Hello! 👋 How can I help you today?",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:05:21+00:00",
+        "updated_at": "2026-09-22T14:05:21+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:05:21+00:00",
+            "updated_at": "2026-09-22T14:05:21+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_28c02a222baf"
+    },
+    {
+        "type": "statement",
+        "value": "Feel free to ask me any question, and I'll do my best to provide a clear and accurate answer.",
+        "content": "Feel free to ask me any question, and I'll do my best to provide a clear and accurate answer.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-22T14:05:21+00:00",
+        "updated_at": "2026-09-22T14:05:21+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-22T14:05:21+00:00",
+            "updated_at": "2026-09-22T14:05:21+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_1967bd6da0b3"
+    },
+    {
+        "type": "statement",
+        "value": "I'm Command, a language model, here to help.",
+        "content": "I'm Command, a language model, here to help.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-23T05:04:12+00:00",
+        "updated_at": "2026-09-23T05:04:12+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-23T05:04:12+00:00",
+            "updated_at": "2026-09-23T05:04:12+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_babe00267e3e"
+    },
+    {
+        "type": "statement",
+        "value": "I can provide factual information on a wide range of topics whenever you have a question.",
+        "content": "I can provide factual information on a wide range of topics whenever you have a question.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-23T05:04:12+00:00",
+        "updated_at": "2026-09-23T05:04:12+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-23T05:04:12+00:00",
+            "updated_at": "2026-09-23T05:04:12+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_f2ae831f24bf"
+    },
+    {
+        "type": "statement",
+        "value": "How can I assist you today?",
+        "content": "How can I assist you today?",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-23T17:50:51+00:00",
+        "updated_at": "2026-09-23T17:50:51+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-23T17:50:51+00:00",
+            "updated_at": "2026-09-23T17:50:51+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_f8cd365d1ea6"
+    },
+    {
+        "type": "statement",
+        "value": "User Safety: safe",
+        "content": "User Safety: safe",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-24T10:26:40+00:00",
+        "updated_at": "2026-09-24T10:26:40+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-24T10:26:40+00:00",
+            "updated_at": "2026-09-24T10:26:40+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_b9bbf551dcd0"
+    }
+]

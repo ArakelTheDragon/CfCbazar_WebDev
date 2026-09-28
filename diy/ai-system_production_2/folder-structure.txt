@@ -1,0 +1,20 @@
+/ai-system
+│
+├── index.php
+│
+├── /core
+│   ├── SkillManager.php
+│   ├── MemoryStore.php
+│   ├── Router.php
+│   └── Helpers.php
+│
+├── /skills
+│   ├── PromptUnderstandingSkill.php
+│   ├── FactSkill.php
+│   └── KnowledgeSkill.php
+│
+├── /memory
+│   └── memory.json
+│
+└── /config
+    └── openrouter.php

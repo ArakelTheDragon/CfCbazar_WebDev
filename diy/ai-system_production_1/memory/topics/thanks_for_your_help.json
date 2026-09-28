@@ -1,0 +1,86 @@
+[
+    {
+        "type": "prompt_intent",
+        "value": "Thanks for your help",
+        "content": "Thanks for your help",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-21T20:42:35+00:00",
+        "updated_at": "2026-09-21T20:42:35+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "prompt_intent",
+            "confidence": 0.6999999999999999555910790149937383830547332763671875,
+            "source": "prompt",
+            "created_at": "2026-09-21T20:42:35+00:00",
+            "updated_at": "2026-09-21T20:42:35+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_006e2db855ed"
+    },
+    {
+        "type": "statement",
+        "value": "You're very welcome!",
+        "content": "You're very welcome!",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:42:39+00:00",
+        "updated_at": "2026-09-21T20:42:39+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:42:39+00:00",
+            "updated_at": "2026-09-21T20:42:39+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_9a7f2af830fd"
+    },
+    {
+        "type": "statement",
+        "value": "I'm glad I could help.",
+        "content": "I'm glad I could help.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:42:39+00:00",
+        "updated_at": "2026-09-21T20:42:39+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:42:39+00:00",
+            "updated_at": "2026-09-21T20:42:39+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_ebbc9a73ca3b"
+    },
+    {
+        "type": "statement",
+        "value": "If you need any further assistance, feel free to ask.",
+        "content": "If you need any further assistance, feel free to ask.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:42:39+00:00",
+        "updated_at": "2026-09-21T20:42:39+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:42:39+00:00",
+            "updated_at": "2026-09-21T20:42:39+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_f2ce0c726d00"
+    }
+]

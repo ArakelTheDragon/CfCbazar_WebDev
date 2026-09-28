@@ -1,0 +1,101 @@
+{
+    "hi": {
+        "topic": "hi",
+        "file": "topics\/hi.json",
+        "fact_count": 18,
+        "last_updated": "2026-09-24T10:26:40+00:00"
+    },
+    "hello_how_are_you": {
+        "topic": "hello_how_are_you",
+        "file": "topics\/hello_how_are_you.json",
+        "fact_count": 5,
+        "last_updated": "2026-09-21T20:41:17+00:00"
+    },
+    "good_morning": {
+        "topic": "good_morning",
+        "file": "topics\/good_morning.json",
+        "fact_count": 3,
+        "last_updated": "2026-09-21T20:42:11+00:00"
+    },
+    "thanks_for_your_help": {
+        "topic": "thanks_for_your_help",
+        "file": "topics\/thanks_for_your_help.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-21T20:42:39+00:00"
+    },
+    "you_help_me_with": {
+        "topic": "you_help_me_with",
+        "file": "topics\/you_help_me_with.json",
+        "fact_count": 41,
+        "last_updated": "2026-09-21T20:44:07+00:00"
+    },
+    "php_programming": {
+        "topic": "php_programming",
+        "file": "topics\/php_programming.json",
+        "fact_count": 6,
+        "last_updated": "2026-09-21T20:44:43+00:00"
+    },
+    "artificial_intelligence": {
+        "topic": "artificial_intelligence",
+        "file": "topics\/artificial_intelligence.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-21T20:45:56+00:00"
+    },
+    "you_know_about_the_cfcbazar_ai": {
+        "topic": "you_know_about_the_cfcbazar_ai",
+        "file": "topics\/you_know_about_the_cfcbazar_ai.json",
+        "fact_count": 5,
+        "last_updated": "2026-09-21T20:46:51+00:00",
+        "updated_at": "2026-09-22T12:38:23-04:00"
+    },
+    "you_know_about_underwater_volcanoes": {
+        "topic": "you_know_about_underwater_volcanoes",
+        "file": "topics\/you_know_about_underwater_volcanoes.json",
+        "fact_count": 30,
+        "last_updated": "2026-09-21T20:48:47+00:00"
+    },
+    "explain_quantum_computing_in_simple_english": {
+        "topic": "explain_quantum_computing_in_simple_english",
+        "file": "topics\/explain_quantum_computing_in_simple_english.json",
+        "fact_count": 2,
+        "last_updated": "2026-09-21T20:49:17+00:00"
+    },
+    "make_me_a_simple_html_page": {
+        "topic": "make_me_a_simple_html_page",
+        "file": "topics\/make_me_a_simple_html_page.json",
+        "fact_count": 40,
+        "last_updated": "2026-09-21T21:32:44+00:00",
+        "updated_at": "2026-09-22T12:38:23-04:00"
+    },
+    "a_sky_stream_puck": {
+        "topic": "a_sky_stream_puck",
+        "file": "topics\/a_sky_stream_puck.json",
+        "fact_count": 8,
+        "last_updated": "2026-09-22T14:00:20+00:00"
+    },
+    "i_get_a_software_error_on": {
+        "topic": "i_get_a_software_error_on",
+        "file": "topics\/i_get_a_software_error_on.json",
+        "fact_count": 57,
+        "last_updated": "2026-09-22T14:01:19+00:00",
+        "updated_at": "2026-09-24T12:00:30-04:00"
+    },
+    "ai_router_system": {
+        "topic": "ai_router_system",
+        "file": "topics\/ai_router_system.json",
+        "fact_count": 8,
+        "last_updated": "2026-09-22T14:04:26+00:00"
+    },
+    "remember": {
+        "topic": "remember",
+        "file": "topics\/remember.json",
+        "fact_count": 9,
+        "last_updated": "2026-09-22T14:41:06+00:00"
+    },
+    "hi_what_are_vector_embeddings": {
+        "topic": "hi_what_are_vector_embeddings",
+        "file": "topics\/hi_what_are_vector_embeddings.json",
+        "fact_count": 4,
+        "last_updated": "2026-09-23T17:51:08+00:00"
+    }
+}

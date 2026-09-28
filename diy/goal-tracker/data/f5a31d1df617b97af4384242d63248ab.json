@@ -1,0 +1,28 @@
+{
+    "2026-08-24": {
+        "date": "2026-08-24",
+        "targetFocus": "Test",
+        "priority1": "Test",
+        "priority2": "Test",
+        "priority3": "Test",
+        "metrics": [
+            {
+                "name": "Water Intake",
+                "target": "8 Glasses",
+                "status": "Test"
+            },
+            {
+                "name": "Exercise",
+                "target": "30 Mins",
+                "status": "Test"
+            },
+            {
+                "name": "Deep Work Focus",
+                "target": "3 Hours",
+                "status": "Test"
+            }
+        ],
+        "rating": "4",
+        "reflection": "Test"
+    }
+}

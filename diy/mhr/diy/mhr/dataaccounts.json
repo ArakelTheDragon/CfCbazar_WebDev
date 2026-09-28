@@ -1,0 +1,13 @@
+{
+    "738372205139": {
+        "account_number": "738372205139",
+        "name": "John Does",
+        "address": "123 Main Street",
+        "postal_code": "1111",
+        "calling_password": "Password",
+        "maiden_name": "MMN",
+        "dd_last2": "56",
+        "service_active": true,
+        "created_at": "2026-08-03 07:32:43"
+    }
+}

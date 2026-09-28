@@ -1,0 +1,65 @@
+[
+    {
+        "type": "prompt_intent",
+        "value": "Good morning",
+        "content": "Good morning",
+        "confidence": 0.6999999999999999555910790149937383830547332763671875,
+        "source": "prompt",
+        "created_at": "2026-09-21T20:42:03+00:00",
+        "updated_at": "2026-09-21T20:42:03+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "prompt_intent",
+            "confidence": 0.6999999999999999555910790149937383830547332763671875,
+            "source": "prompt",
+            "created_at": "2026-09-21T20:42:03+00:00",
+            "updated_at": "2026-09-21T20:42:03+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_c6ecf6b14434"
+    },
+    {
+        "type": "statement",
+        "value": "\"Good morning\" is a standard English greeting used to acknowledge someone at the beginning of the day, typically from the time of waking until noon.",
+        "content": "\"Good morning\" is a standard English greeting used to acknowledge someone at the beginning of the day, typically from the time of waking until noon.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:42:11+00:00",
+        "updated_at": "2026-09-21T20:42:11+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:42:11+00:00",
+            "updated_at": "2026-09-21T20:42:11+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_095e0dd2a74c"
+    },
+    {
+        "type": "statement",
+        "value": "The word \"good\" in this context historically functioned as a well-wishing term, meaning \"blessed\" or \"auspicious.\" Additionally, the morning hours when this greeting is typically used are biologically significant, as exposure to morning sunlight helps regulate the human circadian rhythm and increases alertness.",
+        "content": "The word \"good\" in this context historically functioned as a well-wishing term, meaning \"blessed\" or \"auspicious.\" Additionally, the morning hours when this greeting is typically used are biologically significant, as exposure to morning sunlight helps regulate the human circadian rhythm and increases alertness.",
+        "confidence": 0.8000000000000000444089209850062616169452667236328125,
+        "source": "openrouter",
+        "created_at": "2026-09-21T20:42:11+00:00",
+        "updated_at": "2026-09-21T20:42:11+00:00",
+        "access_count": 0,
+        "decay_rate": 0.05000000000000000277555756156289135105907917022705078125,
+        "metadata": {
+            "type": "statement",
+            "confidence": 0.8000000000000000444089209850062616169452667236328125,
+            "source": "openrouter",
+            "created_at": "2026-09-21T20:42:11+00:00",
+            "updated_at": "2026-09-21T20:42:11+00:00",
+            "access_count": 0,
+            "decay_rate": 0.05000000000000000277555756156289135105907917022705078125
+        },
+        "id": "fact_cc36104a90dd"
+    }
+]
