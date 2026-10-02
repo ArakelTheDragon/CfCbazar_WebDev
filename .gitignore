@@ -20,6 +20,15 @@ diy/ai-system_dev/
 diy/ai-system_production*/
 diy/temp_extracted/
 
+# AI System memory and conversation data (sensitive user data)
+diy/ai-system/memory/conversation/*
+diy/ai-system/memory/topics/*
+
+# Any directories or files containing backup, dev, or development
+*backup*/
+*_dev*/
+*development*/
+
 # Logs and temporary files
 *.log
 traffic_log.json
