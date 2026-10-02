@@ -14,6 +14,12 @@ images/*
 diy/ai-system/memory/*
 ai_images/*
 
+# AI System backup and dev directories (contain sensitive data)
+diy/ai-system_backup*/
+diy/ai-system_dev/
+diy/ai-system_production*/
+diy/temp_extracted/
+
 # Logs and temporary files
 *.log
 traffic_log.json
