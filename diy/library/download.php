@@ -66,42 +66,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$downloadError) {
         }
         
         if (!$downloadError) {
-            // Get current downloads JSON
-            $stmt = $conn->prepare("SELECT downloads_json FROM ebooks WHERE id = ?");
-            $stmt->bind_param("i", $ebookId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            $stmt->close();
+            // Check if downloads_json column exists
+            $columnCheck = $conn->query("SHOW COLUMNS FROM ebooks LIKE 'downloads_json'");
+            $hasDownloadsJson = ($columnCheck && $columnCheck->num_rows > 0);
             
-            $downloads = [];
-            if (!empty($row['downloads_json'])) {
-                $downloads = json_decode($row['downloads_json'], true);
-                if (!is_array($downloads)) {
-                    $downloads = [];
+            if ($hasDownloadsJson) {
+                // Get current downloads JSON
+                $stmt = $conn->prepare("SELECT downloads_json FROM ebooks WHERE id = ?");
+                $stmt->bind_param("i", $ebookId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $stmt->close();
+                
+                $downloads = [];
+                if (!empty($row['downloads_json'])) {
+                    $downloads = json_decode($row['downloads_json'], true);
+                    if (!is_array($downloads)) {
+                        $downloads = [];
+                    }
                 }
-            }
-            
-            // Add new download record
-            $ipAddress = $_SERVER['REMOTE_ADDR'] ?? '';
-            $downloads[] = [
-                'email' => $email,
-                'download_date' => date('Y-m-d H:i:s'),
-                'ip_address' => $ipAddress
-            ];
-            
-            // Update with new downloads JSON
-            $downloadsJson = json_encode($downloads);
-            $updateQuery = "UPDATE ebooks SET download_count = download_count + 1, downloads_json = ? WHERE id = ?";
-            $updateStmt = $conn->prepare($updateQuery);
-            $updateStmt->bind_param("si", $downloadsJson, $ebookId);
-            
-            if ($updateStmt->execute()) {
-                $downloadSuccess = true;
+                
+                // Add new download record
+                $ipAddress = $_SERVER['REMOTE_ADDR'] ?? '';
+                $downloads[] = [
+                    'email' => $email,
+                    'download_date' => date('Y-m-d H:i:s'),
+                    'ip_address' => $ipAddress
+                ];
+                
+                // Update with new downloads JSON
+                $downloadsJson = json_encode($downloads);
+                $updateQuery = "UPDATE ebooks SET download_count = download_count + 1, downloads_json = ? WHERE id = ?";
+                $updateStmt = $conn->prepare($updateQuery);
+                $updateStmt->bind_param("si", $downloadsJson, $ebookId);
+                
+                if ($updateStmt->execute()) {
+                    $downloadSuccess = true;
+                } else {
+                    $downloadError = 'Failed to record download. Please try again.';
+                }
+                $updateStmt->close();
             } else {
-                $downloadError = 'Failed to record download. Please try again.';
+                // Fallback: Just update download count without JSON storage
+                $updateQuery = "UPDATE ebooks SET download_count = download_count + 1 WHERE id = ?";
+                $updateStmt = $conn->prepare($updateQuery);
+                $updateStmt->bind_param("i", $ebookId);
+                
+                if ($updateStmt->execute()) {
+                    $downloadSuccess = true;
+                } else {
+                    $downloadError = 'Failed to record download. Please try again.';
+                }
+                $updateStmt->close();
             }
-            $updateStmt->close();
         }
     }
 }

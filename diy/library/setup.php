@@ -40,47 +40,76 @@ if (!isset($conn) || $conn->connect_error) {
 
 echo "<div class='info'>Database connection: ✓ Connected</div>";
 
-// Create combined ebooks table
-$createEbooksTable = "
-CREATE TABLE IF NOT EXISTS ebooks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    author VARCHAR(255),
-    file_path VARCHAR(512) NOT NULL,
-    file_type ENUM('pdf', 'doc', 'docx', 'zip') NOT NULL,
-    file_size BIGINT NOT NULL,
-    upload_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    uploaded_by VARCHAR(255) NOT NULL,
-    download_count INT DEFAULT 0,
-    downloads_json TEXT DEFAULT NULL,
-    category VARCHAR(100),
-    tags VARCHAR(500),
-    is_active TINYINT(1) DEFAULT 1,
-    INDEX (title),
-    INDEX (category),
-    INDEX (file_type),
-    INDEX (upload_date)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+// Check if ebooks table exists
+$tableCheck = $conn->query("SHOW TABLES LIKE 'ebooks'");
+$tableExists = ($tableCheck && $tableCheck->num_rows > 0);
 
-try {
-    if ($conn->query($createEbooksTable)) {
-        echo "<div class='success'>✓ Ebooks table created successfully</div>";
+if ($tableExists) {
+    echo "<div class='info'>ℹ ebooks table already exists</div>";
+    
+    // Check if downloads_json column exists
+    $columnCheck = $conn->query("SHOW COLUMNS FROM ebooks LIKE 'downloads_json'");
+    $hasDownloadsJson = ($columnCheck && $columnCheck->num_rows > 0);
+    
+    if ($hasDownloadsJson) {
+        echo "<div class='success'>✓ downloads_json column already exists</div>";
     } else {
-        echo "<div class='error'>✗ Error creating ebooks table: " . $conn->error . "</div>";
+        // Add the downloads_json column
+        $addColumn = "ALTER TABLE ebooks ADD COLUMN downloads_json TEXT DEFAULT NULL AFTER download_count";
+        if ($conn->query($addColumn)) {
+            echo "<div class='success'>✓ downloads_json column added successfully</div>";
+        } else {
+            echo "<div class='error'>✗ Error adding downloads_json column: " . $conn->error . "</div>";
+        }
     }
-} catch (Exception $e) {
-    echo "<div class='error'>✗ Exception creating ebooks table: " . $e->getMessage() . "</div>";
+} else {
+    // Create combined ebooks table
+    $createEbooksTable = "
+    CREATE TABLE ebooks (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        description TEXT,
+        author VARCHAR(255),
+        file_path VARCHAR(512) NOT NULL,
+        file_type ENUM('pdf', 'doc', 'docx', 'zip') NOT NULL,
+        file_size BIGINT NOT NULL,
+        upload_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        uploaded_by VARCHAR(255) NOT NULL,
+        download_count INT DEFAULT 0,
+        downloads_json TEXT DEFAULT NULL,
+        category VARCHAR(100),
+        tags VARCHAR(500),
+        is_active TINYINT(1) DEFAULT 1,
+        INDEX (title),
+        INDEX (category),
+        INDEX (file_type),
+        INDEX (upload_date)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    
+    try {
+        if ($conn->query($createEbooksTable)) {
+            echo "<div class='success'>✓ Ebooks table created successfully</div>";
+        } else {
+            echo "<div class='error'>✗ Error creating ebooks table: " . $conn->error . "</div>";
+        }
+    } catch (Exception $e) {
+        echo "<div class='error'>✗ Exception creating ebooks table: " . $e->getMessage() . "</div>";
+    }
 }
 
-// Drop the old ebook_downloads table if it exists
-$dropOldTable = "DROP TABLE IF EXISTS ebook_downloads";
-try {
-    if ($conn->query($dropOldTable)) {
-        echo "<div class='info'>ℹ Old ebook_downloads table removed (migrated to single table)</div>";
+// Check if old ebook_downloads table exists (for cleanup)
+$oldTableCheck = $conn->query("SHOW TABLES LIKE 'ebook_downloads'");
+if ($oldTableCheck && $oldTableCheck->num_rows > 0) {
+    $dropOldTable = "DROP TABLE IF EXISTS ebook_downloads";
+    try {
+        if ($conn->query($dropOldTable)) {
+            echo "<div class='info'>ℹ Old ebook_downloads table removed (migrated to single table)</div>";
+        }
+    } catch (Exception $e) {
+        // Ignore errors
     }
-} catch (Exception $e) {
-    // Ignore if table doesn't exist
+} else {
+    echo "<div class='info'>ℹ No old ebook_downloads table found (already cleaned up)</div>";
 }
 
 // Create uploads directory if it doesn't exist
