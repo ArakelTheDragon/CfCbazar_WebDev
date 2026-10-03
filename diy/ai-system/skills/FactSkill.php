@@ -214,37 +214,91 @@ class FactSkill
         $text = str_replace(["\r\n", "\r"], "\n", $text);
         $text = preg_replace('/^[ \t]*(?:[-*+] |\d+[.)] )/m', '', $text) ?? $text;
 
-        $lines = preg_split('/\n+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        // Preserve code blocks as single statements
         $statements = [];
+        $inCodeBlock = false;
+        $codeBlockContent = '';
+        $currentStatement = '';
+
+        $lines = explode("\n", $text);
 
         foreach ($lines as $line) {
-            $line = trim($line);
-            if ($line === '') {
+            $trimmedLine = trim($line);
+
+            // Detect code fence markers
+            if (preg_match('/^```(\w*)$/', $trimmedLine, $matches)) {
+                if ($inCodeBlock) {
+                    // End of code block
+                    $codeBlockContent .= $line . "\n";
+                    $statements[] = trim($codeBlockContent);
+                    $codeBlockContent = '';
+                    $inCodeBlock = false;
+                } else {
+                    // Start of code block
+                    if ($currentStatement !== '') {
+                        $statements[] = trim($currentStatement);
+                        $currentStatement = '';
+                    }
+                    $codeBlockContent = $line . "\n";
+                    $inCodeBlock = true;
+                }
                 continue;
             }
 
-            $parts = preg_split(
-                '/(?<=[.!?])\s+(?=[A-Z0-9"\'\(])|(?<=[.!?])$/',
-                $line,
-                -1,
-                PREG_SPLIT_NO_EMPTY
-            );
+            if ($inCodeBlock) {
+                // Preserve code block exactly as-is
+                $codeBlockContent .= $line . "\n";
+            } else {
+                // Regular text processing
+                if ($trimmedLine === '') {
+                    if ($currentStatement !== '') {
+                        $statements[] = trim($currentStatement);
+                        $currentStatement = '';
+                    }
+                } else {
+                    $currentStatement .= ($currentStatement !== '' ? ' ' : '') . $trimmedLine;
+                }
+            }
+        }
 
-            if (is_array($parts)) {
-                foreach ($parts as $part) {
-                    $part = trim($part);
-                    if ($part !== '') {
-                        $statements[] = $part;
+        // Handle remaining content
+        if ($inCodeBlock && $codeBlockContent !== '') {
+            $statements[] = trim($codeBlockContent);
+        } elseif ($currentStatement !== '') {
+            $statements[] = trim($currentStatement);
+        }
+
+        // Split non-code statements by sentence boundaries
+        $finalStatements = [];
+        foreach ($statements as $statement) {
+            // Check if this is a code block
+            if (preg_match('/^```/', $statement)) {
+                $finalStatements[] = $statement;
+            } else {
+                // Split by sentence boundaries
+                $parts = preg_split(
+                    '/(?<=[.!?])\s+(?=[A-Z0-9"\'\(])|(?<=[.!?])$/',
+                    $statement,
+                    -1,
+                    PREG_SPLIT_NO_EMPTY
+                );
+
+                if (is_array($parts)) {
+                    foreach ($parts as $part) {
+                        $part = trim($part);
+                        if ($part !== '') {
+                            $finalStatements[] = $part;
+                        }
                     }
                 }
             }
         }
 
-        if ($statements === [] && trim($text) !== '') {
-            $statements[] = trim($text);
+        if ($finalStatements === [] && trim($text) !== '') {
+            $finalStatements[] = trim($text);
         }
 
-        return $statements;
+        return $finalStatements;
     }
 
     private static function cleanStatement(string $statement): string

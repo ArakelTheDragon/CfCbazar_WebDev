@@ -451,6 +451,8 @@ class KnowledgeSkill
             . "Write clear factual statements a knowledge base can store. "
             . "Do not use meta phrases like 'it seems you are asking'. "
             . "Prefer concrete definitions, steps, and examples.\n\n"
+            . "IMPORTANT: When providing code examples, always wrap the complete code in a single fenced code block using ```language syntax. "
+            . "Do not split code into multiple blocks or separate lines with explanations between them.\n\n"
             . "Main ask: {$coreQuery}\n"
             . "Full user message: {$prompt}";
 
