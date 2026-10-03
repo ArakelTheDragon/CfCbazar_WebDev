@@ -685,14 +685,40 @@ class KnowledgeSkill
     {
         $out = '';
         $i = 1;
+        
+        // Detect if this is code content
+        $isCode = false;
+        $codeLanguage = '';
+        
         foreach ($lines as $line) {
-            if ($numbered) {
-                $out .= $i . '. ' . $line . "\n";
-                $i++;
+            // Check for code patterns
+            if (preg_match('/^```/', $line)) {
+                $isCode = true;
+                $codeLanguage = trim(str_replace('```', '', $line));
+                $out .= $line . "\n";
+                continue;
+            }
+            
+            if ($isCode && preg_match('/^```/', $line)) {
+                $isCode = false;
+                $out .= $line . "\n";
+                continue;
+            }
+            
+            if ($isCode) {
+                // Keep code lines together without formatting
+                $out .= $line . "\n";
             } else {
-                $out .= '- ' . $line . "\n";
+                // Regular text formatting
+                if ($numbered) {
+                    $out .= $i . '. ' . $line . "\n";
+                    $i++;
+                } else {
+                    $out .= '- ' . $line . "\n";
+                }
             }
         }
+        
         return trim($out);
     }
 }
