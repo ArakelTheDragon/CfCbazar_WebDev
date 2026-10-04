@@ -214,91 +214,37 @@ class FactSkill
         $text = str_replace(["\r\n", "\r"], "\n", $text);
         $text = preg_replace('/^[ \t]*(?:[-*+] |\d+[.)] )/m', '', $text) ?? $text;
 
-        // Preserve code blocks as single statements
+        $lines = preg_split('/\n+/', $text, -1, PREG_SPLIT_NO_EMPTY);
         $statements = [];
-        $inCodeBlock = false;
-        $codeBlockContent = '';
-        $currentStatement = '';
-
-        $lines = explode("\n", $text);
 
         foreach ($lines as $line) {
-            $trimmedLine = trim($line);
-
-            // Detect code fence markers
-            if (preg_match('/^```(\w*)$/', $trimmedLine, $matches)) {
-                if ($inCodeBlock) {
-                    // End of code block
-                    $codeBlockContent .= $line . "\n";
-                    $statements[] = trim($codeBlockContent);
-                    $codeBlockContent = '';
-                    $inCodeBlock = false;
-                } else {
-                    // Start of code block
-                    if ($currentStatement !== '') {
-                        $statements[] = trim($currentStatement);
-                        $currentStatement = '';
-                    }
-                    $codeBlockContent = $line . "\n";
-                    $inCodeBlock = true;
-                }
+            $line = trim($line);
+            if ($line === '') {
                 continue;
             }
 
-            if ($inCodeBlock) {
-                // Preserve code block exactly as-is
-                $codeBlockContent .= $line . "\n";
-            } else {
-                // Regular text processing
-                if ($trimmedLine === '') {
-                    if ($currentStatement !== '') {
-                        $statements[] = trim($currentStatement);
-                        $currentStatement = '';
-                    }
-                } else {
-                    $currentStatement .= ($currentStatement !== '' ? ' ' : '') . $trimmedLine;
-                }
-            }
-        }
+            $parts = preg_split(
+                '/(?<=[.!?])\s+(?=[A-Z0-9"\'\(])|(?<=[.!?])$/',
+                $line,
+                -1,
+                PREG_SPLIT_NO_EMPTY
+            );
 
-        // Handle remaining content
-        if ($inCodeBlock && $codeBlockContent !== '') {
-            $statements[] = trim($codeBlockContent);
-        } elseif ($currentStatement !== '') {
-            $statements[] = trim($currentStatement);
-        }
-
-        // Split non-code statements by sentence boundaries
-        $finalStatements = [];
-        foreach ($statements as $statement) {
-            // Check if this is a code block
-            if (preg_match('/^```/', $statement)) {
-                $finalStatements[] = $statement;
-            } else {
-                // Split by sentence boundaries
-                $parts = preg_split(
-                    '/(?<=[.!?])\s+(?=[A-Z0-9"\'\(])|(?<=[.!?])$/',
-                    $statement,
-                    -1,
-                    PREG_SPLIT_NO_EMPTY
-                );
-
-                if (is_array($parts)) {
-                    foreach ($parts as $part) {
-                        $part = trim($part);
-                        if ($part !== '') {
-                            $finalStatements[] = $part;
-                        }
+            if (is_array($parts)) {
+                foreach ($parts as $part) {
+                    $part = trim($part);
+                    if ($part !== '') {
+                        $statements[] = $part;
                     }
                 }
             }
         }
 
-        if ($finalStatements === [] && trim($text) !== '') {
-            $finalStatements[] = trim($text);
+        if ($statements === [] && trim($text) !== '') {
+            $statements[] = trim($text);
         }
 
-        return $finalStatements;
+        return $statements;
     }
 
     private static function cleanStatement(string $statement): string
@@ -316,7 +262,7 @@ class FactSkill
 
     private static function isUsableStatement(string $statement): bool
     {
-        if ($statement === '' || mb_strlen($statement) < 2) {
+        if ($statement === '' || (function_exists('mb_strlen') ? mb_strlen($statement) : strlen($statement)) < 2) {
             return false;
         }
 
@@ -367,7 +313,8 @@ class FactSkill
 
     private static function normalizeForComparison(string $text): string
     {
-        $text = mb_strtolower(trim($text));
+        $text = trim($text);
+        $text = function_exists('mb_strtolower') ? mb_strtolower($text) : strtolower($text);
         $text = preg_replace('/\s+/u', ' ', $text) ?? $text;
         $text = trim($text, " \t\n\r\0\x0B.,!?;:");
 
