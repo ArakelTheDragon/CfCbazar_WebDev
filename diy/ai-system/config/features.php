@@ -1,16 +1,7 @@
 <?php
-
-declare(strict_types=1);
-
-/**
- * Feature flags for CfCbazar AI System.
- * Toggle OpenRouter without code changes.
- */
 return [
-    // false = local memory only (no OpenRouter chat calls)
     'openrouter_enabled' => true,
-
-    // Conversation short-term memory
+    'knowledge_mode' => 'hybrid', // local or hybrid
     'conversation_enabled' => true,
     'conversation_max_turns' => 10,
 ];

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../core/SkillData.php';
+require_once __DIR__ . '/FactSkill.php';
+
 if (!class_exists('ResponseUnderstandingSkill', false)) {
 
     /**
@@ -16,6 +19,33 @@ if (!class_exists('ResponseUnderstandingSkill', false)) {
      */
     class ResponseUnderstandingSkill
     {
+        /**
+         * Preferred entry (Phase 4): format draft_answer → final_answer on SkillData.
+         * Does not write MemoryStore. May use FactSkill only to filter thin meta lines.
+         */
+        public function process(SkillData $data): SkillData
+        {
+            $data->setSkill('response_understanding');
+
+            $draft = trim($data->draftAnswer());
+            if ($draft === '') {
+                $draft = trim((string)$data->get('final_answer', ''));
+            }
+
+            $final = $this->execute($draft);
+
+            // Optional: if result is empty but draft had content, keep draft
+            if ($final === '' || $final === 'No response generated.') {
+                $final = $draft !== '' ? $draft : 'No response generated.';
+            }
+
+            $data->set('final_answer', $final);
+            return $data;
+        }
+
+        /**
+         * Legacy string API — formats a raw draft into the user-facing answer.
+         */
         public function execute(mixed $response): string
         {
             $raw = $this->prepareRawResponse($response);
@@ -23,6 +53,9 @@ if (!class_exists('ResponseUnderstandingSkill', false)) {
             if ($raw === '') {
                 return 'No response generated.';
             }
+
+            // Coalesce scattered HTML into one fenced document when possible
+            $raw = $this->coalesceHtmlDocument($raw);
 
             // Protect fenced code, indented code, and other structure-sensitive
             // blocks before any prose processing takes place.
@@ -70,6 +103,76 @@ if (!class_exists('ResponseUnderstandingSkill', false)) {
          * Fenced blocks are the primary protection mechanism. Indented code
          * blocks are also protected when they contain multiple code-like lines.
          */
+
+        /**
+         * If the answer contains a full HTML page (or tag soup that forms one),
+         * keep a short intro and put the entire document in a single ```html fence.
+         */
+        private function coalesceHtmlDocument(string $raw): string
+        {
+            // Leave existing fenced code as-is (php may embed HTML)
+            if (preg_match('/```(?:php|html|HTML|css|js|javascript)\b/i', $raw)) {
+                return $raw;
+            }
+
+            // Already a single proper fence with substantial HTML — leave it
+            if (preg_match('/```(?:html|HTML)?\r?\n[\s\S]*?<html[\s\S]*?<\/html>[\s\S]*?```/i', $raw)) {
+                return $raw;
+            }
+
+            // Extract first full HTML document if present
+            if (preg_match('/(<!DOCTYPE\s+html[\s\S]*?<\/html>)/i', $raw, $m)) {
+                $doc = trim($m[1]);
+                $intro = trim(str_replace($m[1], '', $raw));
+                // Drop tag-by-tag explanation noise from intro
+                $intro = preg_replace('/^\s*```[\s\S]*?```\s*/m', '', $intro) ?? $intro;
+                $intro = trim(preg_replace('/\s+/u', ' ', $intro) ?? $intro);
+                if ((function_exists('mb_strlen') ? mb_strlen($intro) : strlen($intro)) > 280) {
+                    $intro = 'Here is a simple HTML page you can save as index.html.';
+                }
+                if ($intro === '') {
+                    $intro = 'Here is a simple HTML page you can save as index.html.';
+                }
+                return $intro . "\n\n```html\n" . $doc . "\n```";
+            }
+
+            // Rebuild from fragmented lines that look like HTML source
+            $lines = preg_split('/\r\n|\r|\n/', $raw) ?: [];
+            $htmlLines = [];
+            $prose = [];
+            foreach ($lines as $line) {
+                $trim = trim($line);
+                if ($trim === '' || $trim === '```' || preg_match('/^```[a-zA-Z]*$/', $trim)) {
+                    continue;
+                }
+                // Pure explanation lines about tags (not source)
+                if (preg_match('/^(?:html|head|body|title|doctype)\b.*\b(?:starts|holds|tells|contains)\b/i', $trim)) {
+                    $prose[] = $trim;
+                    continue;
+                }
+                if (preg_match('/^\s*</', $trim) || preg_match('/^\s*<!DOCTYPE/i', $trim)) {
+                    // Strip leading list markers from fact synthesis
+                    $trim = preg_replace('/^[-*+]+\s+/', '', $trim) ?? $trim;
+                    $trim = preg_replace('/^\d+[.)]\s+/', '', $trim) ?? $trim;
+                    $htmlLines[] = $trim;
+                } else {
+                    $prose[] = $trim;
+                }
+            }
+
+            if (count($htmlLines) >= 3) {
+                $doc = implode("\n", $htmlLines);
+                // If fragments don't include html wrapper but look like page body, wrap
+                if (!preg_match('/<html/i', $doc) && preg_match('/<(?:head|body|title)/i', $doc)) {
+                    $doc = "<!DOCTYPE html>\n<html lang=\"en\">\n" . $doc . "\n</html>";
+                }
+                $intro = 'Here is a simple HTML page you can save as index.html.';
+                return $intro . "\n\n```html\n" . $doc . "\n```";
+            }
+
+            return $raw;
+        }
+
         private function protectStructuredBlocks(string $raw): array
         {
             $blocks = [];
@@ -77,7 +180,7 @@ if (!class_exists('ResponseUnderstandingSkill', false)) {
 
             // Fenced Markdown code blocks. The complete block, including its
             // language marker, is preserved byte-for-byte.
-            $fencePattern = '/```[^\r\n]*\r?\n[\s\S]*?```/';
+            $fencePattern = '/```[^\r\n]*\r?\n[\s\S]*?```/';  // standard fenced blocks
 
             $text = preg_replace_callback(
                 $fencePattern,

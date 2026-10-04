@@ -10,6 +10,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/core/MemoryStore.php';
 require_once __DIR__ . '/core/SpellCorrector.php';
 require_once __DIR__ . '/skills/FactSkill.php';
+require_once __DIR__ . '/core/SkillData.php';
 
 $message = '';
 $messageType = '';
@@ -55,7 +56,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 $line = trim((string)$line);
                 $line = preg_replace('/^[\*\-\x{2022}\d\.\)\s]+/u', '', $line) ?? $line;
                 $line = trim($line);
-                if ($line !== '' && mb_strlen($line) > 2) {
+                if ($line !== '' && (function_exists('mb_strlen') ? mb_strlen($line) : strlen($line)) > 2) {
                     $chunks[] = $line;
                 }
             }
@@ -68,15 +69,23 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             $textForFacts = implode("\n", $chunks);
             $facts = FactSkill::extractFactsFromText($textForFacts, 'gui_seed', 0.95);
 
-            // Ensure every fact has local embedding
-            foreach ($facts as &$fact) {
-                if (empty($fact['embedding']) || !is_array($fact['embedding'])) {
-                    $fact['embedding'] = FactSkill::embed((string)($fact['content'] ?? $fact['value'] ?? ''));
+            // Normalize to SkillData Fact shape + ensure embeddings
+            $normalized = [];
+            foreach ($facts as $fact) {
+                if (!is_array($fact)) {
+                    continue;
                 }
+                $fact = SkillData::normalizeFact($fact);
                 $fact['source'] = 'gui_seed';
                 $fact['confidence'] = 0.95;
+                if (empty($fact['embedding']) || !is_array($fact['embedding'])) {
+                    $fact['embedding'] = FactSkill::embed((string)$fact['content']);
+                }
+                if ($fact['content'] !== '') {
+                    $normalized[] = $fact;
+                }
             }
-            unset($fact);
+            $facts = $normalized;
 
             if ($facts === []) {
                 $message = 'No usable facts could be extracted from the content.';

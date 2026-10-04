@@ -53,10 +53,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'prompt_original'  => $promptOriginal,
                 'prompt_corrected' => $prompt,
             ];
-        } catch (Throwable $e) {
-            // Do not expose internal PHP/API errors to the user.
-            $error = 'The AI system could not complete the request. Please try again.';
-        }
+} catch (Throwable $e) {
+
+    // Always log the detailed error server-side.
+    error_log(
+        '[CfCbazar AI] ' .
+        $e::class .
+        ': ' .
+        $e->getMessage() .
+        ' in ' .
+        $e->getFile() .
+        ':' .
+        $e->getLine()
+    );
+
+    /*
+     * Debug mode:
+     * /diy/ai-system/?debug=1
+     *
+     * Shows useful diagnostic information without exposing
+     * API credentials.
+     */
+    if (
+        isset($_GET['debug']) &&
+        $_GET['debug'] === '1'
+    ) {
+        $error =
+            "AI system error\n\n" .
+            "Exception: " . $e::class . "\n" .
+            "Message: " . $e->getMessage() . "\n" .
+            "File: " . basename($e->getFile()) . "\n" .
+            "Line: " . $e->getLine();
+
+    } else {
+
+        $error =
+            'The AI system could not complete the request. ' .
+            'Please try again.';
+    }
+}
     }
 }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../core/Helpers.php';
 require_once __DIR__ . '/FactSkill.php';
 require_once __DIR__ . '/../core/ConversationStore.php';
+require_once __DIR__ . '/../core/SkillData.php';
 
 /**
  * Central knowledge system — local-first, multi-part and constraint-aware.
@@ -19,6 +20,268 @@ class KnowledgeSkill
     private int $vectorLimit = 24;
     private int $maxAnswerFacts = 10;
 
+
+    /**
+     * Preferred entry (Phase 3): fill SkillData in place.
+     * Writes memory_hits, memory_sufficient, openrouter, facts merge, draft_answer.
+     */
+    public function process(SkillData $data, MemoryStore $memory): SkillData
+    {
+        $data->setSkill('knowledge');
+
+        $prompt = $data->prompt();
+        if ($prompt === '') {
+            $data->set('draft_answer', 'Please provide a question or topic.');
+            return $data;
+        }
+
+        $features = $this->loadFeatures();
+        $openRouterEnabled = !empty($features['openrouter_enabled']);
+        $mode = strtolower((string)($features['knowledge_mode'] ?? 'hybrid'));
+        if ($mode !== 'local' && $mode !== 'hybrid') {
+            $mode = 'hybrid';
+        }
+
+        $coreQuery = trim((string)$data->get('core_query', ''));
+        if ($coreQuery === '') {
+            $coreQuery = $prompt;
+        }
+        $topic = $data->topic();
+        $intent = (string)$data->get('intent', 'ask_information');
+        $entities = is_array($data->get('entities')) ? $data->get('entities') : [];
+        $questionType = (string)$data->get('question_type', 'statement');
+        $queryEmbedding = is_array($data->get('query_embedding')) ? $data->get('query_embedding') : [];
+        $keyPhrases = is_array($data->get('key_phrases')) ? $data->get('key_phrases') : [];
+        $constraints = is_array($data->get('constraints')) ? $data->get('constraints') : [];
+        $secondaryIntents = is_array($data->get('secondary_intents')) ? $data->get('secondary_intents') : [];
+        $subtopics = is_array($data->get('subtopics')) ? $data->get('subtopics') : [];
+        $isMultiPart = (bool)$data->get('is_multi_part', false);
+
+        // Conversation context
+        $conversation = [];
+        $conversationContext = '';
+        if (!empty($features['conversation_enabled'])) {
+            $sessionId = (string)$data->get('session_id', '');
+            if ($sessionId === '') {
+                $sessionId = ConversationStore::resolveSessionId();
+                $data->set('session_id', $sessionId);
+            }
+            $conv = new ConversationStore(
+                $sessionId,
+                (int)($features['conversation_max_turns'] ?? 10)
+            );
+            $relevant = $conv->relevantTurns($queryEmbedding, 3, 0.22);
+            $conversation = $relevant;
+            if ($relevant !== []) {
+                $bits = [];
+                foreach ($relevant as $turn) {
+                    $ans = (string)($turn['answer'] ?? '');
+                    $ans = function_exists('mb_substr') ? mb_substr($ans, 0, 300) : substr($ans, 0, 300);
+                    $bits[] = 'User: ' . ($turn['prompt'] ?? '') . "\nAssistant: " . $ans;
+                }
+                $conversationContext = implode("\n\n", $bits);
+            }
+        }
+        $data->set('conversation', $conversation);
+
+        $searchText = trim($coreQuery . ' ' . implode(' ', array_slice($keyPhrases, 0, 8)));
+        $ranked = $this->retrieveRankedFacts(
+            $memory,
+            $searchText !== '' ? $searchText : $prompt,
+            $topic,
+            $queryEmbedding,
+            $entities,
+            $subtopics,
+            $keyPhrases
+        );
+        $ranked = $this->substantiveFacts($ranked, $prompt);
+        $ranked = $this->filterByAge($ranked);
+        $ranked = $this->boostByKeyPhrases($ranked, $keyPhrases);
+        $ranked = $this->sortByScore($ranked);
+
+        // Snapshot for SkillData
+        $hits = [];
+        foreach (array_slice($ranked, 0, $this->maxAnswerFacts) as $f) {
+            if (is_array($f)) {
+                $hits[] = SkillData::normalizeFact($f);
+            }
+        }
+        $data->set('memory_hits', $hits);
+
+        $sufficient = $this->memoryIsSufficient($ranked, $intent, $isMultiPart);
+        $data->set('memory_sufficient', $sufficient);
+
+        $gapFill = false;
+        $openRouterRaw = null;
+
+        // Code generation: prefer a real page template over unrelated language facts
+        $localCode = $this->localCodeTemplate($prompt, $topic, $intent);
+        if ($localCode !== null) {
+            $data->set('openrouter', [
+                'enabled'  => $openRouterEnabled,
+                'mode'     => $mode,
+                'gap_fill' => false,
+                'raw'      => null,
+            ]);
+            $data->set('draft_answer', $localCode);
+            return $data;
+        }
+
+        if ($sufficient) {
+            $draft = $this->synthesizeAnswer(
+                $topic, $intent, $entities,
+                array_slice($ranked, 0, $this->maxAnswerFacts),
+                $questionType, $prompt, $constraints, $secondaryIntents,
+                $isMultiPart, $subtopics
+            );
+        } else {
+            $canUseOpenRouter = $openRouterEnabled && $mode === 'hybrid';
+            if (!$canUseOpenRouter) {
+                if ($ranked !== []) {
+                    $draft = $this->synthesizeAnswer(
+                        $topic, $intent, $entities,
+                        array_slice($ranked, 0, $this->maxAnswerFacts),
+                        $questionType, $prompt, $constraints, $secondaryIntents,
+                        $isMultiPart, $subtopics
+                    );
+                } else {
+                    $draft = 'No solid local knowledge found for this topic yet.';
+                    if ($conversationContext !== '') {
+                        $draft .= "
+
+**From recent conversation**
+" . $conversationContext;
+                    }
+                    if (!$openRouterEnabled) {
+                        $draft .= "\n\n_(OpenRouter is disabled — set openrouter_enabled to true in config/features.php.)_";
+                    } elseif ($mode === 'local') {
+                        $draft .= "\n\n_(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via OpenRouter.)_";
+                    }
+                }
+            } else {
+                $gapFill = $ranked !== [];
+                $response = $this->requestOpenRouter(
+                    $prompt, $coreQuery, $topic, $intent, $questionType,
+                    $ranked, $conversationContext, $constraints,
+                    $isMultiPart, $subtopics, $gapFill
+                );
+
+                if (isset($response['error'])) {
+                    if ($ranked !== []) {
+                        $draft = $this->synthesizeAnswer(
+                            $topic, $intent, $entities,
+                            array_slice($ranked, 0, $this->maxAnswerFacts),
+                            $questionType, $prompt, $constraints, $secondaryIntents,
+                            $isMultiPart, $subtopics
+                        );
+                    } else {
+                        $draft = 'I could not retrieve knowledge for this topic right now. '
+                            . (string)($response['message'] ?? '');
+                    }
+                } else {
+                    $text = trim((string)($response['choices'][0]['message']['content'] ?? ''));
+                    $openRouterRaw = $text !== '' ? $text : null;
+
+                    if ($text === '') {
+                        if ($ranked !== []) {
+                            $draft = $this->synthesizeAnswer(
+                                $topic, $intent, $entities,
+                                array_slice($ranked, 0, $this->maxAnswerFacts),
+                                $questionType, $prompt, $constraints, $secondaryIntents,
+                                $isMultiPart, $subtopics
+                            );
+                        } else {
+                            $draft = 'OpenRouter returned an empty response.';
+                        }
+                    } elseif ($this->looksLikeCodeRequest($prompt) && $this->extractHtmlDocument($text) !== null) {
+                        $doc = $this->extractHtmlDocument($text);
+                        $responseFacts = FactSkill::extractFactsFromText($text, 'openrouter', 0.85);
+                        $responseFacts = $this->substantiveFacts($responseFacts, $prompt);
+                        $toStore = [];
+                        foreach ($responseFacts as $f) {
+                            if (($f['type'] ?? '') !== 'prompt_intent') {
+                                $toStore[] = $f;
+                            }
+                        }
+                        $toStore[] = [
+                            'content' => $doc,
+                            'value' => $doc,
+                            'type' => 'code_html',
+                            'source' => 'openrouter',
+                            'confidence' => 0.9,
+                            'embedding' => FactSkill::embed(
+                                function_exists('mb_substr') ? mb_substr($doc, 0, 500) : substr($doc, 0, 500)
+                            ),
+                            'created_at' => gmdate('c'),
+                        ];
+                        if ($toStore !== []) {
+                            $toStore = array_map([SkillData::class, 'normalizeFact'], $toStore);
+                            $memory->mergeTopicFacts($topic, $toStore);
+                            $data->mergeFacts($toStore);
+                        }
+                        $draft = "Here is a simple HTML page you can save as index.html.
+
+```html
+" . $doc . "
+```";
+                    } else {
+                        $responseFacts = FactSkill::extractFactsFromText($text, 'openrouter', 0.85);
+                        $responseFacts = $this->substantiveFacts($responseFacts, $prompt);
+                        $toStore = [];
+                        foreach ($responseFacts as $f) {
+                            if (($f['type'] ?? '') !== 'prompt_intent') {
+                                $toStore[] = $f;
+                            }
+                        }
+                        if ($toStore !== []) {
+                            $toStore = array_map([SkillData::class, 'normalizeFact'], $toStore);
+                            $memory->mergeTopicFacts($topic, $toStore);
+                            foreach ($subtopics as $sub) {
+                                $sub = trim((string)$sub);
+                                if ($sub !== '' && $sub !== $topic) {
+                                    $memory->mergeTopicFacts($sub, $toStore);
+                                }
+                            }
+                            $data->mergeFacts($toStore);
+                        }
+                        $final = $this->sortByScore(
+                            $this->boostByKeyPhrases(
+                                $this->substantiveFacts(
+                                    $this->mergeUniqueFacts($ranked, $responseFacts),
+                                    $prompt
+                                ),
+                                $keyPhrases
+                            )
+                        );
+                        if ($final !== []) {
+                            $draft = $this->synthesizeAnswer(
+                                $topic, $intent, $entities,
+                                array_slice($final, 0, $this->maxAnswerFacts),
+                                $questionType, $prompt, $constraints, $secondaryIntents,
+                                $isMultiPart, $subtopics
+                            );
+                        } else {
+                            $draft = $text;
+                        }
+                    }
+                }
+            }
+        }
+
+        $data->set('openrouter', [
+            'enabled'  => $openRouterEnabled,
+            'mode'     => $mode,
+            'gap_fill' => $gapFill,
+            'raw'      => $openRouterRaw,
+        ]);
+        $data->set('draft_answer', $draft);
+
+        return $data;
+    }
+
+    /**
+     * Legacy array API — delegates to process(SkillData).
+     */
     public function respond(array $analysis, MemoryStore $memory): string
     {
         $prompt = trim((string)($analysis['raw_prompt'] ?? ''));
@@ -81,6 +344,12 @@ class KnowledgeSkill
         $ranked = $this->boostByKeyPhrases($ranked, $keyPhrases);
         $ranked = $this->sortByScore($ranked);
 
+        $mode = strtolower((string)($features['knowledge_mode'] ?? 'hybrid'));
+        if ($mode !== 'local' && $mode !== 'hybrid') {
+            $mode = 'hybrid';
+        }
+
+        // Fully covered by local memory → never call OpenRouter
         if ($this->memoryIsSufficient($ranked, $intent, $isMultiPart)) {
             $top = array_slice($ranked, 0, $this->maxAnswerFacts);
             return $this->synthesizeAnswer(
@@ -97,7 +366,9 @@ class KnowledgeSkill
             );
         }
 
-        if (empty($openRouterEnabled)) {
+        $canUseOpenRouter = $openRouterEnabled && $mode === 'hybrid';
+
+        if (!$canUseOpenRouter) {
             if ($ranked !== []) {
                 return $this->synthesizeAnswer(
                     $topic,
@@ -114,12 +385,25 @@ class KnowledgeSkill
             }
             $msg = 'No solid local knowledge found for this topic yet.';
             if ($conversationContext !== '') {
-                $msg .= "\n\n**From recent conversation**\n" . $conversationContext;
+                $msg .= "
+
+**From recent conversation**
+" . $conversationContext;
             }
-            $msg .= "\n\n_(OpenRouter is disabled — set openrouter_enabled to true in config/features.php to fetch new knowledge.)_";
+            if (!$openRouterEnabled) {
+                $msg .= "
+
+_(OpenRouter is disabled — set openrouter_enabled to true in config/features.php.)_";
+            } elseif ($mode === 'local') {
+                $msg .= "
+
+_(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via OpenRouter.)_";
+            }
             return $msg;
         }
 
+        // Hybrid: local facts are the base; OpenRouter fills gaps only
+        $gapFill = $ranked !== [];
         $response = $this->requestOpenRouter(
             $prompt,
             $coreQuery,
@@ -130,7 +414,8 @@ class KnowledgeSkill
             $conversationContext,
             $constraints,
             $isMultiPart,
-            $subtopics
+            $subtopics,
+            $gapFill
         );
 
         if (isset($response['error'])) {
@@ -154,7 +439,52 @@ class KnowledgeSkill
 
         $text = trim((string)($response['choices'][0]['message']['content'] ?? ''));
         if ($text === '') {
+            if ($ranked !== []) {
+                return $this->synthesizeAnswer(
+                    $topic,
+                    $intent,
+                    $entities,
+                    array_slice($ranked, 0, $this->maxAnswerFacts),
+                    $questionType,
+                    $prompt,
+                    $constraints,
+                    $secondaryIntents,
+                    $isMultiPart,
+                    $subtopics
+                );
+            }
             return 'OpenRouter returned an empty response.';
+        }
+
+        // Code/HTML generation: prefer one complete fenced document for the user
+        if ($this->looksLikeCodeRequest($prompt) && $this->extractHtmlDocument($text) !== null) {
+            $doc = $this->extractHtmlDocument($text);
+            $responseFacts = FactSkill::extractFactsFromText($text, 'openrouter', 0.85);
+            $responseFacts = $this->substantiveFacts($responseFacts, $prompt);
+            $toStore = [];
+            foreach ($responseFacts as $f) {
+                if (($f['type'] ?? '') !== 'prompt_intent') {
+                    $toStore[] = $f;
+                }
+            }
+            // Also store the full page as one fact for reuse
+            $toStore[] = [
+                'content' => $doc,
+                'value' => $doc,
+                'type' => 'code_html',
+                'source' => 'openrouter',
+                'confidence' => 0.9,
+                'embedding' => FactSkill::embed((function_exists('mb_substr') ? mb_substr($doc, 0, 500) : substr($doc, 0, 500))),
+                'created_at' => gmdate('c'),
+            ];
+            if ($toStore !== []) {
+                $memory->mergeTopicFacts($topic, $toStore);
+            }
+            return "Here is a simple HTML page you can save as index.html.
+
+```html
+" . $doc . "
+```";
         }
 
         $responseFacts = FactSkill::extractFactsFromText($text, 'openrouter', 0.85);
@@ -168,7 +498,6 @@ class KnowledgeSkill
         }
         if ($toStore !== []) {
             $memory->mergeTopicFacts($topic, $toStore);
-            // Also store under subtopics when multi-part
             foreach ($subtopics as $sub) {
                 $sub = trim((string)$sub);
                 if ($sub !== '' && $sub !== $topic) {
@@ -380,6 +709,7 @@ class KnowledgeSkill
         if (!is_file($path)) {
             return [
                 'openrouter_enabled' => false,
+                'knowledge_mode' => 'hybrid',
                 'conversation_enabled' => true,
                 'conversation_max_turns' => 10,
             ];
@@ -398,9 +728,18 @@ class KnowledgeSkill
         string $conversationContext = '',
         array $constraints = [],
         bool $isMultiPart = false,
-        array $subtopics = []
+        array $subtopics = [],
+        bool $gapFill = false
     ): array {
-        $config = require __DIR__ . '/../config/openrouter.php';
+        try {
+            $config = require __DIR__ . '/../config/openrouter.php';
+        } catch (Throwable $e) {
+            return Helpers::error('OpenRouter config error: ' . $e->getMessage());
+        }
+
+        if (!is_array($config) || empty($config['api_key'])) {
+            return Helpers::error('OpenRouter API key is missing or invalid.');
+        }
 
         $context = '';
         if ($conversationContext !== '') {
@@ -415,11 +754,19 @@ class KnowledgeSkill
                 }
             }
             if ($bits !== []) {
-                $context .= "Known local facts (use if helpful):\n" . implode("\n", $bits) . "\n\n";
+                $context .= "Trusted local facts (keep these; do not contradict):\n" . implode("\n", $bits) . "\n\n";
             }
         }
 
         $style = [];
+        if ($gapFill) {
+            $style[] = 'Fill only gaps missing from the local facts. Do not rewrite what is already covered. Add new storeable factual statements.';
+        } else {
+            $style[] = 'Provide a complete factual answer using concrete storeable statements.';
+        }
+        if (preg_match('/\b(html\s*page|simple\s+html|make\s+me\s+a\s+.*html|webpage|web\s*page)\b/i', $prompt)) {
+            $style[] = 'Return ONE complete HTML5 document inside a single markdown fenced block marked html. Do not explain tags line by line. Put a one-sentence intro before the fence only.';
+        }
         if (in_array('simple', $constraints, true) || in_array('beginner', $constraints, true)) {
             $style[] = 'Use simple language for beginners.';
         }
@@ -451,8 +798,6 @@ class KnowledgeSkill
             . "Write clear factual statements a knowledge base can store. "
             . "Do not use meta phrases like 'it seems you are asking'. "
             . "Prefer concrete definitions, steps, and examples.\n\n"
-            . "IMPORTANT: When providing code examples, always wrap the complete code in a single fenced code block using ```language syntax. "
-            . "Do not split code into multiple blocks or separate lines with explanations between them.\n\n"
             . "Main ask: {$coreQuery}\n"
             . "Full user message: {$prompt}";
 
@@ -464,9 +809,26 @@ class KnowledgeSkill
             'temperature' => 0.35,
         ];
 
+        $apiKey = trim((string)($config['api_key'] ?? ''));
+        if ($apiKey === '') {
+            return Helpers::error('OpenRouter API key is empty. Check /config.php ($API_openrouter) or config/openrouter.local.php.');
+        }
+
+        $headers = [
+            'Authorization: Bearer ' . $apiKey,
+            'Content-Type: application/json',
+        ];
+        if (!empty($config['referer'])) {
+            $headers[] = 'HTTP-Referer: ' . $config['referer'];
+            $headers[] = 'Referer: ' . $config['referer'];
+        }
+        if (!empty($config['title'])) {
+            $headers[] = 'X-Title: ' . $config['title'];
+        }
+
         return Helpers::httpPostJson(
             $config['base_url'],
-            ['Authorization: Bearer ' . $config['api_key']],
+            $headers,
             $payload
         ) ?? Helpers::error('No valid response received from OpenRouter.');
     }
@@ -600,6 +962,97 @@ class KnowledgeSkill
         return trim($text);
     }
 
+    private function looksLikeCodeRequest(string $prompt): bool
+    {
+        $p = strtolower($prompt);
+        return (bool)preg_match(
+            '/\b(?:make|create|write|generate|build)\b[\s\S]{0,40}\b(?:simple\s+)?(?:php|html|css)\b|\b(?:php|html)\s+page\b|\bsimple\s+(?:php|html)\b|<!doctype/i',
+            $p
+        );
+    }
+
+    /**
+     * Local templates when user asks to generate a page (no OpenRouter required).
+     */
+    private function localCodeTemplate(string $prompt, string $topic, string $intent): ?string
+    {
+        if ($intent !== 'generate_code' && !$this->looksLikeCodeRequest($prompt)) {
+            return null;
+        }
+        $p = strtolower($prompt);
+        $wantPhp = (bool)preg_match('/\bphp\b/', $p) || $topic === 'php_page';
+        $wantHtml = (bool)preg_match('/\bhtml\b|\bweb\s*page\b|\bwebpage\b/', $p) || $topic === 'html_page';
+
+        if ($wantPhp) {
+            $code = <<<'PHP'
+<?php
+declare(strict_types=1);
+$title = 'My PHP Page';
+$message = 'Hello from PHP!';
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+        h1 { color: #222; }
+    </style>
+</head>
+<body>
+    <h1><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
+    <p><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
+</body>
+</html>
+PHP;
+            return "Here is a simple PHP page you can save as `index.php`.
+
+```php
+" . trim($code) . "
+```";
+        }
+
+        if ($wantHtml || $this->looksLikeCodeRequest($prompt)) {
+            $code = <<<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Page</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+        h1 { color: #222; }
+    </style>
+</head>
+<body>
+    <h1>Hello</h1>
+    <p>This is a simple HTML page.</p>
+</body>
+</html>
+HTML;
+            return "Here is a simple HTML page you can save as `index.html`.
+
+```html
+" . trim($code) . "
+```";
+        }
+
+        return null;
+    }
+
+    private function extractHtmlDocument(string $text): ?string
+    {
+        if (preg_match('/(<!DOCTYPE\s+html[\s\S]*?<\/html>)/i', $text, $m)) {
+            return trim($m[1]);
+        }
+        if (preg_match('/(<html[\s\S]*?<\/html>)/i', $text, $m)) {
+            return trim($m[1]);
+        }
+        return null;
+    }
+
     private function synthesizeAnswer(
         string $topic,
         string $intent,
@@ -612,11 +1065,33 @@ class KnowledgeSkill
         bool $isMultiPart = false,
         array $subtopics = []
     ): string {
+        // Prefer a stored full HTML document when user asked for a page
+        if ($this->looksLikeCodeRequest($prompt)) {
+            foreach ($facts as $fact) {
+                $value = trim((string)($fact['value'] ?? $fact['content'] ?? ''));
+                if (($fact['type'] ?? '') === 'code_html' || $this->extractHtmlDocument($value) !== null) {
+                    $doc = $this->extractHtmlDocument($value) ?? $value;
+                    return "Here is a simple HTML page you can save as index.html.
+
+```html
+" . $doc . "
+```";
+                }
+            }
+        }
+
         $lines = [];
         foreach ($facts as $fact) {
             $value = trim((string)($fact['value'] ?? $fact['content'] ?? ''));
             if ($value === '' || ($fact['type'] ?? '') === 'prompt_intent') {
                 continue;
+            }
+            if (($fact['type'] ?? '') === 'code_html') {
+                return "Here is a simple HTML page you can save as index.html.
+
+```html
+" . $value . "
+```";
             }
             if (!preg_match('/[.!?]$/', $value)) {
                 $value .= '.';
@@ -687,40 +1162,14 @@ class KnowledgeSkill
     {
         $out = '';
         $i = 1;
-        
-        // Detect if this is code content
-        $isCode = false;
-        $codeLanguage = '';
-        
         foreach ($lines as $line) {
-            // Check for code patterns
-            if (preg_match('/^```/', $line)) {
-                $isCode = true;
-                $codeLanguage = trim(str_replace('```', '', $line));
-                $out .= $line . "\n";
-                continue;
-            }
-            
-            if ($isCode && preg_match('/^```/', $line)) {
-                $isCode = false;
-                $out .= $line . "\n";
-                continue;
-            }
-            
-            if ($isCode) {
-                // Keep code lines together without formatting
-                $out .= $line . "\n";
+            if ($numbered) {
+                $out .= $i . '. ' . $line . "\n";
+                $i++;
             } else {
-                // Regular text formatting
-                if ($numbered) {
-                    $out .= $i . '. ' . $line . "\n";
-                    $i++;
-                } else {
-                    $out .= '- ' . $line . "\n";
-                }
+                $out .= '- ' . $line . "\n";
             }
         }
-        
         return trim($out);
     }
 }

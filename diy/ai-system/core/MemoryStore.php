@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/SkillData.php';
+
 if (!class_exists('FactSkill', false)) {
     require_once __DIR__ . '/../skills/FactSkill.php';
 }
@@ -96,6 +98,12 @@ class MemoryStore
             }
             // Prefer corrected form even if file does not exist yet
             $safe = $correctedSafe;
+        }
+
+        // Prefer canonical spellings when candidate is a known misspelling
+        $canonical = $this->canonicalTopicAlias($safe);
+        if ($canonical !== null) {
+            return $canonical;
         }
 
         // Exact match
@@ -319,45 +327,33 @@ class MemoryStore
     private function normalizeFacts(array $facts): array
     {
         $normalized = [];
-        $now = gmdate('c');
 
         foreach ($facts as $fact) {
-            if (is_string($fact)) {
-                $fact = ['value' => trim($fact)];
-            }
-
             if (!is_array($fact)) {
                 continue;
             }
 
-            $content = trim((string) ($fact['content'] ?? $fact['value'] ?? $fact['text'] ?? ''));
-            if ($content === '') {
+            $record = SkillData::normalizeFact($fact);
+
+            // Preserve storage-only fields used by pruning / metadata
+            if (isset($fact['id'])) {
+                $record['id'] = $fact['id'];
+            }
+            if (isset($fact['updated_at'])) {
+                $record['updated_at'] = $fact['updated_at'];
+            } else {
+                $record['updated_at'] = $record['created_at'];
+            }
+            $record['access_count'] = max(0, (int)($fact['access_count'] ?? 0));
+            $record['decay_rate'] = max(0.0, (float)($fact['decay_rate'] ?? 0.05));
+
+            if ($record['content'] === '') {
                 continue;
             }
 
-            $metadata = is_array($fact['metadata'] ?? null) ? $fact['metadata'] : [];
-            $createdAt = (string) ($metadata['created_at'] ?? $fact['created_at'] ?? $fact['added_at'] ?? $fact['timestamp'] ?? $now);
-            $updatedAt = (string) ($metadata['updated_at'] ?? $fact['updated_at'] ?? $createdAt);
-
-            $record = $fact;
-            $record['id'] = (string) ($fact['id'] ?? $this->createFactId());
-            $record['type'] = (string) ($fact['type'] ?? $metadata['type'] ?? 'statement');
-            $record['value'] = (string) ($fact['value'] ?? $content);
-            $record['content'] = $content;
-            $record['confidence'] = is_numeric($fact['confidence'] ?? null)
-                ? max(0.0, min(1.0, (float) $fact['confidence']))
-                : (is_numeric($metadata['confidence'] ?? null) ? max(0.0, min(1.0, (float) $metadata['confidence'])) : 0.80);
-            $record['source'] = (string) ($fact['source'] ?? $metadata['source'] ?? 'unknown');
-            $record['created_at'] = $createdAt;
-            $record['updated_at'] = $updatedAt;
-            $record['access_count'] = max(0, (int) ($fact['access_count'] ?? $metadata['access_count'] ?? 0));
-            $record['decay_rate'] = max(0.0, (float) ($fact['decay_rate'] ?? $metadata['decay_rate'] ?? 0.05));
-
-            // Keep existing embedding; do not auto-generate here (FactSkill does that)
-            if (isset($fact['embedding']) && is_array($fact['embedding'])) {
-                $record['embedding'] = array_values(array_map('floatval', array_filter($fact['embedding'], 'is_numeric')));
-            } else {
-                $record['embedding'] = [];
+            // Ensure embedding present when content exists
+            if (empty($record['embedding']) || !is_array($record['embedding'])) {
+                $record['embedding'] = FactSkill::embed($record['content']);
             }
 
             $normalized[] = $record;
@@ -556,6 +552,36 @@ class MemoryStore
         if (!@mkdir($directory, 0775, true) && !is_dir($directory)) {
             throw new RuntimeException('Unable to create memory directory: ' . $directory);
         }
+    }
+
+    /**
+     * Map known misspellings / noisy topics to canonical keys.
+     */
+    private function canonicalTopicAlias(string $safe): ?string
+    {
+        $aliases = [
+            'vecrot_embedings' => 'vector_embeddings',
+            'vecrot_embeddings' => 'vector_embeddings',
+            'vector_embedings' => 'vector_embeddings',
+            'vector_embedding' => 'vector_embeddings',
+            'a_sky_stream_puck' => 'sky_stream_puck',
+            'sky_stream_pick' => 'sky_stream_puck',
+            'skystream_puck' => 'sky_stream_puck',
+            'i_build_true' => 'building_trust',
+            'build_true' => 'building_trust',
+            'building_true' => 'building_trust',
+        ];
+        if (isset($aliases[$safe])) {
+            return $aliases[$safe];
+        }
+        $stripped = preg_replace('/^(?:a|an|the)_+/i', '', $safe) ?? $safe;
+        if ($stripped !== $safe) {
+            if (isset($aliases[$stripped])) {
+                return $aliases[$stripped];
+            }
+            return $stripped;
+        }
+        return null;
     }
 }
 

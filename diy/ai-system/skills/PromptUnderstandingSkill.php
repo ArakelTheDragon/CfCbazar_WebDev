@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/FactSkill.php';
+require_once __DIR__ . '/../core/SkillData.php';
+require_once __DIR__ . '/../core/MemoryStore.php';
 
 /**
  * Analyse an English-language user prompt (including longer / multi-clause text).
@@ -30,44 +32,125 @@ class PromptUnderstandingSkill
         return function_exists('mb_strrpos') ? mb_strrpos($hay, $needle) : strrpos($hay, $needle);
     }
 
-    public function analyze(string $prompt): array
+    /**
+     * Preferred entry: fill SkillData in place (Phase 2).
+     */
+    public function process(SkillData $data, ?MemoryStore $memory = null): SkillData
     {
-        $clean = $this->normalizePrompt($prompt);
-        $core  = $this->extractCoreQuery($clean);
+        $data->setSkill('prompt_understanding');
+        $clean = $this->normalizePrompt($data->prompt());
+        $data->set('prompt', $clean);
 
-        $intent        = $this->detectIntent($clean);
-        $secondary     = $this->detectSecondaryIntents($clean, $intent);
-        $topic         = $this->extractTopic($clean);
-        $subtopics     = $this->extractSubtopics($clean, $topic);
-        $entities      = $this->extractEntities($clean);
-        $questionType  = $this->detectQuestionType($clean);
-        $constraints   = $this->extractConstraints($clean);
-        $keyPhrases    = $this->extractKeyPhrases($clean);
-        $isMultiPart   = $this->isMultiPart($clean);
+        $core = $this->extractCoreQuery($clean);
+        $intent = $this->detectIntent($clean);
+        $secondary = $this->detectSecondaryIntents($clean, $intent);
+        $topic = $this->extractTopic($clean);
+        if ($intent === 'generate_code') {
+            $pl = strtolower($clean);
+            if (preg_match('/\bphp\b/', $pl)) {
+                $topic = 'php_page';
+            } elseif (preg_match('/\bhtml\b|\bweb\s*page\b|\bwebpage\b/', $pl)) {
+                $topic = 'html_page';
+            }
+        }
+        $subtopics = $this->extractSubtopics($clean, $topic);
+        $entities = $this->extractEntities($clean);
+        $questionType = $this->detectQuestionType($clean);
+        $constraints = $this->extractConstraints($clean);
+        $keyPhrases = $this->extractKeyPhrases($clean);
+        $isMultiPart = $this->isMultiPart($clean);
 
-        // Embed core query for better retrieval on long prompts; fall back to full text
         $embedText = $core !== '' ? $core : $clean;
         if ($keyPhrases !== []) {
             $embedText .= ' ' . implode(' ', array_slice($keyPhrases, 0, 6));
         }
 
-        $promptFacts    = FactSkill::extractFactsFromPrompt($clean);
+        $promptFacts = FactSkill::extractFactsFromPrompt($clean);
         $queryEmbedding = FactSkill::embed($embedText);
 
+        // Memory peek: refine topic / seed memory_hits (read-only)
+        $memoryHits = [];
+        if ($memory !== null && $queryEmbedding !== []) {
+            if ($intent !== 'generate_code') {
+                $topic = $memory->resolveTopic($topic);
+            }
+
+            $hits = $memory->searchByVector($queryEmbedding, 0.32, 6, null);
+            foreach ($hits as $hit) {
+                if (!is_array($hit)) {
+                    continue;
+                }
+                $memoryHits[] = SkillData::normalizeFact($hit);
+
+                // Bias topic toward strong memory match (not for code generation)
+                if ($intent !== 'generate_code'
+                    && isset($hit['_topic'], $hit['_score'])
+                    && (float)$hit['_score'] >= 0.48
+                ) {
+                    $memTopic = $memory->resolveTopic((string)$hit['_topic']);
+                    if ($memTopic !== '' && $memTopic !== 'general_topic') {
+                        $topic = $memTopic;
+                    }
+                }
+            }
+
+            // If topic still weak, try text search on key phrases
+            if ($memoryHits === [] && $keyPhrases !== []) {
+                $hits = $memory->searchByText(
+                    implode(' ', array_slice($keyPhrases, 0, 5)),
+                    0.30,
+                    4,
+                    null
+                );
+                foreach ($hits as $hit) {
+                    if (is_array($hit)) {
+                        $memoryHits[] = SkillData::normalizeFact($hit);
+                    }
+                }
+            }
+        }
+
+        $data->set('core_query', $core);
+        $data->set('intent', $intent);
+        $data->set('secondary_intents', $secondary);
+        $data->set('topic', $topic);
+        $data->set('subtopics', $subtopics);
+        $data->set('entities', $entities);
+        $data->set('question_type', $questionType);
+        $data->set('constraints', $constraints);
+        $data->set('key_phrases', $keyPhrases);
+        $data->set('is_multi_part', $isMultiPart);
+        $data->set('query_embedding', $queryEmbedding);
+        $data->set('memory_hits', $memoryHits);
+        $data->mergeFacts($promptFacts);
+
+        return $data;
+    }
+
+    /**
+     * Legacy array API (still used by older callers / tests).
+     *
+     * @return array<string, mixed>
+     */
+    public function analyze(string $prompt): array
+    {
+        $data = SkillData::create($prompt, $prompt);
+        $data = $this->process($data);
+
         return [
-            'raw_prompt'         => $clean,
-            'core_query'         => $core,
-            'intent'             => $intent,
-            'secondary_intents'  => $secondary,
-            'topic'              => $topic,
-            'subtopics'          => $subtopics,
-            'entities'           => $entities,
-            'question_type'      => $questionType,
-            'constraints'        => $constraints,
-            'key_phrases'        => $keyPhrases,
-            'is_multi_part'      => $isMultiPart,
-            'prompt_facts'       => $promptFacts,
-            'query_embedding'    => $queryEmbedding,
+            'raw_prompt'         => $data->prompt(),
+            'core_query'         => (string)$data->get('core_query', ''),
+            'intent'             => (string)$data->get('intent', 'ask_information'),
+            'secondary_intents'  => is_array($data->get('secondary_intents')) ? $data->get('secondary_intents') : [],
+            'topic'              => $data->topic(),
+            'subtopics'          => is_array($data->get('subtopics')) ? $data->get('subtopics') : [],
+            'entities'           => is_array($data->get('entities')) ? $data->get('entities') : [],
+            'question_type'      => (string)$data->get('question_type', 'statement'),
+            'constraints'        => is_array($data->get('constraints')) ? $data->get('constraints') : [],
+            'key_phrases'        => is_array($data->get('key_phrases')) ? $data->get('key_phrases') : [],
+            'is_multi_part'      => (bool)$data->get('is_multi_part', false),
+            'prompt_facts'       => is_array($data->get('facts')) ? $data->get('facts') : [],
+            'query_embedding'    => is_array($data->get('query_embedding')) ? $data->get('query_embedding') : [],
         ];
     }
 
@@ -140,6 +223,27 @@ class PromptUnderstandingSkill
         $p = strtolower($prompt);
 
         $patterns = [
+            // Code / page generation (must be before generic "what is")
+            'make me a simple html'     => 'generate_code',
+            'make me a simple php'      => 'generate_code',
+            'make me an html'           => 'generate_code',
+            'make me a php'             => 'generate_code',
+            'make me a simple page'     => 'generate_code',
+            'make me a webpage'         => 'generate_code',
+            'make me a web page'        => 'generate_code',
+            'create a simple html'      => 'generate_code',
+            'create a simple php'       => 'generate_code',
+            'create an html'            => 'generate_code',
+            'create a php'              => 'generate_code',
+            'write me a simple html'    => 'generate_code',
+            'write me a simple php'     => 'generate_code',
+            'write a simple html'       => 'generate_code',
+            'write a simple php'        => 'generate_code',
+            'generate a simple html'    => 'generate_code',
+            'generate a simple php'     => 'generate_code',
+            'build me a simple'         => 'generate_code',
+            'give me a simple html'     => 'generate_code',
+            'give me a simple php'      => 'generate_code',
             'step by step'              => 'explain_process',
             'walk me through'           => 'explain_process',
             'explain how'               => 'explain_process',
@@ -189,6 +293,12 @@ class PromptUnderstandingSkill
             }
         }
 
+        // "make/create/write ... php/html page" without exact phrase above
+        if (preg_match('/\b(?:make|create|write|generate|build)\b.*\b(?:php|html|css|js|javascript)\b.*\b(?:page|file|script|document)?/i', $p)
+            || preg_match('/\b(?:php|html)\s+page\b/i', $p) && preg_match('/\b(?:make|create|write|generate|build|simple)\b/i', $p)) {
+            return 'generate_code';
+        }
+
         if ($this->containsWord($p, 'how')) {
             return 'explain_process';
         }
@@ -235,6 +345,12 @@ class PromptUnderstandingSkill
         $p = strtolower($prompt);
 
         $topics = [
+            'simple php page' => 'php_page',
+            'php page' => 'php_page',
+            'simple html page' => 'html_page',
+            'html page' => 'html_page',
+            'web page' => 'html_page',
+            'webpage' => 'html_page',
             'prompt understanding' => 'prompt_understanding',
             'response understanding' => 'response_understanding',
             'knowledge skill' => 'knowledge_skill',
@@ -549,8 +665,12 @@ class PromptUnderstandingSkill
     private function slugTopic(string $value): string
     {
         $value = strtolower(trim($value));
+        // Drop leading articles so "a sky stream puck" → sky_stream_puck
+        $value = preg_replace('/^(?:a|an|the)\s+/i', '', $value) ?? $value;
         $value = preg_replace('/[^a-z0-9]+/i', '_', $value) ?? '';
         $value = trim($value, '_');
+        // Drop leading article tokens after slugify
+        $value = preg_replace('/^(?:a|an|the)_+/i', '', $value) ?? $value;
 
         return $value !== '' ? $value : 'general_topic';
     }

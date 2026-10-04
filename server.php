@@ -7,8 +7,13 @@
 	$errors = array(); 
 	$_SESSION['success'] = "";
 	
-	// connect to database
-$db = mysqli_connect('sql313.infinityfree.com', 'if0_39103611', '53098516', 'if0_39103611_db1');
+	// connect to database - updated with correct remote MySQL host and database name
+	$db = mysqli_connect('localhost', 'if0_39103611', '53098516', '42web_io');
+
+	// Check connection
+	if (!$db) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
 
 	// REGISTER USER
 	if (isset($_POST['reg_user'])) {
@@ -37,11 +42,10 @@ $db = mysqli_connect('sql313.infinityfree.com', 'if0_39103611', '53098516', 'if0
 			$_SESSION['username'] = $username;
 			$_SESSION['success'] = "You are now logged in";
 			header('location: index.php');
+			exit();
 		}
 
 	}
-
-	// ... 
 
 	// LOGIN USER
 	if (isset($_POST['login_user'])) {
@@ -64,10 +68,10 @@ $db = mysqli_connect('sql313.infinityfree.com', 'if0_39103611', '53098516', 'if0
 				$_SESSION['username'] = $username;
 				$_SESSION['success'] = "You are now logged in";
 				header('location: index.php');
+				exit();
 			}else {
 				array_push($errors, "Wrong username/password combination");
 			}
 		}
 	}
-
 ?>

@@ -3,72 +3,103 @@
 declare(strict_types=1);
 
 /**
- * OpenRouter configuration for CfCbazar AI System.
+ * CfCbazar AI System - OpenRouter configuration
  *
- * Site root config.php is at /config.php
- * This system lives at /diy/ai-system2_dev/
+ * Location:
+ * /diy/ai-system/config/openrouter.php
+ *
+ * Secrets:
+ * /includes/secrets.php
+ *
+ * This file does NOT load the site's main config.php.
+ * The AI system only needs the OpenRouter credential.
  */
 
 $apiKey = '';
 
-// 1. Environment variable
-if (getenv('OPENROUTER_API_KEY') !== false) {
-    $apiKey = trim((string) getenv('OPENROUTER_API_KEY'));
+/*
+ * 1. Environment variable
+ */
+$envKey = getenv('OPENROUTER_API_KEY');
+
+if ($envKey !== false && trim((string)$envKey) !== '') {
+    $apiKey = trim((string)$envKey);
 }
 
-// 2. Site root and common relative locations
+/*
+ * 2. Site secrets.php
+ *
+ * Current structure:
+ *
+ * /htdocs/
+ * ├── includes/
+ * │   └── secrets.php
+ * └── diy/
+ *     └── ai-system/
+ *         └── config/
+ *             └── openrouter.php
+ *
+ * Therefore:
+ *
+ * __DIR__ . '/../../../includes/secrets.php'
+ */
 if ($apiKey === '') {
-    $candidates = [
-        // From /diy/ai-system2_dev/config/ → site root
-        __DIR__ . '/../../../config.php',   // /diy/ai-system2_dev/config → ../../../ = site root
-        __DIR__ . '/../../../../config.php',
-        // Fallback other depths
-        __DIR__ . '/../../config.php',
-        __DIR__ . '/../config.php',
-        __DIR__ . '/config.php',
-        // Absolute-style from document root if available
-        ($_SERVER['DOCUMENT_ROOT'] ?? '') . '/config.php',
-    ];
 
-    foreach ($candidates as $configPath) {
-        if ($configPath === '' || $configPath === '/config.php') {
-            continue;
-        }
-        if (is_file($configPath)) {
-            // Isolate variables so we don't pollute
-            $API_openrouter = null;
-            $openrouter_api_key = null;
-            require $configPath;
-            if (isset($API_openrouter) && is_string($API_openrouter) && trim($API_openrouter) !== '') {
-                $apiKey = trim($API_openrouter);
-                break;
-            }
-            if (isset($openrouter_api_key) && is_string($openrouter_api_key) && trim($openrouter_api_key) !== '') {
-                $apiKey = trim($openrouter_api_key);
-                break;
-            }
+    $secretsPath = __DIR__ . '/../../../includes/secrets.php';
+
+    if (is_file($secretsPath) && is_readable($secretsPath)) {
+
+        require_once $secretsPath;
+
+        if (
+            defined('OPENROUTER_API_KEY') &&
+            is_string(OPENROUTER_API_KEY) &&
+            trim(OPENROUTER_API_KEY) !== ''
+        ) {
+            $apiKey = trim(OPENROUTER_API_KEY);
         }
     }
 }
 
-// 3. Local override (never commit real keys)
+/*
+ * 3. Optional local override
+ *
+ * Useful for development without modifying secrets.php.
+ */
 if ($apiKey === '') {
+
     $local = __DIR__ . '/openrouter.local.php';
+
     if (is_file($local)) {
+
         $localConfig = require $local;
-        if (is_array($localConfig) && !empty($localConfig['api_key'])) {
-            $apiKey = trim((string) $localConfig['api_key']);
+
+        if (
+            is_array($localConfig) &&
+            isset($localConfig['api_key']) &&
+            is_string($localConfig['api_key']) &&
+            trim($localConfig['api_key']) !== ''
+        ) {
+            $apiKey = trim($localConfig['api_key']);
         }
     }
 }
 
+/*
+ * 4. Fail clearly if no key was found.
+ */
 if ($apiKey === '') {
+
     throw new RuntimeException(
-        'OpenRouter API key not found. Expected $API_openrouter in /config.php ' .
-        '(site root). Current script dir: ' . __DIR__
+        'OpenRouter API key not found. ' .
+        'Expected OPENROUTER_API_KEY in /includes/secrets.php. ' .
+        'Checked: ' . __DIR__ . '/../../../includes/secrets.php'
     );
 }
 
+/*
+ * OpenRouter configuration.
+ */
 return [
     'api_key'  => $apiKey,
     'base_url' => 'https://openrouter.ai/api/v1/chat/completions',
