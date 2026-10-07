@@ -2,20 +2,93 @@
 
 declare(strict_types=1);
 
-// Temporary diagnostics — remove after fix
-if (isset($_GET['debug']) && $_GET['debug'] === '1') {
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
+/**
+ * CfCbazar AI System — GUI entry.
+ * Uses site-wide includes/reusable.php for header/menu when available.
+ */
+
+// Show errors early (blank screen diagnosis). Set to 0 after stable.
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+
+// ---------------------------------------------------------------------------
+// Site layout (optional). InfinityFree helpers often die()/exit with no output.
+// Set $aiUseSiteLayout = true only after confirming header/menu work.
+// ---------------------------------------------------------------------------
+$aiUseSiteLayout = false; // SAFE DEFAULT — AI GUI always renders
+$useSiteLayout = false;
+$email = null;
+$is_logged_in = false;
+$csrf = '';
+$siteRoot = '';
+$siteBootstrapError = '';
+
+$siteRootCandidates = [
+    dirname(__DIR__, 2),
+    dirname(__DIR__),
+    dirname(__DIR__, 3),
+    $_SERVER['DOCUMENT_ROOT'] ?? '',
+];
+foreach ($siteRootCandidates as $candidate) {
+    $candidate = rtrim((string)$candidate, '/');
+    if ($candidate !== '' && is_dir($candidate . '/includes') && is_readable($candidate . '/includes/reusable.php')) {
+        $siteRoot = $candidate;
+        break;
+    }
 }
 
+if ($aiUseSiteLayout && $siteRoot !== '') {
+    try {
+        $syncPath = $siteRoot . '/system/sync.php';
+        if (is_readable($syncPath)) {
+            require_once $syncPath;
+        }
+        require_once $siteRoot . '/includes/reusable.php';
 
-require_once __DIR__ . '/core/Router.php';
-require_once __DIR__ . '/core/SpellCorrector.php';
-require_once __DIR__ . '/core/MemoryStore.php';
-require_once __DIR__ . '/core/ConversationStore.php';
+        // Never call helpers that may exit() the request on shared hosting
+        // (require_database_connection / checkSystemFlags / enforce_https).
 
-// Per-browser conversation session (cookie)
-$conversationSessionId = ConversationStore::resolveSessionId();
+        if (function_exists('trackVisit')) {
+            try { trackVisit('ai-system'); } catch (Throwable $e) { /* ignore */ }
+        }
+        if (function_exists('session_check')) {
+            try { session_check(); } catch (Throwable $e) { /* ignore */ }
+        }
+        if (function_exists('is_logged_in')) {
+            try { $is_logged_in = (bool) is_logged_in($email); } catch (Throwable $e) { $is_logged_in = false; }
+        }
+        if (function_exists('csrf_token')) {
+            try { $csrf = (string) csrf_token(); } catch (Throwable $e) { $csrf = ''; }
+        }
+
+        $useSiteLayout = function_exists('include_header');
+    } catch (Throwable $e) {
+        $useSiteLayout = false;
+        $siteBootstrapError = $e->getMessage();
+        error_log('AI system site bootstrap failed: ' . $e->getMessage());
+    }
+}
+
+// ---------------------------------------------------------------------------
+// AI system
+// ---------------------------------------------------------------------------
+// AI system
+// ---------------------------------------------------------------------------
+try {
+    require_once __DIR__ . '/core/Router.php';
+    require_once __DIR__ . '/core/SpellCorrector.php';
+    require_once __DIR__ . '/core/MemoryStore.php';
+    require_once __DIR__ . '/core/ConversationStore.php';
+    $conversationSessionId = ConversationStore::resolveSessionId();
+} catch (Throwable $e) {
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "AI bootstrap error\n";
+    echo $e->getMessage() . "\n";
+    echo $e->getFile() . ':' . $e->getLine() . "\n";
+    exit;
+}
 
 $response = '';
 $prompt = '';
@@ -24,7 +97,7 @@ $status = [];
 $startTime = microtime(true);
 $error = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     $promptOriginal = trim((string)($_POST['prompt'] ?? ''));
     $prompt = $promptOriginal;
 
@@ -32,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please enter a question or message.';
     } else {
         try {
-            // Light auto-correct using lexicon + known memory topic words
             $memory = new MemoryStore(__DIR__ . '/memory/memory.json');
             $extraWords = $memory->listTopics();
             $prompt = SpellCorrector::correct($prompt, $extraWords);
@@ -44,54 +116,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response = 'I could not generate a response. Please try again.';
             }
 
+            $topicName = (string)($router->lastTopic ?? '');
+            $topicFactCount = 0;
+            if ($topicName !== '') {
+                try {
+                    $topicFactCount = count($memory->getTopicFacts($topicName));
+                } catch (Throwable $e) {
+                    $topicFactCount = 0;
+                }
+            }
+
+            $memBytes = memory_get_usage(true);
+            $memPeakBytes = memory_get_peak_usage(true);
+
             $status = [
-                'last_topic'       => $router->lastTopic ?? '',
+                'last_topic'       => $topicName,
                 'last_entities'    => $router->lastEntities ?? [],
                 'last_intent'      => $router->lastIntent ?? '',
                 'question_type'    => $router->lastQuestionType ?? '',
                 'response_time'    => microtime(true) - $startTime,
                 'prompt_original'  => $promptOriginal,
                 'prompt_corrected' => $prompt,
+                'topic_fact_count' => $topicFactCount,
+                'memory_mb'        => round($memBytes / 1048576, 2),
+                'memory_peak_mb'   => round($memPeakBytes / 1048576, 2),
             ];
-} catch (Throwable $e) {
-
-    // Always log the detailed error server-side.
-    error_log(
-        '[CfCbazar AI] ' .
-        $e::class .
-        ': ' .
-        $e->getMessage() .
-        ' in ' .
-        $e->getFile() .
-        ':' .
-        $e->getLine()
-    );
-
-    /*
-     * Debug mode:
-     * /diy/ai-system/?debug=1
-     *
-     * Shows useful diagnostic information without exposing
-     * API credentials.
-     */
-    if (
-        isset($_GET['debug']) &&
-        $_GET['debug'] === '1'
-    ) {
-        $error =
-            "AI system error\n\n" .
-            "Exception: " . $e::class . "\n" .
-            "Message: " . $e->getMessage() . "\n" .
-            "File: " . basename($e->getFile()) . "\n" .
-            "Line: " . $e->getLine();
-
-    } else {
-
-        $error =
-            'The AI system could not complete the request. ' .
-            'Please try again.';
-    }
-}
+        } catch (Throwable $e) {
+            error_log('AI system error: ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
+            $error = 'The AI system could not complete the request. Please try again.';
+            if (isset($_GET['debug']) && $_GET['debug'] === '1') {
+                $error .= ' [' . $e->getMessage() . ']';
+            }
+        }
     }
 }
 
@@ -99,273 +155,190 @@ $rawResponseJson = json_encode(
     $response,
     JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 );
-
 if ($rawResponseJson === false) {
     $rawResponseJson = '""';
 }
 
-?>
+$pageTitle = 'CfCbazar AI System';
+
+// ---------------------------------------------------------------------------
+// Layout: site header/menu when reusable is available
+// ---------------------------------------------------------------------------
+if ($useSiteLayout && function_exists('include_header')) {
+    try {
+        include_header($pageTitle);
+        if (function_exists('include_menu')) {
+            include_menu();
+        }
+        if (function_exists('showAdvertPopup')) {
+            showAdvertPopup();
+        }
+        if (function_exists('render_top_userbar')) {
+            render_top_userbar();
+        }
+    } catch (Throwable $e) {
+        $useSiteLayout = false;
+        $siteBootstrapError = $e->getMessage();
+        error_log('AI system layout failed: ' . $e->getMessage());
+        // Fall through to standalone HTML below
+    }
+}
+
+if (!$useSiteLayout) {
+    // Standalone fallback (no site includes)
+    ?><!-- standalone head -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CfCbazar AI System - Beta GUI</title>
+<title><?php echo htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8'); ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/assets/css/styles.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
-    * { box-sizing: border-box; }
-
-    body {
-        background: #121212;
-        color: #e0e0e0;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
+    .ai-page { width: 95%; max-width: 900px; margin: 40px auto; padding: 20px; }
+    .ai-page textarea#prompt-input { width: 100%; min-height: 140px; resize: vertical; }
+    .ai-page #submit-btn { width: 100%; margin-top: 10px; }
+    .ai-page .loading-box { display: none; margin-top: 20px; padding: 16px 20px; text-align: center; font-weight: bold; }
+    .ai-page .spinner {
+        display: inline-block; width: 16px; height: 16px;
+        border: 3px solid rgba(0,0,0,0.15); border-radius: 50%;
+        border-top-color: currentColor; animation: ai-spin 1s ease-in-out infinite;
+        vertical-align: middle; margin-right: 10px;
     }
+    @keyframes ai-spin { to { transform: rotate(360deg); } }
+    .ai-page .error-box { margin-top: 20px; padding: 14px 16px; }
+    .ai-page .response-toolbar { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; margin-bottom: 8px; }
+    .ai-page .response-box { margin-top: 8px; padding: 16px; overflow-x: auto; line-height: 1.55; }
+    .ai-page .response-box pre { padding: 12px 14px; overflow-x: auto; margin: 0; white-space: pre; }
+    .ai-page .response-box pre code { display: block; background: transparent; padding: 0; white-space: pre; tab-size: 4; }
+    .ai-page .status-panel { margin-top: 30px; padding: 20px; }
+    .ai-page .status-item { margin-bottom: 8px; }
+    .ai-page .copy-status { min-height: 18px; margin-top: 6px; font-size: 12px; text-align: right; }
 
-    .container {
-        width: 95%;
-        max-width: 900px;
-        margin: 40px auto;
-        background: #1e1e1e;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px #000;
-    }
-
-    h1 {
-        text-align: center;
-        color: #4fc3f7;
-        margin-bottom: 20px;
-    }
-
-    textarea {
-        width: 100%;
-        min-height: 140px;
-        background: #0f0f0f;
-        color: #e0e0e0;
-        border: 1px solid #333;
-        border-radius: 6px;
-        padding: 10px;
-        font-size: 16px;
-        resize: vertical;
-    }
-
-    button {
-        background: #4fc3f7;
-        color: #000;
-        padding: 10px 16px;
-        border: none;
-        border-radius: 6px;
-        font-size: 15px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background 0.2s, opacity 0.2s;
-    }
-
-    button:hover { background: #81d4fa; }
-
-    button:disabled {
-        background: #333;
-        color: #888;
-        cursor: not-allowed;
-    }
-
-    #submit-btn {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .loading-box {
-        display: none;
-        margin-top: 20px;
-        background: #0f0f0f;
-        padding: 16px 20px;
-        border-radius: 6px;
-        border: 1px solid #0284c7;
-        color: #38bdf8;
-        text-align: center;
-        font-weight: bold;
-        font-size: 16px;
-    }
-
-    .spinner {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        border: 3px solid rgba(56, 189, 248, 0.3);
-        border-radius: 50%;
-        border-top-color: #38bdf8;
-        animation: spin 1s ease-in-out infinite;
-        vertical-align: middle;
-        margin-right: 10px;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .error-box {
-        margin-top: 20px;
-        background: #241313;
-        color: #ffb4b4;
-        padding: 14px 16px;
-        border: 1px solid #6b2525;
-        border-radius: 6px;
-    }
-
-    .response-toolbar {
-        display: flex;
-        justify-content: flex-end;
+    /* Force small action buttons against global full-width button styles */
+    .ai-page .response-toolbar {
+        display: flex !important;
+        justify-content: flex-end !important;
         gap: 8px;
         margin-top: 20px;
+        margin-bottom: 8px;
     }
-
-    .response-toolbar button,
-    .code-copy-btn {
-        font-size: 13px;
-        padding: 7px 11px;
+    .ai-page .response-toolbar .btn-ai-small,
+    .ai-page .response-toolbar button,
+    .ai-page button.code-copy-btn,
+    .ai-page .code-copy-btn {
+        position: static !important;
+        display: inline-block !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        flex: 0 0 auto !important;
+        align-self: flex-end !important;
+        margin: 0 0 6px 0 !important;
+        padding: 4px 10px !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        line-height: 1.3 !important;
+        border-radius: 4px !important;
+        cursor: pointer;
     }
-
-    .response-box {
-        margin-top: 8px;
-        background: #0f0f0f;
-        padding: 20px;
-        border-radius: 6px;
-        border: 1px solid #333;
-        font-size: 15px;
-        line-height: 1.6;
-        overflow-wrap: anywhere;
-    }
-
-    .response-box h1,
-    .response-box h2,
-    .response-box h3,
-    .response-box h4 {
-        color: #4fc3f7;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #2a2a2a;
-        padding-bottom: 4px;
-        text-align: left;
-    }
-
-    .response-box h1:first-child,
-    .response-box h2:first-child,
-    .response-box h3:first-child { margin-top: 0; }
-
-    .response-box p { margin: 0 0 12px 0; }
-
-    .response-box code {
-        background: #1a1a1a;
-        color: #ffb74d;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
-    }
-
-    .code-wrapper {
+    .ai-page .code-wrapper {
         position: relative;
         margin: 15px 0;
+        display: block;
     }
+    .ai-page .code-wrapper .code-copy-btn {
+        float: right;
+        clear: both;
+    }
+    .ai-page .response-box pre {
+        clear: both;
+        padding: 12px 14px !important;
+        overflow-x: auto;
+        margin: 0;
+        white-space: pre;
+    }
+</style>
+</head>
+<body>
+<?php
+}
 
-    .response-box pre {
-        background: #050505;
-        padding: 42px 14px 14px;
-        border-radius: 6px;
-        border: 1px solid #282828;
+// Extra AI-only CSS + marked when using site layout (header may already load styles.css)
+if ($useSiteLayout) {
+    ?>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+    .ai-page { width: 95%; max-width: 900px; margin: 24px auto; padding: 20px; }
+    .ai-page textarea#prompt-input { width: 100%; min-height: 140px; resize: vertical; }
+    .ai-page #submit-btn { width: 100%; margin-top: 10px; }
+    .ai-page .loading-box { display: none; margin-top: 20px; padding: 16px 20px; text-align: center; font-weight: bold; }
+    .ai-page .spinner {
+        display: inline-block; width: 16px; height: 16px;
+        border: 3px solid rgba(0,0,0,0.15); border-radius: 50%;
+        border-top-color: currentColor; animation: ai-spin 1s ease-in-out infinite;
+        vertical-align: middle; margin-right: 10px;
+    }
+    @keyframes ai-spin { to { transform: rotate(360deg); } }
+    .ai-page .error-box { margin-top: 20px; padding: 14px 16px; }
+    .ai-page .response-toolbar { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; margin-bottom: 8px; }
+    .ai-page .response-box { margin-top: 8px; padding: 16px; overflow-x: auto; line-height: 1.55; }
+    .ai-page .response-box pre { padding: 12px 14px; overflow-x: auto; margin: 0; white-space: pre; }
+    .ai-page .response-box pre code { display: block; background: transparent; padding: 0; white-space: pre; tab-size: 4; }
+    .ai-page .status-panel { margin-top: 30px; padding: 20px; }
+    .ai-page .status-item { margin-bottom: 8px; }
+    .ai-page .copy-status { min-height: 18px; margin-top: 6px; font-size: 12px; text-align: right; }
+
+    /* Force small action buttons against global full-width button styles */
+    .ai-page .response-toolbar {
+        display: flex !important;
+        justify-content: flex-end !important;
+        gap: 8px;
+        margin-top: 20px;
+        margin-bottom: 8px;
+    }
+    .ai-page .response-toolbar .btn-ai-small,
+    .ai-page .response-toolbar button,
+    .ai-page button.code-copy-btn,
+    .ai-page .code-copy-btn {
+        position: static !important;
+        display: inline-block !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        flex: 0 0 auto !important;
+        align-self: flex-end !important;
+        margin: 0 0 6px 0 !important;
+        padding: 4px 10px !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        line-height: 1.3 !important;
+        border-radius: 4px !important;
+        cursor: pointer;
+    }
+    .ai-page .code-wrapper {
+        position: relative;
+        margin: 15px 0;
+        display: block;
+    }
+    .ai-page .code-wrapper .code-copy-btn {
+        float: right;
+        clear: both;
+    }
+    .ai-page .response-box pre {
+        clear: both;
+        padding: 12px 14px !important;
         overflow-x: auto;
         margin: 0;
         white-space: pre;
     }
 
-    .response-box pre code {
-        display: block;
-        background: transparent;
-        color: #81d4fa;
-        padding: 0;
-        white-space: pre;
-        tab-size: 4;
-    }
+    <?php
+}
 
-    .code-copy-btn {
-        position: absolute;
-        top: 7px;
-        right: 7px;
-        z-index: 2;
-    }
-
-    .response-box ul,
-    .response-box ol {
-        padding-left: 24px;
-        margin-bottom: 12px;
-    }
-
-    .response-box li { margin-bottom: 6px; }
-
-    .response-box blockquote {
-        border-left: 4px solid #4fc3f7;
-        margin: 12px 0;
-        padding-left: 15px;
-        color: #b0bec5;
-        font-style: italic;
-    }
-
-    .response-box table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 15px 0;
-    }
-
-    .response-box th,
-    .response-box td {
-        border: 1px solid #333;
-        padding: 8px 12px;
-        text-align: left;
-    }
-
-    .response-box th {
-        background: #1a1a1a;
-        color: #4fc3f7;
-    }
-
-    .response-box hr {
-        border: 0;
-        height: 1px;
-        background: #333;
-        margin: 20px 0;
-    }
-
-    .status-panel {
-        margin-top: 30px;
-        background: #1e1e1e;
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid #333;
-    }
-
-    .status-panel h2 {
-        color: #4fc3f7;
-        margin-bottom: 15px;
-        margin-top: 0;
-    }
-
-    .status-item {
-        margin-bottom: 8px;
-        font-size: 15px;
-    }
-
-    .copy-status {
-        min-height: 18px;
-        margin-top: 6px;
-        color: #81d4fa;
-        font-size: 12px;
-        text-align: right;
-    }
-</style>
-</head>
-<body>
-
-<div class="container">
+?>
+<div class="container ai-page">
     <h1>CfCbazar AI System - Beta Test GUI</h1>
 
     <form id="ai-form" method="POST">
@@ -384,7 +357,7 @@ if ($rawResponseJson === false) {
 
     <?php if ($response !== ''): ?>
         <div class="response-toolbar">
-            <button type="button" id="copy-response-btn">Copy response</button>
+            <button type="button" id="copy-response-btn" class="btn-ai-small" style="display:inline-block;width:auto;max-width:none;padding:4px 10px;font-size:12px;">Copy response</button>
         </div>
 
         <div id="response-box" class="response-box"></div>
@@ -452,8 +425,11 @@ if ($rawResponseJson === false) {
 
                     const button = document.createElement('button');
                     button.type = 'button';
-                    button.className = 'code-copy-btn';
+                    button.className = 'code-copy-btn btn-ai-small';
                     button.textContent = 'Copy code';
+                    button.style.cssText = 'display:inline-block;width:auto;max-width:none;padding:4px 10px;font-size:12px;margin:0 0 8px 0;float:right;';
+                    // Place above the code so it never covers the first lines
+                    wrapper.insertBefore(button, pre);
 
                     button.addEventListener('click', function () {
                         const code = pre.querySelector('code');
@@ -464,7 +440,7 @@ if ($rawResponseJson === false) {
                         }, 1500);
                     });
 
-                    wrapper.appendChild(button);
+                    /* button already inserted above pre */
                 });
             }
 
@@ -507,10 +483,13 @@ if ($rawResponseJson === false) {
         <div class="status-panel">
             <h2>System Status</h2>
             <div class="status-item"><strong>Last Topic:</strong> <?php echo htmlspecialchars((string)($status['last_topic'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></div>
+            <div class="status-item"><strong>Facts on topic:</strong> <?php echo (int)($status['topic_fact_count'] ?? 0); ?></div>
             <div class="status-item"><strong>Last Entities:</strong> <?php echo htmlspecialchars(implode(', ', (array)($status['last_entities'] ?? [])), ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="status-item"><strong>Intent:</strong> <?php echo htmlspecialchars((string)($status['last_intent'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="status-item"><strong>Question Type:</strong> <?php echo htmlspecialchars((string)($status['question_type'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="status-item"><strong>Response Time:</strong> <?php echo number_format((float)$status['response_time'], 4); ?> sec</div>
+            <div class="status-item"><strong>Memory:</strong> <?php echo number_format((float)($status['memory_mb'] ?? 0), 2); ?> MB
+                (peak <?php echo number_format((float)($status['memory_peak_mb'] ?? 0), 2); ?> MB)</div>
         </div>
     <?php endif; ?>
 </div>
@@ -534,5 +513,22 @@ if ($rawResponseJson === false) {
 }());
 </script>
 
-</body>
-</html>
+
+<?php
+// Site footer + DB close (generic reusable helpers only)
+if ($useSiteLayout) {
+    if (function_exists('cfc_footer')) {
+        cfc_footer(
+            'https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/diy/ai-system',
+            'Source Code'
+        );
+    }
+    if (function_exists('include_footer')) {
+        include_footer();
+    }
+    if (function_exists('close_database')) {
+        close_database();
+    }
+} else {
+    echo "</body>\n</html>\n";
+}

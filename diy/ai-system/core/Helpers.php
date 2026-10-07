@@ -55,10 +55,22 @@ if (!class_exists('Helpers', false)) {
                 return self::error('Unable to initialize cURL.');
             }
 
-            $httpHeaders = array_merge(
-                ['Content-Type: application/json'],
-                $headers
-            );
+            $httpHeaders = ['Content-Type: application/json'];
+            foreach ($headers as $header) {
+                $header = trim((string)$header);
+                if ($header === '') {
+                    continue;
+                }
+                // Skip empty bearer tokens
+                if (preg_match('/^Authorization:\s*Bearer\s*$/i', $header)) {
+                    continue;
+                }
+                // Avoid duplicate Content-Type
+                if (stripos($header, 'Content-Type:') === 0) {
+                    continue;
+                }
+                $httpHeaders[] = $header;
+            }
 
             $options = [
                 CURLOPT_POST           => true,

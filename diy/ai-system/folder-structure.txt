@@ -1,20 +1,37 @@
-/ai-system
+ai-system/                          # or ai-system_dev8/
+├── ARCHITECTURE.md                 # SkillData envelope + pipeline contract
+├── index.php                       # UI entry, spell-correct, Router, status
+├── eval.php                        # Local pipeline smoke tests
+├── seed.php                        # Manual fact seeding (SkillData Fact shape)
+├── consolidate.php                 # Merge topics + backfill embeddings
+├── cli.php                         # Optional CLI entry
 │
-├── index.php
+├── config/
+│   ├── features.php                # openrouter_enabled, knowledge_mode, conversation
+│   └── openrouter.php              # Loads $API_openrouter from site /config.php
 │
-├── /core
-│   ├── SkillManager.php
-│   ├── MemoryStore.php
-│   ├── Router.php
-│   └── Helpers.php
+├── core/
+│   ├── SkillData.php               # Unified request envelope
+│   ├── Router.php                  # Orchestrates SkillData pipeline
+│   ├── SkillManager.php            # Loads skills
+│   ├── MemoryStore.php             # Topic JSON + vector search + Fact normalize
+│   ├── ConversationStore.php       # Per-session short-term turns
+│   ├── LocalEmbedder.php           # Pure-PHP 1536-dim embeddings
+│   ├── SpellCorrector.php          # Conservative prompt/topic spelling
+│   └── Helpers.php                 # HTTP/JSON helpers
 │
-├── /skills
-│   ├── PromptUnderstandingSkill.php
-│   ├── FactSkill.php
-│   └── KnowledgeSkill.php
+├── skills/
+│   ├── FactSkill.php               # Extract facts + embed (no storage)
+│   ├── PromptUnderstandingSkill.php  # process(SkillData, MemoryStore?) + memory peek
+│   ├── KnowledgeSkill.php          # process(SkillData) hybrid local/OpenRouter
+│   └── ResponseUnderstandingSkill.php # process(SkillData) → final_answer
 │
-├── /memory
-│   └── memory.json
-│
-└── /config
-    └── openrouter.php
+└── memory/
+    ├── memory.json                 # Topic index
+    ├── topics/                     # {topic}.json — Fact[] per topic
+    └── conversation/               # {sessionId}.json — recent turns
+
+# Optional / cleanup candidates (not required at runtime)
+# core/Router_stable_v2.php, Router2.3.php, SkillManager_stable_v2.3.php
+# index_backup_working.php, index_stable_v2.php, index_boot_test.php
+# debug_boot.php, skills/ResponseUnderstandingSkill2.php

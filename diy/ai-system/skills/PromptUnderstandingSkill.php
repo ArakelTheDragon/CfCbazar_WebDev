@@ -227,6 +227,8 @@ class PromptUnderstandingSkill
             'make me a simple html'     => 'generate_code',
             'make me a simple php'      => 'generate_code',
             'make me an html'           => 'generate_code',
+            'make me an advanced'       => 'generate_code',
+            'make me a complex'         => 'generate_code',
             'make me a php'             => 'generate_code',
             'make me a simple page'     => 'generate_code',
             'make me a webpage'         => 'generate_code',
@@ -554,6 +556,10 @@ class PromptUnderstandingSkill
         $out = [];
         $map = [
             'simple' => 'simple',
+            'advanced' => 'advanced',
+            'complex' => 'complex',
+            'detailed' => 'detailed',
+            'professional' => 'professional',
             'beginner' => 'beginner',
             'step by step' => 'step_by_step',
             'steps' => 'step_by_step',
