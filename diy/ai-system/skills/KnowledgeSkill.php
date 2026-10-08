@@ -20,6 +20,12 @@ class KnowledgeSkill
     private int $vectorLimit = 24;
     private int $maxAnswerFacts = 10;
 
+    // Feature flags (loaded from config)
+    private bool $adaptiveThresholdsEnabled = false;
+    private bool $weightedSufficiencyEnabled = false;
+    private bool $typeDiversityEnabled = false;
+    private bool $intentSynthesisPriorityEnabled = false;
+
 
     /**
      * Preferred entry (Phase 3): fill SkillData in place.
@@ -42,6 +48,12 @@ class KnowledgeSkill
             $mode = 'hybrid';
         }
 
+        // Load feature flags for new enhancements
+        $this->adaptiveThresholdsEnabled = !empty($features['adaptive_thresholds_enabled']);
+        $this->weightedSufficiencyEnabled = !empty($features['weighted_sufficiency_enabled']);
+        $this->typeDiversityEnabled = !empty($features['type_diversity_enabled']);
+        $this->intentSynthesisPriorityEnabled = !empty($features['intent_synthesis_priority_enabled']);
+
         $coreQuery = trim((string)$data->get('core_query', ''));
         if ($coreQuery === '') {
             $coreQuery = $prompt;
@@ -56,6 +68,8 @@ class KnowledgeSkill
         $secondaryIntents = is_array($data->get('secondary_intents')) ? $data->get('secondary_intents') : [];
         $subtopics = is_array($data->get('subtopics')) ? $data->get('subtopics') : [];
         $isMultiPart = (bool)$data->get('is_multi_part', false);
+        $specifics = is_array($data->get('specific_requirements')) ? $data->get('specific_requirements') : [];
+        $hasSpecifics = (bool)$data->get('has_specifics', false) || $specifics !== [];
 
         // Conversation context
         $conversation = [];
@@ -85,24 +99,19 @@ class KnowledgeSkill
         $data->set('conversation', $conversation);
 
 
-        // --- Simple local page templates only (not advanced) ---
-        $localCode = $this->localCodeTemplate($prompt, $topic, $intent, $constraints);
-        if ($localCode !== null) {
-            $data->set('openrouter', [
-                'enabled'  => $openRouterEnabled,
-                'mode'     => $mode,
-                'gap_fill' => false,
-                'raw'      => null,
-            ]);
-            $data->set('memory_sufficient', true);
-            $data->set('draft_answer', $localCode);
-            return $data;
-        }
-
+        // --- Main decision loop (memory-first) ---
+        // 1) Search local memory with this prompt embedding + specifics
+        // 2) If confidence enough → answer from matched facts
+        // 3) Else OpenRouter → store → re-check local memory
+        // 4) Local simple templates only as last-resort fallback
         // --- Main decision loop ---
+
         // 1) Score local memory
         // 2) If enough → answer from local facts
         // 3) Else OpenRouter → store facts into memory → goto 1 (max 2 OR calls)
+        if ($specifics !== []) {
+            $keyPhrases = array_values(array_unique(array_merge($keyPhrases, $specifics)));
+        }
         $searchText = trim($coreQuery . ' ' . implode(' ', array_slice($keyPhrases, 0, 8)));
         if ($searchText === '') {
             $searchText = $prompt;
@@ -131,7 +140,7 @@ class KnowledgeSkill
             $ranked = $this->filterByAge($ranked);
             $ranked = $this->boostByKeyPhrases($ranked, $keyPhrases);
             $ranked = $this->sortByScore($ranked);
-            $selected = $this->selectFactsForAnswer($ranked);
+            $selected = $this->selectFactsForAnswer($ranked, $intent, $prompt, $memory);
 
             $hits = [];
             foreach ($selected as $f) {
@@ -141,20 +150,41 @@ class KnowledgeSkill
             }
             $data->set('memory_hits', $hits);
 
-            $sufficient = $this->memoryIsSufficient($ranked, $intent, $isMultiPart);
+            $sufficient = $this->memoryIsSufficient($ranked, $intent, $isMultiPart, $memory);
 
-            // Code-gen (non-simple): only "enough" when we have a stored code document
-            if ($this->isCodeGenerationRequest($prompt, $intent)
-                && !$this->isSimpleCodeRequest($prompt, $constraints)
-            ) {
+            // Code-gen: enough only with a code_html fact that matches this prompt's specifics
+            if ($this->isCodeGenerationRequest($prompt, $intent)) {
                 $hasCode = false;
                 foreach ($ranked as $f) {
-                    if (is_array($f) && ($f['type'] ?? '') === 'code_html') {
-                        $hasCode = true;
-                        break;
+                    if (!is_array($f) || ($f['type'] ?? '') !== 'code_html') {
+                        continue;
                     }
+                    $content = (string)($f['content'] ?? $f['value'] ?? '');
+                    if ($content === '') {
+                        continue;
+                    }
+                    if ($hasSpecifics && $specifics !== []) {
+                        $blob = strtolower($content);
+                        $ok = false;
+                        foreach ($specifics as $sp) {
+                            $sp = strtolower(trim((string)$sp));
+                            if (strlen($sp) >= 3 && str_contains($blob, $sp)) {
+                                $ok = true;
+                                break;
+                            }
+                        }
+                        if (!$ok) {
+                            continue;
+                        }
+                    }
+                    $hasCode = true;
+                    break;
                 }
-                $sufficient = $hasCode;
+                if ($hasSpecifics || !$this->isSimpleCodeRequest($prompt, $constraints, $specifics)) {
+                    $sufficient = $hasCode;
+                } elseif ($hasCode) {
+                    $sufficient = true;
+                }
             }
 
             $data->set('memory_sufficient', $sufficient);
@@ -193,22 +223,36 @@ class KnowledgeSkill
                         $subtopics
                     );
                 } else {
-                    $draft = 'No solid local knowledge found for this topic yet.';
-                    if ($conversationContext !== '') {
-                        $draft .= "\n\n**From recent conversation**\n" . $conversationContext;
-                    }
-                    if (!$openRouterEnabled) {
-                        $draft .= "\n\n_(OpenRouter is disabled — set openrouter_enabled to true in config/features.php.)_";
-                    } elseif ($mode === 'local') {
-                        $draft .= "\n\n_(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via OpenRouter.)_";
-                    } elseif ($openRouterCalls > 0) {
-                        $draft .= "\n\n_(OpenRouter was called but local memory still lacks solid facts.)_";
+                    $localCode = $this->localCodeTemplate($prompt, $topic, $intent, $constraints, $specifics);
+                    if ($localCode !== null) {
+                        $draft = $localCode;
+                    } else {
+                        $draft = 'No solid local knowledge found for this topic yet.';
+                        if ($conversationContext !== '') {
+                            $draft .= "
+
+**From recent conversation**\n" . $conversationContext;
+                        }
+                        if (!$openRouterEnabled) {
+                            $draft .= "
+
+_(OpenRouter is disabled — set openrouter_enabled to true in config/features.php.)_";
+                        } elseif ($mode === 'local') {
+                            $draft .= "
+
+_(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via OpenRouter.)_";
+                        } elseif ($openRouterCalls > 0) {
+                            $draft .= "
+
+_(OpenRouter was called but local memory still lacks solid facts.)_";
+                        }
                     }
                 }
                 break;
             }
 
             $openRouterCalls++;
+
             $gapFill = $ranked !== [];
             $response = $this->requestOpenRouter(
                 $prompt,
@@ -363,7 +407,7 @@ class KnowledgeSkill
             }
         }
 
-        $use = $selected !== [] ? $selected : $this->selectFactsForAnswer($ranked);
+        $use = $selected !== [] ? $selected : $this->selectFactsForAnswer($ranked, $intent, $prompt, null);
         if ($use === []) {
             return 'No solid local knowledge found for this topic yet.';
         }
@@ -454,7 +498,7 @@ class KnowledgeSkill
         }
 
         // Fully covered by local memory → never call OpenRouter
-        if ($this->memoryIsSufficient($ranked, $intent, $isMultiPart)) {
+        if ($this->memoryIsSufficient($ranked, $intent, $isMultiPart, $memory)) {
             $top = $this->selectFactsForAnswer($ranked);
             return $this->synthesizeAnswer(
                 $topic,
@@ -658,11 +702,40 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             static fn($t) => is_string($t) && $t !== ''
         )));
 
+        // Related topics via description / aliases / tags embeddings
+        try {
+            $related = $memory->findRelatedTopics($queryEmbedding, $prompt, 4, 0.16);
+            foreach ($related as $rel) {
+                $rel = trim((string)$rel);
+                if ($rel !== '' && !in_array($rel, $topicsToScan, true)) {
+                    $topicsToScan[] = $rel;
+                }
+            }
+        } catch (Throwable $e) {
+            // ignore — fall back to primary topic only
+        }
+
+        // Topic meta subtopics (from memory envelope)
+        try {
+            $meta = $memory->getTopicMeta($topic);
+            foreach (($meta['subtopics'] ?? []) as $st) {
+                $st = trim((string)$st);
+                if ($st !== '' && !in_array($st, $topicsToScan, true)) {
+                    $topicsToScan[] = $st;
+                }
+            }
+        } catch (Throwable $e) {
+            // ignore
+        }
+
         if ($queryEmbedding !== []) {
+            // Use adaptive thresholds for vector search
+            $thresholds = $this->getAdaptiveThresholds($topic, $memory);
+
             foreach ($topicsToScan as $t) {
                 foreach ($memory->searchByVector(
                     $queryEmbedding,
-                    $this->minimumVectorScore,
+                    $thresholds['vector'],
                     $this->vectorLimit,
                     $t
                 ) as $fact) {
@@ -671,7 +744,7 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             }
             foreach ($memory->searchByVector(
                 $queryEmbedding,
-                $this->minimumVectorScore,
+                $thresholds['vector'],
                 $this->vectorLimit,
                 null
             ) as $fact) {
@@ -732,15 +805,58 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         }
         $keyword = max($keyword, $fs['keyword']);
 
+        // Soft recency boost for time-sensitive queries
+        $recencyBoost = $this->getRecencyBoost($fact, $prompt);
+
         $combined = ($vectorScore > 0.0)
-            ? (0.55 * $vectorScore + 0.28 * $keyword + $phraseBoost + 0.12 * $fs['combined'])
-            : min(1.0, $keyword + $phraseBoost + 0.15 * $fs['combined']);
+            ? (0.55 * $vectorScore + 0.28 * $keyword + $phraseBoost + 0.12 * $fs['combined'] + $recencyBoost)
+            : min(1.0, $keyword + $phraseBoost + 0.15 * $fs['combined'] + $recencyBoost);
 
         $fact['_vector_score'] = $vectorScore;
         $fact['_keyword_score'] = $keyword;
         $fact['_score'] = min(1.0, $combined);
 
         return $fact;
+    }
+
+    /**
+     * Get soft recency boost for time-sensitive queries.
+     * Only applies when query contains time-sensitive keywords.
+     *
+     * @param array<string, mixed> $fact
+     * @return float
+     */
+    private function getRecencyBoost(array $fact, string $prompt): float
+    {
+        $createdAt = (string)($fact['created_at'] ?? $fact['added_at'] ?? '');
+        if ($createdAt === '') {
+            return 0.0;
+        }
+
+        // Check if query is time-sensitive
+        $p = strtolower($prompt);
+        $timeSensitive = (bool)preg_match(
+            '/\b(?:current|latest|recent|new|version|today|now|this year|this month)\b/i',
+            $p
+        );
+
+        if (!$timeSensitive) {
+            return 0.0;
+        }
+
+        $ageDays = (time() - strtotime($createdAt)) / 86400;
+
+        // Boost for recent facts (last 7 days)
+        if ($ageDays < 7) {
+            return 0.05;
+        }
+
+        // Small boost for facts under 30 days
+        if ($ageDays < 30) {
+            return 0.02;
+        }
+
+        return 0.0;
     }
 
     private function boostByKeyPhrases(array $facts, array $keyPhrases): array
@@ -765,15 +881,118 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         return $facts;
     }
 
-    private function memoryIsSufficient(array $ranked, string $intent, bool $isMultiPart): bool
+    /**
+     * Get adaptive thresholds based on topic quality and size.
+     * Low-fact or low-quality topics get more lenient thresholds.
+     *
+     * @return array{vector: float, combined: float}
+     */
+    private function getAdaptiveThresholds(string $topic, MemoryStore $memory): array
+    {
+        // Feature flag: if disabled, return defaults
+        if (!$this->adaptiveThresholdsEnabled) {
+            return [
+                'vector' => $this->minimumVectorScore,
+                'combined' => $this->minimumCombinedScore,
+            ];
+        }
+
+        try {
+            $meta = $memory->getTopicMeta($topic);
+            $avgScore = (float)($meta['avg_score'] ?? 0.50);
+            $factCount = (int)($meta['fact_count'] ?? 0);
+        } catch (Throwable $e) {
+            // Fall back to defaults if meta unavailable
+            return [
+                'vector' => $this->minimumVectorScore,
+                'combined' => $this->minimumCombinedScore,
+            ];
+        }
+
+        // Higher quality topics = stricter thresholds
+        $vectorMin = $avgScore > 0.60 ? 0.45 : 0.35;
+        $combinedMin = $avgScore > 0.60 ? 0.30 : 0.22;
+
+        // Low-fact topics = more lenient (need more permissive thresholds to avoid OpenRouter overuse)
+        if ($factCount < 5) {
+            $vectorMin *= 0.85;
+            $combinedMin *= 0.85;
+        }
+
+        return [
+            'vector' => max(0.25, $vectorMin),
+            'combined' => max(0.18, $combinedMin),
+        ];
+    }
+
+    /**
+     * Weighted sufficiency check using score × confidence × source weights.
+     * More accurate than simple count-based checks.
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @param MemoryStore|null $memory MemoryStore instance for adaptive thresholds
+     */
+    private function memoryIsSufficientWeighted(array $ranked, string $intent, bool $isMultiPart, ?MemoryStore $memory = null): bool
     {
         if ($ranked === []) {
             return false;
         }
 
+        // Feature flag: if disabled, use simple count-based check
+        if (!$this->weightedSufficiencyEnabled) {
+            return $this->memoryIsSufficientSimple($ranked, $intent, $isMultiPart, $memory);
+        }
+
+        // Calculate weighted quality score from top 5 facts
+        $qualitySum = 0.0;
+        $weightSum = 0.0;
+
+        foreach (array_slice($ranked, 0, 5) as $fact) {
+            $score = (float)($fact['_score'] ?? 0);
+            $confidence = (float)($fact['confidence'] ?? 0.5);
+            $sourceWeight = $this->sourceRank((string)($fact['source'] ?? '')) / 5.0;
+
+            $qualitySum += $score * $confidence * $sourceWeight;
+            $weightSum += $sourceWeight;
+        }
+
+        $avgQuality = $weightSum > 0 ? $qualitySum / $weightSum : 0;
+
+        // Intent-specific thresholds
+        $threshold = match($intent) {
+            'define_concept' => 0.35,
+            'explain_process' => 0.40,
+            'compare_things' => 0.45,
+            'generate_code' => 0.50,
+            default => 0.30
+        };
+
+        // Multi-part queries need higher quality
+        if ($isMultiPart) {
+            $threshold *= 1.1;
+        }
+
+        return $avgQuality >= $threshold;
+    }
+
+    /**
+     * Simple count-based sufficiency check (fallback when weighted sufficiency disabled).
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @param MemoryStore|null $memory MemoryStore instance for adaptive thresholds
+     */
+    private function memoryIsSufficientSimple(array $ranked, string $intent, bool $isMultiPart, ?MemoryStore $memory = null): bool
+    {
+        if ($ranked === []) {
+            return false;
+        }
+
+        $topic = $ranked[0]['_topic'] ?? 'general_topic';
+        $thresholds = $this->getAdaptiveThresholds($topic, $memory ?? new MemoryStore(__DIR__ . '/../memory/memory.json'));
+
         $strong = array_filter(
             $ranked,
-            fn(array $f): bool => (float)($f['_score'] ?? 0) >= $this->minimumCombinedScore
+            fn(array $f): bool => (float)($f['_score'] ?? 0) >= $thresholds['combined']
         );
 
         $need = $this->minimumUsefulFacts;
@@ -788,7 +1007,18 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             return false;
         }
 
-        return (float)($ranked[0]['_score'] ?? 0) >= $this->minimumCombinedScore;
+        return (float)($ranked[0]['_score'] ?? 0) >= $thresholds['combined'];
+    }
+
+    /**
+     * Main sufficiency check - delegates to weighted or simple based on feature flag.
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @param MemoryStore $memory MemoryStore instance for adaptive thresholds
+     */
+    private function memoryIsSufficient(array $ranked, string $intent, bool $isMultiPart, ?MemoryStore $memory = null): bool
+    {
+        return $this->memoryIsSufficientWeighted($ranked, $intent, $isMultiPart, $memory);
     }
 
     private function sortByScore(array $facts): array
@@ -830,11 +1060,12 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
     /**
      * Decision flow: keep facts at/above score threshold, then cap at max N.
      * N is a ceiling, not a target — fewer strong facts is fine.
+     * Enhanced with type diversity limits.
      *
      * @param list<array<string, mixed>> $ranked
      * @return list<array<string, mixed>>
      */
-    private function selectFactsForAnswer(array $ranked): array
+    private function selectFactsForAnswer(array $ranked, string $intent = '', string $prompt = '', ?MemoryStore $memory = null): array
     {
         if ($ranked === []) {
             return [];
@@ -842,6 +1073,16 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
 
         $ranked = $this->sortByScore($ranked);
         $selected = [];
+        $typeCounts = [];
+        $isCodeGen = ($intent === 'generate_code')
+            || ($prompt !== '' && $this->looksLikeCodeRequest($prompt));
+
+        // Get adaptive thresholds if enabled (reuse caller MemoryStore when provided)
+        $topic = (string)($ranked[0]['_topic'] ?? $ranked[0]['topic'] ?? 'general_topic');
+        if ($memory === null) {
+            $memory = new MemoryStore(__DIR__ . '/../memory/memory.json');
+        }
+        $thresholds = $this->getAdaptiveThresholds($topic, $memory);
 
         foreach ($ranked as $fact) {
             if (!is_array($fact)) {
@@ -850,18 +1091,113 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             $score = (float)($fact['_score'] ?? 0);
             $vector = (float)($fact['_vector_score'] ?? 0);
 
+            // Use adaptive thresholds if enabled, otherwise use defaults
+            $minCombined = $this->adaptiveThresholdsEnabled ? $thresholds['combined'] : $this->minimumCombinedScore;
+            $minVector = $this->adaptiveThresholdsEnabled ? $thresholds['vector'] : $this->minimumVectorScore;
+
             // Pass if combined score clears bar OR strong pure vector hit
-            if ($score < $this->minimumCombinedScore && $vector < $this->minimumVectorScore) {
+            if ($score < $minCombined && $vector < $minVector) {
                 continue;
             }
 
+            $type = strtolower((string)($fact['type'] ?? 'statement'));
+            $count = $typeCounts[$type] ?? 0;
+
+            // Diversity: do not let one type (e.g. code_html) fill the whole answer
+            // unless this is a code-generation request.
+            // Enhanced with type diversity feature flag
+            if ($this->typeDiversityEnabled) {
+                $maxPerType = $this->getMaxPerType($type, $isCodeGen, $intent);
+            } else {
+                // Original logic
+                $maxPerType = $isCodeGen && $type === 'code_html' ? 2 : 3;
+                if ($type === 'code_html' && !$isCodeGen) {
+                    $maxPerType = 1;
+                }
+            }
+
+            if ($count >= $maxPerType) {
+                continue;
+            }
+
+            $typeCounts[$type] = $count + 1;
             $selected[] = $fact;
             if (count($selected) >= $this->maxAnswerFacts) {
                 break;
             }
         }
 
+        // If diversity filtered everything out, fall back to top score-only
+        if ($selected === []) {
+            foreach ($ranked as $fact) {
+                if (!is_array($fact)) {
+                    continue;
+                }
+                $score = (float)($fact['_score'] ?? 0);
+                $vector = (float)($fact['_vector_score'] ?? 0);
+
+                $minCombined = $this->adaptiveThresholdsEnabled ? $thresholds['combined'] : $this->minimumCombinedScore;
+                $minVector = $this->adaptiveThresholdsEnabled ? $thresholds['vector'] : $this->minimumVectorScore;
+
+                if ($score < $minCombined && $vector < $minVector) {
+                    continue;
+                }
+                $selected[] = $fact;
+                if (count($selected) >= min(3, $this->maxAnswerFacts)) {
+                    break;
+                }
+            }
+        }
+
         return $selected;
+    }
+
+    /**
+     * Get maximum facts per type based on intent and type.
+     * Used when type diversity is enabled.
+     */
+    private function getMaxPerType(string $type, bool $isCodeGen, string $intent): int
+    {
+        // Code generation: allow more code facts
+        if ($isCodeGen && $type === 'code_html') {
+            return 2;
+        }
+
+        // Non-code generation: limit code facts strictly
+        if ($type === 'code_html' && !$isCodeGen) {
+            return 1;
+        }
+
+        // Intent-specific type limits (with new fact types)
+        return match($intent) {
+            'define_concept' => match($type) {
+                'definition' => 2,
+                'example' => 2,
+                'best_practice' => 2,
+                'statement' => 3,
+                default => 1
+            },
+            'explain_process' => match($type) {
+                'procedure' => 4,
+                'warning' => 2,
+                'best_practice' => 2,
+                'example' => 2,
+                'statement' => 2,
+                default => 1
+            },
+            'compare_things' => match($type) {
+                'statement' => 2,
+                'example' => 2,
+                default => 1
+            },
+            'generate_code' => match($type) {
+                'code_html' => 2,
+                'procedure' => 2,
+                'best_practice' => 1,
+                default => 1
+            },
+            default => 3 // Generic limit
+        };
     }
 
     private function dedupeKeepBestScore(array $facts): array
@@ -1164,7 +1500,7 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
      * Local templates only for clearly simple requests.
      * "Advanced", "complex", "responsive app", etc. must not use the stub page.
      */
-    private function isSimpleCodeRequest(string $prompt, array $constraints = []): bool
+    private function isSimpleCodeRequest(string $prompt, array $constraints = [], array $specifics = []): bool
     {
         $p = strtolower($prompt);
         foreach ($constraints as $c) {
@@ -1193,13 +1529,65 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
      *
      * @param list<string> $constraints
      */
-    private function localCodeTemplate(string $prompt, string $topic, string $intent, array $constraints = []): ?string
+    /**
+     * Pull title/message text from prompts like:
+     *   Make me a PHP page that says "Beta AI system"
+     *   HTML page titled Welcome
+     *
+     * @return array{title: string, message: string}
+     */
+    private function extractPageCopy(string $prompt, array $specifics = []): array
+    {
+        $title = 'My Page';
+        $message = 'Hello!';
+
+        if ($specifics !== []) {
+            $primary = trim((string)$specifics[0]);
+            if ($primary !== '') {
+                $title = $primary;
+                $message = $primary;
+            }
+        }
+
+        // Quoted phrase(s)
+        if (preg_match('/["\']([^"\']{1,80})["\']/', $prompt, $m)) {
+            $title = trim($m[1]);
+            $message = $title;
+        } elseif (preg_match('/\b(?:that\s+says|saying|with\s+text|showing|display(?:ing)?)\s+(.+?)\s*$/i', $prompt, $m)) {
+            $title = trim($m[1], " \t.\"'");
+            $message = $title;
+        } elseif (preg_match('/\b(?:titled|title|named|called)\s+["\']?([^"\']{1,80?}?)["\']?\s*$/i', $prompt, $m)) {
+            $title = trim($m[1], " \t.\"'");
+            $message = $title;
+        }
+
+        // Safety for PHP single-quoted string injection
+        $title = str_replace(["\\", "'"], ["\\\\", "\\'"], $title);
+        $message = str_replace(["\\", "'"], ["\\\\", "\\'"], $message);
+
+        if ($title === '') {
+            $title = 'My Page';
+        }
+        if ($message === '') {
+            $message = $title;
+        }
+
+        return ['title' => $title, 'message' => $message];
+    }
+
+    /**
+     * Local templates when user asks for a *simple* page (no OpenRouter required).
+     * Custom title/message from the prompt are applied when present.
+     *
+     * @param list<string> $constraints
+     */
+    private function localCodeTemplate(string $prompt, string $topic, string $intent, array $constraints = [], array $specifics = []): ?string
     {
         if (!$this->isCodeGenerationRequest($prompt, $intent)) {
             return null;
         }
         // Advanced / non-simple → let hybrid OpenRouter handle it
-        if (!$this->isSimpleCodeRequest($prompt, $constraints)) {
+        if (!$this->isSimpleCodeRequest($prompt, $constraints, $specifics)) {
             return null;
         }
 
@@ -1207,57 +1595,61 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         $wantPhp = (bool)preg_match('/\bphp\b/', $p) || $topic === 'php_page';
         $wantHtml = (bool)preg_match('/\bhtml\b|\bweb\s*page\b|\bwebpage\b/', $p) || $topic === 'html_page';
 
+        $copy = $this->extractPageCopy($prompt, $specifics);
+        $title = $copy['title'];
+        $message = $copy['message'];
+
         if ($wantPhp) {
-            $code = <<<'PHP'
-<?php
-declare(strict_types=1);
-$title = 'My PHP Page';
-$message = 'Hello from PHP!';
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></title>
-    <style>
-        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
-        h1 { color: #222; }
-    </style>
-</head>
-<body>
-    <h1><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-    <p><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
-</body>
-</html>
-PHP;
-            return "Here is a simple PHP page you can save as `index.php`.\n\n```php\n" . trim($code) . "\n```";
+            $code = "<?php\n"
+                . "declare(strict_types=1);\n"
+                . "\$title = '{$title}';\n"
+                . "\$message = '{$message}';\n"
+                . "?><!DOCTYPE html>\n"
+                . "<html lang=\"en\">\n"
+                . "<head>\n"
+                . "    <meta charset=\"utf-8\">\n"
+                . "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+                . "    <title><?= htmlspecialchars(\$title, ENT_QUOTES, 'UTF-8') ?></title>\n"
+                . "    <style>\n"
+                . "        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }\n"
+                . "        h1 { color: #222; }\n"
+                . "    </style>\n"
+                . "</head>\n"
+                . "<body>\n"
+                . "    <h1><?= htmlspecialchars(\$title, ENT_QUOTES, 'UTF-8') ?></h1>\n"
+                . "    <p><?= htmlspecialchars(\$message, ENT_QUOTES, 'UTF-8') ?></p>\n"
+                . "</body>\n"
+                . "</html>";
+            return "Here is a simple PHP page you can save as `index.php`.\n\n```php\n" . $code . "\n```";
         }
 
         if ($wantHtml || $this->looksLikeCodeRequest($prompt)) {
-            $code = <<<'HTML'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple Page</title>
-    <style>
-        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
-        h1 { color: #222; }
-    </style>
-</head>
-<body>
-    <h1>Hello</h1>
-    <p>This is a simple HTML page.</p>
-</body>
-</html>
-HTML;
-            return "Here is a simple HTML page you can save as `index.html`.\n\n```html\n" . trim($code) . "\n```";
+            // For HTML, unescape only for display in tags (title was escaped for PHP quotes)
+            $htmlTitle = str_replace(["\\'", "\\\\"], ["'", "\\"], $title);
+            $htmlMessage = str_replace(["\\'", "\\\\"], ["'", "\\"], $message);
+            $htmlTitle = htmlspecialchars($htmlTitle, ENT_QUOTES, 'UTF-8');
+            $htmlMessage = htmlspecialchars($htmlMessage, ENT_QUOTES, 'UTF-8');
+            $code = "<!DOCTYPE html>\n"
+                . "<html lang=\"en\">\n"
+                . "<head>\n"
+                . "    <meta charset=\"utf-8\">\n"
+                . "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+                . "    <title>{$htmlTitle}</title>\n"
+                . "    <style>\n"
+                . "        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }\n"
+                . "        h1 { color: #222; }\n"
+                . "    </style>\n"
+                . "</head>\n"
+                . "<body>\n"
+                . "    <h1>{$htmlTitle}</h1>\n"
+                . "    <p>{$htmlMessage}</p>\n"
+                . "</body>\n"
+                . "</html>";
+            return "Here is a simple HTML page you can save as `index.html`.\n\n```html\n" . $code . "\n```";
         }
 
         return null;
     }
-
 
     private function extractHtmlDocument(string $text): ?string
     {
@@ -1282,6 +1674,11 @@ HTML;
         bool $isMultiPart = false,
         array $subtopics = []
     ): string {
+        // Intent-aware ordering when feature enabled
+        if ($this->intentSynthesisPriorityEnabled && $facts !== []) {
+            $facts = $this->prioritizeFactsForSynthesis($facts, $intent);
+        }
+
         // Prefer a stored full HTML document when user asked for a page
         if ($this->looksLikeCodeRequest($prompt)) {
             foreach ($facts as $fact) {
@@ -1370,6 +1767,87 @@ HTML;
         }
 
         return $header . "\n\n" . $this->formatLines($lines, $stepByStep);
+    }
+
+    /**
+     * Prioritize facts for synthesis based on intent and fact type.
+     * Used when intent-aware synthesis priority is enabled.
+     *
+     * @param list<array<string, mixed>> $facts
+     * @return list<array<string, mixed>>
+     */
+    private function prioritizeFactsForSynthesis(array $facts, string $intent): array
+    {
+        if ($facts === []) {
+            return [];
+        }
+
+        // Define priority weights for each intent/type combination
+        $priorityMap = [
+            'define_concept' => [
+                'definition' => 1.0,
+                'example' => 0.8,
+                'best_practice' => 0.7,
+                'statement' => 0.6,
+                'warning' => 0.5,
+                'procedure' => 0.4,
+            ],
+            'explain_process' => [
+                'procedure' => 1.0,
+                'warning' => 0.9,
+                'best_practice' => 0.8,
+                'example' => 0.7,
+                'statement' => 0.5,
+                'definition' => 0.3,
+            ],
+            'compare_things' => [
+                'statement' => 1.0,
+                'example' => 0.8,
+                'definition' => 0.6,
+                'best_practice' => 0.5,
+            ],
+            'generate_code' => [
+                'code_html' => 1.0,
+                'procedure' => 0.6,
+                'best_practice' => 0.5,
+                'statement' => 0.3,
+            ],
+            'list_information' => [
+                'statement' => 1.0,
+                'example' => 0.9,
+                'definition' => 0.7,
+            ],
+        ];
+
+        // Default priority if intent not in map
+        $defaultPriorities = [
+            'statement' => 1.0,
+            'definition' => 0.8,
+            'example' => 0.7,
+            'procedure' => 0.6,
+            'best_practice' => 0.5,
+            'warning' => 0.5,
+        ];
+
+        $weights = $priorityMap[$intent] ?? $defaultPriorities;
+
+        // Assign priority to each fact
+        foreach ($facts as &$fact) {
+            $type = strtolower((string)($fact['type'] ?? 'statement'));
+            $fact['_synthesis_priority'] = $weights[$type] ?? 0.5;
+        }
+        unset($fact);
+
+        // Sort by priority (higher first), then by score
+        usort($facts, function (array $a, array $b): int {
+            $priorityCmp = ($b['_synthesis_priority'] ?? 0) <=> ($a['_synthesis_priority'] ?? 0);
+            if ($priorityCmp !== 0) {
+                return $priorityCmp;
+            }
+            return ($b['_score'] ?? 0) <=> ($a['_score'] ?? 0);
+        });
+
+        return $facts;
     }
 
     /**

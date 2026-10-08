@@ -30,6 +30,9 @@ class FactSkill
         'only', 'very', 'more', 'most', 'some', 'any', 'all', 'not', 'no', 'yes',
     ];
 
+    /** @var array<string, list<float>> Request-scoped embed cache */
+    private static array $embedCache = [];
+
     /**
      * Extract facts from text and attach local embeddings.
      *
@@ -155,12 +158,37 @@ class FactSkill
      */
     public static function embed(string $text): array
     {
+        return self::embedCached($text);
+    }
+
+    /**
+     * Cached embedding for request-scoped performance.
+     * Clears automatically between requests (static array is per-request).
+     *
+     * @return list<float>
+     */
+    public static function embedCached(string $text): array
+    {
         $text = trim($text);
         if ($text === '') {
             return array_fill(0, LocalEmbedder::DIMENSIONS, 0.0);
         }
 
-        return LocalEmbedder::embed($text);
+        $key = md5($text);
+
+        if (!isset(self::$embedCache[$key])) {
+            self::$embedCache[$key] = LocalEmbedder::embed($text);
+        }
+
+        return self::$embedCache[$key];
+    }
+
+    /**
+     * Clear the embed cache (call at end of request if needed).
+     */
+    public static function clearEmbedCache(): void
+    {
+        self::$embedCache = [];
     }
 
     /**
@@ -217,6 +245,9 @@ class FactSkill
             'definition' => 0.04,
             'procedure' => 0.03,
             'code_html' => 0.05,
+            'example' => 0.02,
+            'warning' => 0.04,
+            'best_practice' => 0.05,
             'prompt_core' => 0.02,
             'prompt_intent' => -0.05,
             default => 0.0,
@@ -506,6 +537,17 @@ class FactSkill
             return 'procedure';
         }
 
+        // New fact types
+        if (preg_match('/\b(?:example|for instance|such as|like|e\.g\.)\b/i', $s)) {
+            return 'example';
+        }
+        if (preg_match('/\b(?:warning|caution|be careful|note|important)\b/i', $s)) {
+            return 'warning';
+        }
+        if (preg_match('/\b(?:best practice|recommended|should|prefer|it is recommended)\b/i', $s)) {
+            return 'best_practice';
+        }
+
         return 'statement';
     }
 
@@ -518,6 +560,12 @@ class FactSkill
             $c += 0.03;
         } elseif ($type === 'code_html') {
             $c += 0.08;
+        } elseif ($type === 'example') {
+            $c += 0.02;
+        } elseif ($type === 'warning') {
+            $c += 0.04;
+        } elseif ($type === 'best_practice') {
+            $c += 0.06;
         }
 
         $len = function_exists('mb_strlen') ? mb_strlen($statement) : strlen($statement);
