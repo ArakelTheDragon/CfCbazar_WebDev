@@ -17,8 +17,9 @@ class KnowledgeSkill
     private float $minimumVectorScore = 0.40;
     private float $minimumKeywordScore = 0.16;
     private float $minimumCombinedScore = 0.26;
-    private int $vectorLimit = 24;
-    private int $maxAnswerFacts = 10;
+    private int $vectorLimit = 80;
+    /** Safety ceiling only — all facts above relevance threshold are kept. */
+    private int $maxAnswerFacts = 80;
 
     // Feature flags (loaded from config)
     private bool $adaptiveThresholdsEnabled = false;
@@ -224,6 +225,37 @@ class KnowledgeSkill
 
             // Not enough local knowledge — try OpenRouter (limited retries)
             if (!$canCallOpenRouter || $openRouterCalls >= $maxOpenRouterCalls) {
+                // Code + specifics: prefer template if memory facts do not contain the specifics
+                $localCode = null;
+                if ($this->isCodeGenerationRequest($prompt, $intent)) {
+                    $localCode = $this->localCodeTemplate($prompt, $topic, $intent, $constraints, $specifics);
+                    if ($localCode !== null && $specifics !== []) {
+                        $blob = strtolower($localCode);
+                        $factsBlob = '';
+                        foreach ($selected as $sf) {
+                            $factsBlob .= ' ' . strtolower((string)($sf['content'] ?? $sf['value'] ?? ''));
+                        }
+                        $specInFacts = false;
+                        foreach ($specifics as $sp) {
+                            $sp = strtolower(trim((string)$sp));
+                            // Require multi-word or long tokens (avoid "ai"/"system" false hits)
+                            if ($sp === '' || (strlen($sp) < 8 && !str_contains($sp, ' '))) {
+                                continue;
+                            }
+                            if (str_contains($factsBlob, $sp)) {
+                                $specInFacts = true;
+                                break;
+                            }
+                        }
+                        if (!$specInFacts) {
+                            $draft = $localCode;
+                            break;
+                        }
+                    } elseif ($localCode !== null && $selected === []) {
+                        $draft = $localCode;
+                        break;
+                    }
+                }
                 if ($selected !== []) {
                     $draft = $this->answerFromLocalFacts(
                         $selected,
@@ -697,14 +729,30 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         array $keyPhrases = []
     ): array {
         $pool = [];
+        $queryKeywords = $keyPhrases !== []
+            ? array_map(static fn($p) => strtolower(trim((string)$p)), $keyPhrases)
+            : FactSkill::extractKeywords($prompt);
         $topicsToScan = array_values(array_unique(array_filter(
             array_merge([$topic], $subtopics),
             static fn($t) => is_string($t) && $t !== ''
         )));
 
+        // Best topic by name+content (fixes ambiguous short labels)
+        try {
+            $best = $memory->findBestMatchingTopic($prompt, $queryEmbedding, 0.28);
+            if (is_string($best) && $best !== '' && !in_array($best, $topicsToScan, true)) {
+                array_unshift($topicsToScan, $best);
+            } elseif (is_string($best) && $best !== '') {
+                // Prefer best as primary scan order
+                $topicsToScan = array_values(array_unique(array_merge([$best], $topicsToScan)));
+            }
+        } catch (Throwable $e) {
+            // ignore
+        }
+
         // Related topics via description / aliases / tags embeddings
         try {
-            $related = $memory->findRelatedTopics($queryEmbedding, $prompt, 4, 0.16);
+            $related = $memory->findRelatedTopics($queryEmbedding, $prompt, 6, 0.14);
             foreach ($related as $rel) {
                 $rel = trim((string)$rel);
                 if ($rel !== '' && !in_array($rel, $topicsToScan, true)) {
@@ -737,24 +785,29 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
                     $queryEmbedding,
                     $thresholds['vector'],
                     $this->vectorLimit,
-                    $t
+                    $t,
+                    $keyPhrases
                 ) as $fact) {
-                    $pool[] = $this->withScores($fact, $prompt, $t, (float)($fact['_score'] ?? 0.0), $keyPhrases);
+                    $pool[] = $this->withScores($fact, $prompt, $t, (float)($fact['_score'] ?? 0.0), $keyPhrases, $queryEmbedding, $queryKeywords);
                 }
             }
-            foreach ($memory->searchByVector(
-                $queryEmbedding,
-                $thresholds['vector'],
-                $this->vectorLimit,
-                null
-            ) as $fact) {
-                $pool[] = $this->withScores($fact, $prompt, $topic, (float)($fact['_score'] ?? 0.0), $keyPhrases);
+            // Global search only as fallback when topic-scoped pool is thin
+            if (count($pool) < 5) {
+                foreach ($memory->searchByVector(
+                    $queryEmbedding,
+                    max($thresholds['vector'], 0.50),
+                    min(20, $this->vectorLimit),
+                    null,
+                    $keyPhrases
+                ) as $fact) {
+                    $pool[] = $this->withScores($fact, $prompt, $topic, (float)($fact['_score'] ?? 0.0), $keyPhrases, $queryEmbedding, $queryKeywords);
+                }
             }
         }
 
         foreach ($topicsToScan as $t) {
             foreach ($this->selectUsefulMemoryFacts($memory->getTopicFacts($t), $prompt, $t) as $fact) {
-                $pool[] = $this->withScores($fact, $prompt, $t, 0.0, $keyPhrases);
+                $pool[] = $this->withScores($fact, $prompt, $t, 0.0, $keyPhrases, $queryEmbedding, $queryKeywords);
             }
         }
 
@@ -765,23 +818,48 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
                 continue;
             }
             foreach ($memory->getTopicFacts($entityTopic) as $fact) {
-                $pool[] = $this->withScores($fact, $prompt, $entityTopic, 0.0, $keyPhrases);
+                $pool[] = $this->withScores($fact, $prompt, $entityTopic, 0.0, $keyPhrases, $queryEmbedding, $queryKeywords);
             }
         }
 
         return $this->dedupeKeepBestScore($pool);
     }
 
+    /**
+     * Score a fact: FactSkill owns the base formula; Knowledge only adds
+     * phrase-hit and soft recency boosts (not a second independent formula).
+     *
+     * @param list<float> $queryEmbedding
+     * @param list<string> $keyPhrases
+     * @param list<string> $queryKeywords Precomputed keywords (hoisted)
+     */
     private function withScores(
         array $fact,
         string $prompt,
         string $topic,
         float $vectorScore,
-        array $keyPhrases = []
+        array $keyPhrases = [],
+        array $queryEmbedding = [],
+        array $queryKeywords = []
     ): array {
         $value = trim((string)($fact['value'] ?? $fact['content'] ?? $fact['fact'] ?? ''));
-        $keyword = $this->relevanceScore($prompt, $topic, $value);
 
+        if ($queryKeywords === []) {
+            $queryKeywords = $keyPhrases !== []
+                ? array_map(static fn($p) => strtolower(trim((string)$p)), $keyPhrases)
+                : FactSkill::extractKeywords($prompt);
+        }
+
+        $override = $vectorScore > 0.0 ? $vectorScore : -1.0;
+        $fs = FactSkill::scoreFactAgainstQuery(
+            $fact,
+            $prompt,
+            $queryEmbedding,
+            $queryKeywords,
+            $override
+        );
+
+        // Explicit add-ons only (not a second scoring system)
         $phraseBoost = 0.0;
         if ($keyPhrases !== [] && $value !== '') {
             $lv = strtolower($value);
@@ -792,29 +870,13 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
                     $hits++;
                 }
             }
-            $phraseBoost = min(0.20, $hits * 0.04);
+            $phraseBoost = min(0.12, $hits * 0.03);
         }
-
-        // FactSkill scoring (type + keywords + vector when available)
-        $queryKeywords = $keyPhrases !== []
-            ? array_map(static fn($p) => strtolower(trim((string)$p)), $keyPhrases)
-            : FactSkill::extractKeywords($prompt);
-        $fs = FactSkill::scoreFactAgainstQuery($fact, $prompt, [], $queryKeywords);
-        if ($vectorScore <= 0.0 && $fs['vector'] > 0.0) {
-            $vectorScore = $fs['vector'];
-        }
-        $keyword = max($keyword, $fs['keyword']);
-
-        // Soft recency boost for time-sensitive queries
         $recencyBoost = $this->getRecencyBoost($fact, $prompt);
 
-        $combined = ($vectorScore > 0.0)
-            ? (0.55 * $vectorScore + 0.28 * $keyword + $phraseBoost + 0.12 * $fs['combined'] + $recencyBoost)
-            : min(1.0, $keyword + $phraseBoost + 0.15 * $fs['combined'] + $recencyBoost);
-
-        $fact['_vector_score'] = $vectorScore;
-        $fact['_keyword_score'] = $keyword;
-        $fact['_score'] = min(1.0, $combined);
+        $fact['_vector_score'] = $fs['vector'];
+        $fact['_keyword_score'] = $fs['keyword'];
+        $fact['_score'] = min(1.0, $fs['combined'] + $phraseBoost + $recencyBoost);
 
         return $fact;
     }
@@ -926,95 +988,17 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
     }
 
     /**
-     * Weighted sufficiency check using score × confidence × source weights.
-     * More accurate than simple count-based checks.
-     *
-     * @param list<array<string, mixed>> $ranked
-     * @param MemoryStore|null $memory MemoryStore instance for adaptive thresholds
-     */
-    private function memoryIsSufficientWeighted(array $ranked, string $intent, bool $isMultiPart, ?MemoryStore $memory = null): bool
-    {
-        if ($ranked === []) {
-            return false;
-        }
-
-        // Feature flag: if disabled, use simple count-based check
-        if (!$this->weightedSufficiencyEnabled) {
-            return $this->memoryIsSufficientSimple($ranked, $intent, $isMultiPart, $memory);
-        }
-
-        // Calculate weighted quality score from top 5 facts
-        $qualitySum = 0.0;
-        $weightSum = 0.0;
-
-        foreach (array_slice($ranked, 0, 5) as $fact) {
-            $score = (float)($fact['_score'] ?? 0);
-            $confidence = (float)($fact['confidence'] ?? 0.5);
-            $sourceWeight = $this->sourceRank((string)($fact['source'] ?? '')) / 5.0;
-
-            $qualitySum += $score * $confidence * $sourceWeight;
-            $weightSum += $sourceWeight;
-        }
-
-        $avgQuality = $weightSum > 0 ? $qualitySum / $weightSum : 0;
-
-        // Intent-specific thresholds
-        $threshold = match($intent) {
-            'define_concept' => 0.35,
-            'explain_process' => 0.40,
-            'compare_things' => 0.45,
-            'generate_code' => 0.50,
-            default => 0.30
-        };
-
-        // Multi-part queries need higher quality
-        if ($isMultiPart) {
-            $threshold *= 1.1;
-        }
-
-        return $avgQuality >= $threshold;
-    }
-
-    /**
-     * Simple count-based sufficiency check (fallback when weighted sufficiency disabled).
-     *
-     * @param list<array<string, mixed>> $ranked
-     * @param MemoryStore|null $memory MemoryStore instance for adaptive thresholds
-     */
-    private function memoryIsSufficientSimple(array $ranked, string $intent, bool $isMultiPart, ?MemoryStore $memory = null): bool
-    {
-        if ($ranked === []) {
-            return false;
-        }
-
-        $topic = $ranked[0]['_topic'] ?? 'general_topic';
-        $thresholds = $this->getAdaptiveThresholds($topic, $memory ?? new MemoryStore(__DIR__ . '/../memory/memory.json'));
-
-        $strong = array_filter(
-            $ranked,
-            fn(array $f): bool => (float)($f['_score'] ?? 0) >= $thresholds['combined']
-        );
-
-        $need = $this->minimumUsefulFacts;
-        if (in_array($intent, ['define_concept', 'explain_process', 'compare_things'], true)) {
-            $need = max(2, $this->minimumUsefulFacts);
-        }
-        if ($isMultiPart) {
-            $need = max($need, 3);
-        }
-
-        if (count($strong) < $need) {
-            return false;
-        }
-
-        return (float)($ranked[0]['_score'] ?? 0) >= $thresholds['combined'];
-    }
-
-    /**
      * Main sufficiency check - delegates to weighted or simple based on feature flag.
      *
      * @param list<array<string, mixed>> $ranked
      * @param MemoryStore $memory MemoryStore instance for adaptive thresholds
+     */
+    /**
+     * Single sufficiency gate: unified confidence vs one intent threshold.
+     * (No stacked weighted/simple AND gates.)
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @param list<string> $specifics
      */
     private function memoryIsSufficient(
         array $ranked,
@@ -1040,7 +1024,24 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             );
         }
 
-        // Intent thresholds on unified confidence
+        $threshold = $this->intentConfidenceThreshold($intent, $isMultiPart, $specifics);
+
+        // Soft minimum: at least one strong fact
+        $top = (float)($ranked[0]['_score'] ?? 0);
+        if ($top < 0.20) {
+            return false;
+        }
+
+        return $confidence >= $threshold;
+    }
+
+    /**
+     * One threshold table for sufficiency (aligned with FactSkill-based scores).
+     *
+     * @param list<string> $specifics
+     */
+    private function intentConfidenceThreshold(string $intent, bool $isMultiPart, array $specifics = []): float
+    {
         $threshold = match ($intent) {
             'define_concept' => 0.34,
             'explain_process' => 0.38,
@@ -1049,24 +1050,17 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             default => 0.32,
         };
         if ($isMultiPart) {
-            $threshold *= 1.08;
+            $threshold = min(0.65, $threshold + 0.04);
         }
         if ($specifics !== []) {
-            $threshold = min(0.62, $threshold + 0.04);
+            $threshold = min(0.65, $threshold + 0.03);
         }
-
-        if ($this->weightedSufficiencyEnabled) {
-            return $confidence >= $threshold
-                && $this->memoryIsSufficientWeighted($ranked, $intent, $isMultiPart, $memory);
-        }
-
-        return $confidence >= $threshold
-            && $this->memoryIsSufficientSimple($ranked, $intent, $isMultiPart, $memory);
+        return $threshold;
     }
 
     /**
-     * Unified 0–1 confidence for current local answer candidates.
-     * Combines rank scores, fact confidence, source quality, and specificity fit.
+     * Unified 0–1 confidence from FactSkill-ranked facts (_score).
+     * Specificity fit adjusts coverage when the prompt has unique requirements.
      *
      * @param list<array<string, mixed>> $ranked
      * @param list<array<string, mixed>> $selected
@@ -1080,81 +1074,57 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         array $specifics = [],
         bool $isMultiPart = false
     ): float {
-        $pool = $selected !== [] ? $selected : array_slice($ranked, 0, 5);
+        $pool = $selected !== [] ? $selected : array_slice($ranked, 0, 8);
         if ($pool === []) {
             return 0.0;
         }
 
-        $qualitySum = 0.0;
-        $weightSum = 0.0;
+        $scoreSum = 0.0;
+        $n = 0;
         $specificityHits = 0;
 
-        foreach (array_slice($pool, 0, 5) as $fact) {
+        foreach ($pool as $fact) {
             if (!is_array($fact)) {
                 continue;
             }
             $score = (float)($fact['_score'] ?? 0.0);
-            $conf = (float)($fact['confidence'] ?? 0.5);
-            $srcW = max(0.2, $this->sourceRank((string)($fact['source'] ?? '')) / 5.0);
-            $type = strtolower((string)($fact['type'] ?? 'statement'));
-            $typeW = match ($type) {
-                'definition' => 1.05,
-                'procedure' => 1.05,
-                'code_html' => $intent === 'generate_code' ? 1.15 : 0.85,
-                'best_practice' => 1.05,
-                'example' => 0.95,
-                'warning' => 1.0,
-                default => 1.0,
-            };
+            $conf = (float)($fact['confidence'] ?? 0.7);
+            // Blend rank score with stored fact confidence (single stream)
+            $scoreSum += $score * (0.7 + 0.3 * $conf);
+            $n++;
 
+            if ($specifics === []) {
+                continue;
+            }
             $content = strtolower((string)($fact['content'] ?? $fact['value'] ?? ''));
             $tags = array_map('strval', is_array($fact['tags'] ?? null) ? $fact['tags'] : []);
-            $keywords = array_map('strval', is_array($fact['keywords'] ?? null) ? $fact['keywords'] : []);
-
-            $specFit = 1.0;
-            if ($specifics !== []) {
-                $hit = false;
-                foreach ($specifics as $sp) {
-                    $sp = strtolower(trim((string)$sp));
-                    if (strlen($sp) < 3) {
-                        continue;
-                    }
-                    if (str_contains($content, $sp)
-                        || in_array($sp, $tags, true)
-                        || in_array($sp, $keywords, true)
-                    ) {
-                        $hit = true;
-                        $specificityHits++;
-                        break;
-                    }
+            foreach ($specifics as $sp) {
+                $sp = strtolower(trim((string)$sp));
+                if ($sp === '' || (strlen($sp) < 8 && !str_contains($sp, ' '))) {
+                    continue;
                 }
-                $specFit = $hit ? 1.12 : 0.72;
+                if (str_contains($content, $sp) || in_array($sp, $tags, true)) {
+                    $specificityHits++;
+                    break;
+                }
             }
-
-            $q = $score * $conf * $srcW * $typeW * $specFit;
-            $qualitySum += $q;
-            $weightSum += $srcW;
         }
 
-        $avg = $weightSum > 0 ? $qualitySum / $weightSum : 0.0;
+        if ($n === 0) {
+            return 0.0;
+        }
 
-        // Coverage: multi-part / specifics need more supporting facts
+        $avg = $scoreSum / $n;
         $need = $isMultiPart ? 3 : (($specifics !== []) ? 2 : 1);
-        $coverage = min(1.0, count($pool) / max(1, $need));
+        $coverage = min(1.0, $n / max(1, $need));
         if ($specifics !== [] && $specificityHits === 0) {
             $coverage *= 0.55;
+            $avg *= 0.85;
         }
 
-        return max(0.0, min(1.0, 0.75 * $avg + 0.25 * $coverage));
+        return max(0.0, min(1.0, 0.80 * $avg + 0.20 * $coverage));
     }
 
-    /**
-     * Build storeable facts from an OpenRouter response (code + prose).
-     *
-     * @param list<string> $keyPhrases
-     * @param list<string> $specifics
-     * @return list<array<string, mixed>>
-     */
     private function buildFactsFromOpenRouterText(
         string $text,
         string $prompt,
@@ -1302,9 +1272,9 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
     }
 
     /**
-     * Decision flow: keep facts at/above score threshold, then cap at max N.
-     * N is a ceiling, not a target — fewer strong facts is fine.
-     * Enhanced with type diversity limits.
+     * Keep every fact that clears relevance / vector / confidence thresholds.
+     * maxAnswerFacts is only a safety ceiling (not "top 10 only").
+     * Soft type caps avoid flooding non-code answers with code_html only.
      *
      * @param list<array<string, mixed>> $ranked
      * @return list<array<string, mixed>>
@@ -1321,12 +1291,17 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         $isCodeGen = ($intent === 'generate_code')
             || ($prompt !== '' && $this->looksLikeCodeRequest($prompt));
 
-        // Get adaptive thresholds if enabled (reuse caller MemoryStore when provided)
         $topic = (string)($ranked[0]['_topic'] ?? $ranked[0]['topic'] ?? 'general_topic');
         if ($memory === null) {
             $memory = new MemoryStore(__DIR__ . '/../memory/memory.json');
         }
         $thresholds = $this->getAdaptiveThresholds($topic, $memory);
+
+        $minCombined = $this->adaptiveThresholdsEnabled ? $thresholds['combined'] : $this->minimumCombinedScore;
+        $minVector = $this->adaptiveThresholdsEnabled ? $thresholds['vector'] : $this->minimumVectorScore;
+        // Slightly lower bar so more related memory facts can surface
+        $minCombined = max(0.14, $minCombined * 0.85);
+        $minVector = max(0.22, $minVector * 0.85);
 
         foreach ($ranked as $fact) {
             if (!is_array($fact)) {
@@ -1334,30 +1309,23 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             }
             $score = (float)($fact['_score'] ?? 0);
             $vector = (float)($fact['_vector_score'] ?? 0);
+            $conf = (float)($fact['confidence'] ?? 0.5);
 
-            // Use adaptive thresholds if enabled, otherwise use defaults
-            $minCombined = $this->adaptiveThresholdsEnabled ? $thresholds['combined'] : $this->minimumCombinedScore;
-            $minVector = $this->adaptiveThresholdsEnabled ? $thresholds['vector'] : $this->minimumVectorScore;
-
-            // Pass if combined score clears bar OR strong pure vector hit
+            // Relevant if combined OR vector clears bar; require minimal confidence
+            if ($conf < 0.25) {
+                continue;
+            }
             if ($score < $minCombined && $vector < $minVector) {
                 continue;
             }
 
             $type = strtolower((string)($fact['type'] ?? 'statement'));
             $count = $typeCounts[$type] ?? 0;
-
-            // Diversity: do not let one type (e.g. code_html) fill the whole answer
-            // unless this is a code-generation request.
-            // Enhanced with type diversity feature flag
-            if ($this->typeDiversityEnabled) {
-                $maxPerType = $this->getMaxPerType($type, $isCodeGen, $intent);
-            } else {
-                // Original logic
-                $maxPerType = $isCodeGen && $type === 'code_html' ? 2 : 3;
-                if ($type === 'code_html' && !$isCodeGen) {
-                    $maxPerType = 1;
-                }
+            $maxPerType = $this->typeDiversityEnabled
+                ? $this->getMaxPerType($type, $isCodeGen, $intent)
+                : ($isCodeGen && $type === 'code_html' ? 8 : 40);
+            if ($type === 'code_html' && !$isCodeGen) {
+                $maxPerType = min($maxPerType, 2);
             }
 
             if ($count >= $maxPerType) {
@@ -1371,7 +1339,7 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
             }
         }
 
-        // If diversity filtered everything out, fall back to top score-only
+        // Fallback: if nothing passed, take best-scoring related facts
         if ($selected === []) {
             foreach ($ranked as $fact) {
                 if (!is_array($fact)) {
@@ -1379,15 +1347,11 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
                 }
                 $score = (float)($fact['_score'] ?? 0);
                 $vector = (float)($fact['_vector_score'] ?? 0);
-
-                $minCombined = $this->adaptiveThresholdsEnabled ? $thresholds['combined'] : $this->minimumCombinedScore;
-                $minVector = $this->adaptiveThresholdsEnabled ? $thresholds['vector'] : $this->minimumVectorScore;
-
-                if ($score < $minCombined && $vector < $minVector) {
+                if ($score < ($minCombined * 0.75) && $vector < ($minVector * 0.75)) {
                     continue;
                 }
                 $selected[] = $fact;
-                if (count($selected) >= min(3, $this->maxAnswerFacts)) {
+                if (count($selected) >= min(12, $this->maxAnswerFacts)) {
                     break;
                 }
             }
@@ -1396,51 +1360,38 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         return $selected;
     }
 
-    /**
-     * Get maximum facts per type based on intent and type.
-     * Used when type diversity is enabled.
-     */
     private function getMaxPerType(string $type, bool $isCodeGen, string $intent): int
     {
-        // Code generation: allow more code facts
-        if ($isCodeGen && $type === 'code_html') {
-            return 2;
+        // Soft caps — allow many related facts; only restrain code dumps off code intents
+        if ($type === 'code_html') {
+            return $isCodeGen ? 6 : 2;
         }
 
-        // Non-code generation: limit code facts strictly
-        if ($type === 'code_html' && !$isCodeGen) {
-            return 1;
-        }
-
-        // Intent-specific type limits (with new fact types)
-        return match($intent) {
-            'define_concept' => match($type) {
-                'definition' => 2,
-                'example' => 2,
-                'best_practice' => 2,
-                'statement' => 3,
-                default => 1
+        return match ($intent) {
+            'define_concept' => match ($type) {
+                'definition' => 20,
+                'example' => 12,
+                'best_practice' => 12,
+                'statement' => 30,
+                'warning' => 8,
+                default => 15,
             },
-            'explain_process' => match($type) {
-                'procedure' => 4,
-                'warning' => 2,
-                'best_practice' => 2,
-                'example' => 2,
-                'statement' => 2,
-                default => 1
+            'explain_process' => match ($type) {
+                'procedure' => 25,
+                'warning' => 10,
+                'best_practice' => 12,
+                'example' => 12,
+                'statement' => 25,
+                default => 15,
             },
-            'compare_things' => match($type) {
-                'statement' => 2,
-                'example' => 2,
-                default => 1
+            'compare_things' => 20,
+            'generate_code' => match ($type) {
+                'code_html' => 6,
+                'procedure' => 15,
+                'best_practice' => 10,
+                default => 12,
             },
-            'generate_code' => match($type) {
-                'code_html' => 2,
-                'procedure' => 2,
-                'best_practice' => 1,
-                default => 1
-            },
-            default => 3 // Generic limit
+            default => 25,
         };
     }
 

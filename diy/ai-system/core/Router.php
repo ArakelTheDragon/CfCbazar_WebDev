@@ -34,6 +34,8 @@ if (!class_exists('Router', false)) {
         public array $lastEntities = [];
         public ?string $lastIntent = null;
         public ?string $lastQuestionType = null;
+        public ?float $lastAnswerConfidence = null;
+        public ?bool $lastMemorySufficient = null;
 
         public function __construct()
         {
@@ -143,6 +145,8 @@ if (!class_exists('Router', false)) {
             if (method_exists($knowledge, 'process')) {
                 $data = $knowledge->process($data, $this->memory);
                 $draft = $data->draftAnswer();
+                $this->lastAnswerConfidence = (float)$data->get('answer_confidence', 0.0);
+                $this->lastMemorySufficient = (bool)$data->get('memory_sufficient', false);
             } else {
                 $rawResponse = $knowledge->respond($analysis, $this->memory);
                 $draft = is_string($rawResponse) ? $rawResponse : $this->fallbackResponse($rawResponse);

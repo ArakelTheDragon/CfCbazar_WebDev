@@ -20,7 +20,7 @@ class MemoryConsolidator
 
     public function __construct(
         string $memoryIndexFile = __DIR__ . '/memory/memory.json',
-        float $similarityThreshold = 0.72
+        float $similarityThreshold = 0.82
     ) {
         $this->memoryIndexFile = $memoryIndexFile;
         $this->topicsDir = rtrim(dirname($memoryIndexFile), '/\\') . '/topics';
@@ -51,6 +51,11 @@ class MemoryConsolidator
                         'similarity'      => round($similarity * 100, 2),
                         'primary_facts'   => $primary === $a ? $factsA : $factsB,
                         'secondary_facts' => $primary === $a ? $factsB : $factsA,
+                        'name_score'      => round($this->nameSimilarity(
+                            $this->normalizeTopicKey($a),
+                            $this->normalizeTopicKey($b)
+                        ) * 100, 1),
+                        'content_score'   => round($this->contentSimilarity($a, $b) * 100, 1),
                     ];
                 }
             }
@@ -143,6 +148,14 @@ class MemoryConsolidator
         if ($corrB === $a) {
             return $a;
         }
+
+        // Prefer fewer underscore-typo patterns (back_holes → black_holes style)
+        $scoreA = $this->canonicalNameScore($a);
+        $scoreB = $this->canonicalNameScore($b);
+        if ($scoreA !== $scoreB) {
+            return $scoreA > $scoreB ? $a : $b;
+        }
+
         // Prefer more facts, then longer name
         if ($factsA !== $factsB) {
             return $factsA >= $factsB ? $a : $b;
@@ -150,6 +163,34 @@ class MemoryConsolidator
         return strlen($a) >= strlen($b) ? $a : $b;
     }
 
+    /**
+     * Higher = more likely a clean canonical topic name.
+     */
+    private function canonicalNameScore(string $key): float
+    {
+        $readable = str_replace('_', ' ', $key);
+        $corrected = SpellCorrector::correct($readable, []);
+        $score = 0.0;
+        if (strtolower($corrected) === strtolower($readable)) {
+            $score += 0.5;
+        }
+        // Prefer known lexicon density
+        $parts = preg_split('/[_\s]+/', strtolower($key)) ?: [];
+        $known = 0;
+        foreach ($parts as $p) {
+            if (strlen($p) >= 4) {
+                $known++;
+            }
+        }
+        $score += min(0.5, $known * 0.1);
+        return $score;
+    }
+
+    /**
+     * Topic similarity for merge suggestions.
+     * Name-only matches are NOT enough — content/embedding must agree
+     * (prevents black_holes↔castles and different sky_* processes).
+     */
     private function calculateTopicSimilarity(string $keyA, string $keyB): float
     {
         if ($keyA === $keyB) {
@@ -163,20 +204,161 @@ class MemoryConsolidator
             return 1.0;
         }
 
-        $levenshteinDist = levenshtein($normA, $normB);
-        $maxLen = max(strlen($normA), strlen($normB), 1);
+        $nameScore = $this->nameSimilarity($normA, $normB);
+        $contentScore = $this->contentSimilarity($keyA, $keyB);
+
+        // Near-identical names (typos only): allow merge if name is very high
+        // even with sparse/empty content (e.g. vecrot_embedings → vector_embeddings)
+        if ($nameScore >= 0.86) {
+            // Ensure clear typos pass the default 0.82 scan threshold
+            return max(0.83, $nameScore * 0.95 + $contentScore * 0.05);
+        }
+
+        // Shared words but different meaning → content must dominate
+        // Reject strong name-only false positives (sky_X vs sky_Y, holes vs castles)
+        if ($contentScore < 0.28) {
+            return min($nameScore * 0.5, $contentScore + 0.12);
+        }
+
+        // Balanced: both name and content must contribute
+        $combined = (0.35 * $nameScore) + (0.65 * $contentScore);
+
+        // Extra: token Jaccard on topic keys (discriminates sky_X vs sky_Y_Z)
+        $jaccard = $this->tokenJaccard($normA, $normB);
+        if ($jaccard < 0.45 && $contentScore < 0.55) {
+            $combined *= 0.75;
+        }
+
+        return max(0.0, min(1.0, $combined));
+    }
+
+    private function nameSimilarity(string $normA, string $normB): float
+    {
+        if ($normA === '' || $normB === '') {
+            return 0.0;
+        }
+
+        // Spell-correct then compare (back holes → black holes)
+        $corrA = strtolower(SpellCorrector::correct($normA, []));
+        $corrB = strtolower(SpellCorrector::correct($normB, []));
+        if ($corrA === $corrB && $corrA !== '') {
+            return 0.96;
+        }
+
+        $levenshteinDist = levenshtein(
+            function_exists('mb_substr') ? mb_substr($corrA, 0, 255) : substr($corrA, 0, 255),
+            function_exists('mb_substr') ? mb_substr($corrB, 0, 255) : substr($corrB, 0, 255)
+        );
+        $maxLen = max(strlen($corrA), strlen($corrB), 1);
         $levSimilarity = 1.0 - ($levenshteinDist / $maxLen);
 
-        similar_text($normA, $normB, $percent);
+        similar_text($corrA, $corrB, $percent);
         $similarTextScore = $percent / 100.0;
 
-        return max($levSimilarity, $similarTextScore);
+        // Do not let similar_text alone invent high scores on short unrelated strings
+        $score = (0.55 * $levSimilarity) + (0.45 * $similarTextScore);
+        if ($this->tokenJaccard($corrA, $corrB) < 0.25) {
+            $score *= 0.6;
+        }
+
+        return max(0.0, min(1.0, $score));
+    }
+
+    /**
+     * Content similarity from topic meta + sample fact embeddings/keywords.
+     */
+    private function contentSimilarity(string $keyA, string $keyB): float
+    {
+        try {
+            $metaA = $this->memory->getTopicMeta($keyA);
+            $metaB = $this->memory->getTopicMeta($keyB);
+        } catch (Throwable $e) {
+            $metaA = [];
+            $metaB = [];
+        }
+
+        $blobA = $this->topicContentBlob($keyA, $metaA);
+        $blobB = $this->topicContentBlob($keyB, $metaB);
+
+        if ($blobA === '' || $blobB === '') {
+            return 0.0;
+        }
+
+        // Keyword Jaccard
+        $kwA = FactSkill::extractKeywords($blobA, 24);
+        $kwB = FactSkill::extractKeywords($blobB, 24);
+        $kwScore = 0.0;
+        if ($kwA !== [] && $kwB !== []) {
+            $inter = count(array_intersect($kwA, $kwB));
+            $union = count(array_unique(array_merge($kwA, $kwB)));
+            $kwScore = $union > 0 ? $inter / $union : 0.0;
+        }
+
+        // Embedding cosine on content samples
+        $embA = FactSkill::embed(function_exists('mb_substr') ? mb_substr($blobA, 0, 600) : substr($blobA, 0, 600));
+        $embB = FactSkill::embed(function_exists('mb_substr') ? mb_substr($blobB, 0, 600) : substr($blobB, 0, 600));
+        $vecScore = FactSkill::cosineSimilarity($embA, $embB);
+
+        return max(0.0, min(1.0, (0.45 * $kwScore) + (0.55 * $vecScore)));
+    }
+
+    /**
+     * @param array<string, mixed> $meta
+     */
+    private function topicContentBlob(string $topic, array $meta): string
+    {
+        $parts = [];
+        $parts[] = str_replace('_', ' ', $topic);
+        if (!empty($meta['description'])) {
+            $parts[] = (string)$meta['description'];
+        }
+        foreach (['tags', 'aliases', 'subtopics'] as $k) {
+            if (!empty($meta[$k]) && is_array($meta[$k])) {
+                $parts[] = implode(' ', $meta[$k]);
+            }
+        }
+
+        $facts = $this->memory->getTopicFacts($topic);
+        $n = 0;
+        foreach ($facts as $f) {
+            if (!is_array($f)) {
+                continue;
+            }
+            $c = trim((string)($f['content'] ?? $f['value'] ?? ''));
+            if ($c === '' || ($f['type'] ?? '') === 'prompt_intent') {
+                continue;
+            }
+            // Prefer non-code snippets for topic identity
+            if (($f['type'] ?? '') === 'code_html') {
+                $c = function_exists('mb_substr') ? mb_substr($c, 0, 120) : substr($c, 0, 120);
+            }
+            $parts[] = $c;
+            $n++;
+            if ($n >= 8) {
+                break;
+            }
+        }
+
+        return trim(implode("
+", $parts));
+    }
+
+    private function tokenJaccard(string $a, string $b): float
+    {
+        $ta = array_values(array_filter(preg_split('/\s+/', strtolower($a)) ?: [], fn($w) => strlen($w) >= 3));
+        $tb = array_values(array_filter(preg_split('/\s+/', strtolower($b)) ?: [], fn($w) => strlen($w) >= 3));
+        if ($ta === [] || $tb === []) {
+            return 0.0;
+        }
+        $inter = count(array_intersect($ta, $tb));
+        $union = count(array_unique(array_merge($ta, $tb)));
+        return $union > 0 ? $inter / $union : 0.0;
     }
 
     private function normalizeTopicKey(string $key): string
     {
         $clean = strtolower(str_replace(['_', '-'], ' ', $key));
-        $fillers = ['you know about', 'tell me about', 'what is', 'how to', 'make me a', 'remember', 'simple', 'the', 'a', 'an'];
+        $fillers = ['you know about', 'tell me about', 'what is', 'how to', 'make me a', 'remember', 'simple', 'the', 'a', 'an', 'topic'];
         foreach ($fillers as $filler) {
             $clean = str_replace($filler, '', $clean);
         }
@@ -280,7 +462,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 <body>
     <div class="container">
         <h1>Memory Topic Consolidator</h1>
-        <p>Merge similar/misspelled topics, refresh local embeddings. Uses MemoryStore + FactSkill (no OpenRouter).</p>
+        <p>Merge similar/misspelled topics using <strong>name + content/embedding</strong> (not name-only). Refresh local embeddings. No OpenRouter.</p>
 
         <div class="actions-bar">
             <form method="POST" action=""><input type="hidden" name="action" value="scan">
@@ -308,6 +490,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                         <th>Primary</th>
                         <th>Secondary (merge into primary)</th>
                         <th>Similarity</th>
+                        <th>Name</th>
+                        <th>Content</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -323,6 +507,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                                 <small style="color:#a0a0a0;"><?= (int)$row['secondary_facts'] ?> fact(s)</small>
                             </td>
                             <td><span class="similarity-badge"><?= htmlspecialchars((string)$row['similarity']) ?>%</span></td>
+                            <td><?= htmlspecialchars((string)($row['name_score'] ?? '—')) ?>%</td>
+                            <td><?= htmlspecialchars((string)($row['content_score'] ?? '—')) ?>%</td>
                             <td>
                                 <form method="POST" action="">
                                     <input type="hidden" name="action" value="merge_single">

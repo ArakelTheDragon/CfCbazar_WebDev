@@ -143,6 +143,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 'prompt_original'  => $promptOriginal,
                 'prompt_corrected' => $prompt,
                 'topic_fact_count' => $topicFactCount,
+                'answer_confidence'=> isset($router->lastAnswerConfidence) ? (float)$router->lastAnswerConfidence : null,
+                'memory_sufficient'=> isset($router->lastMemorySufficient) ? (bool)$router->lastMemorySufficient : null,
                 'memory_mb'        => round($memBytes / 1048576, 2),
                 'memory_peak_mb'   => round($memPeakBytes / 1048576, 2),
             ];
@@ -489,6 +491,16 @@ if ($useSiteLayout) {
             <h2>System Status</h2>
             <div class="status-item"><strong>Last Topic:</strong> <?php echo htmlspecialchars((string)($status['last_topic'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="status-item"><strong>Facts on topic:</strong> <?php echo (int)($status['topic_fact_count'] ?? 0); ?></div>
+            <div class="status-item"><strong>Answer confidence:</strong> <?php
+                if (isset($status['answer_confidence']) && $status['answer_confidence'] !== null) {
+                    echo number_format((float)$status['answer_confidence'] * 100, 1) . '%';
+                    if (isset($status['memory_sufficient'])) {
+                        echo $status['memory_sufficient'] ? ' (sufficient)' : ' (needs more)';
+                    }
+                } else {
+                    echo '—';
+                }
+            ?></div>
             <div class="status-item"><strong>Last Entities:</strong> <?php echo htmlspecialchars(implode(', ', (array)($status['last_entities'] ?? [])), ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="status-item"><strong>Intent:</strong> <?php echo htmlspecialchars((string)($status['last_intent'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="status-item"><strong>Question Type:</strong> <?php echo htmlspecialchars((string)($status['question_type'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></div>

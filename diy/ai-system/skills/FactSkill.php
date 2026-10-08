@@ -171,7 +171,7 @@ class FactSkill
     {
         $text = trim($text);
         if ($text === '') {
-            return array_fill(0, LocalEmbedder::DIMENSIONS, 0.0);
+            return []; // empty embedding — never store as valid vector
         }
 
         $key = md5($text);
@@ -212,16 +212,23 @@ class FactSkill
         array $fact,
         string $queryText,
         array $queryEmbedding = [],
-        array $queryKeywords = []
+        array $queryKeywords = [],
+        float $vectorOverride = -1.0
     ): array {
         $content = trim((string)($fact['content'] ?? $fact['value'] ?? ''));
         $vectorScore = 0.0;
 
-        $factEmb = $fact['embedding'] ?? null;
-        if (is_array($factEmb) && $queryEmbedding !== [] && count($factEmb) === count($queryEmbedding)) {
-            $vectorScore = self::cosineSimilarity($queryEmbedding, $factEmb);
-        } elseif ($content !== '' && $queryText !== '') {
-            $vectorScore = self::cosineSimilarity(self::embed($queryText), self::embed($content));
+        if ($vectorOverride >= 0.0) {
+            $vectorScore = $vectorOverride;
+        } else {
+            $factEmb = $fact['embedding'] ?? null;
+            if (is_array($factEmb) && $queryEmbedding !== [] && count($factEmb) === count($queryEmbedding)) {
+                $vectorScore = self::cosineSimilarity($queryEmbedding, $factEmb);
+            } elseif ($content !== '' && $queryText !== '') {
+                $qe = $queryEmbedding !== [] ? $queryEmbedding : self::embed($queryText);
+                $fe = is_array($factEmb) && $factEmb !== [] ? $factEmb : self::embed($content);
+                $vectorScore = self::cosineSimilarity($qe, $fe);
+            }
         }
 
         if ($queryKeywords === []) {

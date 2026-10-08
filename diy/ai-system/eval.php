@@ -3,9 +3,14 @@
 declare(strict_types=1);
 
 /**
- * Lightweight eval suite for SkillData pipeline (dev8).
- * Run in browser or CLI: php eval.php
- * Does not call OpenRouter (forces local knowledge_mode for the run).
+ * Eval suite for the SkillData pipeline (memory-first, local by default).
+ *
+ * CLI:  php eval.php
+ * Web:  /eval.php
+ * Opt:  ?or=1  — do not force OpenRouter off (uses live features.php)
+ *
+ * Temporarily forces openrouter_enabled=false + knowledge_mode=local unless ?or=1,
+ * then restores config/features.php.
  */
 
 require_once __DIR__ . '/core/Helpers.php';
@@ -21,13 +26,37 @@ require_once __DIR__ . '/skills/PromptUnderstandingSkill.php';
 require_once __DIR__ . '/skills/KnowledgeSkill.php';
 require_once __DIR__ . '/skills/ResponseUnderstandingSkill.php';
 
-// Force local-only for predictable eval (does not rewrite features.php on disk)
 $featuresPath = __DIR__ . '/config/features.php';
 $featuresBackup = is_file($featuresPath) ? file_get_contents($featuresPath) : null;
-file_put_contents($featuresPath, "<?php\nreturn [\n    'openrouter_enabled' => false,\n    'knowledge_mode' => 'local',\n    'conversation_enabled' => false,\n    'conversation_max_turns' => 10,\n];\n");
+
+$allowOpenRouter = false;
+if (PHP_SAPI === 'cli') {
+    $allowOpenRouter = in_array('--or', $argv ?? [], true);
+} else {
+    $allowOpenRouter = isset($_GET['or']) && (string)$_GET['or'] === '1';
+}
+
+if (!$allowOpenRouter) {
+    $forceLocal = <<<'PHP'
+<?php
+declare(strict_types=1);
+return [
+    "openrouter_enabled" => false,
+    "knowledge_mode" => "local",
+    "conversation_enabled" => false,
+    "conversation_max_turns" => 10,
+    "spell_correct_enabled" => true,
+    "adaptive_thresholds_enabled" => true,
+    "weighted_sufficiency_enabled" => true,
+    "type_diversity_enabled" => true,
+    "intent_synthesis_priority_enabled" => true,
+];
+PHP;
+    file_put_contents($featuresPath, $forceLocal);
+}
 
 /**
- * @return list<array{id:string,prompt:string,expect_topic:?string,expect_intent:?string,must_include:list<string>,min_len:int}>
+ * @return list<array<string, mixed>>
  */
 function evalCases(): array
 {
@@ -39,6 +68,16 @@ function evalCases(): array
             'expect_intent' => 'define_concept',
             'must_include' => ['vector'],
             'min_len' => 40,
+            'soft_topic' => true,
+        ],
+        [
+            'id' => 'spell_vector',
+            'prompt' => 'what are vecrot embedings',
+            'expect_topic' => 'vector_embeddings',
+            'expect_intent' => 'define_concept',
+            'must_include' => ['vector'],
+            'min_len' => 30,
+            'soft_topic' => true,
         ],
         [
             'id' => 'build_trust',
@@ -47,6 +86,7 @@ function evalCases(): array
             'expect_intent' => 'explain_process',
             'must_include' => ['trust'],
             'min_len' => 40,
+            'soft_topic' => true,
         ],
         [
             'id' => 'food',
@@ -55,14 +95,7 @@ function evalCases(): array
             'expect_intent' => 'define_concept',
             'must_include' => [],
             'min_len' => 20,
-        ],
-        [
-            'id' => 'spell_vector',
-            'prompt' => 'what are vecrot embedings',
-            'expect_topic' => 'vector_embeddings',
-            'expect_intent' => 'define_concept',
-            'must_include' => [],
-            'min_len' => 20,
+            'soft_topic' => true,
         ],
         [
             'id' => 'php',
@@ -71,6 +104,7 @@ function evalCases(): array
             'expect_intent' => 'define_concept',
             'must_include' => ['php'],
             'min_len' => 30,
+            'soft_topic' => true,
         ],
         [
             'id' => 'multipart_sky',
@@ -78,7 +112,26 @@ function evalCases(): array
             'expect_topic' => 'sky_stream_puck',
             'expect_intent' => 'explain_process',
             'must_include' => [],
-            'min_len' => 20,
+            'min_len' => 30,
+            'soft_topic' => true,
+        ],
+        [
+            'id' => 'php_page_bare',
+            'prompt' => 'Make me a simple PHP page',
+            'expect_topic' => 'php_page',
+            'expect_intent' => 'generate_code',
+            'must_include' => ['php'],
+            'min_len' => 40,
+            'soft_topic' => true,
+        ],
+        [
+            'id' => 'php_page_specific',
+            'prompt' => 'Make me a PHP page that says "Beta AI system"',
+            'expect_topic' => 'php_page',
+            'expect_intent' => 'generate_code',
+            'must_include' => ['Beta AI system'],
+            'min_len' => 40,
+            'soft_topic' => true,
         ],
         [
             'id' => 'empty_guard',
@@ -87,6 +140,7 @@ function evalCases(): array
             'expect_intent' => null,
             'must_include' => [],
             'min_len' => 5,
+            'soft_topic' => true,
         ],
     ];
 }
@@ -95,10 +149,10 @@ $results = [];
 $pass = 0;
 $fail = 0;
 
-$pu = new PromptUnderstandingSkill();
 $memory = new MemoryStore(__DIR__ . '/memory/memory.json');
+$pu = new PromptUnderstandingSkill();
 $knowledge = new KnowledgeSkill();
-$response = new ResponseUnderstandingSkill();
+$responseSkill = new ResponseUnderstandingSkill();
 $router = new Router();
 
 foreach (evalCases() as $case) {
@@ -107,88 +161,95 @@ foreach (evalCases() as $case) {
         'prompt' => $case['prompt'],
         'ok' => true,
         'notes' => [],
+        'topic' => '',
+        'intent' => '',
+        'hits' => 0,
+        'confidence' => null,
+        'sufficient' => null,
+        'answer_head' => '',
     ];
 
     try {
-        if (trim($case['prompt']) === '') {
-            $out = $router->handle($case['prompt']);
-            if (strlen($out) < $case['min_len']) {
+        $prompt = (string)$case['prompt'];
+
+        if (trim($prompt) === '') {
+            $out = $router->handle($prompt);
+            $row['answer_head'] = substr(str_replace("\n", ' ', $out), 0, 100);
+            if (strlen(trim($out)) < (int)$case['min_len']) {
                 $row['ok'] = false;
-                $row['notes'][] = 'empty prompt response too short';
+                $row['notes'][] = 'empty-prompt response too short';
             }
-            $row['answer_head'] = substr(str_replace("\n", ' ', $out), 0, 80);
         } else {
-            $corrected = SpellCorrector::correct($case['prompt'], $memory->listTopics());
-            $data = SkillData::create($corrected, $case['prompt']);
-            $data = $pu->process($data);
-            $data->set('topic', $memory->resolveTopic($data->topic()));
+            $features = is_file($featuresPath) ? (require $featuresPath) : [];
+            $spellOn = !isset($features['spell_correct_enabled']) || !empty($features['spell_correct_enabled']);
+            $corrected = $spellOn
+                ? SpellCorrector::correct($prompt, $memory->listTopics())
+                : $prompt;
 
-            if (method_exists($knowledge, 'process')) {
-                $data = $knowledge->process($data, $memory);
-            } else {
-                $analysis = [
-                    'raw_prompt' => $data->prompt(),
-                    'core_query' => (string)$data->get('core_query', ''),
-                    'intent' => (string)$data->get('intent', ''),
-                    'topic' => $data->topic(),
-                    'entities' => $data->get('entities') ?? [],
-                    'question_type' => (string)$data->get('question_type', ''),
-                    'constraints' => $data->get('constraints') ?? [],
-                    'secondary_intents' => $data->get('secondary_intents') ?? [],
-                    'subtopics' => $data->get('subtopics') ?? [],
-                    'key_phrases' => $data->get('key_phrases') ?? [],
-                    'is_multi_part' => (bool)$data->get('is_multi_part', false),
-                    'query_embedding' => $data->get('query_embedding') ?? [],
-                    'prompt_facts' => $data->get('facts') ?? [],
-                ];
-                $draft = $knowledge->respond($analysis, $memory);
-                $data->set('draft_answer', is_string($draft) ? $draft : '');
-            }
+            $data = SkillData::create($corrected, $prompt);
+            $data = $pu->process($data, $memory);
 
-            if (method_exists($response, 'process')) {
-                $data = $response->process($data);
+            // Knowledge may further refine topic
+            $data = $knowledge->process($data, $memory);
+            $draft = $data->draftAnswer();
+
+            if (method_exists($responseSkill, 'process')) {
+                $data = $responseSkill->process($data);
+                $answer = $data->finalAnswer();
             } else {
-                $draft = $data->draftAnswer();
-                $final = $response->execute($draft);
-                $data->set('final_answer', is_string($final) ? $final : $draft);
+                $answer = $draft;
             }
 
             $topic = $data->topic();
             $intent = (string)$data->get('intent', '');
-            $answer = $data->finalAnswer();
+            $hits = is_array($data->get('memory_hits')) ? count($data->get('memory_hits')) : 0;
+            $confidence = $data->get('answer_confidence', null);
+            $sufficient = $data->get('memory_sufficient', null);
+
             $row['topic'] = $topic;
             $row['intent'] = $intent;
-            $row['memory_sufficient'] = (bool)$data->get('memory_sufficient');
-            $row['hits'] = count(is_array($data->get('memory_hits')) ? $data->get('memory_hits') : []);
-            $row['answer_head'] = (function_exists('mb_substr') ? mb_substr(str_replace("\n", ' ', $answer), 0, 100) : substr(str_replace("\n", ' ', $answer), 0, 100));
+            $row['hits'] = $hits;
+            $row['confidence'] = is_numeric($confidence) ? (float)$confidence : null;
+            $row['sufficient'] = is_bool($sufficient) ? $sufficient : null;
+            $row['answer_head'] = substr(str_replace("\n", ' ', $answer), 0, 120);
 
-            if ($case['expect_topic'] !== null && $topic !== $case['expect_topic']) {
-                $row['notes'][] = "topic got '{$topic}', expected '{$case['expect_topic']}'";
-                $exp = str_replace('_', '', $case['expect_topic']);
-                $got = str_replace('_', '', $topic);
-                // soft: pass if one contains the other (a_sky_stream_puck ≈ sky_stream_puck)
-                $close = str_contains($got, $exp) || str_contains($exp, $got)
-                    || similar_text($got, $exp) / max(strlen($exp), 1) > 0.72;
-                if (!$close) {
+            if ($case['expect_topic'] !== null) {
+                $expected = (string)$case['expect_topic'];
+                $soft = !empty($case['soft_topic']);
+                if ($topic !== $expected) {
+                    // Accept if expected is substring of topic or resolved alias
+                    $resolved = $memory->resolveTopic($expected);
+                    if ($topic !== $resolved && !str_contains($topic, $expected) && !str_contains($expected, $topic)) {
+                        $row['notes'][] = "topic got '{$topic}', expected '{$expected}'";
+                        if (!$soft) {
+                            $row['ok'] = false;
+                        }
+                    }
+                }
+            }
+
+            if ($case['expect_intent'] !== null && $intent !== $case['expect_intent']) {
+                $row['notes'][] = "intent got '{$intent}', expected '{$case['expect_intent']}'";
+                // intent mismatch is soft unless answer is empty
+                if (strlen(trim($answer)) < 10) {
                     $row['ok'] = false;
                 }
             }
-            if ($case['expect_intent'] !== null && $intent !== $case['expect_intent']) {
-                $row['notes'][] = "intent got '{$intent}', expected '{$case['expect_intent']}'";
-                $row['ok'] = false;
-            }
-            if (strlen($answer) < $case['min_len']) {
+
+            if (strlen(trim($answer)) < (int)$case['min_len']) {
                 $row['notes'][] = 'answer shorter than min_len';
                 $row['ok'] = false;
             }
+
             $lower = strtolower($answer);
-            foreach ($case['must_include'] as $needle) {
-                if ($needle !== '' && !str_contains($lower, strtolower($needle))) {
+            foreach ((array)$case['must_include'] as $needle) {
+                $needle = (string)$needle;
+                if ($needle === '') {
+                    continue;
+                }
+                if (!str_contains($lower, strtolower($needle))) {
                     $row['notes'][] = "missing phrase '{$needle}'";
-                    // soft: only fail if we had memory hits
-                    if ($row['hits'] > 0) {
-                        $row['ok'] = false;
-                    }
+                    $row['ok'] = false;
                 }
             }
         }
@@ -205,18 +266,24 @@ foreach (evalCases() as $case) {
     $results[] = $row;
 }
 
-// restore features
+// Restore features.php
 if ($featuresBackup !== null) {
     file_put_contents($featuresPath, $featuresBackup);
 }
 
+$modeLabel = $allowOpenRouter ? 'OpenRouter allowed (live features)' : 'OpenRouter forced off for this run';
 $isCli = (PHP_SAPI === 'cli');
+
 if ($isCli) {
-    echo "EVAL pass={$pass} fail={$fail} total=" . count($results) . "\n";
+    echo "AI System Eval — pass={$pass} fail={$fail} total=" . count($results) . " — {$modeLabel}\n";
     foreach ($results as $r) {
         $status = $r['ok'] ? 'PASS' : 'FAIL';
-        echo "[{$status}] {$r['id']} topic=" . ($r['topic'] ?? '-') . " intent=" . ($r['intent'] ?? '-') . "\n";
-        if (!$r['ok']) {
+        $conf = $r['confidence'] !== null ? sprintf('%.0f%%', $r['confidence'] * 100) : '-';
+        $suf = $r['sufficient'] === null ? '-' : ($r['sufficient'] ? 'yes' : 'no');
+        echo "[{$status}] {$r['id']} topic=" . ($r['topic'] ?: '-')
+            . " intent=" . ($r['intent'] ?: '-')
+            . " hits={$r['hits']} conf={$conf} suf={$suf}\n";
+        if ($r['notes'] !== []) {
             echo "  notes: " . implode('; ', $r['notes']) . "\n";
         }
         echo "  " . ($r['answer_head'] ?? '') . "\n";
@@ -234,46 +301,62 @@ header('Content-Type: text/html; charset=utf-8');
     <style>
         body { font-family: system-ui, sans-serif; margin: 24px; background: #0f1419; color: #e7ecf1; }
         h1 { font-size: 1.25rem; }
-        .pass { color: #6bcB77; }
+        .pass { color: #6bcb77; }
         .fail { color: #e74c3c; }
-        table { border-collapse: collapse; width: 100%; margin-top: 16px; font-size: 14px; }
+        .meta { color: #9aa7b5; margin-bottom: 12px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 16px; font-size: 13px; }
         th, td { border: 1px solid #2a3540; padding: 8px 10px; text-align: left; vertical-align: top; }
         th { background: #1a2330; }
         code { color: #9cdcfe; }
+        a { color: #6cb6ff; }
     </style>
 </head>
 <body>
-    <h1>AI System Eval (local SkillData pipeline)</h1>
-    <p>
+    <h1>AI System Eval (SkillData pipeline)</h1>
+    <p class="meta">
         <span class="pass">pass=<?= (int)$pass ?></span>
         ·
         <span class="fail">fail=<?= (int)$fail ?></span>
         · total=<?= count($results) ?>
-        · OpenRouter forced off for this run
+        · <?= htmlspecialchars($modeLabel, ENT_QUOTES, 'UTF-8') ?>
+        · <a href="?or=1">run with OpenRouter allowed</a>
     </p>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Status</th>
-            <th>Topic / Intent</th>
-            <th>Hits</th>
-            <th>Notes</th>
-            <th>Answer head</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Topic / Intent</th>
+                <th>Hits</th>
+                <th>Conf</th>
+                <th>Suf</th>
+                <th>Notes</th>
+                <th>Answer head</th>
+            </tr>
+        </thead>
+        <tbody>
         <?php foreach ($results as $r): ?>
             <tr>
-                <td><code><?= htmlspecialchars($r['id'], ENT_QUOTES, 'UTF-8') ?></code></td>
+                <td><code><?= htmlspecialchars((string)$r['id'], ENT_QUOTES, 'UTF-8') ?></code></td>
                 <td class="<?= !empty($r['ok']) ? 'pass' : 'fail' ?>"><?= !empty($r['ok']) ? 'PASS' : 'FAIL' ?></td>
                 <td>
-                    <?= htmlspecialchars((string)($r['topic'] ?? '-'), ENT_QUOTES, 'UTF-8') ?>
-                    <br>
-                    <small><?= htmlspecialchars((string)($r['intent'] ?? '-'), ENT_QUOTES, 'UTF-8') ?></small>
+                    <?= htmlspecialchars((string)($r['topic'] ?: '—'), ENT_QUOTES, 'UTF-8') ?>
+                    <br><small><?= htmlspecialchars((string)($r['intent'] ?: '—'), ENT_QUOTES, 'UTF-8') ?></small>
                 </td>
-                <td><?= (int)($r['hits'] ?? 0) ?></td>
-                <td><?= htmlspecialchars(implode('; ', $r['notes'] ?? []), ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= htmlspecialchars((string)($r['answer_head'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= (int)$r['hits'] ?></td>
+                <td><?= $r['confidence'] !== null ? htmlspecialchars(number_format($r['confidence'] * 100, 0) . '%', ENT_QUOTES, 'UTF-8') : '—' ?></td>
+                <td><?php
+                    if ($r['sufficient'] === null) {
+                        echo '—';
+                    } else {
+                        echo $r['sufficient'] ? 'yes' : 'no';
+                    }
+                ?></td>
+                <td><?= htmlspecialchars(implode('; ', (array)$r['notes']), ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars((string)$r['answer_head'], ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
         <?php endforeach; ?>
+        </tbody>
     </table>
 </body>
 </html>

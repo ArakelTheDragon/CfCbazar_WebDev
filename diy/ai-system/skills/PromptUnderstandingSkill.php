@@ -74,22 +74,41 @@ class PromptUnderstandingSkill
         if ($memory !== null && $queryEmbedding !== []) {
             if ($intent !== 'generate_code') {
                 $topic = $memory->resolveTopic($topic);
+                // Content-aware topic pick (disambiguates sky verification vs celestial, etc.)
+                try {
+                    $best = $memory->findBestMatchingTopic($clean, $queryEmbedding, 0.28);
+                    if (is_string($best) && $best !== '' && $best !== 'general_topic') {
+                        $topic = $best;
+                    }
+                } catch (Throwable $e) {
+                    // ignore
+                }
             }
 
-            $hits = $memory->searchByVector($queryEmbedding, 0.32, 6, null);
+            $hits = $memory->searchByVector($queryEmbedding, 0.32, 8, null, $keyPhrases);
             foreach ($hits as $hit) {
                 if (!is_array($hit)) {
                     continue;
                 }
                 $memoryHits[] = SkillData::normalizeFact($hit);
 
-                // Bias topic toward strong memory match (not for code generation)
+                // Only bias topic from a hit when its topic name aligns with the prompt
                 if ($intent !== 'generate_code'
                     && isset($hit['_topic'], $hit['_score'])
-                    && (float)$hit['_score'] >= 0.48
+                    && (float)$hit['_score'] >= 0.50
                 ) {
                     $memTopic = $memory->resolveTopic((string)$hit['_topic']);
-                    if ($memTopic !== '' && $memTopic !== 'general_topic') {
+                    $name = str_replace('_', ' ', strtolower($memTopic));
+                    $pl = strtolower($clean);
+                    $tokens = array_filter(preg_split('/\s+/', $name) ?: [], fn($w) => strlen($w) >= 4);
+                    $hitsTok = 0;
+                    foreach ($tokens as $tok) {
+                        if (str_contains($pl, $tok)) {
+                            $hitsTok++;
+                        }
+                    }
+                    $coverage = $tokens !== [] ? $hitsTok / count($tokens) : 0.0;
+                    if ($memTopic !== '' && $memTopic !== 'general_topic' && $coverage >= 0.4) {
                         $topic = $memTopic;
                     }
                 }
@@ -368,6 +387,12 @@ class PromptUnderstandingSkill
             'php programming' => 'php_programming',
             'sky stream puck' => 'sky_stream_puck',
             'skystream' => 'sky_stream_puck',
+            'sky call center' => 'sky_call_center_identification_and_verification_process',
+            'call center identification' => 'sky_call_center_identification_and_verification_process',
+            'call centre identification' => 'sky_call_center_identification_and_verification_process',
+            'sky identification and verification' => 'sky_call_center_identification_and_verification_process',
+            'sky verification and identification' => 'sky_call_center_identification_and_verification_process',
+            'identification and verification process' => 'sky_call_center_identification_and_verification_process',
             'php' => 'php_programming',
             'json' => 'json_data',
             'router' => 'ai_router_system',

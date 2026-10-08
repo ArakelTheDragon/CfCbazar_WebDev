@@ -15,6 +15,8 @@ if (!class_exists('ConversationStore', false)) {
 
 class ConversationStore
 {
+    private static ?string $resolvedSessionId = null;
+
     private string $path;
     private int $maxTurns;
     private string $sessionId;
@@ -54,6 +56,10 @@ class ConversationStore
      */
     public static function resolveSessionId(): string
     {
+        if (self::$resolvedSessionId !== null) {
+            return self::$resolvedSessionId;
+        }
+
         $fromRequest = '';
         if (isset($_POST['conversation_session']) && is_string($_POST['conversation_session'])) {
             $fromRequest = $_POST['conversation_session'];
@@ -64,9 +70,12 @@ class ConversationStore
         }
 
         $id = self::sanitizeSessionId($fromRequest);
+        $hadCookie = isset($_COOKIE['cfc_ai_session'])
+            && is_string($_COOKIE['cfc_ai_session'])
+            && self::sanitizeSessionId($_COOKIE['cfc_ai_session']) === $id;
 
-        // Refresh cookie (30 days)
-        if (!headers_sent()) {
+        // Set cookie only when new/changed (avoid duplicate Set-Cookie headers)
+        if (!$hadCookie && !headers_sent()) {
             setcookie('cfc_ai_session', $id, [
                 'expires'  => time() + 60 * 60 * 24 * 30,
                 'path'     => '/',
@@ -76,6 +85,7 @@ class ConversationStore
             ]);
         }
         $_COOKIE['cfc_ai_session'] = $id;
+        self::$resolvedSessionId = $id;
 
         return $id;
     }
