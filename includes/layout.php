@@ -14,18 +14,37 @@ declare(strict_types=1);
  * stylesheet references, CDN scripts, and initial body layout header.
  */
 
-
 if (!function_exists('include_header')) {
+    function include_header(
+        ?string $title = null,
+        ?string $additional = null,
+        string $robots = 'index, follow'
+    ): void {
+        $title = $title ?? 'CfCbazar – A Producer of Smart Deals, DIY eGuides, Open-Source Tools, Web Games & Free Entertainment';
 
-    function include_header(?string $title = null): void
-    {
-        // Updated default title (no WorkToken)
-        $title = $title ?? 'CfCbazar – Smart Deals, DIY eGuides, Open‑Source Tools, Games & Free Entertainment';
+        $defaultDescription = 'CfCbazar offers DIY eGuides for cooking, budgeting, survival planning, electronics, PCB projects, open-source tools, smart deals, free browser games, music & TV entertainment. Discover practical digital tools made to save you time and money.';
 
-        // Updated SEO description
-        $description = 'CfCbazar offers DIY eGuides for cooking, budgeting, survival planning, electronics, PCB projects, open‑source tools, smart deals, free browser games, and free TV entertainment. Discover practical digital tools made for everyday people.';
+        // Use the page-specific description when provided.
+        $description = trim((string) $additional);
+        if ($description === '') {
+            $description = $defaultDescription;
+        }
 
-        // Updated SEO keywords
+        $csrfToken = $_SESSION['csrf_token'] ?? '';
+
+        // Build the canonical URL from the current request path.
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+        $path = parse_url($requestUri, PHP_URL_PATH);
+
+        if (!is_string($path) || $path === '') {
+            $path = '/';
+        }
+
+        // Prevent accidental duplicate slashes.
+        $path = '/' . ltrim($path, '/');
+
+        $canonicalUrl = 'https://cfcbazar.8bit.ca' . $path;
+
         $keywords = implode(', ', [
             'CfCbazar',
             'DIY eGuides',
@@ -44,43 +63,79 @@ if (!function_exists('include_header')) {
             'online tools'
         ]);
 
-        $csrfToken  = $_SESSION['csrf_token'] ?? '';
-        $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+        echo '<!doctype html>';
+        echo '<html lang="en">';
+        echo '<head>';
 
-        echo '<!doctype html><html lang="en"><head><meta charset="utf-8">';
+        echo '<meta charset="utf-8">';
         echo '<meta name="viewport" content="width=device-width,initial-scale=1">';
-        echo '<meta name="csrf_token" content="' . htmlspecialchars($csrfToken) . '">';
 
-        // Title & SEO
-        echo '<title>' . htmlspecialchars($title) . '</title>';
-        echo '<meta name="description" content="' . htmlspecialchars($description) . '">';
-        echo '<meta name="keywords" content="' . htmlspecialchars($keywords) . '">';
-        echo '<meta name="robots" content="index, follow">';
+        // Only output the CSRF meta value when a session already exists.
+        // This avoids starting a session just for the public page header.
+        if (session_status() === PHP_SESSION_ACTIVE && $csrfToken !== '') {
+            echo '<meta name="csrf_token" content="' .
+                htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8') . '">';
+        }
+
+        echo '<title>' .
+            htmlspecialchars($title, ENT_QUOTES, 'UTF-8') .
+            '</title>';
+
+        echo '<meta name="description" content="' .
+            htmlspecialchars($description, ENT_QUOTES, 'UTF-8') .
+            '">';
+
+        echo '<meta name="robots" content="' .
+            htmlspecialchars($robots, ENT_QUOTES, 'UTF-8') .
+            '">';
+
         echo '<meta name="author" content="CfCbazar">';
 
+        // Canonical URL
+        echo '<link rel="canonical" href="' .
+            htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8') .
+            '">';
+
         // Open Graph
-        echo '<meta property="og:title" content="' . htmlspecialchars($title) . '">';
-        echo '<meta property="og:description" content="' . htmlspecialchars($description) . '">';
+        echo '<meta property="og:site_name" content="CfCbazar">';
+        echo '<meta property="og:title" content="' .
+            htmlspecialchars($title, ENT_QUOTES, 'UTF-8') .
+            '">';
+        echo '<meta property="og:description" content="' .
+            htmlspecialchars($description, ENT_QUOTES, 'UTF-8') .
+            '">';
         echo '<meta property="og:type" content="website">';
-        echo '<meta property="og:url" content="https://cfcbazar.42web.io' . htmlspecialchars($requestUri) . '">';
-        echo '<meta property="og:image" content="https://cfcbazar.42web.io/images/cfcbazar-banner.jpg">';
+        echo '<meta property="og:url" content="' .
+            htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8') .
+            '">';
+        echo '<meta property="og:image" content="https://cfcbazar.8bit.ca/assets/images/cfcbazar-banner.jpg">';
 
-        // Twitter Card
+        // Twitter / X
         echo '<meta name="twitter:card" content="summary_large_image">';
-        echo '<meta name="twitter:title" content="' . htmlspecialchars($title) . '">';
-        echo '<meta name="twitter:description" content="' . htmlspecialchars($description) . '">';
-        echo '<meta name="twitter:image" content="https://cfcbazar.42web.io/images/cfcbazar-banner.jpg">';
+        echo '<meta name="twitter:title" content="' .
+            htmlspecialchars($title, ENT_QUOTES, 'UTF-8') .
+            '">';
+        echo '<meta name="twitter:description" content="' .
+            htmlspecialchars($description, ENT_QUOTES, 'UTF-8') .
+            '">';
+        echo '<meta name="twitter:url" content="' .
+            htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8') .
+            '">';
+        echo '<meta name="twitter:image" content="https://cfcbazar.8bit.ca/assets/images/cfcbazar-banner.jpg">';
 
-        // Core CSS & JS
+        // Main stylesheet
         echo '<link rel="stylesheet" href="/assets/css/styles.css">';
+
+        // Libraries currently used by the site
         echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
         echo '<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>';
 
-        echo '</head><body>';
+        echo '</head>';
+        echo '<body>';
+
         echo '<header class="header"></header>';
     }
 }
-
 
 // ===== from include_menu.php =====
 /**
@@ -648,7 +703,7 @@ if (!function_exists('displayServerStatus')) {
     function displayServerStatus(): void
     {
         $servers = [
-            'cfcbazar.42web.io',
+            'cfcbazar.8bit.ca',
             'cfcbazar.22web.org',
             'cfcbazar.ct.ws',
             'cfcbazar.iceiy.com'
@@ -736,5 +791,39 @@ if (!function_exists('show_disabled_message')) {
         }
 
         exit;
+    }
+}
+
+// ===== from frVersion.php =====
+if (!function_exists('frVersion')) {
+    /**
+     * Outputs invisible text on the page for version tracking / debugging.
+     *
+     * @param string $version    The version string (e.g., "1.2.3")
+     * @param string $additional Optional additional text to hide
+     * @param bool   $asComment  If true, wraps in HTML comment. If false, uses hidden span.
+     * @return void
+     */
+    function frVersion(string $version = '', string $additional = '', bool $asComment = false): void
+    {
+        $version    = htmlspecialchars($version, ENT_QUOTES, 'UTF-8');
+        $additional = htmlspecialchars($additional, ENT_QUOTES, 'UTF-8');
+        $additional = str_replace('--', '—', $additional);
+
+        $text = trim($version . ' ' . $additional);
+
+        if ($text === '') {
+            return;
+        }
+
+        if ($asComment) {
+            echo "\n<!-- frVersion: {$text} -->\n";
+        } else {
+            echo '<span style="display:none !important; visibility:hidden; position:absolute; '
+               . 'left:-9999px; width:0; height:0; overflow:hidden;" '
+               . 'aria-hidden="true" data-frversion="' . $version . '">'
+               . $text
+               . '</span>' . "\n";
+        }
     }
 }

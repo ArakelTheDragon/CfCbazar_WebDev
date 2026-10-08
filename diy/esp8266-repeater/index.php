@@ -1,3 +1,24 @@
+<?php
+require_once __DIR__ . "/../../includes/reusable.php";
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "diy/esp8266-repeater/index.php";
+$parent_url = "diy";
+$title      = "ESP8266 I2C LCD Display";
+$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+$meta_title = "ESP8266 I2C LCD Display";
+$meta_desc  = "This simple DIY project demonstrates how to connect an ESP8266 microcontroller to a 16×2 I2C LCD display and print a message. It uses the Wire and LiquidCrystal_I2C libraries to initialize and control the LCD.";
+
+trackVisit(
+    slug:      $url,
+    parentUrl: $parent_url,
+    title:     $title,
+    template:  $template,
+    metaTitle: $meta_title,
+    metaDesc:  $meta_desc
+);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +30,12 @@
     <meta name="description" content="Turn any ESP8266 NodeMCU into a WiFi repeater using the ESP Web Flash Tool or Arduino IDE. Step-by-step guide with firmware flashing, mesh setup, and NAPT repeater mode.">
     <meta name="keywords" content="ESP8266 repeater, WiFi repeater, ESP8266 mesh, NodeMCU WiFi extender, CfCbazar DIY, esp_wifi_repeater, RangeExtender-NAPT">
     <meta name="author" content="CfCbazar">
-    <link rel="canonical" href="https://cfcbazar.42web.io/diy/esp8266-repeater/">
+    <link rel="canonical" href="https://cfcbazar.8bit.ca/diy/esp8266-repeater/">
 
     <meta property="og:title" content="ESP8266 WiFi Repeater — CfCbazar DIY">
     <meta property="og:description" content="Learn how to flash and configure an ESP8266 as a WiFi repeater using the ESP Web Flash Tool or Arduino IDE.">
     <meta property="og:image" content="/diy/esp8266-repeater/images/img.png">
-    <meta property="og:url" content="https://cfcbazar.42web.io/diy/esp8266-repeater/">
+    <meta property="og:url" content="https://cfcbazar.8bit.ca/diy/esp8266-repeater/">
     <meta property="og:type" content="article">
 
     <link rel="stylesheet" href="/css/styles.css">

@@ -13,11 +13,11 @@ if (!function_exists('e')) {
 
 if (!function_exists('enforce_https')) {
     function enforce_https(): void {
-        if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off') {
+        /*if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off') {
             $httpsUrl = 'https://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . ($_SERVER['REQUEST_URI'] ?? '/');
             header('Location: ' . $httpsUrl, true, 301);
             exit;
-        }
+        }*/
     }
 }
 
@@ -149,4 +149,108 @@ function render_project_stats($config = []) {
         </div>
     </div>
     <?php
+}
+
+if (!function_exists('current_session_info')) {
+    /**
+     * Facts about the current visitor's session, for debugging / page checks.
+     * Reads only what PHP already knows about this request.
+     */
+    function current_session_info(): array
+    {
+        $name      = session_name();
+        $cookieVal = $_COOKIE[$name] ?? null;
+        $active    = (session_status() === PHP_SESSION_ACTIVE);
+
+        return [
+            'session_name' => $name,
+            'cookie_set'   => $cookieVal !== null && $cookieVal !== '',
+            'session_id'   => $cookieVal ?: null,
+            'status'       => session_status(),
+            'active'       => $active,
+            'logged_in'    => $active && !empty($_SESSION['user_id']),
+            'email'        => $active ? ($_SESSION['email']   ?? null) : null,
+            'user_id'      => $active ? ($_SESSION['user_id'] ?? null) : null,
+            'method'       => $_SERVER['REQUEST_METHOD']   ?? null,
+            'uri'          => $_SERVER['REQUEST_URI']      ?? null,
+            'user_agent'   => $_SERVER['HTTP_USER_AGENT']  ?? null,
+            'ip'           => $_SERVER['REMOTE_ADDR']      ?? null,
+        ];
+    }
+}
+
+if (!function_exists('render_session_popup')) {
+    /**
+     * Render a floating debug popup with session facts.
+     * Call once per page, ideally just before include_footer().
+     */
+    function render_session_popup(): void
+    {
+        $i = current_session_info();
+
+        $statusLabel = match ($i['status']) {
+            PHP_SESSION_DISABLED => 'DISABLED (0)',
+            PHP_SESSION_NONE     => 'NONE (1)',
+            PHP_SESSION_ACTIVE   => 'ACTIVE (2)',
+            default              => 'UNKNOWN (' . $i['status'] . ')',
+        };
+
+        $yes = '<span style="color:#1b8a3a;font-weight:700;">yes</span>';
+        $no  = '<span style="color:#b26a00;font-weight:700;">no</span>';
+        ?>
+        <div id="session-popup" style="
+            position:fixed; right:16px; bottom:16px; z-index:99999;
+            background:#fff; border:1px solid #dfe5eb; border-radius:14px;
+            box-shadow:0 8px 20px rgba(0,0,0,.14);
+            padding:14px 16px; font-size:.82rem; max-width:320px;
+            font-family:'Segoe UI', Arial, sans-serif; color:#2f3437;
+            line-height:1.55;
+        ">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span style="font-weight:700;color:#155724;font-size:.95rem;">🔍 Session debug</span>
+                <button onclick="document.getElementById('session-popup').remove()" style="
+                    background:none;border:none;color:#888;cursor:pointer;
+                    font-size:1rem;line-height:1;padding:0 4px;
+                " aria-label="Close">✕</button>
+            </div>
+
+            <div><strong>Cookie set:</strong> <?= $i['cookie_set'] ? $yes : $no ?></div>
+            <div>
+                <strong>Cookie name:</strong>
+                <code style="font-size:.78rem;"><?= htmlspecialchars($i['session_name']) ?></code>
+            </div>
+
+            <?php if ($i['session_id']): ?>
+                <div>
+                    <strong>Session ID:</strong>
+                    <code style="font-size:.78rem;"><?= htmlspecialchars(substr((string)$i['session_id'], 0, 12)) ?>…</code>
+                </div>
+            <?php endif; ?>
+
+            <div><strong>Status:</strong> <?= htmlspecialchars($statusLabel) ?></div>
+            <div><strong>Session active:</strong> <?= $i['active'] ? $yes : $no ?></div>
+            <div>
+                <strong>Logged in:</strong> <?= $i['logged_in'] ? $yes : $no ?>
+                <?php if ($i['email']): ?>
+                    <span style="color:#6c757d;">(<?= htmlspecialchars((string)$i['email']) ?>)</span>
+                <?php endif; ?>
+            </div>
+
+            <hr style="border:none;border-top:1px solid #eee;margin:10px 0;">
+
+            <div><strong>Method:</strong> <?= htmlspecialchars((string)$i['method']) ?></div>
+            <div>
+                <strong>URI:</strong>
+                <code style="font-size:.75rem;word-break:break-all;"><?= htmlspecialchars((string)$i['uri']) ?></code>
+            </div>
+            <div><strong>IP:</strong> <?= htmlspecialchars((string)$i['ip']) ?></div>
+            <div>
+                <strong>UA:</strong>
+                <span style="color:#6c757d;font-size:.75rem;word-break:break-all;">
+                    <?= htmlspecialchars(substr((string)$i['user_agent'], 0, 90)) ?>
+                </span>
+            </div>
+        </div>
+        <?php
+    }
 }

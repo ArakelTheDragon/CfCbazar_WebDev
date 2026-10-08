@@ -121,6 +121,13 @@ class SpellCorrector
      *
      * @param list<string> $extraWords optional extra lexicon entries (must already be clean)
      */
+    /**
+     * Correct only clear single-edit typos. One pass; each distinct word form
+     * is decided once (like a normal spell-checker). Known lexicon words are
+     * never changed.
+     *
+     * @param list<string> $extraWords optional extra lexicon entries
+     */
     public static function correct(string $prompt, array $extraWords = []): string
     {
         $prompt = trim($prompt);
@@ -132,78 +139,103 @@ class SpellCorrector
         foreach ($extraWords as $word) {
             foreach (preg_split('/[_\s-]+/', strtolower((string)$word)) ?: [] as $part) {
                 $part = preg_replace('/[^a-z0-9]+/i', '', $part) ?? $part;
-                // Only accept extra tokens already in core lexicon or exact long tokens
-                if ($part !== '' && strlen($part) >= 4 && isset(self::$lexicon[$part])) {
+                // Long topic tokens can join the lexicon; short ones only if already known
+                if ($part === '') {
+                    continue;
+                }
+                if (strlen($part) >= 6 || isset(self::$lexicon[$part])) {
                     $lex[$part] = true;
                 }
             }
         }
 
+        // Cache: each distinct lowercase token is corrected at most once
+        $cache = [];
+
         return preg_replace_callback(
             '/[A-Za-z][A-Za-z0-9\']*/',
-            static function (array $m) use ($lex): string {
+            static function (array $m) use ($lex, &$cache): string {
                 $token = $m[0];
                 $lower = strtolower($token);
                 $len = strlen($lower);
 
-                // Keep short tokens and known words
+                if (array_key_exists($lower, $cache)) {
+                    return self::applyCase($token, $cache[$lower]);
+                }
+
+                // Keep short tokens and known words — never "fix" them
                 if ($len < 4 || isset($lex[$lower])) {
+                    $cache[$lower] = $lower;
                     return $token;
                 }
 
-                // Only allow a single-edit correction (distance 1).
                 $best = null;
                 $ties = 0;
 
                 foreach ($lex as $word => $_) {
-                    $wlen = strlen((string)$word);
+                    $word = (string)$word;
+                    $wlen = strlen($word);
                     if (abs($wlen - $len) > 1) {
                         continue;
                     }
-                    $dist = levenshtein($lower, (string)$word);
+                    $dist = levenshtein($lower, $word);
                     if ($dist === 0) {
+                        $cache[$lower] = $lower;
                         return $token;
                     }
                     if ($dist !== 1) {
                         continue;
                     }
-                    // Skip risky first-letter-only swaps on short words (food→good, form→warm)
-                    if ($len <= 5 && $wlen === $len && isset($lower[0], $word[0])
+                    // Skip first-letter-only swaps on short/medium words (food→good)
+                    if ($len <= 6 && $wlen === $len
                         && $lower[0] !== $word[0]
-                        && substr($lower, 1) === substr((string)$word, 1)) {
+                        && substr($lower, 1) === substr($word, 1)) {
                         continue;
                     }
+                    // Skip last-letter-only swaps that yield a different common word of same length
+                    if ($len <= 5 && $wlen === $len
+                        && substr($lower, 0, -1) === substr($word, 0, -1)
+                        && $lower[$len - 1] !== $word[$wlen - 1]) {
+                        // allow only if original looks like a clear typo pattern — be conservative
+                        continue;
+                    }
+
                     if ($best === null) {
-                        $best = (string)$word;
+                        $best = $word;
                         $ties = 1;
-                    } elseif ($best === (string)$word) {
-                        // same
-                    } else {
+                    } elseif ($best !== $word) {
                         $ties++;
                     }
                 }
 
-                // Ambiguous or none → leave token unchanged
                 if ($best === null || $ties > 1) {
+                    $cache[$lower] = $lower;
                     return $token;
                 }
 
-                // Do not shorten short content words into tiny function words (form→for)
+                // Do not shorten short content words into tiny function words
                 if (strlen($best) < $len && $len <= 5 && strlen($best) <= 3) {
+                    $cache[$lower] = $lower;
                     return $token;
                 }
 
-                // Preserve capitalization
-                if ($token === strtoupper($token)) {
-                    return strtoupper($best);
-                }
-                if (isset($token[0]) && $token[0] === strtoupper($token[0])) {
-                    return ucfirst($best);
-                }
-                return $best;
+                $cache[$lower] = $best;
+                return self::applyCase($token, $best);
             },
             $prompt
         ) ?? $prompt;
+    }
+
+    private static function applyCase(string $original, string $replacement): string
+    {
+        if ($original === strtoupper($original) && strlen($original) > 1) {
+            return strtoupper($replacement);
+        }
+        if (isset($original[0]) && $original[0] === strtoupper($original[0])
+            && $original !== strtolower($original)) {
+            return ucfirst($replacement);
+        }
+        return $replacement;
     }
 }
 

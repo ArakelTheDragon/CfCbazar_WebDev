@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 // Configuration
-$domain = "https://CfCbazar.ct.ws"; // Your website URL
+$domain = "https://cfcbazar.8bit.ca"; // Your website URL
 $root_dir = $_SERVER['DOCUMENT_ROOT']; // Root directory of your website
 $sitemap_file = $root_dir . '/sitemap.xml'; // Path to save sitemap
 $robots_file = $root_dir . '/robots.txt'; // Path to save robots.txt

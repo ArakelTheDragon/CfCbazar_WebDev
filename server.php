@@ -8,7 +8,7 @@
 	$_SESSION['success'] = "";
 	
 	// connect to database - updated with correct remote MySQL host and database name
-	$db = mysqli_connect('localhost', 'if0_39103611', '53098516', '42web_io');
+	$db = mysqli_connect('db', 'root', '53098516', 'cfcbazar_db');
 
 	// Check connection
 	if (!$db) {

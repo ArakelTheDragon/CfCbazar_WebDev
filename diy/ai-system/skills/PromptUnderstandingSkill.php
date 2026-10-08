@@ -58,6 +58,7 @@ class PromptUnderstandingSkill
         $questionType = $this->detectQuestionType($clean);
         $constraints = $this->extractConstraints($clean);
         $keyPhrases = $this->extractKeyPhrases($clean);
+        $specifics = $this->extractSpecificRequirements($clean, $core, $topic);
         $isMultiPart = $this->isMultiPart($clean);
 
         $embedText = $core !== '' ? $core : $clean;
@@ -119,6 +120,8 @@ class PromptUnderstandingSkill
         $data->set('question_type', $questionType);
         $data->set('constraints', $constraints);
         $data->set('key_phrases', $keyPhrases);
+        $data->set('specific_requirements', $specifics);
+        $data->set('has_specifics', $specifics !== []);
         $data->set('is_multi_part', $isMultiPart);
         $data->set('query_embedding', $queryEmbedding);
         $data->set('memory_hits', $memoryHits);
@@ -543,6 +546,73 @@ class PromptUnderstandingSkill
         }
 
         return array_values(array_unique($entities));
+    }
+
+    /**
+     * Detect prompt-specific requirements that make this ask different from a bare topic request.
+     * Examples: quoted strings, "that says X", "with title Y", concrete values.
+     *
+     * @return list<string>
+     */
+    private function extractSpecificRequirements(string $prompt, string $core, string $topic): array
+    {
+        $specifics = [];
+
+        // Quoted phrases are almost always intentional content
+        if (preg_match_all('/["\']([^"\']{1,120})["\']/', $prompt, $m)) {
+            foreach ($m[1] as $q) {
+                $q = trim($q);
+                if ($q !== '') {
+                    $specifics[] = $q;
+                }
+            }
+        }
+
+        // "that says / showing / displaying / with text …"
+        if (preg_match('/\b(?:that\s+says|saying|showing|displaying|with\s+text|that\s+shows)\s+(.+?)(?:[.?!]|$)/i', $prompt, $m)) {
+            $bit = trim($m[1], " \t\"'");
+            if ($bit !== '') {
+                $specifics[] = $bit;
+            }
+        }
+
+        // titled / named / called
+        if (preg_match('/\b(?:titled|named|called)\s+["\']?([^"\'.,]{1,80})/i', $prompt, $m)) {
+            $bit = trim($m[1]);
+            if ($bit !== '') {
+                $specifics[] = $bit;
+            }
+        }
+
+        // Numbers / versions that change the ask (e.g. PHP 8.2, 3 columns)
+        if (preg_match_all('/\b(?:php\s*)?\d+(?:\.\d+)+\b/i', $prompt, $m)) {
+            foreach ($m[0] as $ver) {
+                $specifics[] = trim($ver);
+            }
+        }
+
+        // Relative to bare core: extra content words beyond topic tokens
+        $topicWords = preg_split('/[_\s]+/', strtolower(str_replace('_', ' ', $topic))) ?: [];
+        $coreWords = FactSkill::extractKeywords($core !== '' ? $core : $prompt, 16);
+        $generic = array_flip(array_merge(
+            $topicWords,
+            ['page', 'html', 'php', 'simple', 'make', 'create', 'write', 'generate', 'build', 'code', 'file', 'script']
+        ));
+        $extra = [];
+        foreach ($coreWords as $w) {
+            if (!isset($generic[strtolower($w)])) {
+                $extra[] = $w;
+            }
+        }
+        // If many non-topic content words, treat as specifics
+        if (count($extra) >= 2) {
+            foreach (array_slice($extra, 0, 6) as $w) {
+                $specifics[] = $w;
+            }
+        }
+
+        $specifics = array_values(array_unique(array_filter(array_map('trim', $specifics))));
+        return $specifics;
     }
 
     /**

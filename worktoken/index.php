@@ -14,6 +14,7 @@ if (file_exists($reusablePath)) {
     }
 }
 
+show_disabled_message("the WorkToken is being transitioned to our cfcbazar.42web.io/worktoken/ site");
 // require_once __DIR__ . '/../includes/miner.php';
 
 // --- Session ---

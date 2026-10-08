@@ -1,0 +1,44 @@
+[
+  {
+    "id": "opamp-voltage-reg-zener",
+    "slug": "opamp-voltage-reg-zener",
+    "title": "Op-Amp Zener Voltage Regulator System",
+    "category": "Analog Electronics",
+    "tags": ["Op-Amp", "Voltage Regulator", "Zener Diode", "Power Supply"],
+    "difficulty": "Intermediate",
+    "summary": "Design and analysis of a high-precision DC voltage regulator utilizing an operational amplifier reference loop and Zener stabilization.",
+    "author": "CfCbazar Group",
+    "date": "2026-09-18",
+    "interactive_url": "https://cfcbazar.42web.io/diy/opamp-voltage-reg-zener/index.php",
+    "canonical_url": "https://cc.free.bg/diy/opamp-voltage-reg-zener/index.html",
+    "featured_image": "/diy/opamp-voltage-reg-zener/images/img.jpg"
+  },
+  {
+    "id": "autodiag",
+    "slug": "autodiag",
+    "title": "Automotive OBD-II Hardware & Software Diagnostic Interface",
+    "category": "Automotive & Embedded",
+    "tags": ["OBD-II", "Microcontroller", "Diagnostics", "Automotive"],
+    "difficulty": "Advanced",
+    "summary": "Custom hardware interface and PHP diagnostic parser for reading microcontroller telemetry and CAN bus PID outputs.",
+    "author": "CfCbazar Group",
+    "date": "2026-09-15",
+    "interactive_url": "https://cfcbazar.42web.io/diy/autodiag/index.php",
+    "canonical_url": "https://cc.free.bg/diy/autodiag/index.html",
+    "featured_image": "/diy/autodiag/images/preview.jpg"
+  },
+  {
+    "id": "esp8266-flyingfish-glcd",
+    "slug": "esp8266-flyingfish-glcd",
+    "title": "ESP8266 Wireless Graphic LCD Display Module",
+    "category": "IoT & Microcontrollers",
+    "tags": ["ESP8266", "GLCD", "Wi-Fi", "Embedded C++"],
+    "difficulty": "Beginner",
+    "summary": "Connecting an ESP8266 microcontroller to an SPI graphical LCD display with real-time status updates and telemetry rendering.",
+    "author": "CfCbazar Group",
+    "date": "2026-09-10",
+    "interactive_url": "https://cfcbazar.42web.io/diy/esp8266-flyingfish-glcd/index.php",
+    "canonical_url": "https://cc.free.bg/diy/esp8266-flyingfish-glcd/index.html",
+    "featured_image": "/diy/esp8266-flyingfish-glcd/img.png"
+  }
+]

@@ -1,0 +1,110 @@
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+#setup{
+    position:fixed;
+    inset:0;
+    background:#111;
+    z-index:5000;
+    overflow:auto;
+    padding:20px;
+}
+
+#setup .card{
+    max-width:700px;
+    margin:auto;
+}
+
+.setting{
+    margin-bottom:15px;
+}
+
+.setting label{
+    display:block;
+    margin-bottom:5px;
+}
+
+#startBtn{
+    width:100%;
+}
+
+#hud{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#222;
+    color:#fff;
+    padding:10px;
+    display:flex;
+    justify-content:space-around;
+    z-index:1000;
+}
+
+#game{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background:#111;
+}
+
+.mob{
+    position:absolute;
+    font-size:34px;
+    pointer-events:none;
+}
+
+.bonus{
+    position:absolute;
+    font-size:34px;
+    pointer-events:none;
+}
+
+.shooter{
+    position:absolute;
+    bottom:20px;
+    font-size:40px;
+}
+
+.bullet{
+    position:absolute;
+    width:6px;
+    height:16px;
+    background:yellow;
+    border-radius:20px;
+}
+
+#gameover{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    padding:25px;
+    background:#000;
+    border:2px solid red;
+    color:#fff;
+    text-align:center;
+    z-index:9999;
+}
+
+@media(max-width:768px)
+{
+    #hud{
+        font-size:12px;
+    }
+
+    .mob,
+    .bonus{
+        font-size:28px;
+    }
+
+    .shooter{
+        font-size:32px;
+    }
+}

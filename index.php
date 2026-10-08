@@ -1,5 +1,5 @@
 <?php
-// index.php
+// /index.php
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 // ------------------------
 // Load reusable functions
 // ------------------------
-//require_once __DIR__ . '/system/sync.php';
 $reusablePath = __DIR__ . '/includes/reusable.php';
 
 if (file_exists($reusablePath)) {
@@ -17,29 +16,39 @@ if (file_exists($reusablePath)) {
     die("Error: /includes/reusable.php library missing.");
 }
 
-
-
 // ------------------------
 // System
 // ------------------------
 enforce_https();
-require_database_connection();
 checkSystemFlags();
-trackVisit("index-main");
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/index.php";
+$parent_url = NULL;
+$title      = "Main home page";
+$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+$meta_title = "Your Hub for Free DIY Smart Deals, Tools & Entertainment";
+$meta_desc  = "Welcome to CfCbazar — we build our own free DIY smart deals, open source tools, web games, TV & entertainment and paid eGuides and eBooks. Discover practical digital products made for everyday people.";
+
+trackVisit(
+    slug:      $url,
+    parentUrl: $parent_url,
+    title:     $title,
+    template:  $template,
+    metaTitle: $meta_title,
+    metaDesc:  $meta_desc
+);
 
 // ------------------------
-// User
+// No session, no login state — this page is fully public.
 // ------------------------
-session_check();
-$email = null;
-$is_logged_in = is_logged_in($email);
-$csrf = csrf_token(); // Optional
 
 // ------------------------
 // Layout
 // ------------------------
-$title = "CfCbazar - Smart Deals, DIY, Games, Music & the WorkToken";
-include_header($title);
+$title = "CfCbazar - A DIY producer of free smart deals, open source tools, web games, music & TV, eGuides and eBooks";
+$additional = "We make all things by ourselves, check our work and see if it can help you";
+include_header($title, $additional);
 include_menu();
 
 showAdvertPopup();
@@ -52,30 +61,16 @@ render_top_userbar();
 
     <section class="welcome-card">
 
-        <h2>Your Hub for Smart Deals and Tools</h2>
+        <h2>Your Hub for Free DIY Smart Deals, Tools & Entertainment</h2>
 
-<?php if ($is_logged_in): ?>
+        <p>
+            Welcome to <strong>CfCbazar</strong> — we build our own free DIY smart deals, open source tools, web games, TV & entertainment and paid eGuides and eBooks. Discover practical digital products made for everyday people.
+        </p>
 
-    <p>
-        Welcome back,
-        <strong><?= htmlspecialchars($email) ?></strong>!
-        Explore Smart Deals, DIY projects, games and music — all designed to help you save money, learn new skills and enjoy useful digital tools.
-    </p>
-
-<?php else: ?>
-
-    <p>
-        Welcome to <strong>CfCbazar</strong> — your marketplace for Smart Deals,
-        DIY tools, games and music. Discover practical digital products made for everyday people.
-    </p>
-
-<?php endif; ?>
-
-<p>
-    Join the platform and explore online tools, printable products, planners,
-    guides, and helpful resources created to make life easier and more affordable.
-</p>
-
+        <p>
+            Join the platform and explore online tools, printable products, planners,
+            guides, and helpful resources created to make life easier and more affordable.
+        </p>
 
     </section>
 
@@ -107,69 +102,68 @@ render_top_userbar();
 
             <a href="https://ebay.us/m/DM1tRs" target="_blank" class="link-card">
                 🚚
-                <span>Visit eBay Store</span>
+                <span>Visit our eBay Store<br><small style="color:#b26a00;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Paid eBooks</small></span>
             </a>
 
             <a href="https://www.amazon.com/stores/CfCbazar-Group/author/B0HJF163J2?ref=ap_rdr&shoppingPortalEnabled=true&ccs_id=d10f1d56-3d37-42e0-a7e1-6a95400bfe72" target="_blank" class="link-card">
                 🚚
-                <span>Visit KDP Store</span>
+                <span>Visit our KDP Store<br><small style="color:#b26a00;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Paid eBooks</small></span>
             </a>
 
             <a href="/diy/ai-system/index.php" class="link-card">
                 🛠️
-                <span>PHP Only AI System</span>
+                <span>PHP Only AI System<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free open source tool</small></span>
             </a>
-            
+
             <a href="/diy/speed/index.php" class="link-card">
                 🛠️
-                <span>Internet Speed Test</span>
+                <span>Internet Speed Test<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free open source tool</small></span>
             </a>
-            
+
             <a href="/diy/index.php" class="link-card">
                 🛠️
-                <span>DIY Tools</span>
-            </a>  
-            
+                <span>DIY Tools<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free open source tools</small></span>
+            </a>
+
             <a href="/games/index.php" class="link-card">
                 🎮
-                <span>Games</span>
-            </a>    
-            
+                <span>Games<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free web games</small></span>
+            </a>
+
             <a href="https://www.youtube.com/@cfcbazar/playlists" class="link-card">
                 📺
-                <span>Free TV and Entertainment</span>
-            </a>   
-            
+                <span>Free TV and Entertainment<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free</small></span>
+            </a>
+
             <a href="/diy/pinglatency/index.php" class="link-card">
                 🛠️
-                <span>Ping & Latency Monitor</span>
-            </a>   
+                <span>Ping &amp; Latency Monitor<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free open source tool</small></span>
+            </a>
 
             <a href="/diy/survival/index.php" class="link-card">
                 🛠️
-                <span>Individual & Business Budget Calc</span>
-            </a>   
+                <span>Individual &amp; Business Budget Calc<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free open source tool</small></span>
+            </a>
 
             <a href="diy/photo-converter/index.php" class="link-card">
                 🛠️
-                <span>Photo Converter</span>
-            </a>                
+                <span>Photo Converter<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free open source tool</small></span>
+            </a>
 
             <a href="/worktoken/index.php" class="link-card">
                 💰
-                <span>Worker Dashboard</span>
+                <span>Worker Dashboard<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free to mine</small></span>
             </a>
 
             <a href="/pow/" class="link-card">
                 💰
-                <span>Proof of Work/Utility Center</span>
+                <span>Proof of Work / Utility Center<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free System Tool</small></span>
             </a>
-            
+
             <a href="/help/" class="link-card">
                 ❓
-                <span>Help Center</span>
+                <span>Help Center<br><small style="color:#1b8a3a;font-size:.78rem;font-weight:600;letter-spacing:.3px;">Free System Tool</small></span>
             </a>
-            
 
         </div>
 

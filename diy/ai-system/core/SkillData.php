@@ -51,6 +51,8 @@ class SkillData
             'question_type'      => 'statement',
             'constraints'        => [],
             'key_phrases'        => [],
+            'specific_requirements' => [],
+            'has_specifics'      => false,
             'is_multi_part'      => false,
 
             'facts'              => [],
@@ -58,6 +60,7 @@ class SkillData
 
             'memory_hits'        => [],
             'memory_sufficient'  => false,
+            'answer_confidence'  => 0.0,
 
             'openrouter'         => [
                 'enabled'  => false,
@@ -158,17 +161,69 @@ class SkillData
      * @param array<string, mixed> $fact
      * @return array<string, mixed>
      */
+    /**
+     * Canonical Fact shape (memory unit — parallel to SkillData for requests).
+     *
+     * Every fact has its own content, type, vector, keywords/tags.
+     * Topics only group facts; answers are built from selected facts only.
+     *
+     * @param array<string, mixed> $fact
+     * @return array<string, mixed>
+     */
     public static function normalizeFact(array $fact): array
     {
         $content = trim((string)($fact['content'] ?? $fact['value'] ?? $fact['fact'] ?? ''));
+        $now = gmdate('c');
+
+        $keywords = [];
+        if (isset($fact['keywords']) && is_array($fact['keywords'])) {
+            $keywords = array_values(array_unique(array_filter(array_map('strval', $fact['keywords']))));
+        }
+        $tags = [];
+        if (isset($fact['tags']) && is_array($fact['tags'])) {
+            $tags = array_values(array_unique(array_filter(array_map('strval', $fact['tags']))));
+        }
+
+        // Prefer FactSkill helpers when available
+        if ($content !== '' && class_exists('FactSkill', false)) {
+            if ($keywords === []) {
+                $keywords = FactSkill::extractKeywords($content);
+            }
+            if ($tags === [] && $keywords !== []) {
+                $tags = array_slice($keywords, 0, 6);
+            }
+        }
+
+        $embedding = is_array($fact['embedding'] ?? null) ? $fact['embedding'] : [];
+        if ($content !== '' && class_exists('FactSkill', false)) {
+            if ($embedding === [] || (defined('LocalEmbedder::DIMENSIONS') && count($embedding) !== LocalEmbedder::DIMENSIONS)) {
+                $embedSrc = $content;
+                if (function_exists('mb_substr')) {
+                    $embedSrc = mb_substr($content, 0, 800);
+                } else {
+                    $embedSrc = substr($content, 0, 800);
+                }
+                $embedding = FactSkill::embed($embedSrc);
+            }
+        }
+
+        $id = trim((string)($fact['id'] ?? ''));
+        if ($id === '') {
+            $id = 'fact_' . substr(sha1($content . '|' . ($fact['type'] ?? 'statement')), 0, 12);
+        }
+
         return [
+            'id'         => $id,
             'content'    => $content,
-            'value'      => $content, // backward compat for older readers
+            'value'      => $content, // backward compat
             'type'       => (string)($fact['type'] ?? 'statement'),
             'source'     => (string)($fact['source'] ?? 'unknown'),
             'confidence' => (float)($fact['confidence'] ?? 0.8),
-            'embedding'  => is_array($fact['embedding'] ?? null) ? $fact['embedding'] : [],
-            'created_at' => (string)($fact['created_at'] ?? $fact['added_at'] ?? gmdate('c')),
+            'embedding'  => $embedding,
+            'keywords'   => $keywords,
+            'tags'       => $tags,
+            'created_at' => (string)($fact['created_at'] ?? $fact['added_at'] ?? $now),
+            'updated_at' => (string)($fact['updated_at'] ?? $now),
         ];
     }
 

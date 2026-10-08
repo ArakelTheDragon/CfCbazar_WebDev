@@ -19,7 +19,23 @@ require_once $reusablePath;
 // ============================================================================
 
 if (function_exists('trackVisit')) {
-    trackVisit('diy/autodiag');
+    // --- Page metadata -----------------------------------------------------------
+	$url        = "diy/autodiag/index.php";
+	$parent_url = "diy/autodiag";
+	$title      = "Automotive UDS CAN diagnostic Simulator";
+	$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+	$meta_title = "Free Open Source UDS CAN diagnostic tool";
+	$meta_desc  = "Send AT commands and CAN bytes for UDS diagnostic under ISO to check how automotive testing is done.";
+
+	trackVisit(
+	    slug:      $url,
+	    parentUrl: $parent_url,
+	    title:     $title,
+	    template:  $template,
+	    metaTitle: $meta_title,
+	    metaDesc:  $meta_desc
+	);
+
 }
 
 if (function_exists('enforce_https')) {

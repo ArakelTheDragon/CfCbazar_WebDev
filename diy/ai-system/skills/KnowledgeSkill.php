@@ -150,7 +150,23 @@ class KnowledgeSkill
             }
             $data->set('memory_hits', $hits);
 
-            $sufficient = $this->memoryIsSufficient($ranked, $intent, $isMultiPart, $memory);
+            $confidence = $this->computeAnswerConfidence(
+                $ranked,
+                $selected,
+                $prompt,
+                $intent,
+                $specifics,
+                $isMultiPart
+            );
+            $data->set('answer_confidence', $confidence);
+            $sufficient = $this->memoryIsSufficient(
+                $ranked,
+                $intent,
+                $isMultiPart,
+                $memory,
+                $specifics,
+                $confidence
+            );
 
             // Code-gen: enough only with a code_html fact that matches this prompt's specifics
             if ($this->isCodeGenerationRequest($prompt, $intent)) {
@@ -314,41 +330,25 @@ _(OpenRouter was called but local memory still lacks solid facts.)_";
 
             $openRouterRaw = $text;
 
-            // Write OpenRouter output into local memory, then loop and re-check
-            $toStore = [];
-            if ($this->isCodeGenerationRequest($prompt, $intent)) {
-                $htmlDoc = $this->extractHtmlDocument($text);
-                if ($htmlDoc !== null) {
-                    $toStore[] = SkillData::normalizeFact([
-                        'content' => $htmlDoc,
-                        'type' => 'code_html',
-                        'source' => 'openrouter',
-                        'confidence' => 0.92,
-                        'embedding' => FactSkill::embed(
-                            function_exists('mb_substr') ? mb_substr($htmlDoc, 0, 500) : substr($htmlDoc, 0, 500)
-                        ),
-                        'created_at' => gmdate('c'),
-                    ]);
-                }
-            }
-
-            $responseFacts = FactSkill::extractFactsFromText($text, 'openrouter', 0.85);
-            $responseFacts = $this->substantiveFacts($responseFacts, $prompt);
-            foreach ($responseFacts as $f) {
-                if (!is_array($f) || ($f['type'] ?? '') === 'prompt_intent') {
-                    continue;
-                }
-                $toStore[] = SkillData::normalizeFact($f);
-            }
-
+            // Write OpenRouter output into local memory (full Fact shape + topic meta), then re-check
+            $toStore = $this->buildFactsFromOpenRouterText(
+                $text,
+                $prompt,
+                $intent,
+                $keyPhrases,
+                $specifics
+            );
             if ($toStore !== []) {
-                $memory->mergeTopicFacts($topic, $toStore);
-                foreach ($subtopics as $sub) {
-                    $sub = trim((string)$sub);
-                    if ($sub !== '' && $sub !== $topic) {
-                        $memory->mergeTopicFacts($sub, $toStore);
-                    }
-                }
+                $this->storeFactsWithMeta(
+                    $memory,
+                    $topic,
+                    $toStore,
+                    $prompt,
+                    $subtopics,
+                    $keyPhrases,
+                    $specifics,
+                    $entities
+                );
                 $data->mergeFacts($toStore);
             }
 
@@ -1016,9 +1016,253 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
      * @param list<array<string, mixed>> $ranked
      * @param MemoryStore $memory MemoryStore instance for adaptive thresholds
      */
-    private function memoryIsSufficient(array $ranked, string $intent, bool $isMultiPart, ?MemoryStore $memory = null): bool
-    {
-        return $this->memoryIsSufficientWeighted($ranked, $intent, $isMultiPart, $memory);
+    private function memoryIsSufficient(
+        array $ranked,
+        string $intent,
+        bool $isMultiPart,
+        ?MemoryStore $memory = null,
+        array $specifics = [],
+        ?float $precomputedConfidence = null
+    ): bool {
+        if ($ranked === []) {
+            return false;
+        }
+
+        $confidence = $precomputedConfidence;
+        if ($confidence === null) {
+            $confidence = $this->computeAnswerConfidence(
+                $ranked,
+                array_slice($ranked, 0, $this->maxAnswerFacts),
+                '',
+                $intent,
+                $specifics,
+                $isMultiPart
+            );
+        }
+
+        // Intent thresholds on unified confidence
+        $threshold = match ($intent) {
+            'define_concept' => 0.34,
+            'explain_process' => 0.38,
+            'compare_things' => 0.42,
+            'generate_code' => 0.48,
+            default => 0.32,
+        };
+        if ($isMultiPart) {
+            $threshold *= 1.08;
+        }
+        if ($specifics !== []) {
+            $threshold = min(0.62, $threshold + 0.04);
+        }
+
+        if ($this->weightedSufficiencyEnabled) {
+            return $confidence >= $threshold
+                && $this->memoryIsSufficientWeighted($ranked, $intent, $isMultiPart, $memory);
+        }
+
+        return $confidence >= $threshold
+            && $this->memoryIsSufficientSimple($ranked, $intent, $isMultiPart, $memory);
+    }
+
+    /**
+     * Unified 0–1 confidence for current local answer candidates.
+     * Combines rank scores, fact confidence, source quality, and specificity fit.
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @param list<array<string, mixed>> $selected
+     * @param list<string> $specifics
+     */
+    private function computeAnswerConfidence(
+        array $ranked,
+        array $selected,
+        string $prompt,
+        string $intent,
+        array $specifics = [],
+        bool $isMultiPart = false
+    ): float {
+        $pool = $selected !== [] ? $selected : array_slice($ranked, 0, 5);
+        if ($pool === []) {
+            return 0.0;
+        }
+
+        $qualitySum = 0.0;
+        $weightSum = 0.0;
+        $specificityHits = 0;
+
+        foreach (array_slice($pool, 0, 5) as $fact) {
+            if (!is_array($fact)) {
+                continue;
+            }
+            $score = (float)($fact['_score'] ?? 0.0);
+            $conf = (float)($fact['confidence'] ?? 0.5);
+            $srcW = max(0.2, $this->sourceRank((string)($fact['source'] ?? '')) / 5.0);
+            $type = strtolower((string)($fact['type'] ?? 'statement'));
+            $typeW = match ($type) {
+                'definition' => 1.05,
+                'procedure' => 1.05,
+                'code_html' => $intent === 'generate_code' ? 1.15 : 0.85,
+                'best_practice' => 1.05,
+                'example' => 0.95,
+                'warning' => 1.0,
+                default => 1.0,
+            };
+
+            $content = strtolower((string)($fact['content'] ?? $fact['value'] ?? ''));
+            $tags = array_map('strval', is_array($fact['tags'] ?? null) ? $fact['tags'] : []);
+            $keywords = array_map('strval', is_array($fact['keywords'] ?? null) ? $fact['keywords'] : []);
+
+            $specFit = 1.0;
+            if ($specifics !== []) {
+                $hit = false;
+                foreach ($specifics as $sp) {
+                    $sp = strtolower(trim((string)$sp));
+                    if (strlen($sp) < 3) {
+                        continue;
+                    }
+                    if (str_contains($content, $sp)
+                        || in_array($sp, $tags, true)
+                        || in_array($sp, $keywords, true)
+                    ) {
+                        $hit = true;
+                        $specificityHits++;
+                        break;
+                    }
+                }
+                $specFit = $hit ? 1.12 : 0.72;
+            }
+
+            $q = $score * $conf * $srcW * $typeW * $specFit;
+            $qualitySum += $q;
+            $weightSum += $srcW;
+        }
+
+        $avg = $weightSum > 0 ? $qualitySum / $weightSum : 0.0;
+
+        // Coverage: multi-part / specifics need more supporting facts
+        $need = $isMultiPart ? 3 : (($specifics !== []) ? 2 : 1);
+        $coverage = min(1.0, count($pool) / max(1, $need));
+        if ($specifics !== [] && $specificityHits === 0) {
+            $coverage *= 0.55;
+        }
+
+        return max(0.0, min(1.0, 0.75 * $avg + 0.25 * $coverage));
+    }
+
+    /**
+     * Build storeable facts from an OpenRouter response (code + prose).
+     *
+     * @param list<string> $keyPhrases
+     * @param list<string> $specifics
+     * @return list<array<string, mixed>>
+     */
+    private function buildFactsFromOpenRouterText(
+        string $text,
+        string $prompt,
+        string $intent,
+        array $keyPhrases = [],
+        array $specifics = []
+    ): array {
+        $toStore = [];
+        $tags = array_values(array_unique(array_filter(array_map(
+            static fn($x) => strtolower(trim((string)$x)),
+            array_merge($keyPhrases, $specifics)
+        ))));
+
+        if ($this->isCodeGenerationRequest($prompt, $intent)) {
+            $htmlDoc = $this->extractHtmlDocument($text);
+            if ($htmlDoc !== null) {
+                $toStore[] = SkillData::normalizeFact([
+                    'content' => $htmlDoc,
+                    'type' => 'code_html',
+                    'source' => 'openrouter',
+                    'confidence' => 0.92,
+                    'tags' => $tags,
+                    'keywords' => array_slice($tags, 0, 12),
+                    'embedding' => FactSkill::embed(
+                        function_exists('mb_substr') ? mb_substr($htmlDoc, 0, 500) : substr($htmlDoc, 0, 500)
+                    ),
+                    'created_at' => gmdate('c'),
+                ]);
+            }
+        }
+
+        $responseFacts = FactSkill::extractFactsFromText($text, 'openrouter', 0.85);
+        $responseFacts = $this->substantiveFacts($responseFacts, $prompt);
+        foreach ($responseFacts as $f) {
+            if (!is_array($f) || ($f['type'] ?? '') === 'prompt_intent') {
+                continue;
+            }
+            $f = SkillData::normalizeFact($f);
+            $f['tags'] = array_values(array_unique(array_merge(
+                is_array($f['tags'] ?? null) ? $f['tags'] : [],
+                $tags
+            )));
+            $toStore[] = $f;
+        }
+
+        return $toStore;
+    }
+
+    /**
+     * Persist facts and enrich topic meta (description, tags, subtopics).
+     *
+     * @param list<array<string, mixed>> $facts
+     * @param list<string> $subtopics
+     * @param list<string> $keyPhrases
+     * @param list<string> $specifics
+     * @param list<string> $entities
+     */
+    private function storeFactsWithMeta(
+        MemoryStore $memory,
+        string $topic,
+        array $facts,
+        string $prompt,
+        array $subtopics = [],
+        array $keyPhrases = [],
+        array $specifics = [],
+        array $entities = []
+    ): void {
+        if ($facts === []) {
+            return;
+        }
+
+        $memory->mergeTopicFacts($topic, $facts);
+
+        $tags = array_values(array_unique(array_filter(array_map(
+            static fn($x) => strtolower(trim((string)$x)),
+            array_merge($keyPhrases, $specifics, $entities, [$topic])
+        ))));
+        $subs = array_values(array_unique(array_filter(array_map(
+            static fn($x) => trim((string)$x),
+            $subtopics
+        ))));
+
+        $description = trim(str_replace('_', ' ', $topic));
+        if ($specifics !== []) {
+            $description .= ' — ' . implode(', ', array_slice($specifics, 0, 4));
+        } elseif ($prompt !== '') {
+            $core = FactSkill::coreQueryFromPrompt($prompt);
+            if ($core !== '') {
+                $description .= ' — ' . (function_exists('mb_substr') ? mb_substr($core, 0, 120) : substr($core, 0, 120));
+            }
+        }
+
+        try {
+            $memory->mergeTopicMeta($topic, [
+                'description' => $description,
+                'tags' => $tags,
+                'subtopics' => $subs,
+                'aliases' => array_values(array_filter([$topic])),
+            ]);
+        } catch (Throwable $e) {
+            // non-fatal
+        }
+
+        foreach ($subs as $sub) {
+            if ($sub !== '' && $sub !== $topic) {
+                $memory->mergeTopicFacts($sub, $facts);
+            }
+        }
     }
 
     private function sortByScore(array $facts): array

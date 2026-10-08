@@ -1,6 +1,23 @@
 <?php
 require_once __DIR__ . "/../../includes/reusable.php";
-//log_page_visit($conn);
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "diy/index.php";
+$parent_url = "diy";
+$title      = "CfC Free TV — Free Shows & Public‑Domain Entertainment";
+$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+$meta_title = "CfC Free TV — Free Shows & Public‑Domain Entertainment";
+$meta_desc  = "CfC Free TV — a curated playlist of free shows, public‑domain content, documentaries, indie videos, and open‑access entertainment.";
+
+trackVisit(
+    slug:      $url,
+    parentUrl: $parent_url,
+    title:     $title,
+    template:  $template,
+    metaTitle: $meta_title,
+    metaDesc:  $meta_desc
+);
+
 ?>
 
 <!DOCTYPE html>

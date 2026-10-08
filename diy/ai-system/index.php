@@ -106,8 +106,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     } else {
         try {
             $memory = new MemoryStore(__DIR__ . '/memory/memory.json');
-            $extraWords = $memory->listTopics();
-            $prompt = SpellCorrector::correct($prompt, $extraWords);
+            $featuresFile = __DIR__ . '/config/features.php';
+            $features = is_file($featuresFile) ? (require $featuresFile) : [];
+            $spellOn = !isset($features['spell_correct_enabled']) || !empty($features['spell_correct_enabled']);
+            if ($spellOn) {
+                $extraWords = $memory->listTopics();
+                $prompt = SpellCorrector::correct($prompt, $extraWords);
+            }
 
             $router = new Router();
             $response = trim($router->handle($prompt));

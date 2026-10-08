@@ -1,5 +1,16 @@
 <?php
-require "../config.php";
+require_once "../config.php";
+
+$reusablePath = __DIR__ . '/../includes/reusable.php';
+if (file_exists($reusablePath)) {
+    require_once $reusablePath;
+
+    if (function_exists('trackVisit')) {
+        trackVisit("d-worktoken");
+    }
+}
+
+show_disabled_message("the WorkToken is being transitioned to our cfcbazar.42web.io/worktoken/ site");
 
 // -------------------------------
 // DATABASE SAFETY CHECK

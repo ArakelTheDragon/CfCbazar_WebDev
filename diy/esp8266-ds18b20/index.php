@@ -10,6 +10,23 @@ if (session_status() === PHP_SESSION_NONE) {
 // Adjust path relative to your directory structure if needed
 require_once __DIR__ . '/../../includes/reusable.php';
 
+// --- Page metadata -----------------------------------------------------------
+$url        = "diy/esp8266-ds18b20/index.php";
+$parent_url = "diy/esp8266-ds18b20";
+$title      = "Interfacing DS18B20 Temperature Sensor with ESP8266 NodeMCU";
+$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+$meta_title = "Free Circuits";
+$meta_desc  = "Learn how to connect a DS18B20 1-Wire digital temperature sensor to an ESP8266 (NodeMCU) board and read temperature values via the Serial Monitor in Celsius.";
+
+trackVisit(
+    slug:      $url,
+    parentUrl: $parent_url,
+    title:     $title,
+    template:  $template,
+    metaTitle: $meta_title,
+    metaDesc:  $meta_desc
+);
+
 include_menu();
 include_header();
 render_top_userbar();

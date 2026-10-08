@@ -610,26 +610,30 @@ function trackingLookupUrl(string $tracking): string {
     return '?track=' . urlencode($tracking);
 }
 
-// ===== from trackVisit.php =====
-/**
- * CfCbazar Analytics & Page Tracking Helper Library
- * File: /includes/trackVisit.php
- *
- * Tracks page views in the `pages` database table. Normalizes page slugs,
- * generates default titles, and atomically increments visit counts using 
- * ON DUPLICATE KEY UPDATE for HTTP GET requests.
- */
-
-
 if (!function_exists('trackVisit')) {
     /**
      * Tracks a page visit in the `pages` table.
      *
-     * @param string $slug Page slug or filename to track
+     * Uses UPDATE-first / INSERT-if-missing so that repeat visits to an
+     * existing page do NOT consume AUTO_INCREMENT values. Only the first
+     * visit to a new page allocates a new id.
+     *
+     * @param string      $slug        Page slug, filename, or path
+     * @param string|null $parentUrl   Parent page URL like "/diy/" (null = top-level)
+     * @param string|null $title       Human-readable title (auto-generated if null)
+     * @param string|null $template    Template name
+     * @param string|null $metaTitle   SEO meta title
+     * @param string|null $metaDesc    SEO meta description
      * @return void
      */
-    function trackVisit(string $slug): void
-    {
+    function trackVisit(
+        string $slug,
+        ?string $parentUrl = null,
+        ?string $title = null,
+        ?string $template = null,
+        ?string $metaTitle = null,
+        ?string $metaDesc = null
+    ): void {
         global $conn;
 
         // Only track GET page loads
@@ -637,31 +641,138 @@ if (!function_exists('trackVisit')) {
             return;
         }
 
-        // Normalize slug
+        // --- Normalize the slug ------------------------------------------
         $slug = trim($slug);
-        $slug = mb_substr($slug, 0, 255);
+        $slug = preg_split('/[?#]/', $slug, 2)[0] ?? '';
+        $slug = preg_replace('#/+#', '/', $slug) ?? $slug;
+        $slug = trim($slug, '/');
 
+        if (str_contains($slug, '://')) {
+            $slug = preg_replace('#^[a-z]+://[^/]+/#i', '', $slug) ?? $slug;
+        }
+
+        $slug = mb_substr($slug, 0, 255);
         if ($slug === '') {
             $slug = 'index.php';
         }
 
-        // Human-readable title
-        $title = ucfirst(str_replace(['.php', '_', '-'], ['', ' ', ' '], $slug));
+        // --- Normalize the parent URL into a stored string ---------------
+        // Stored form: "/diy" — leading slash, no trailing slash.
+        $parentId = null;
 
-        // Path must match DB format
+        if ($parentUrl !== null && trim($parentUrl) !== '') {
+            $pSlug = trim($parentUrl);
+            $pSlug = preg_split('/[?#]/', $pSlug, 2)[0] ?? '';
+            $pSlug = preg_replace('#/+#', '/', $pSlug) ?? $pSlug;
+            $pSlug = trim($pSlug, '/');
+
+            if (str_contains($pSlug, '://')) {
+                $pSlug = preg_replace('#^[a-z]+://[^/]+/#i', '', $pSlug) ?? $pSlug;
+            }
+
+            if ($pSlug !== '') {
+                $parentId = '/' . $pSlug;
+                $parentId = mb_substr($parentId, 0, 255);
+            }
+        }
+
+        // --- Default title if none supplied ------------------------------
+        if ($title === null || trim($title) === '') {
+            $title = ucfirst(str_replace(['.php', '_', '-'], ['', ' ', ' '], $slug));
+        }
+        $title = mb_substr($title, 0, 255);
+
+        // --- Path matches DB format --------------------------------------
         $path = '/' . $slug;
 
-        // Insert or update
-        $stmt = $conn->prepare("
-            INSERT INTO pages (title, slug, path, status, visits, created_at, updated_at)
-            VALUES (?, ?, ?, 'published', 1, NOW(), NOW())
-            ON DUPLICATE KEY UPDATE visits = visits + 1, updated_at = NOW()
+        // --- Normalize optional strings ----------------------------------
+        if ($template === '' || $template === null) {
+            $template = null;
+        } else {
+            $template = mb_substr($template, 0, 100);
+        }
+
+        if ($metaTitle === '' || $metaTitle === null) {
+            $metaTitle = null;
+        } else {
+            $metaTitle = mb_substr($metaTitle, 0, 255);
+        }
+
+        if ($metaDesc === '' || $metaDesc === null) {
+            $metaDesc = null;
+        }
+
+        // --- Referrer ----------------------------------------------------
+        $referrer = $_SERVER['HTTP_REFERER'] ?? null;
+        $referrer = is_string($referrer) ? mb_substr($referrer, 0, 255) : null;
+
+        // ================================================================
+        // Step 1: UPDATE the existing row (this is the common case).
+        // `visits = visits + 1` always changes the value, so affected_rows
+        // reliably reports whether a matching row existed.
+        // ================================================================
+        $upd = $conn->prepare("
+            UPDATE pages
+            SET
+                title         = ?,
+                parent_id     = ?,
+                template      = ?,
+                meta_title    = ?,
+                meta_desc     = ?,
+                status        = 'published',
+                visits        = visits + 1,
+                last_referrer = ?,
+                updated_at    = NOW()
+            WHERE slug = ?
         ");
 
-        if ($stmt) {
-            $stmt->bind_param('sss', $title, $slug, $path);
-            $stmt->execute();
-            $stmt->close();
+        if ($upd) {
+            $upd->bind_param(
+                'sssssss',
+                $title,
+                $parentId,
+                $template,
+                $metaTitle,
+                $metaDesc,
+                $referrer,
+                $slug
+            );
+            $upd->execute();
+            $updatedRows = $upd->affected_rows;
+            $upd->close();
+
+            // If a row was matched, we're done — no id consumed.
+            if ($updatedRows > 0) {
+                return;
+            }
+        }
+
+        // ================================================================
+        // Step 2: No existing row — INSERT one. This is the only place
+        // a new AUTO_INCREMENT id gets allocated.
+        // ================================================================
+        $ins = $conn->prepare("
+            INSERT INTO pages
+                (title, slug, path, parent_id, template, meta_title, meta_desc,
+                 status, visits, last_referrer, created_at, updated_at)
+            VALUES
+                (?, ?, ?, ?, ?, ?, ?, 'published', 1, ?, NOW(), NOW())
+        ");
+
+        if ($ins) {
+            $ins->bind_param(
+                'ssssssss',
+                $title,
+                $slug,
+                $path,
+                $parentId,
+                $template,
+                $metaTitle,
+                $metaDesc,
+                $referrer
+            );
+            $ins->execute();
+            $ins->close();
         }
     }
 }

@@ -1,46 +1,32 @@
 <?php
-// CfCbazar DIY Tools & Dashboard (Public Access)
+// CfCbazar DIY Tools & Dashboard (Public Access — no session required)
+// diy/index.php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 require __DIR__ . '/../includes/reusable.php';
 
-// --- USER AUTHORIZATION CHECK ---
-// Status: 1 = Admin, 2 = Moderator, 3 = Contributor
-$userStatus = function_exists('getUserStatus') ? (int)getUserStatus() : 0;
-$canAddSections = in_array($userStatus, [1, 2, 3], true);
+// Set return URL cookie for login.php
+setReturnUrl("/diy/index.php");
 
-// Track page visit
-$uri  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$path = ($uri === '/' ? '/index.php' : $uri);
+// --- Page metadata -----------------------------------------------------------
+$url        = "diy/index.php";
+$parent_url = "diy";
+$title      = "Main Web Tools Page";
+$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+$meta_title = "Free Open Source Web Tools";
+$meta_desc  = "Budget calculators, goal trackers, ping test, internet download speed test, AI systems, ESP8266, PCBs and tutorials";
 
-$upd = $conn->prepare("UPDATE pages SET visits = visits + 1, updated_at = NOW() WHERE path = ?");
-if ($upd) {
-    $upd->bind_param('s', $path);
-    $upd->execute();
-
-    if ($upd->affected_rows === 0) {
-        $slug  = ltrim($path, '/');
-        $slug  = $slug === '' ? 'index' : $slug;
-        $title = 'Features & DIY Tools';
-
-        $ins = $conn->prepare("
-            INSERT INTO pages (title, slug, path, visits, created_at, updated_at)
-            VALUES (?, ?, ?, 1, NOW(), NOW())
-        ");
-        if ($ins) {
-            $ins->bind_param('sss', $title, $slug, $path);
-            $ins->execute();
-            $ins->close();
-        }
-    }
-    $upd->close();
-}
+trackVisit(
+    slug:      $url,
+    parentUrl: $parent_url,
+    title:     $title,
+    template:  $template,
+    metaTitle: $meta_title,
+    metaDesc:  $meta_desc
+);
 
 // --- Render layout ---
 include_menu();     // must be first
@@ -79,12 +65,10 @@ render_top_userbar();
   <div class="balance-box">Explore our tools below.</div>
   <div><a href="/index.php">🏠 Go to Home</a></div>
 
-  <!-- SHOW ADD TOOL LINK FOR AUTHORIZED ROLES -->
-  <?php if ($canAddSections): ?>
-    <div style="margin: 15px 0;">
-      <a href="form-diy.php" style="display: inline-block; padding: 10px 16px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold;">➕ Add New Item</a>
-    </div>
-  <?php endif; ?>
+  <!-- Admin / contributor link. Anyone can click it; form-diy.php handles auth. -->
+  <div style="margin: 15px 0;">
+    <a href="form-diy.php" style="display: inline-block; padding: 10px 16px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold;">➕ Add New Item</a>
+  </div>
 
   <!-- NEW CARDS WILL BE APPENDED DIRECTLY ABOVE THIS LINE -->
   

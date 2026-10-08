@@ -22,24 +22,9 @@ renderCaptchaIfNeeded();
 // HTTPS
 enforce_https();
 
-// Default return URL
-$return_url = '/index.php';
-
-// Return URL from cookie
-if (isset($_COOKIE['return_url'])) {
-    $cookie_url = urldecode($_COOKIE['return_url']);
-    if (preg_match('/^\/[a-zA-Z0-9\/._-]+\.php$/', $cookie_url)) {
-        $return_url = $cookie_url;
-    }
-}
-
-// Return URL from GET (takes priority)
-if (isset($_GET['return_url'])) {
-    $requested_url = urldecode($_GET['return_url']);
-    if (preg_match('/^\/[a-zA-Z0-9\/._-]+\.php$/', $requested_url)) {
-        $return_url = $requested_url;
-    }
-}
+// Determine where to send the user after a successful login.
+// GET takes priority; otherwise the cookie set by reusable.php; otherwise /index.php.
+$return_url = getReturnUrl('/index.php');
 
 $errors = [];
 
@@ -73,8 +58,12 @@ if (isset($_POST['login_user'])) {
                 // Send verification email
                 $api_url = "https://cfcbazar.42web.io/mail.php";
                 $data = [
-                    "email"       => $email,
-                    "verify_code" => $new_verify_code
+                    "email"   => $email,
+                    "subject" => "CfCbazar – Verification",
+                    "heading" => "CfCbazar Verification",
+                    "intro"   => "You requested a verification code:",
+                    "message" => "Your CfCbazar verification code is: {$new_verify_code}\n\nIt expires in 1 hour.",
+                    "footer_note" => "If you did not request this, you can safely ignore this email."
                 ];
                 $options = [
                     "http" => [
@@ -101,11 +90,8 @@ if (isset($_POST['login_user'])) {
                 $_SESSION['user_id'] = $id;
                 $_SESSION['success'] = "You are now logged in";
 
-                // Clear return_url cookie
-                if (isset($_COOKIE['return_url'])) {
-                    setcookie('return_url', '', time() - 3600, '/');
-                    unset($_COOKIE['return_url']);
-                }
+                // Clear the remembered page so it doesn't fire again next time.
+                clearReturnUrl();
 
                 header("Location: " . $return_url);
                 exit();
@@ -136,7 +122,7 @@ render_top_userbar();
             </div>
         <?php endif; ?>
 
-        <form method="post" action="login.php<?= isset($_GET['return_url']) ? '?return_url=' . urlencode($_GET['return_url']) : '' ?>" autocomplete="off">
+        <form method="post" action="login.php" autocomplete="off">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required autocomplete="username">

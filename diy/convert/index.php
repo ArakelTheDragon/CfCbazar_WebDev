@@ -4,6 +4,26 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require_once __DIR__ . "/../../includes/reusable.php";
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "diy/convert/index.php";
+$parent_url = "diy/convert";
+$title      = "Open Source Photo Converter Tool";
+$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+$meta_title = "Open Source Photo Converter Tool";
+$meta_desc  = "Convert JPG, PNG, WEBP, TIFF, and SVG images instantly (max 20MB).";
+
+trackVisit(
+    slug:      $url,
+    parentUrl: $parent_url,
+    title:     $title,
+    template:  $template,
+    metaTitle: $meta_title,
+    metaDesc:  $meta_desc
+);
+
+
 require __DIR__ . '/vendor/autoload.php';
 
 use PhpOffice\PhpWord\PhpWord;

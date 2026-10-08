@@ -57,6 +57,11 @@ render_top_userbar();
             </div>
 
             <div class="input-group">
+                <label>Subject</label>
+                <input type="text" name="subject" id="subject" required placeholder="What is this about?" maxlength="150">
+            </div>
+
+            <div class="input-group">
                 <label>Your Message</label>
                 <textarea name="message" id="message" required placeholder="Write your message here..." rows="5"></textarea>
             </div>
@@ -77,7 +82,8 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const userEmail = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+    const subject   = document.getElementById("subject").value.trim();
+    const message   = document.getElementById("message").value.trim();
     const statusBox = document.getElementById("contact-status");
 
     statusBox.style.display = "none";
@@ -96,15 +102,23 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     const formattedMessage =
         "Support Request #" + ticket + "\n" +
         "Date: " + timestamp + "\n\n" +
-        "From: " + userEmail + "\n\n" +
+        "From: " + userEmail + "\n" +
+        "Subject: " + subject + "\n\n" +
         "Message:\n" + message + "\n";
+
+    // Prefix the ticket so the admin can find the request later.
+    const mailSubject = "[#" + ticket + "] " + subject;
 
     fetch("/mail.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-            email: email,               // ALWAYS admin
-            verify_code: formattedMessage
+            email:   email,
+            subject: mailSubject,
+            heading: "New Support Request",
+            intro:   "A new support request has been submitted:",
+            message: formattedMessage,
+            footer_note: "Sent from the CfCbazar contact form."
         })
     })
     .then(res => res.json())
@@ -131,4 +145,3 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 <?php include_footer(); ?>
 </body>
 </html>
-

@@ -7,7 +7,22 @@ error_reporting(E_ALL);
 $reusablePath = __DIR__ . '/../../includes/reusable.php';
 if (file_exists($reusablePath)) {
     require_once $reusablePath;
-    if (function_exists('trackVisit')) trackVisit("btc-profit-calculator");
+    // --- Page metadata -----------------------------------------------------------
+	$url        = "diy/btc-profit-calculator/index.php";
+	$parent_url = "diy";
+	$title      = "Open Source BTC Profit Calculator";
+	$template   = "Generic";   // optional: e.g. "tool", "article", "game"
+	$meta_title = "Open Source BTC Profit Calculator";
+	$meta_desc  = "Calculate the profit of mining per TH/s, fees and end result.";
+
+	trackVisit(
+	    slug:      $url,
+	    parentUrl: $parent_url,
+	    title:     $title,
+	    template:  $template,
+	    metaTitle: $meta_title,
+	    metaDesc:  $meta_desc
+	);
 }
 
 include_header();
