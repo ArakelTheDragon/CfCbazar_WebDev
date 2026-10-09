@@ -5,8 +5,8 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 
 // --- Config ------------------------------------------------------------------
-$pageId     = '930733330124779';           // move to config.php when you're ready
-$pageToken  = 'EAAM8IqzH7bwBSjuhCC9VsDIF8ztzPQ0iPqh0di0BZA0cB6ZBRpc2e81ttpwBtOcavKs0BVJZAEnZC1hHNDzl0w1TLhZBIUbZChLORWMkgcy7Yl3yFghRNil87lfzneLu1xGzTfTHog8Wgy03mqdimyeCQxuZARxuvy6M4mbdp82lwwYLVL6525DZBuvdG0zwA8mAHIDP';
+$pageId     = 'X';           // move to config.php when you're ready
+$pageToken  = 'X';
 $apiVersion = 'v26.0';
 $jsonFile   = __DIR__ . '/posts.json';
 // -----------------------------------------------------------------------------
