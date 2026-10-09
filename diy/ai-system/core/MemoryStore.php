@@ -239,16 +239,212 @@ class MemoryStore
             $confSum += (float)($f['confidence'] ?? 0.5);
             $n++;
         }
+        $title = trim((string)($doc['title'] ?? ''));
+        if ($title === '') {
+            $title = trim((string)($doc['description'] ?? '')) !== ''
+                ? (string)$doc['description']
+                : str_replace('_', ' ', (string)$doc['topic']);
+        }
         return [
             'topic' => $doc['topic'],
+            'title' => $title,
+            'subtitle' => (string)($doc['subtitle'] ?? ''),
             'description' => $doc['description'],
             'aliases' => $doc['aliases'],
             'subtopics' => $doc['subtopics'],
             'tags' => $doc['tags'],
+            'possible_prompts' => array_values($doc['possible_prompts'] ?? []),
+            'related_topics' => array_values($doc['related_topics'] ?? []),
             'vectors' => $doc['vectors'],
             'fact_count' => $n,
             'avg_score' => $n > 0 ? round($confSum / $n, 4) : 0.0,
         ];
+    }
+
+    /**
+     * Match Fact Topics for a user question using title, subtitle, tags,
+     * aliases, and possible_prompts (optional embedding boost).
+     *
+     * Returns ranked topic hits — Knowledge then scores facts inside them.
+     *
+     * @param list<float> $queryEmbedding
+     * @return list<array{topic:string, score:float, title:string, fact_count:int}>
+     */
+    public function matchFactTopics(
+        string $prompt,
+        array $queryEmbedding = [],
+        float $minScore = 0.28,
+        int $limit = 8
+    ): array {
+        $prompt = trim($prompt);
+        if ($prompt === '') {
+            return [];
+        }
+        $promptLower = function_exists('mb_strtolower') ? mb_strtolower($prompt) : strtolower($prompt);
+        $promptKw = FactSkill::extractKeywords($prompt, 16);
+        if ($queryEmbedding === []) {
+            $queryEmbedding = FactSkill::embed($prompt);
+        }
+
+        $scored = [];
+        foreach ($this->listTopics() as $topic) {
+            $doc = $this->readTopicDocument($topic);
+            $score = $this->scoreFactTopicMatch($doc, $promptLower, $promptKw, $queryEmbedding);
+            if ($score >= $minScore) {
+                $title = trim((string)($doc['title'] ?? ''));
+                if ($title === '') {
+                    $title = str_replace('_', ' ', $topic);
+                }
+                $scored[] = [
+                    'topic' => $topic,
+                    'score' => round($score, 4),
+                    'title' => $title,
+                    'fact_count' => count($doc['facts'] ?? []),
+                ];
+            }
+        }
+
+        usort($scored, static fn(array $a, array $b): int => ($b['score'] <=> $a['score']));
+        return array_slice($scored, 0, max(1, $limit));
+    }
+
+    /**
+     * Score how well a Fact Topic envelope matches a prompt (0–1).
+     *
+     * @param array<string, mixed> $doc
+     * @param list<string> $promptKw
+     * @param list<float> $queryEmbedding
+     */
+    private function scoreFactTopicMatch(
+        array $doc,
+        string $promptLower,
+        array $promptKw,
+        array $queryEmbedding
+    ): float {
+        $topic = (string)($doc['topic'] ?? '');
+        $title = trim((string)($doc['title'] ?? ''));
+        if ($title === '') {
+            $title = str_replace('_', ' ', $topic);
+        }
+        $subtitle = trim((string)($doc['subtitle'] ?? ''));
+        $description = trim((string)($doc['description'] ?? ''));
+        $aliases = is_array($doc['aliases'] ?? null) ? $doc['aliases'] : [];
+        $tags = is_array($doc['tags'] ?? null) ? $doc['tags'] : [];
+        $prompts = is_array($doc['possible_prompts'] ?? null) ? $doc['possible_prompts'] : [];
+        $subtopics = is_array($doc['subtopics'] ?? null) ? $doc['subtopics'] : [];
+
+        // Phrase / title hits
+        $phraseScore = 0.0;
+        $candidates = array_merge(
+            [$title, $subtitle, $description, str_replace('_', ' ', $topic)],
+            $aliases,
+            $prompts
+        );
+        foreach ($candidates as $c) {
+            $c = strtolower(trim((string)$c));
+            if ($c === '' || strlen($c) < 3) {
+                continue;
+            }
+            if ($promptLower === $c || str_contains($promptLower, $c) || str_contains($c, $promptLower)) {
+                $phraseScore = max($phraseScore, 0.95);
+                continue;
+            }
+            // Token coverage of candidate in prompt
+            $toks = array_values(array_filter(
+                preg_split('/[\s_]+/', $c) ?: [],
+                static fn($w) => strlen($w) >= 3
+            ));
+            if ($toks === []) {
+                continue;
+            }
+            $hits = 0;
+            foreach ($toks as $tok) {
+                if (str_contains($promptLower, $tok)) {
+                    $hits++;
+                }
+            }
+            $cov = $hits / count($toks);
+            if ($cov >= 0.6) {
+                $phraseScore = max($phraseScore, 0.55 + 0.35 * $cov);
+            } elseif ($cov >= 0.4) {
+                $phraseScore = max($phraseScore, 0.35 + 0.25 * $cov);
+            }
+        }
+
+        // Tag overlap
+        $tagScore = 0.0;
+        $tagList = [];
+        foreach (array_merge($tags, $subtopics) as $tag) {
+            $tag = strtolower(trim((string)$tag));
+            if ($tag !== '') {
+                $tagList[] = $tag;
+            }
+        }
+        if ($tagList !== [] && $promptKw !== []) {
+            $inter = 0;
+            foreach ($promptKw as $kw) {
+                foreach ($tagList as $tag) {
+                    if ($kw === $tag || str_contains($tag, $kw) || str_contains($kw, $tag)) {
+                        $inter++;
+                        break;
+                    }
+                }
+            }
+            $tagScore = min(1.0, $inter / max(2, min(6, count($promptKw))));
+        }
+        // Tag appears in prompt text
+        foreach ($tagList as $tag) {
+            if (strlen($tag) >= 3 && str_contains($promptLower, $tag)) {
+                $tagScore = max($tagScore, 0.45);
+            }
+        }
+
+        // Embedding of topic envelope (title + tags + aliases + possible prompts)
+        $vecScore = 0.0;
+        if ($queryEmbedding !== []) {
+            $descVec = $doc['vectors']['description'] ?? null;
+            if (!is_array($descVec) || $descVec === []) {
+                $blob = $this->topicMatchBlob($doc);
+                $descVec = FactSkill::embed($blob);
+            }
+            $vecScore = FactSkill::cosineSimilarity($queryEmbedding, $descVec);
+            // Also try best label vector
+            $labelMap = is_array($doc['vectors']['labels'] ?? null) ? $doc['vectors']['labels'] : [];
+            foreach ($labelMap as $vec) {
+                if (is_array($vec) && $vec !== []) {
+                    $vecScore = max($vecScore, FactSkill::cosineSimilarity($queryEmbedding, $vec));
+                }
+            }
+        }
+
+        // Weighted combine — phrase/tags dominate (deterministic); vector assists
+        $score = (0.42 * $phraseScore) + (0.33 * $tagScore) + (0.25 * $vecScore);
+        return max(0.0, min(1.0, $score));
+    }
+
+    /**
+     * Text used for topic-level embedding (not individual facts).
+     *
+     * @param array<string, mixed> $doc
+     */
+    private function topicMatchBlob(array $doc): string
+    {
+        $parts = [];
+        $topic = (string)($doc['topic'] ?? '');
+        $title = trim((string)($doc['title'] ?? ''));
+        $parts[] = $title !== '' ? $title : str_replace('_', ' ', $topic);
+        if (!empty($doc['subtitle'])) {
+            $parts[] = (string)$doc['subtitle'];
+        }
+        if (!empty($doc['description'])) {
+            $parts[] = (string)$doc['description'];
+        }
+        foreach (['aliases', 'tags', 'possible_prompts', 'subtopics'] as $k) {
+            if (!empty($doc[$k]) && is_array($doc[$k])) {
+                $parts[] = implode(' ', $doc[$k]);
+            }
+        }
+        return trim(implode("\n", $parts));
     }
 
     /**
@@ -271,6 +467,113 @@ class MemoryStore
      * @param list<float> $queryEmbedding
      * @return list<string>
      */
+    /**
+     * Pick the best existing topic for a prompt using name tokens + content embeddings.
+     * Avoids ambiguous short names (e.g. "sky verification" → celestial vs call-center).
+     *
+     * @param list<float> $queryEmbedding
+     */
+    public function findBestMatchingTopic(string $prompt, array $queryEmbedding = [], float $minScore = 0.22): ?string
+    {
+        $prompt = trim($prompt);
+        if ($prompt === '') {
+            return null;
+        }
+        if ($queryEmbedding === []) {
+            $queryEmbedding = FactSkill::embed($prompt);
+        }
+
+        $promptLower = function_exists('mb_strtolower') ? mb_strtolower($prompt) : strtolower($prompt);
+        $promptKw = FactSkill::extractKeywords($prompt, 16);
+        $bestTopic = null;
+        $bestScore = 0.0;
+
+        foreach ($this->listTopics() as $topic) {
+            $meta = $this->getTopicMeta($topic);
+            $name = str_replace('_', ' ', $topic);
+            $nameTokens = array_values(array_filter(
+                preg_split('/\s+/', strtolower($name)) ?: [],
+                static fn($w) => strlen($w) >= 3
+            ));
+
+            // Token coverage both ways
+            $nameHits = 0;
+            foreach ($nameTokens as $tok) {
+                if (str_contains($promptLower, $tok)) {
+                    $nameHits++;
+                }
+            }
+            $nameCoverage = $nameTokens !== [] ? $nameHits / count($nameTokens) : 0.0;
+
+            $promptHits = 0;
+            foreach ($promptKw as $kw) {
+                if (str_contains(strtolower($name), $kw)) {
+                    $promptHits++;
+                }
+            }
+            $promptCoverage = $promptKw !== [] ? $promptHits / min(8, count($promptKw)) : 0.0;
+
+            // Description / label embedding
+            $desc = trim((string)($meta['description'] ?? ''));
+            $label = $desc !== '' ? $desc : $name;
+            $descVec = $meta['vectors']['description'] ?? null;
+            if (!is_array($descVec) || $descVec === []) {
+                $descVec = FactSkill::embed($label);
+            }
+            $vecScore = FactSkill::cosineSimilarity($queryEmbedding, $descVec);
+
+            // Sample fact keywords overlap
+            $facts = $this->getTopicFacts($topic);
+            $factBlob = '';
+            $n = 0;
+            foreach ($facts as $f) {
+                if (!is_array($f) || ($f['type'] ?? '') === 'code_html') {
+                    continue;
+                }
+                $c = trim((string)($f['content'] ?? $f['value'] ?? ''));
+                if ($c === '') {
+                    continue;
+                }
+                $factBlob .= ' ' . $c;
+                $n++;
+                if ($n >= 6) {
+                    break;
+                }
+            }
+            $factKw = FactSkill::extractKeywords($factBlob, 20);
+            $factInter = 0;
+            if ($factKw !== [] && $promptKw !== []) {
+                $factInter = count(array_intersect($promptKw, $factKw));
+            }
+            $factScore = $factKw !== [] ? min(1.0, $factInter / max(3, min(6, count($promptKw)))) : 0.0;
+
+            // Prefer longer, more specific topic names when coverage is high
+            $specificity = min(1.0, count($nameTokens) / 6.0);
+
+            $score = (0.30 * $nameCoverage)
+                + (0.20 * $promptCoverage)
+                + (0.25 * $vecScore)
+                + (0.20 * $factScore)
+                + (0.05 * $specificity);
+
+            // Strong boost when most of a long topic name appears in the prompt
+            if (count($nameTokens) >= 3 && $nameCoverage >= 0.6) {
+                $score += 0.12;
+            }
+
+            if ($score > $bestScore) {
+                $bestScore = $score;
+                $bestTopic = $topic;
+            }
+        }
+
+        if ($bestTopic === null || $bestScore < $minScore) {
+            return null;
+        }
+
+        return $bestTopic;
+    }
+
     public function findRelatedTopics(array $queryEmbedding, string $queryText = '', int $limit = 4, float $minScore = 0.18): array
     {
         if ($queryEmbedding === [] && trim($queryText) === '') {
@@ -298,7 +601,7 @@ class MemoryStore
             if (!is_array($labelMap)) {
                 $labelMap = [];
             }
-            foreach (array_merge($doc['aliases'], $doc['tags'], [$topic]) as $label) {
+            foreach (array_merge($doc['aliases'], $doc['tags'], $doc['possible_prompts'] ?? [], [$topic]) as $label) {
                 $label = trim((string)$label);
                 if ($label === '') {
                     continue;
@@ -313,7 +616,7 @@ class MemoryStore
             // Keyword fallback on description/aliases
             if ($queryText !== '') {
                 $blob = strtolower(
-                    $doc['description'] . ' ' . implode(' ', $doc['aliases']) . ' ' . implode(' ', $doc['tags']) . ' ' . $topic
+                    $doc['description'] . ' ' . ($doc['title'] ?? '') . ' ' . implode(' ', $doc['aliases']) . ' ' . implode(' ', $doc['tags']) . ' ' . implode(' ', $doc['possible_prompts'] ?? []) . ' ' . $topic
                 );
                 foreach (FactSkill::extractKeywords($queryText) as $kw) {
                     if ($kw !== '' && str_contains($blob, $kw)) {
@@ -392,19 +695,30 @@ class MemoryStore
     {
         $doc = $this->readTopicDocument($topic);
         $existing = [
+            'title' => (string)($doc['title'] ?? ''),
+            'subtitle' => (string)($doc['subtitle'] ?? ''),
             'description' => (string)($doc['description'] ?? ''),
             'aliases' => array_values($doc['aliases'] ?? []),
             'subtopics' => array_values($doc['subtopics'] ?? []),
             'tags' => array_values($doc['tags'] ?? []),
+            'possible_prompts' => array_values($doc['possible_prompts'] ?? []),
+            'related_topics' => array_values($doc['related_topics'] ?? []),
         ];
+        if (isset($meta['title']) && trim((string)$meta['title']) !== '') {
+            if ($existing['title'] === '' || strlen(trim((string)$meta['title'])) > strlen($existing['title'])) {
+                $existing['title'] = trim((string)$meta['title']);
+            }
+        }
+        if (isset($meta['subtitle']) && trim((string)$meta['subtitle']) !== '') {
+            $existing['subtitle'] = trim((string)$meta['subtitle']);
+        }
         if (isset($meta['description']) && trim((string)$meta['description']) !== '') {
-            // Keep longer/more informative description
             $newDesc = trim((string)$meta['description']);
             if ($existing['description'] === '' || strlen($newDesc) > strlen($existing['description'])) {
                 $existing['description'] = $newDesc;
             }
         }
-        foreach (['aliases', 'subtopics', 'tags'] as $k) {
+        foreach (['aliases', 'subtopics', 'tags', 'possible_prompts', 'related_topics'] as $k) {
             if (!isset($meta[$k]) || !is_array($meta[$k])) {
                 continue;
             }
@@ -423,11 +737,20 @@ class MemoryStore
      * @param string|null $topic      restrict to topic (null = all)
      * @return array  facts sorted by similarity descending, each with '_score'
      */
+    /**
+     * Vector search over facts. When $topic is null, candidates are keyword-prefiltered
+     * (if keywords provided) so we do not cosine-score the entire store on shared hosting.
+     *
+     * @param list<float> $queryEmbedding
+     * @param list<string> $queryKeywords Optional; strongly recommended for global search
+     * @return list<array<string, mixed>>
+     */
     public function searchByVector(
         array $queryEmbedding,
         float $minScore = 0.55,
         int $limit = 10,
-        ?string $topic = null
+        ?string $topic = null,
+        array $queryKeywords = []
     ): array {
         if ($queryEmbedding === []) {
             return [];
@@ -436,23 +759,37 @@ class MemoryStore
         $candidates = [];
         $index = $this->loadIndex();
         $flat = $index['facts'] ?? [];
+        $safeTopic = $topic !== null ? $this->safeTopicName($topic) : null;
 
         if (is_array($flat) && $flat !== []) {
             foreach ($flat as $fact) {
                 if (!is_array($fact)) {
                     continue;
                 }
-                if ($topic !== null && ($fact['topic'] ?? '') !== $this->safeTopicName($topic)) {
+                if ($safeTopic !== null && ($fact['topic'] ?? '') !== $safeTopic) {
                     continue;
                 }
-                $candidates[] = $fact + ['_topic' => (string)($fact['topic'] ?? $topic ?? '')];
+                $candidates[] = $fact + ['_topic' => (string)($fact['topic'] ?? $safeTopic ?? '')];
             }
-        } elseif ($topic !== null) {
-            foreach ($this->getTopicFacts($topic) as $fact) {
-                $candidates[] = $fact + ['_topic' => $this->safeTopicName($topic)];
+        } elseif ($safeTopic !== null) {
+            foreach ($this->getTopicFacts($safeTopic) as $fact) {
+                $candidates[] = $fact + ['_topic' => $safeTopic];
             }
         } else {
             $candidates = $this->getAllFacts();
+        }
+
+        // Global search: pre-filter by cheap keyword overlap before float-heavy cosine
+        $maxVectorCandidates = 400;
+        if ($safeTopic === null && count($candidates) > $maxVectorCandidates) {
+            if ($queryKeywords !== []) {
+                $candidates = $this->prefilterFactsByKeywords($candidates, $queryKeywords, $maxVectorCandidates);
+            } else {
+                // No keywords: still cap work (prefer facts that have embeddings + recent)
+                $candidates = array_slice($candidates, 0, $maxVectorCandidates);
+            }
+        } elseif ($queryKeywords !== [] && count($candidates) > $maxVectorCandidates) {
+            $candidates = $this->prefilterFactsByKeywords($candidates, $queryKeywords, $maxVectorCandidates);
         }
 
         $scored = [];
@@ -476,7 +813,58 @@ class MemoryStore
     }
 
     /**
-     * Convenience: embed text then search.
+     * Keep facts with any keyword hit on content/keywords/tags; fill remainder by order.
+     *
+     * @param list<array<string, mixed>> $facts
+     * @param list<string> $keywords
+     * @return list<array<string, mixed>>
+     */
+    private function prefilterFactsByKeywords(array $facts, array $keywords, int $limit): array
+    {
+        $keywords = array_values(array_filter(array_map(
+            static fn($k) => strtolower(trim((string)$k)),
+            $keywords
+        ), static fn($k) => $k !== '' && strlen($k) >= 3));
+
+        if ($keywords === [] || $facts === []) {
+            return array_slice($facts, 0, $limit);
+        }
+
+        $hit = [];
+        $miss = [];
+        foreach ($facts as $fact) {
+            if (!is_array($fact)) {
+                continue;
+            }
+            $blob = strtolower(
+                (string)($fact['content'] ?? $fact['value'] ?? '') . ' '
+                . implode(' ', is_array($fact['keywords'] ?? null) ? $fact['keywords'] : []) . ' '
+                . implode(' ', is_array($fact['tags'] ?? null) ? $fact['tags'] : []) . ' '
+                . (string)($fact['topic'] ?? $fact['_topic'] ?? '')
+            );
+            $ok = false;
+            foreach ($keywords as $kw) {
+                if (str_contains($blob, $kw)) {
+                    $ok = true;
+                    break;
+                }
+            }
+            if ($ok) {
+                $hit[] = $fact;
+            } else {
+                $miss[] = $fact;
+            }
+        }
+
+        $out = $hit;
+        if (count($out) < $limit) {
+            $out = array_merge($out, array_slice($miss, 0, $limit - count($out)));
+        }
+        return array_slice($out, 0, $limit);
+    }
+
+    /**
+     * Convenience: embed text then search (passes keywords for global pre-filter).
      */
     public function searchByText(
         string $text,
@@ -488,7 +876,8 @@ class MemoryStore
         if ($embedding === []) {
             return [];
         }
-        return $this->searchByVector($embedding, $minScore, $limit, $topic);
+        $keywords = FactSkill::extractKeywords($text, 12);
+        return $this->searchByVector($embedding, $minScore, $limit, $topic, $keywords);
     }
 
     public function getAllFacts(): array
@@ -576,8 +965,25 @@ class MemoryStore
                 continue;
             }
 
-            // Ensure embedding present when content exists
-            if (empty($record['embedding']) || !is_array($record['embedding'])) {
+            // Ensure embedding present and non-zero when content exists
+            $emb = $record['embedding'] ?? null;
+            $needEmbed = !is_array($emb) || $emb === [];
+            if (!$needEmbed && defined('LocalEmbedder::DIMENSIONS') && count($emb) !== LocalEmbedder::DIMENSIONS) {
+                $needEmbed = true;
+            }
+            if (!$needEmbed && is_array($emb)) {
+                $sum = 0.0;
+                foreach ($emb as $v) {
+                    $sum += abs((float)$v);
+                    if ($sum > 1e-9) {
+                        break;
+                    }
+                }
+                if ($sum < 1e-9) {
+                    $needEmbed = true;
+                }
+            }
+            if ($needEmbed) {
                 $record['embedding'] = FactSkill::embed($record['content']);
             }
 
@@ -796,16 +1202,20 @@ class MemoryStore
             'fact_count' => count($facts),
             'avg_score' => $n > 0 ? round($confSum / $n, 4) : 0.0,
             'last_updated' => gmdate('c'),
+            'title' => '',
             'description' => '',
             'aliases' => [],
             'tags' => [],
             'subtopics' => [],
+            'possible_prompts' => [],
         ];
         if (is_array($doc)) {
+            $entry['title'] = (string)($doc['title'] ?? '');
             $entry['description'] = (string)($doc['description'] ?? '');
             $entry['aliases'] = array_values($doc['aliases'] ?? []);
             $entry['tags'] = array_values($doc['tags'] ?? []);
             $entry['subtopics'] = array_values($doc['subtopics'] ?? []);
+            $entry['possible_prompts'] = array_values($doc['possible_prompts'] ?? []);
         }
         return $entry;
     }
@@ -872,13 +1282,19 @@ class MemoryStore
         $raw = is_file($file) ? $this->readJsonFile($file) : [];
 
         $facts = $this->normalizeTopicData($raw);
+        $title = '';
+        $subtitle = '';
         $description = '';
         $aliases = [];
         $subtopics = [];
         $tags = [];
+        $possiblePrompts = [];
+        $relatedTopics = [];
         $vectors = [];
 
         if (is_array($raw) && !array_is_list($raw)) {
+            $title = trim((string)($raw['title'] ?? ''));
+            $subtitle = trim((string)($raw['subtitle'] ?? ''));
             $description = trim((string)($raw['description'] ?? ''));
             $aliases = $this->stringList($raw['aliases'] ?? $raw['topic_aliases'] ?? []);
             // User shape: "topic": ["php_simple_page", "php_facts"] as alias list
@@ -887,15 +1303,24 @@ class MemoryStore
             }
             $subtopics = $this->stringList($raw['subtopics'] ?? []);
             $tags = $this->stringList($raw['tags'] ?? []);
+            $possiblePrompts = $this->stringList($raw['possible_prompts'] ?? $raw['possiblePrompts'] ?? []);
+            $relatedTopics = $this->stringList($raw['related_topics'] ?? $raw['relatedTopics'] ?? []);
             $vectors = is_array($raw['vectors'] ?? null) ? $raw['vectors'] : [];
+        }
+        if ($title === '') {
+            $title = $description !== '' ? $description : str_replace('_', ' ', $safe);
         }
 
         return [
             'topic' => $safe,
+            'title' => $title,
+            'subtitle' => $subtitle,
             'description' => $description,
             'aliases' => $aliases,
             'subtopics' => $subtopics,
             'tags' => $tags,
+            'possible_prompts' => $possiblePrompts,
+            'related_topics' => $relatedTopics,
             'vectors' => $vectors,
             'facts' => $facts,
         ];
@@ -909,10 +1334,14 @@ class MemoryStore
         $safe = $this->safeTopicName($topic);
         $payload = [
             'topic' => $safe,
+            'title' => (string)($doc['title'] ?? ''),
+            'subtitle' => (string)($doc['subtitle'] ?? ''),
             'description' => (string)($doc['description'] ?? ''),
             'aliases' => array_values($doc['aliases'] ?? []),
             'subtopics' => array_values($doc['subtopics'] ?? []),
             'tags' => array_values($doc['tags'] ?? []),
+            'possible_prompts' => array_values($doc['possible_prompts'] ?? []),
+            'related_topics' => array_values($doc['related_topics'] ?? []),
             'vectors' => is_array($doc['vectors'] ?? null) ? $doc['vectors'] : [],
             'facts' => array_values($doc['facts'] ?? []),
         ];
@@ -926,10 +1355,16 @@ class MemoryStore
      */
     private function applyMetaToDocument(array $doc, array $meta): array
     {
+        if (isset($meta['title'])) {
+            $doc['title'] = trim((string)$meta['title']);
+        }
+        if (isset($meta['subtitle'])) {
+            $doc['subtitle'] = trim((string)$meta['subtitle']);
+        }
         if (isset($meta['description'])) {
             $doc['description'] = trim((string)$meta['description']);
         }
-        if (isset($meta['aliases']) || isset($meta['topic']) && is_array($meta['topic'])) {
+        if (isset($meta['aliases']) || (isset($meta['topic']) && is_array($meta['topic']))) {
             $aliases = $this->stringList($meta['aliases'] ?? []);
             if (isset($meta['topic']) && is_array($meta['topic'])) {
                 $aliases = array_merge($aliases, $this->stringList($meta['topic']));
@@ -942,6 +1377,12 @@ class MemoryStore
         if (isset($meta['tags'])) {
             $doc['tags'] = $this->stringList($meta['tags']);
         }
+        if (isset($meta['possible_prompts']) || isset($meta['possiblePrompts'])) {
+            $doc['possible_prompts'] = $this->stringList($meta['possible_prompts'] ?? $meta['possiblePrompts'] ?? []);
+        }
+        if (isset($meta['related_topics']) || isset($meta['relatedTopics'])) {
+            $doc['related_topics'] = $this->stringList($meta['related_topics'] ?? $meta['relatedTopics'] ?? []);
+        }
         return $doc;
     }
 
@@ -953,10 +1394,22 @@ class MemoryStore
     {
         $topic = (string)($doc['topic'] ?? '');
         $description = trim((string)($doc['description'] ?? ''));
-        $descText = $description !== '' ? $description : str_replace('_', ' ', $topic);
+        $title = trim((string)($doc['title'] ?? ''));
+        $descText = $title !== '' ? $title : ($description !== '' ? $description : str_replace('_', ' ', $topic));
+        $blob = $this->topicMatchBlob($doc);
+        if ($blob !== '') {
+            $descText = $blob;
+        }
 
         $labels = [];
-        foreach (array_merge([$topic], $doc['aliases'] ?? [], $doc['tags'] ?? [], $doc['subtopics'] ?? []) as $label) {
+        $labelSources = array_merge(
+            [$topic, (string)($doc['title'] ?? ''), (string)($doc['subtitle'] ?? '')],
+            $doc['aliases'] ?? [],
+            $doc['tags'] ?? [],
+            $doc['subtopics'] ?? [],
+            $doc['possible_prompts'] ?? []
+        );
+        foreach ($labelSources as $label) {
             $label = trim((string)$label);
             if ($label === '') {
                 continue;
@@ -1088,11 +1541,14 @@ class MemoryStore
             return $aliases[$safe];
         }
         $stripped = preg_replace('/^(?:a|an|the)_+/i', '', $safe) ?? $safe;
-        if ($stripped !== $safe) {
+        if ($stripped !== $safe && $stripped !== '') {
             if (isset($aliases[$stripped])) {
                 return $aliases[$stripped];
             }
-            return $stripped;
+            // Only resolve to stripped form if that topic already exists
+            if (in_array($stripped, $this->listTopics(), true)) {
+                return $stripped;
+            }
         }
         return null;
     }
