@@ -400,7 +400,15 @@ class FactSkill
     {
         $docs = [];
 
-        if (preg_match_all('/```(?:html|php|htm)?\s*\n(.*?)```/is', $text, $m)) {
+        // Line-anchored fences so nested ``` inside content does not end the block early
+        if (preg_match_all('/^```[a-zA-Z0-9]*[ \t]*\r?\n([\s\S]*?)^```[ \t]*$/m', $text, $m)) {
+            foreach ($m[1] as $block) {
+                $block = trim($block);
+                if ($block !== '' && preg_match('/<!DOCTYPE\s+html|<html\b|<\?php/i', $block)) {
+                    $docs[] = $block;
+                }
+            }
+        } elseif (preg_match_all('/```(?:html|php|htm)?\s*\n(.*?)```/is', $text, $m)) {
             foreach ($m[1] as $block) {
                 $block = trim($block);
                 if ($block !== '' && preg_match('/<!DOCTYPE\s+html|<html\b|<\?php/i', $block)) {

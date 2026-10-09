@@ -180,7 +180,7 @@ if (!class_exists('ResponseUnderstandingSkill', false)) {
 
             // Fenced Markdown code blocks. The complete block, including its
             // language marker, is preserved byte-for-byte.
-            $fencePattern = '/```[^\r\n]*\r?\n[\s\S]*?```/';  // standard fenced blocks
+            $fencePattern = '/^```[^\r\n]*\r?\n[\s\S]*?^```[ \t]*$/m'; // line-anchored fences
 
             $text = preg_replace_callback(
                 $fencePattern,
@@ -195,6 +195,18 @@ if (!class_exists('ResponseUnderstandingSkill', false)) {
 
             if ($text === null) {
                 $text = $raw;
+            }
+            if ($counter === 0) {
+                $text = preg_replace_callback(
+                    '/```[^\r\n]*\r?\n[\s\S]*?```/',
+                    function (array $match) use (&$blocks, &$counter): string {
+                        $key = "@@CFCCODEBLOCK_{$counter}__@@";
+                        $blocks[$key] = $match[0];
+                        $counter++;
+                        return "\n{$key}\n";
+                    },
+                    $text
+                ) ?? $text;
             }
 
             // Indented code blocks. Only protect runs of at least two

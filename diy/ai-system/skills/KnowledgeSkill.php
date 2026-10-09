@@ -141,6 +141,7 @@ class KnowledgeSkill
             $ranked = $this->filterByAge($ranked);
             $ranked = $this->boostByKeyPhrases($ranked, $keyPhrases);
             $ranked = $this->sortByScore($ranked);
+            $ranked = $this->rerankFacts($ranked, $prompt, $topic, $keyPhrases, $specifics);
             $selected = $this->selectFactsForAnswer($ranked, $intent, $prompt, $memory);
 
             $hits = [];
@@ -218,8 +219,9 @@ class KnowledgeSkill
                     $constraints,
                     $secondaryIntents,
                     $isMultiPart,
-                    $subtopics
-                );
+                    $subtopics,
+                        $memory
+                    );
                 break;
             }
 
@@ -268,7 +270,8 @@ class KnowledgeSkill
                         $constraints,
                         $secondaryIntents,
                         $isMultiPart,
-                        $subtopics
+                        $subtopics,
+                        $memory
                     );
                 } else {
                     $localCode = $this->localCodeTemplate($prompt, $topic, $intent, $constraints, $specifics);
@@ -329,7 +332,8 @@ _(OpenRouter was called but local memory still lacks solid facts.)_";
                         $constraints,
                         $secondaryIntents,
                         $isMultiPart,
-                        $subtopics
+                        $subtopics,
+                        $memory
                     );
                 } else {
                     $draft = 'I could not retrieve knowledge for this topic right now. '
@@ -352,7 +356,8 @@ _(OpenRouter was called but local memory still lacks solid facts.)_";
                         $constraints,
                         $secondaryIntents,
                         $isMultiPart,
-                        $subtopics
+                        $subtopics,
+                        $memory
                     );
                 } else {
                     $draft = 'OpenRouter returned an empty response.';
@@ -419,7 +424,8 @@ _(OpenRouter was called but local memory still lacks solid facts.)_";
         array $constraints,
         array $secondaryIntents,
         bool $isMultiPart,
-        array $subtopics
+        array $subtopics,
+        ?MemoryStore $memory = null
     ): string {
         // Prefer stored code document for generation requests
         if ($this->isCodeGenerationRequest($prompt, $intent)) {
@@ -439,7 +445,7 @@ _(OpenRouter was called but local memory still lacks solid facts.)_";
             }
         }
 
-        $use = $selected !== [] ? $selected : $this->selectFactsForAnswer($ranked, $intent, $prompt, null);
+        $use = $selected !== [] ? $selected : $this->selectFactsForAnswer($ranked, $intent, $prompt, $memory);
         if ($use === []) {
             return 'No solid local knowledge found for this topic yet.';
         }
@@ -732,25 +738,30 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         $queryKeywords = $keyPhrases !== []
             ? array_map(static fn($p) => strtolower(trim((string)$p)), $keyPhrases)
             : FactSkill::extractKeywords($prompt);
-        $topicsToScan = array_values(array_unique(array_filter(
-            array_merge([$topic], $subtopics),
-            static fn($t) => is_string($t) && $t !== ''
-        )));
 
-        // Best topic by name+content (fixes ambiguous short labels)
+        // Fact Topic matching first (title / tags / aliases / possible_prompts)
+        $topicsToScan = [];
         try {
-            $best = $memory->findBestMatchingTopic($prompt, $queryEmbedding, 0.28);
-            if (is_string($best) && $best !== '' && !in_array($best, $topicsToScan, true)) {
-                array_unshift($topicsToScan, $best);
-            } elseif (is_string($best) && $best !== '') {
-                // Prefer best as primary scan order
-                $topicsToScan = array_values(array_unique(array_merge([$best], $topicsToScan)));
+            $matched = $memory->matchFactTopics($prompt, $queryEmbedding, 0.28, 8);
+            foreach ($matched as $hit) {
+                $t = trim((string)($hit['topic'] ?? ''));
+                if ($t !== '' && !in_array($t, $topicsToScan, true)) {
+                    $topicsToScan[] = $t;
+                }
             }
         } catch (Throwable $e) {
             // ignore
         }
 
-        // Related topics via description / aliases / tags embeddings
+        // Always include PU topic + subtopics as soft priors
+        foreach (array_merge([$topic], $subtopics) as $t) {
+            $t = is_string($t) ? trim($t) : '';
+            if ($t !== '' && !in_array($t, $topicsToScan, true)) {
+                $topicsToScan[] = $t;
+            }
+        }
+
+        // Related topics (embedding) + related_topics / subtopics from envelope
         try {
             $related = $memory->findRelatedTopics($queryEmbedding, $prompt, 6, 0.14);
             foreach ($related as $rel) {
@@ -760,20 +771,21 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
                 }
             }
         } catch (Throwable $e) {
-            // ignore — fall back to primary topic only
+            // ignore
         }
 
-        // Topic meta subtopics (from memory envelope)
-        try {
-            $meta = $memory->getTopicMeta($topic);
-            foreach (($meta['subtopics'] ?? []) as $st) {
-                $st = trim((string)$st);
-                if ($st !== '' && !in_array($st, $topicsToScan, true)) {
-                    $topicsToScan[] = $st;
+        foreach (array_slice($topicsToScan, 0, 6) as $scanTopic) {
+            try {
+                $meta = $memory->getTopicMeta($scanTopic);
+                foreach (array_merge($meta['subtopics'] ?? [], $meta['related_topics'] ?? []) as $st) {
+                    $st = trim((string)$st);
+                    if ($st !== '' && !in_array($st, $topicsToScan, true)) {
+                        $topicsToScan[] = $st;
+                    }
                 }
+            } catch (Throwable $e) {
+                // ignore
             }
-        } catch (Throwable $e) {
-            // ignore
         }
 
         if ($queryEmbedding !== []) {
@@ -1218,11 +1230,24 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
         }
 
         try {
+            $title = str_replace('_', ' ', $topic);
+            if ($specifics !== []) {
+                $title = $prompt !== '' ? FactSkill::coreQueryFromPrompt($prompt) : $title;
+            } elseif ($prompt !== '') {
+                $core = FactSkill::coreQueryFromPrompt($prompt);
+                if ($core !== '') {
+                    $title = $core;
+                }
+            }
             $memory->mergeTopicMeta($topic, [
+                'title' => $title,
                 'description' => $description,
                 'tags' => $tags,
                 'subtopics' => $subs,
-                'aliases' => array_values(array_filter([$topic])),
+                'aliases' => array_values(array_filter([$topic, $title])),
+                'possible_prompts' => array_values(array_filter([
+                    $prompt !== '' ? FactSkill::coreQueryFromPrompt($prompt) : '',
+                ])),
             ]);
         } catch (Throwable $e) {
             // non-fatal
@@ -1279,6 +1304,112 @@ _(knowledge_mode is local — set knowledge_mode to hybrid to fill gaps via Open
      * @param list<array<string, mixed>> $ranked
      * @return list<array<string, mixed>>
      */
+    /**
+     * Quality re-rank: adjust FactSkill scores with topic-name alignment and
+     * prompt/specificity overlap (cross-check, pure PHP — no second formula).
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @param list<string> $keyPhrases
+     * @param list<string> $specifics
+     * @return list<array<string, mixed>>
+     */
+    private function rerankFacts(
+        array $ranked,
+        string $prompt,
+        string $topic,
+        array $keyPhrases = [],
+        array $specifics = []
+    ): array {
+        if ($ranked === [] || count($ranked) < 2) {
+            return $ranked;
+        }
+
+        $promptLower = function_exists('mb_strtolower') ? mb_strtolower($prompt) : strtolower($prompt);
+        $topicTokens = array_values(array_filter(
+            preg_split('/[_\s]+/', strtolower(str_replace('_', ' ', $topic))) ?: [],
+            static fn($w) => strlen($w) >= 3
+        ));
+        $phrases = array_values(array_filter(array_map(
+            static fn($p) => strtolower(trim((string)$p)),
+            $keyPhrases
+        )));
+        $specs = [];
+        foreach ($specifics as $sp) {
+            $sp = strtolower(trim((string)$sp));
+            if ($sp !== '' && (strlen($sp) >= 8 || str_contains($sp, ' '))) {
+                $specs[] = $sp;
+            }
+        }
+
+        foreach ($ranked as &$fact) {
+            if (!is_array($fact)) {
+                continue;
+            }
+            $base = (float)($fact['_score'] ?? 0.0);
+            $content = strtolower((string)($fact['content'] ?? $fact['value'] ?? ''));
+            $factTopic = strtolower(str_replace('_', ' ', (string)($fact['_topic'] ?? $fact['topic'] ?? $topic)));
+            $tags = array_map('strval', is_array($fact['tags'] ?? null) ? $fact['tags'] : []);
+
+            // Topic-name alignment: prefer facts from topics whose tokens appear in the prompt
+            $align = 0.0;
+            $tokHits = 0;
+            foreach ($topicTokens as $tok) {
+                if (str_contains($promptLower, $tok) || str_contains($content, $tok)) {
+                    $tokHits++;
+                }
+            }
+            if ($topicTokens !== []) {
+                $align = $tokHits / count($topicTokens);
+            }
+            // Fact's own topic name vs prompt
+            $ftoks = array_values(array_filter(preg_split('/\s+/', $factTopic) ?: [], static fn($w) => strlen($w) >= 3));
+            $fHits = 0;
+            foreach ($ftoks as $tok) {
+                if (str_contains($promptLower, $tok)) {
+                    $fHits++;
+                }
+            }
+            $factAlign = $ftoks !== [] ? $fHits / count($ftoks) : 0.0;
+            $align = max($align, $factAlign);
+
+            // Phrase density
+            $phraseHits = 0;
+            foreach ($phrases as $ph) {
+                if ($ph !== '' && str_contains($content, $ph)) {
+                    $phraseHits++;
+                }
+            }
+            $phraseFactor = $phrases !== [] ? min(1.0, $phraseHits / min(4, count($phrases))) : 0.0;
+
+            // Specificity: strong boost if long specific appears; penalty if required but missing
+            $specFactor = 0.0;
+            if ($specs !== []) {
+                $specHit = false;
+                foreach ($specs as $sp) {
+                    if (str_contains($content, $sp) || in_array($sp, $tags, true)) {
+                        $specHit = true;
+                        break;
+                    }
+                }
+                $specFactor = $specHit ? 0.10 : -0.08;
+            }
+
+            // Penalize facts from topics that share almost no tokens with the prompt
+            // (e.g. celestial "sky" when prompt is call-center Sky process)
+            $mismatchPenalty = 0.0;
+            if ($ftoks !== [] && $factAlign < 0.25 && $align < 0.35) {
+                $mismatchPenalty = -0.06;
+            }
+
+            $adjust = (0.08 * $align) + (0.05 * $phraseFactor) + $specFactor + $mismatchPenalty;
+            $fact['_score'] = max(0.0, min(1.0, $base + $adjust));
+            $fact['_rerank_adjust'] = $adjust;
+        }
+        unset($fact);
+
+        return $this->sortByScore($ranked);
+    }
+
     private function selectFactsForAnswer(array $ranked, string $intent = '', string $prompt = '', ?MemoryStore $memory = null): array
     {
         if ($ranked === []) {
