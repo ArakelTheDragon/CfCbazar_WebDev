@@ -1,0 +1,162 @@
+# AI System Architecture
+
+## Core Concept
+
+The AI system follows a three-stage pipeline architecture:
+
+**Prompt Understanding** → **Knowledge Skill (Main Processing Unit)** → **Response Understanding**
+
+## Skill Components
+
+### Prompt Understanding Skill
+- Uses FactSkill to extract meaning from user input
+- Analyzes user intent and context
+- Identifies key entities and topics
+
+### Knowledge Skill (Main Processing Unit)
+- Central processing component that uses MemoryStore
+- Retrieves relevant knowledge from JSON-based memory
+- Decides on appropriate response strategy
+- Produces the final answer
+- Integrates with OpenRouter API when needed
+
+### Response Understanding Skill
+- Uses FactSkill to extract knowledge from responses
+- Validates response quality
+- Ensures response coherence
+
+## FactSkill Integration
+All three main skills can use FactSkill to:
+- Extract meaning from text
+- Extract facts from content
+- Extract knowledge from data
+
+## Memory System
+- JSON-based storage in /memory/ directory
+- Organized by topics (separate JSON files per topic)
+- Vector similarity search for knowledge retrieval
+- Pure PHP implementation (no external databases)
+
+## Data Flow
+User Input → Prompt Understanding (FactSkill) → Knowledge Skill (MemoryStore + OpenRouter) → Response Understanding (FactSkill) → Final Response
+
+Additional development: 
+**Unified envelope:** one `Context` (or `SkillData`) array passed between stages and reused for memory / OpenRouter.
+
+### Proposed shape
+
+```php
+$data = [
+    // Identity / routing
+    'skill'          => 'prompt_understanding' | 'knowledge' | 'response_understanding',
+    'version'        => 1,
+
+    // User input
+    'prompt'         => string,       // original or spell-corrected
+    'prompt_original'=> string,
+    'core_query'     => string,       // main ask from long prompts
+
+    // Understanding
+    'intent'         => string,       // define_concept, explain_process, ...
+    'secondary_intents' => string[],
+    'topic'          => string,       // slug, e.g. building_trust
+    'subtopics'      => string[],
+    'entities'       => string[],
+    'question_type'  => string,       // what, how, why, ...
+    'constraints'    => string[],     // simple, step_by_step, ...
+    'key_phrases'    => string[],
+    'is_multi_part'  => bool,
+
+    // Facts & vectors
+    'facts'          => [             // list of fact records
+        [
+            'content'    => string,
+            'type'       => string,   // statement | code_html | ...
+            'source'     => string,   // prompt | memory | openrouter | gui_seed
+            'confidence' => float,
+            'embedding'  => float[],  // optional, 1536-dim
+            'created_at' => string,
+        ],
+        // ...
+    ],
+    'query_embedding'=> float[],      // for vector search
+
+    // Memory / OpenRouter I/O
+    'memory_hits'    => [],           // facts retrieved (same fact shape)
+    'memory_sufficient' => bool,
+    'openrouter'     => [
+        'enabled'    => bool,
+        'mode'       => 'hybrid' | 'local',
+        'gap_fill'   => bool,
+        'raw'        => string|null,  // model text if called
+    ],
+
+    // Answer pipeline
+    'draft_answer'   => string,       // Knowledge → Response
+    'final_answer'   => string,       // Response → user
+
+    // Session
+    'session_id'     => string,
+    'conversation'   => [],           // optional recent turns
+];
+```
+
+### Flow
+
+```
+User prompt
+    → PromptUnderstanding fills: prompt, topic, intent, entities,
+      facts (prompt), query_embedding, constraints, …
+    → passes $data
+
+Knowledge
+    → reads: topic, query_embedding, facts, constraints
+    → memory_hits from MemoryStore (same fact shape)
+    → optional OpenRouter (prompt + memory_hits + constraints)
+    → merges new facts into memory
+    → sets draft_answer (+ updated facts)
+    → passes $data
+
+ResponseUnderstanding
+    → reads: draft_answer, facts, constraints
+    → optional FactSkill on draft (filter/format only)
+    → sets final_answer
+```
+
+### Why this helps
+- **One fact shape** for prompt, memory, OpenRouter extract, seed  
+- **OpenRouter** gets a stable slice: `prompt`, `core_query`, `topic`, `facts`/`memory_hits`, `constraints`  
+- **Memory** read/write only cares about `topic` + `facts[]`  
+- Skills stay thin: each only fills its fields  
+
+### Minimal vs full
+Start by formalizing what you already return from `PromptUnderstandingSkill::analyze()` and always pass that array into Knowledge, then add `draft_answer` / `final_answer` on the way out. No need for classes yet—a documented array is enough in pure PHP.
+
+If you want next step in code: introduce a small `ContextBuilder` or shared helpers `fact()`, `mergeFacts()` and change Router to pass one `$data` through all three skills.
+
+ai-system_dev8/
+├── ARCHITECTURE.md
+├── index.php                 # UI + Router
+├── eval.php                  # Regression tests
+├── seed.php / consolidate.php
+├── config/
+│   ├── features.php
+│   └── openrouter.php
+├── core/
+│   ├── SkillData.php         # Unified data bus
+│   ├── Router.php
+│   ├── MemoryStore.php
+│   ├── ConversationStore.php
+│   ├── LocalEmbedder.php
+│   ├── SpellCorrector.php
+│   ├── SkillManager.php
+│   └── Helpers.php
+├── skills/
+│   ├── FactSkill.php
+│   ├── PromptUnderstandingSkill.php
+│   ├── KnowledgeSkill.php
+│   └── ResponseUnderstandingSkill.php
+└── memory/
+    ├── memory.json
+    ├── topics/*.json         # Same Fact shape as SkillData
+    └── conversation/*.json

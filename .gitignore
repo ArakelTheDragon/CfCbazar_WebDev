@@ -1,0 +1,70 @@
+# Database backups and exports
+*.sql
+*.sql.gz
+*.zip
+
+# Configuration files with sensitive data
+includes/secrets.php
+config_42web.io.php
+config_cloud.php
+*secrets*
+*secret*
+
+# Uploads and user content
+uploads/*
+diy/library/uploads/*
+images/*
+diy/ai-system/memory/*
+ai_images/*
+
+# AI System backup and dev directories (contain sensitive data)
+diy/ai-system_backup*/
+diy/ai-system_dev/
+diy/ai-system_production*/
+diy/temp_extracted/
+
+# AI System memory and conversation data (sensitive user data)
+diy/ai-system/memory/conversation/*
+diy/ai-system/memory/topics/*
+
+# Any directories or files containing backup, dev, or development
+*backup*/
+*_dev*/
+*development*/
+
+# Logs and temporary files
+*.log
+traffic_log.json
+system/traffic_log.json
+*.tmp
+*.temp
+
+# Cache and compiled files
+cache/*
+*.cache
+coinimp-cache/*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# PHP specific
+vendor/
+composer.lock
+
+# Node modules (if any)
+node_modules/
+npm-debug.log

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WTK Transfer Ownership</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.15.0/dist/ethers.umd.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .info {
+            margin-top: 15px;
+            word-break: break-all;
+        }
+
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            word-break: break-word;
+        }
+
+        small {
+            color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>WTK Ownership Transfer</h2>
+
+<p>
+<b>Proxy Address:</b><br>
+<small>
+0xecbD4E86EE8583c8681E2eE2644FC778848B237D
+</small>
+</p>
+
+<button onclick="connectWallet()">
+Connect MetaMask
+</button>
+
+
+<div class="info">
+<b>Connected Wallet:</b>
+<div id="wallet">Not connected</div>
+</div>
+
+
+<div class="info">
+<b>Current Owner:</b>
+<div id="owner">Unknown</div>
+</div>
+
+
+<hr>
+
+
+<label>
+<b>New Owner Address</b>
+</label>
+
+<input 
+    id="newOwner"
+    placeholder="0x..."
+>
+
+
+<button onclick="transferOwnership()">
+Transfer Ownership
+</button>
+
+
+<div id="status"></div>
+
+
+</div>
+
+
+<script>
+
+
+const proxyAddress =
+"0xecbD4E86EE8583c8681E2eE2644FC778848B237D";
+
+
+const abi = [
+
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+
+];
+
+
+let provider;
+let signer;
+let contract;
+
+
+
+async function connectWallet(){
+
+    try {
+
+        if(!window.ethereum){
+            alert("MetaMask is not installed");
+            return;
+        }
+
+
+        provider = new ethers.BrowserProvider(
+            window.ethereum
+        );
+
+
+        await provider.send(
+            "eth_requestAccounts",
+            []
+        );
+
+
+        signer = await provider.getSigner();
+
+
+        contract = new ethers.Contract(
+            proxyAddress,
+            abi,
+            signer
+        );
+
+
+        const wallet =
+            await signer.getAddress();
+
+
+        document.getElementById("wallet").innerHTML =
+            wallet;
+
+
+        await loadOwner();
+
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        document.getElementById("status").innerHTML =
+            "Connection error:<br>" + error.message;
+
+    }
+
+}
+
+
+
+
+async function loadOwner(){
+
+    try {
+
+        const currentOwner =
+            await contract.owner();
+
+
+        document.getElementById("owner").innerHTML =
+            currentOwner;
+
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        document.getElementById("owner").innerHTML =
+            "Unable to read owner";
+
+    }
+
+}
+
+
+
+
+async function transferOwnership(){
+
+    try {
+
+
+        const newOwner =
+            document.getElementById("newOwner").value.trim();
+
+
+        if(!ethers.isAddress(newOwner)){
+
+            alert("Invalid Ethereum address");
+            return;
+
+        }
+
+
+        document.getElementById("status").innerHTML =
+            "Sending transaction...";
+
+
+        const tx =
+            await contract.transferOwnership(
+                newOwner
+            );
+
+
+        document.getElementById("status").innerHTML =
+            "Transaction sent:<br>" +
+            tx.hash +
+            "<br><br>Waiting for confirmation...";
+
+
+        await tx.wait();
+
+
+        document.getElementById("status").innerHTML =
+            "Ownership transfer completed successfully";
+
+
+        await loadOwner();
+
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        document.getElementById("status").innerHTML =
+            "Transaction failed:<br>" +
+            error.message;
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+</html>
