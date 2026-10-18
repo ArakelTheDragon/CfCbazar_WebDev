@@ -1,0 +1,48 @@
+{
+    "what is":                 "definition",
+    "what are":                "definition",
+    "what's":                  "definition",
+    "what was":                "definition",
+    "define":                  "definition",
+    "explain":                 "definition",
+    "describe":                "definition",
+    "describe the":            "definition",
+    "tell me about":           "definition",
+    "tell me":                 "definition",
+    "what do you know about":  "definition",
+    "what can you tell me about": "definition",
+
+    "who is":                  "person",
+    "who was":                 "person",
+    "who are":                 "person",
+
+    "who wrote":               "author",
+    "who invented":            "author",
+    "who created":             "author",
+    "who composed":            "author",
+    "who painted":             "author",
+    "who discovered":          "author",
+    "who built":               "author",
+
+    "how do i":                "procedure",
+    "how to":                  "procedure",
+    "how can i":               "procedure",
+    "how does one":            "procedure",
+    "how do you":              "procedure",
+
+    "where is":                "location",
+    "where are":               "location",
+    "where can i find":        "location",
+    "where was":               "location",
+
+    "when did":                "time",
+    "when was":                "time",
+    "when is":                 "time",
+
+    "why is":                  "reason",
+    "why does":                "reason",
+    "why do":                  "reason",
+
+    "capital of":              "capital",
+    "capital city of":         "capital"
+}

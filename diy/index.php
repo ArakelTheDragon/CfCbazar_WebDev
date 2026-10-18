@@ -81,7 +81,7 @@ render_top_userbar();
     <div class="card">
     <h2>CfCbazar AI</h2>
     <p>Use our free AI agent, no signup, no image generation or file gen but it's open source.</p>
-    <a href="/diy/ai-system/index.php">AI Agent</a>
+    <a href="/diy/ai/index.php">AI Agent</a>
   </div>
   
     <div class="card">

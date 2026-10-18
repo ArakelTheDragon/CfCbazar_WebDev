@@ -6,9 +6,6 @@
 # Configuration files with sensitive data
 includes/secrets.php
 config_42web.io.php
-config_cloud.php
-*secrets*
-*secret*
 
 # Uploads and user content
 uploads/*

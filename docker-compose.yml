@@ -16,6 +16,8 @@ services:
   php:
     build: .
     container_name: cfcbazar_php
+    environment:
+      - UMASK=0022
     volumes:
       - .:/var/www/html
     networks:
@@ -45,6 +47,25 @@ services:
       MYSQL_ROOT_PASSWORD: 53098516
     networks:
       - app-net
+
+  ftp:
+    image: fauria/vsftpd
+    container_name: cfcbazar_ftp
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    environment:
+      - FTP_USER=cfcbazar
+      - FTP_PASS=53098516
+      - PASV_ADDRESS=132.145.53.146
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21110
+      - LOCAL_UMASK=022
+    volumes:
+      - .:/home/vsftpd/cfcbazar
+    networks:
+      - app-net
+    restart: unless-stopped
 
 volumes:
   db_data:
