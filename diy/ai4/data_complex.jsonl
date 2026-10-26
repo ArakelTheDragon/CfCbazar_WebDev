@@ -1,0 +1,4 @@
+hi || {"greeting": ["Hi there!"], "help": ["How can I help you?"], "capability": ["I am your AI assistant that can write emails!"]}
+hello || {"greeting": ["Hello!"], "help": ["What can I do for you?"], "capability": ["I can help with questions and writing."]}
+write me an email to leave the company || {"email": ["Dear Manager,", "I am writing to formally resign from my position at the company.", "Thank you for the opportunity to work here."], "person": ["I have decided to pursue new opportunities."], "author": ["Sincerely, Your Name"], "company": ["the company"]}
+draft a resignation email || {"email": ["Dear Manager,", "Please accept this letter as formal notice of my resignation.", "My last day will be in two weeks."], "author": ["Sincerely, Your Name"]}

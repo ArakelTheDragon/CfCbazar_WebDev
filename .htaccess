@@ -1,0 +1,15 @@
+# Security + directory protection
+Options -Indexes
+
+# Block sensitive folders
+RedirectMatch 403 (?i)^/(includes|private|vendor|system|PHPMailer|logs|docker|memory|admin\.php)(/|$)
+
+# Extra safety
+<FilesMatch "(?i)\.(env|ini|log|sql|bak|swp|json)$">
+    Require all denied
+</FilesMatch>
+
+# Optional: force HTTPS
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

@@ -1,0 +1,207 @@
+{
+    "version": 1,
+    "entries": [
+        {
+            "key": "hi",
+            "query": "hi",
+            "spaces": [
+                {
+                    "name": "greeting",
+                    "chunks": [
+                        "Hi there!"
+                    ]
+                },
+                {
+                    "name": "help",
+                    "chunks": [
+                        "How can I help you?"
+                    ]
+                },
+                {
+                    "name": "capability",
+                    "chunks": [
+                        "I am your AI assistant that can write emails!"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "hello",
+            "query": "hello",
+            "spaces": [
+                {
+                    "name": "greeting",
+                    "chunks": [
+                        "Hello!"
+                    ]
+                },
+                {
+                    "name": "help",
+                    "chunks": [
+                        "What can I do for you?"
+                    ]
+                },
+                {
+                    "name": "capability",
+                    "chunks": [
+                        "I can help with questions and writing."
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "write me an email to leave the company",
+            "query": "write me an email to leave the company",
+            "spaces": [
+                {
+                    "name": "email",
+                    "chunks": [
+                        "Dear Manager,",
+                        "I am writing to formally resign from my position at the company.",
+                        "Thank you for the opportunity to work here."
+                    ]
+                },
+                {
+                    "name": "person",
+                    "chunks": [
+                        "I have decided to pursue new opportunities."
+                    ]
+                },
+                {
+                    "name": "author",
+                    "chunks": [
+                        "Sincerely, Your Name"
+                    ]
+                },
+                {
+                    "name": "company",
+                    "chunks": [
+                        "the company"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "draft a resignation email",
+            "query": "draft a resignation email",
+            "spaces": [
+                {
+                    "name": "email",
+                    "chunks": [
+                        "Dear Manager,",
+                        "Please accept this letter as formal notice of my resignation.",
+                        "My last day will be in two weeks."
+                    ]
+                },
+                {
+                    "name": "author",
+                    "chunks": [
+                        "Sincerely, Your Name"
+                    ]
+                }
+            ]
+        }
+    ],
+    "by_key": {
+        "hi": {
+            "key": "hi",
+            "query": "hi",
+            "spaces": [
+                {
+                    "name": "greeting",
+                    "chunks": [
+                        "Hi there!"
+                    ]
+                },
+                {
+                    "name": "help",
+                    "chunks": [
+                        "How can I help you?"
+                    ]
+                },
+                {
+                    "name": "capability",
+                    "chunks": [
+                        "I am your AI assistant that can write emails!"
+                    ]
+                }
+            ]
+        },
+        "hello": {
+            "key": "hello",
+            "query": "hello",
+            "spaces": [
+                {
+                    "name": "greeting",
+                    "chunks": [
+                        "Hello!"
+                    ]
+                },
+                {
+                    "name": "help",
+                    "chunks": [
+                        "What can I do for you?"
+                    ]
+                },
+                {
+                    "name": "capability",
+                    "chunks": [
+                        "I can help with questions and writing."
+                    ]
+                }
+            ]
+        },
+        "write me an email to leave the company": {
+            "key": "write me an email to leave the company",
+            "query": "write me an email to leave the company",
+            "spaces": [
+                {
+                    "name": "email",
+                    "chunks": [
+                        "Dear Manager,",
+                        "I am writing to formally resign from my position at the company.",
+                        "Thank you for the opportunity to work here."
+                    ]
+                },
+                {
+                    "name": "person",
+                    "chunks": [
+                        "I have decided to pursue new opportunities."
+                    ]
+                },
+                {
+                    "name": "author",
+                    "chunks": [
+                        "Sincerely, Your Name"
+                    ]
+                },
+                {
+                    "name": "company",
+                    "chunks": [
+                        "the company"
+                    ]
+                }
+            ]
+        },
+        "draft a resignation email": {
+            "key": "draft a resignation email",
+            "query": "draft a resignation email",
+            "spaces": [
+                {
+                    "name": "email",
+                    "chunks": [
+                        "Dear Manager,",
+                        "Please accept this letter as formal notice of my resignation.",
+                        "My last day will be in two weeks."
+                    ]
+                },
+                {
+                    "name": "author",
+                    "chunks": [
+                        "Sincerely, Your Name"
+                    ]
+                }
+            ]
+        }
+    }
+}

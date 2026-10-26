@@ -1,0 +1,6 @@
+{
+    "name": "root/html",
+    "require": {
+        "rubix/ml": "^3.2"
+    }
+}

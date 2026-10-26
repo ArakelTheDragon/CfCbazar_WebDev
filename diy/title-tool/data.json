@@ -1,0 +1,16 @@
+{
+    "categories": {
+        "main1": {
+            "Test1": [
+                "Test-Title",
+                "TestTitle",
+                "Title1",
+                "Title2"
+            ]
+        },
+        "main2": [],
+        "main3": [],
+        "main4": [],
+        "main5": []
+    }
+}

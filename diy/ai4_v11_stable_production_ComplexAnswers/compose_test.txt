@@ -1,0 +1,12 @@
+what is water
+what is love
+what is water? what is love?
+capital of france
+capital of japan
+what is the capital of france? what is the capital of japan?
+seven plus two
+seven plus two. eight plus two.
+who wrote hamlet
+who wrote hamlet? who wrote macbeth?
+
+Start by inventorying every file and folder under the project root, excluding generated build artifacts and dependency directories, then compare that list against references in source code, templates, configuration, route definitions, asset manifests, and test fixtures. Use recursive search tools to find filenames and extensions, and record the last modification date for each candidate to prioritize investigation. A file that has no incoming references after searching import statements, require calls, includes, stylesheet links, image tags, script tags, and dynamic path construction may still be useful through runtime loading, plugin discovery, environment-specific configuration, or test-only imports, so treat absence of references as suspicion rather than proof. Before deleting, inspect version control history, README notes, migration scripts, and deployment manifests for indirect usage, then move suspicious items into a clearly named quarantine folder or create a separate cleanup branch rather than deleting immediately. Run the full test suite, linting, static analysis, and a production build in a staging environment after each batch of moves, and keep changes granular so failures map directly to a removed item. Pay special attention to files with similar names, empty folders left by refactoring, obsolete documentation, old migration snapshots, logs, temporary exports, and vendor caches. Also check generated folders such as dist, build, coverage, and node_modules against ignore rules so cleanup does not destroy needed reproducible environments. Finally, document all removals, restore original naming when uncertainty remains, and schedule periodic audits because unused files tend to accumulate after renames, framework upgrades, and feature removals. Maintain a small cleanup log with candidate paths, search queries used, owner, and resulting decision; this makes future reviews faster and prevents accidental deletion of assets loaded through conventions, configuration-driven discovery, or late-bound plugin systems.

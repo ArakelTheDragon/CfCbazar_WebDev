@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin.php
+Disallow: /includes/
+Disallow: /private/
+Disallow: /vendor/
+Disallow: /system/
+Disallow: /PHPMailer/
+Disallow: /logs/
+Disallow: /docker/
+Disallow: /memory/
+Sitemap: https://cfcbazar.8bit.ca/sitemap.xml

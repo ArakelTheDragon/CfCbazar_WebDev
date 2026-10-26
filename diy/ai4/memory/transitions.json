@@ -1,0 +1,39 @@
+{
+    "procedure": {
+        "definition": 0.8214285714285714,
+        "capital": 0.07142857142857142,
+        "person": 0.05357142857142857,
+        "reason": 0.03571428571428571,
+        "location": 0.017857142857142856
+    },
+    "definition": {
+        "capital": 0.9430051813471503,
+        "definition": 0.03626943005181347,
+        "author": 0.010362694300518135,
+        "location": 0.0051813471502590676,
+        "reason": 0.0051813471502590676
+    },
+    "time": {
+        "definition": 0.4791666666666667,
+        "capital": 0.3958333333333333,
+        "procedure": 0.125
+    },
+    "author": {
+        "procedure": 0.8,
+        "definition": 0.2
+    },
+    "location": {
+        "capital": 0.8125,
+        "definition": 0.1875
+    },
+    "reason": {
+        "capital": 0.6,
+        "definition": 0.4
+    },
+    "person": {
+        "author": 1
+    },
+    "capital": {
+        "definition": 1
+    }
+}
