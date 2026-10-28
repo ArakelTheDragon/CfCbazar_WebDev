@@ -58,3 +58,8 @@ Output:
         0,
         0
     ]
+
+Retrain must be post not get:
+curl -X POST "https://cfcbazar.8bit.ca/diy/admin_neural/api.php?action=retrain" \
+  -H "Content-Type: application/json" \
+  -d '{"epochs":20}'
