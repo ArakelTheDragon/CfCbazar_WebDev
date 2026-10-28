@@ -60,6 +60,8 @@ Output:
     ]
 
 Retrain must be post not get:
+```bash
 curl -X POST "https://cfcbazar.8bit.ca/diy/admin_neural/api.php?action=retrain" \
   -H "Content-Type: application/json" \
   -d '{"epochs":20}'
+```
