@@ -3,12 +3,14 @@ declare(strict_types=1);
 //session_start();
 require_once __DIR__ . '/../../includes/reusable.php';
 
-// Set return url cookie for after log in
-setReturnUrlCookie('/battle.php');
-
+$url = '/games/battle.php';
 // Track visit BEFORE any output
-trackVisit($conn);
+trackVisit($url);
 renderCaptchaIfNeeded();
+
+// Set return url cookie for after log in
+$url = '/battle.php';
+setReturnUrl($url);
 
 enforce_https();
 
@@ -16,45 +18,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// ✅ Get user status and redirect if not admin or not logged in
+// ✅ Get user status and redirect if not logged in
 $userStatus = getUserStatus($conn);
 
-if ($userStatus === 0) {
-    // Not logged in
-    header("Location: /login.php");
-    exit();
-} 
-
-
 $email = strtolower($_SESSION['email'] ?? '');
-$userStats = $email ? getWorkerStats($email) : [];
-$tokens = number_format((float)($userStats['tokens_earned'] ?? 0), 4);
-$mintme = number_format((float)($userStats['mintme'] ?? 0), 4);
-$selectedCurrency = $userStats['dropdown'] ?? 'WorkToken';
 $shouldReveal = false;
 $startGame = false;
-
-function deductCurrency(string $email, string $currency, float $amount): bool {
-    global $conn;
-    $column = ($currency === 'WorkTHR') ? 'mintme' : 'tokens_earned';
-    $stmt = $conn->prepare("UPDATE workers SET $column = $column - ? WHERE email = ? AND $column >= ?");
-    if (!$stmt) return false;
-    $stmt->bind_param('dss', $amount, $email, $amount);
-    $stmt->execute();
-    $success = $stmt->affected_rows > 0;
-    $stmt->close();
-    return $success;
-}
-
-function updateDropdown(string $email, string $currency): void {
-    global $conn;
-    $stmt = $conn->prepare("UPDATE workers SET dropdown = ? WHERE email = ?");
-    if ($stmt) {
-        $stmt->bind_param('ss', $currency, $email);
-        $stmt->execute();
-        $stmt->close();
-    }
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $csrf = $_POST['csrf_token'] ?? '';
@@ -63,22 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        echo "Invalid CSRF token";
     }
 
-    $currency = $_POST['currency'] ?? $selectedCurrency;
-    if ($email && in_array($currency, ['WorkToken', 'WorkTHR'], true)) {
-        updateDropdown($email, $currency);
-        $selectedCurrency = $currency;
-    }
-
     $action = $_POST['action'] ?? '';
     if ($action === 'play') {
-        if (!deductCurrency($email, $currency, 0.01)) {
-            die("Insufficient balance to play.");
-        }
         $startGame = true;
     } elseif ($action === 'reveal') {
-        if (!deductCurrency($email, $currency, 0.05)) {
-            die("Insufficient balance to reveal.");
-        }
         // Reveal requires an active game
         $shouldReveal = true;
         $startGame = true;
@@ -93,23 +50,8 @@ include_menu();
   <h1>Tactical Fleet Duel</h1>
   <p>Tap enemy grid to fire. Ships have attack, defense, and HP.</p>
 
-  <div class="user-info">
-    <strong>User:</strong> <?= htmlspecialchars($email) ?><br>
-    <strong>WorkTokens:</strong> <?= $tokens ?><br>
-    <strong>WorkTHR:</strong> <?= $mintme ?><br>
-    <form method="POST" id="currencyForm">
-      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-      <label for="currencySelect">Use currency:</label>
-      <select name="currency" id="currencySelect" onchange="document.getElementById('currencyForm').submit()">
-        <option value="WorkToken" <?= $selectedCurrency === 'WorkToken' ? 'selected' : '' ?>>WorkToken</option>
-        <option value="WorkTHR" <?= $selectedCurrency === 'WorkTHR' ? 'selected' : '' ?>>WorkTHR</option>
-      </select>
-    </form>
-  </div>
-
   <form method="POST" id="gameActions">
     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-    <input type="hidden" name="currency" value="<?= htmlspecialchars($selectedCurrency) ?>">
     <button type="submit" name="action" value="reveal" <?= !$startGame ? 'disabled' : '' ?>>Reveal Enemy Ships (10 turns)</button>
     <button type="submit" name="action" value="play">Play</button>
   </form>

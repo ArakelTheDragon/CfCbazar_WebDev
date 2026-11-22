@@ -18,7 +18,6 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../includes/settings_global.php';
-require_once __DIR__ . '/../includes/settings_local.php';
 // settings_local.php sets:
 $NEED_SESSION = true;
 // $NEED_LOGIN   = false;

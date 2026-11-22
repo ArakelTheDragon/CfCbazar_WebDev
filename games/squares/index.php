@@ -78,7 +78,7 @@ $workthr = $_SESSION['workthr'];
 <meta charset="UTF-8">
 <title>Dice Board Game</title>
 
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/assets/css/styles.css">
 
 <style>
 /* ============================================================
