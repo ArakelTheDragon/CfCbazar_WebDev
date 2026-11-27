@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/power/index.php";
+$parent_url = "/diy/power";
+$title      = "Power Consumption Calculator | CfCbazar";
+$template   = "Generic";
+$meta_title = "⚡ Power Consumption Calculator | CfCbazar";
+$meta_desc  = "Estimate your monthly electricity usage and cost with CfCbazar's Power Consumption Calculator. Enter your devices and usage to get instant results.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/power/index.php";
-$parent_url = "/diy/power";
-$title      = "Power Consumption Calculator | CfCbazar";
-$template   = "Generic";
-$meta_title = "⚡ Power Consumption Calculator | CfCbazar";
-$meta_desc  = "Estimate your monthly electricity usage and cost with CfCbazar's Power Consumption Calculator. Enter your devices and usage to get instant results.";
 
 trackVisit(
     slug:      $url,

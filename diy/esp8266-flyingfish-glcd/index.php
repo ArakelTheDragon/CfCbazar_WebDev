@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/esp8266-flyingfish-glcd/index.php";
+$parent_url = "/diy/esp8266-flyingfish-glcd";
+$title      = "ESP8266 + Flying Fish Sensor + 128×64 GLCD";
+$template   = "Generic";
+$meta_title = "ESP8266 + Flying Fish Sensor + 128×64 GLCD";
+$meta_desc  = "This project shows how to read an analog Flying Fish sensor (A0) using an ESP8266 and display the values on a 128×64 GLCD using the U8g2 graphics library. The display updates every 500ms and shows both the sensor reading and lock status.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/esp8266-flyingfish-glcd/index.php";
-$parent_url = "/diy/esp8266-flyingfish-glcd";
-$title      = "ESP8266 + Flying Fish Sensor + 128×64 GLCD";
-$template   = "Generic";
-$meta_title = "ESP8266 + Flying Fish Sensor + 128×64 GLCD";
-$meta_desc  = "This project shows how to read an analog Flying Fish sensor (A0) using an ESP8266 and display the values on a 128×64 GLCD using the U8g2 graphics library. The display updates every 500ms and shows both the sensor reading and lock status.";
 
 trackVisit(
     slug:      $url,

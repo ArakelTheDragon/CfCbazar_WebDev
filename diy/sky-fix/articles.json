@@ -1,11 +1,59 @@
 [
     {
+        "id": "bbc-one",
+        "title": "BBC Channels Errors",
+        "content": "If you can not watch BBC one due to broadcasting issues on other issues, on Sky you can use the regional variations.\r\n \r\n951 BBC One London\r\n952 BBC One North East & Cumbria\r\n953 BBC One North West\r\n954 BBC One Yorkshire\r\n955 BBC One East Yorks & Lincs\r\n956 BBC One West Midlands\r\n957 BBC One East Midlands\r\n958 BBC One East\r\n959 BBC One South East\r\n960 BBC One West\r\n961 BBC One South\r\n962 BBC One South West\r\n963 BBC One Channel Islands\r\n964 BBC One Scotland\r\n965 BBC One Wales\r\n966 BBC One Northern Ireland\r\n967 BBC Two England\r\n968 BBC Two Wales\r\n969 BBC Two Northern Ireland",
+        "link": "/diy/sky-fix/bbc-one.php",
+        "created": "2026-10-28T12:28:40+00:00",
+        "updated": "2026-10-30T08:09:43+00:00"
+    },
+    {
+        "id": "department-opening-times",
+        "title": "Department Opening Times",
+        "content": "03442414141 - (08:30am-09:00pm) Billing \r\n03442411411 - (08:00am-09:00pm) Technical Support \r\n03442410333 - (08:00am-10:00pm) Accessibility \r\n03332022135 - (08:45am-08:00pm) Cancellations \r\n03303323050 - (08:00am-10:55pm) NOW TV/Acc Manage/Billing/Technical/ \r\n03332008000 - (08:30am-08:55pm) National Home Move Centre (08:30am-06:00pm) Saturday & Sunday \r\n08442410510 - (08:30am-10:55pm) Sales Sell Sky (New Customers for TV) \r\n08442411025 - (08:30am-10:55pm) Sales Upgrades (Excisting TV Customers) \r\n03442411735 - (08:00am-10:55pm) Sky Accessories \r\n0330 1656 733 (09:00am-10:55pm) Glass/Stream ",
+        "link": "/diy/sky-fix/department-opening-times.php",
+        "created": "2026-10-29T08:44:18+00:00",
+        "updated": "2026-10-29T08:44:18+00:00"
+    },
+    {
+        "id": "etcs-on-sky",
+        "title": "Early Termination Charges on Sky",
+        "content": "ETC's can be checked on \r\nhttps://www.sky.com/help/articles/charges-for-ending-your-sky-contract-early, \r\nusing the Early Termination Charges table PDF.\r\n\r\nThe early termination charges can be checked on the link. There is a table. To download a proof of payment for your new provider you must go to sky.com/bill on a computer - view bill - download pdf, it does not work on the app or a tablet!",
+        "link": "/diy/sky-fix/etcs-on-sky.php",
+        "created": "2026-10-30T08:16:41+00:00",
+        "updated": "2026-11-27T18:07:41+00:00"
+    },
+    {
+        "id": "first-sky-bill",
+        "title": "First Sky Bill",
+        "content": "Your first Sky broadband bill is delayed with 2 weeks normally. Your broadband may start on any day of the month, but the first payment is about 14 days afterwards. You still pay for a full month, and your second bill is 1 month after the broadband started or about 16 days after your first bill, your third bill and so on are 1 month after the previous bill.\r\n\r\nExample:\r\nBroadband start - First bill after 14 days - Second bill after 16 days - Third bill after a month\r\n\r\nThe same applies to the Sky Q television if you have a direct debit set up.\r\n\r\nThe Streaming and Glass TV billing is different.\r\nThe first bill is within 3 days of your TV starting.\r\nThe second bill is after about 27 days of the first bill.\r\nThe third bill is a month from the second bill.\r\n\r\nExample:\r\nThe TV starts - First bill within 3 days - Second bill in 27 days - Third bill a month from the second one",
+        "link": "/diy/sky-fix/first-sky-bill.php",
+        "created": "2026-10-29T08:41:28+00:00",
+        "updated": "2026-10-29T08:41:28+00:00"
+    },
+    {
+        "id": "glass-and-stream-sound-out-of-sync-lyp-sync",
+        "title": "Glass & Stream Sound Out of Sync Lyp Sync",
+        "content": "Press home on you Sky remote - go down to settings - press settings - press picture and sound - press picture - change the default audio output HDMI eARC to PCM Stereo.\r\n\r\nPress home on your Sky remote - go down to settings - press settings - go down to system and management - go down to resets & updates - press the top option reset device, not factory reset.",
+        "link": "/diy/sky-fix/glass-and-stream-sound-out-of-sync-lyp-sync.php",
+        "created": "2026-10-29T09:12:06+00:00",
+        "updated": "2026-10-29T09:12:06+00:00"
+    },
+    {
         "id": "how-to-download-a-proof-of-early-termination-charges-bill-breakdown",
         "title": "How to Download a Proof of Early Termination Charges Bill Breakdown",
         "content": "1. Go to sky.com/bill\r\n2. Select view bill or view old bill for the required product(broadband, television or mobile)\r\n3. Scroll down to download PDF, it has your name, address, account number and ETC\r\n4. This does not normally work the MySky app or a mobile phone browser, you must use a PC",
         "link": "/diy/sky-fix/how-to-download-a-proof-of-early-termination-charges-bill-breakdown.php",
         "created": "2026-10-26T09:42:59+00:00",
         "updated": "2026-10-26T09:42:59+00:00"
+    },
+    {
+        "id": "how-to-fix-a-freezing-sky-puck-or-glass-tv",
+        "title": "How To Fix a Freezing Sky Puck or Glass TV",
+        "content": "The puck or Glass TV is freezing or shows a message like Technical Fault, No WiFi, This program is unavailable\r\n\r\n1. Unplug your router, boosters and puck and plug them back in\r\n2. Reset your router by holding the reset button for 30 sec, if there is no reset button hold the WPS button for 30 sec\r\n3. Move your router and boosters at least a meter of the floor to avoid the static\r\n4. Keep the space 15 inches around the router and boosters empty\r\n5. After the lights on the router return to normal If you see get connected or network settings or settings on the screen, press that, go to network - status - reset - connect to WiFi using password or WPS, connect using a cable.\r\n6. Changed the picture settings by pressing on your Sky remote home - go down to settings - picture and sound - picture - default streaming format must be set to HD not auto",
+        "link": "/diy/sky-fix/how-to-fix-a-freezing-sky-puck-or-glass-tv.php",
+        "created": "2026-11-19T08:59:23+00:00",
+        "updated": "2026-11-19T08:59:23+00:00"
     },
     {
         "id": "how-to-fix-a-sky-stream-puck-freezing",
@@ -22,5 +70,157 @@
         "link": "/diy/sky-fix/how-to-fix-wifi-dropping.php",
         "created": "2026-10-26T09:37:12+00:00",
         "updated": "2026-10-26T09:37:12+00:00"
+    },
+    {
+        "id": "how-to-setup-your-full-fiber-broadband-and-landline",
+        "title": "How to Setup Your Full Fiber Broadband and Landline",
+        "content": "1. You must find the Openreach ONT fiber box on the wall. Normally it's next to the front door.\r\n2. Connect the white ethernet cable(can be black with yellow ends but not purple) to the WAN yellow port 4 on the Sky router and the ONT Openreach box on the wall.\r\n3. Plug in your router.\r\n4. There must be 3 green lights on the ONT.",
+        "link": "/diy/sky-fix/how-to-setup-your-full-fiber-broadband-and-landline.php",
+        "created": "2026-10-30T15:02:40+00:00",
+        "updated": "2026-10-30T15:02:40+00:00"
+    },
+    {
+        "id": "landline-number-porting",
+        "title": "Landline Number Porting",
+        "content": "The landline number can only be requested during the placing of the order. If it has already been placed, you can cancel and reorder requesting the correct landline number. This can be done  within 30 days, after which the number is sent for recycling as per the regulation. Replacing the order takes at least 2 weeks. Sky can not change the lead time of 2 weeks.",
+        "link": "/diy/sky-fix/landline-number-porting.php",
+        "created": "2026-10-30T08:19:12+00:00",
+        "updated": "2026-10-30T08:19:12+00:00"
+    },
+    {
+        "id": "mvmnt-movement-app",
+        "title": "MVMNT Movement App",
+        "content": "The MVMNT(movement) is a fitness app with 400+ expert led workouts\r\nsky.com/help/expert/news/mvmnt-app-pricing-update\r\n\r\nSince the 14/10/2026.\r\n\r\nMVMNT app pricing update\r\nOverview\r\nThe MVMNT app has had a price increase for all new subscribers.\r\n\r\nWhat is changing?\r\nExisting MVMNT customers will remain on their current price of £7.99 per month.\r\nNew customers who subscribe to MVMNT after today will be charged £12.99 per month.\r\nWhat does this mean for customers?\r\nThere's no change for customers who already have MVMNT.\r\nThe new pricing will apply only to customers who take MVMNT after the change goes live.",
+        "link": "/diy/sky-fix/mvmnt-movement-app.php",
+        "created": "2026-10-30T08:11:49+00:00",
+        "updated": "2026-11-27T11:15:31+00:00"
+    },
+    {
+        "id": "new-free-sky-os-upgrade-for-glass-and-stream",
+        "title": "New Free Sky OS Upgrade for Glass and Stream",
+        "content": "From recently(11/2026) Sky has released a new OS for Sky Glass and Sky Stream, the update will happen for all customers piece by piece, everyone will get the update eventually in the next months.\r\n\r\nThe playlist has been replace by My Library.\r\nWhen you press the \"+\" button you now have options what to add to the My Library Watchlist.\r\nSome customers report finding the old playlist shows in My Library - go down - manage watchlist.\r\n\r\nhttps://skygroup.sky/en-gb/article/sky-announces-major-free-upgrade-to-the-sky-glass-and-sky-stream-experience-with-the-launch-of-the-new-sky-os",
+        "link": "/diy/sky-fix/new-free-sky-os-upgrade-for-glass-and-stream.php",
+        "created": "2026-11-19T08:27:58+00:00",
+        "updated": "2026-11-19T08:44:48+00:00"
+    },
+    {
+        "id": "no-broadband-no-wifi-slow-speed",
+        "title": "No Broadband / No Wi-Fi / Slow Speed Fiber Only",
+        "content": "These instructions are only for the Sky Full Fiber Broadband\r\n\r\n1. Check the lights on the router\r\n- Max hub - must be solid white light, sometimes bluish white\r\nif flashing green - no connection to the Openreach ONT on the wall or router fault\r\nif off - no power to the router or router fault\r\n\r\nMax hub setup:\r\n- there must be a white sky provided ethernet cable into yellow port 4(WAN) on the Max Router and LAN on the Openreach ONT behind the router, if you have PORT instead of LAN make sure you use PORT1 or PORT2 of the ONT\r\n- the ethernet cable must be at least cat 5E if you do not use the Sky provided cable, Sky does not guarantee the service if you do not use their cables, engineers from Sky or Openreach often put a grey third party cable but that is not advised by Sky\r\n- Swap the ends of the ethernet cable if the light on the router is not solid white or you have slow speeds to the router\r\n\r\nSlow speeds:\r\nThe router must be at least 1m(3 feet off the floor)\r\nThere must be nothing 15 inches around the Max router\r\nIt's good to not keep it in a cupboard or shelf if possible\r\nA window cell is not always good, but works in most cases\r\n\r\nSwap the ends of the ethernet cable if the light on the router is not solid white or you have slow speeds to the router\r\n\r\n2. Check the lights on the Openreach ONT on the wall behind the router \r\n- Power light - must be solid green, takes 2 min if just started the ONT\r\n- PON light - must be solid green, takes 2 min if you just started the ONT\r\n- LOS light - must be off, takes 2 min if you just started the ONT\r\n- LAN light - flashing green, takes 2 min if you just started the ONT\r\n- Alarm - no important, used for the reserve battery supply for the ONT\r\n- Other lights\r\nif you have PORT instead of LAN it must be flashing green\r\nif you have PORT1, PORT2, PORT3, PORT4 make sure you are using the correct one, normally PORT1 or PORT2\r\n\r\nSetup instructions:\r\nhttps://www.sky.com/help/articles/set-up-hub-which-sky-hub-do-you-have\r\n\r\n3. Call Sky ALWAYS explain what you have done so they do not ask you to repeat it\r\n03442411411 - (08:00am-09:00pm) Technical Support & Billing",
+        "link": "/diy/sky-fix/no-broadband-no-wifi-slow-speed.php",
+        "created": "2026-11-14T08:51:57+00:00",
+        "updated": "2026-11-14T10:03:57+00:00"
+    },
+    {
+        "id": "now-formerly-nowtv-and-sky",
+        "title": "NOW (formerly NOW TV) and Sky",
+        "content": "NOW (formerly NOW TV) and Sky are officially part of the same company group. However, they operate as separate service providers with separate products and accounts, similar to BT and EE.",
+        "link": "/diy/sky-fix/now-formerly-nowtv-and-sky.php",
+        "created": "2026-11-27T11:09:56+00:00",
+        "updated": "2026-11-27T11:09:56+00:00"
+    },
+    {
+        "id": "premier-sports-on-sky",
+        "title": "Premier Sports on Sky",
+        "content": "You can watch Premier Sports on Sky Glass by going to the application found under apps and inputs on your Glass TV.\r\n\r\nPress home on your Sky remote - go down until you see Apps and Inputs - Go across to the Premier Sports App - Sign in or Sign up - Select your subscription and start watching. Can take 4 hours for the app to start working.\r\n\r\nIf you're a Sky Q customer, Premier Sports is available as linear TV channels through the TV guide rather than via the Stream/Glass app. You will need the viewing card number from your Sky Q main box when signing up for Premier Sports on their website.\r\nhttps://www.premiersports.com/",
+        "link": "/diy/sky-fix/premier-sports-on-sky.php",
+        "created": "2026-10-30T14:03:55+00:00",
+        "updated": "2026-10-30T14:03:55+00:00"
+    },
+    {
+        "id": "server-authentication-on-an-ipad-and-iphone",
+        "title": "Server Authentication on an iPad and iPhone",
+        "content": "The customer sees an error authentication on an iPhone or iPad, the customer has a new device and wants to setup the sky mail.\r\n\r\nGo to:\r\nSettings - Apps - Mail - Add Account or Mail Accounts - Manage Account and log in again or just press yahoo mail if you are using a sky.com email and enter your password again. You will be asked for a two step verification code sent to your mobile phone.",
+        "link": "/diy/sky-fix/server-authentication-on-an-ipad-and-iphone.php",
+        "created": "2026-11-17T15:30:16+00:00",
+        "updated": "2026-11-17T15:30:16+00:00"
+    },
+    {
+        "id": "sky-email-old-emails-not-showing",
+        "title": "Sky Email Old Emails Not Showing",
+        "content": "If you see emails on your computer from only the past week, you have to change the settings on your mail client. \r\n\r\nSky can NOT help with this!\r\n\r\nThe sync settings are different for different email clients.\r\nFor windows mail you can check:\r\nhttps://www.techrater.co.uk/technology/windows-11-mail-app-syncs-more-than-last-30-days/",
+        "link": "/diy/sky-fix/sky-email-old-emails-not-showing.php",
+        "created": "2026-11-19T10:57:38+00:00",
+        "updated": "2026-11-19T10:57:38+00:00"
+    },
+    {
+        "id": "sky-glass-and-sky-stream-stuck-on-software-update",
+        "title": "Sky Glass & Sky Stream Stuck on Software Update",
+        "content": "Unplug your boosters and router. \r\nPower cycle on the Glass TV or Sky Stream puck.",
+        "link": "/diy/sky-fix/sky-glass-and-sky-stream-stuck-on-software-update.php",
+        "created": "2026-10-31T11:12:31+00:00",
+        "updated": "2026-11-17T21:08:26+00:00"
+    },
+    {
+        "id": "sky-id",
+        "title": "Sky ID",
+        "content": "The Sky ID can be linked to the mobile, TV and broadband account by visiting the link.\r\n\r\nsky.com/help/articles/sky-id-link-new-choose\r\n\r\nOnce you select the correct product, it will ask you for your post code and in some cases for your Sky account number or bank account number. You can find the Sky account number on the emails you have been sent.",
+        "link": "/diy/sky-fix/sky-id.php",
+        "created": "2026-10-30T13:53:26+00:00",
+        "updated": "2026-10-30T13:53:26+00:00"
+    },
+    {
+        "id": "sky-mobile-and-talk-tariff-guide",
+        "title": "Sky Mobile and Talk Tariff Guide",
+        "content": "This information can change in future tariff guides. This guide is from 2026.\r\n\r\nYou can check the prices for all mobile and talk packages on the link:\r\nhttps://www.sky.com/help/articles/sky-mobile-and-sky-talk-calls-to-the-middle-east",
+        "link": "/diy/sky-fix/sky-mobile-and-talk-tariff-guide.php",
+        "created": "2026-11-25T11:22:10+00:00",
+        "updated": "2026-11-25T11:22:10+00:00"
+    },
+    {
+        "id": "sky-mobile-tariff-guide",
+        "title": "Sky Mobile Tariff Guide",
+        "content": "This information can change in future tariff guides, current guide from 2026.\r\n\r\n✅ Calls to 01, 02, 03 numbers are normally included in your minutes allowance.\r\n✅ Calls to standard 07 mobile numbers are normally included in your minutes allowance.\r\n✅ Calls to 0800 and 0808 numbers are free and do not use your minutes.\r\n❌ Calls to 084, 087, 09 and 118 numbers are usually charged separately and are not covered by inclusive minutes.\r\n\r\nYou can check the tariff for all mobile packages from:\r\nhttps://www.sky.com/help/articles/sky-mobile-tariff-guide",
+        "link": "/diy/sky-fix/sky-mobile-tariff-guide.php",
+        "created": "2026-11-25T09:47:30+00:00",
+        "updated": "2026-11-25T09:47:30+00:00"
+    },
+    {
+        "id": "sky-moving-home",
+        "title": "Sky Moving Home",
+        "content": "You can book a home move from:\r\nhttps://www.sky.com/help/articles/home-move\r\n\r\nIt takes at least 2 weeks for the broadband to be installed on the new property.\r\nMake sure you select the cancel date to be 1 day more then your home move day as it will stop at 12 midnight the day before.\r\nThe Stream and Glass TV do not require anything special, if you just take them to the new property, they will just work.\r\n\r\nYou can call Sky Home Move at:\r\n03332008000 - (08:30am-09:00pm) National Home Move Centre (08:30am-06:00pm) Saturday & Sunday",
+        "link": "/diy/sky-fix/sky-moving-home.php",
+        "created": "2026-11-25T12:23:14+00:00",
+        "updated": "2026-11-25T12:23:14+00:00"
+    },
+    {
+        "id": "sky-return-euipment",
+        "title": "Sky Return Equipment",
+        "content": "You must return Sky owned equipment within 60 days of the cancellation date. \r\nYou can get a label from the link or book Royal Mail to come pick up the box for free.\r\nThe box must be packaged, you can use the package from another Sky box.\r\n\r\nhttps://www.sky.com/help/articles/return-or-recycle-sky-equipment",
+        "link": "/diy/sky-fix/sky-return-euipment.php",
+        "created": "2026-10-31T08:22:36+00:00",
+        "updated": "2026-10-31T08:22:36+00:00"
+    },
+    {
+        "id": "sky-stream-ordering",
+        "title": "Sky Stream Ordering",
+        "content": "Officially the Sky Stream subscription can not be sold to the password holder, but sometimes Sky may be able to skip this requirement. The requirement can not be skipped for a Sky Glass TV!",
+        "link": "/diy/sky-fix/sky-stream-ordering.php",
+        "created": "2026-11-27T11:17:11+00:00",
+        "updated": "2026-11-27T11:17:11+00:00"
+    },
+    {
+        "id": "sky-talk-tariff-guide",
+        "title": "Sky Talk Tariff Guide",
+        "content": "This info may change in the future tariff guides from Sky. Current info from 2026.\r\n\r\nNumber Prefix\tIncluded for Free in Anytime Extra?\r\n01\t✅ Yes\r\n02\t✅ Yes\r\n03 (0330, 0345, 0370 etc.)\t✅ Yes\r\nStandard 07 mobiles\t✅ Yes\r\n0800 / 0808\t✅ Free\r\n084x\t❌ No\r\n087x\t❌ No\r\n09xx\t❌ No\r\n118xxx\t❌ No\r\n\r\nYou can check the prices for all talk packages on the link.\r\nhttps://www.sky.com/help/sky-talk/talk-policies-and-info/sky-talk-tariff-guide/articles/sky-talk-tariff-guide",
+        "link": "/diy/sky-fix/sky-talk-tariff-guide.php",
+        "created": "2026-11-25T09:45:15+00:00",
+        "updated": "2026-11-25T09:45:15+00:00"
+    },
+    {
+        "id": "sky-yahoo-mail-can-not-sign-in",
+        "title": "Sky Yahoo Mail Can Not Sign In",
+        "content": "If you are not able to sign in to his sky mail from sky.com, it might work from https://mail.yahoo.com by entering email@sky.com",
+        "link": "/diy/sky-fix/sky-yahoo-mail-can-not-sign-in.php",
+        "created": "2026-10-30T08:12:44+00:00",
+        "updated": "2026-11-16T20:22:34+00:00"
+    },
+    {
+        "id": "sky-yearly-price-increase",
+        "title": "Sky Yearly Price Increase",
+        "content": "With all Sky TV, broadband and mobile contracts prices may increase during your mining term(the Talk is also included into the yearly price increase).\r\n\r\nWhile the increase happens mostly in April, sometimes it can be later.\r\n\r\nThe prices do not go up for all packages, but you may have multiple packages increase at the same time, making the bill higher. For example the Sports go up with 4 pound, the normal TV goes up with 4 pounds and some other packages as well, leading to a total price increase of more then 10 pounds.",
+        "link": "/diy/sky-fix/sky-yearly-price-increase.php",
+        "created": "2026-11-25T12:05:49+00:00",
+        "updated": "2026-11-25T12:05:49+00:00"
     }
 ]

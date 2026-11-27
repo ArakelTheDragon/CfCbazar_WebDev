@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/mtool/index.php";
+$parent_url = "/diy/mtool";
+$title      = "Message Storage Tool";
+$template   = "Generic";
+$meta_title = "Message Storage Tool";
+$meta_desc  = "Store a 32-character message, get a 6-digit reference, retrieve it for up to 1 hour.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,7 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
 // --- Storage ----------------------------------------------------------------
 $storageFile = __DIR__ . '/messages.json';
 
@@ -123,13 +136,6 @@ if (isset($_POST['get_message'])) {
     }
 }
 
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/mtool/index.php";
-$parent_url = "/diy/mtool";
-$title      = "Message Storage Tool";
-$template   = "Generic";
-$meta_title = "Message Storage Tool";
-$meta_desc  = "Store a 32-character message, get a 6-digit reference, retrieve it for up to 1 hour.";
 
 trackVisit(
     slug:      $url,

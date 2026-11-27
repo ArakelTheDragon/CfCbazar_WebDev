@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/bjt-motor-control-simple/index.php";
+$parent_url = "/diy/bjt-motor-control-simple";
+$title      = "A circuit and description for a simple BJT motor control for a DC motor.";
+$template   = "Generic";
+$meta_title = "Free Circuits";
+$meta_desc  = "DIY: Simple 12V DC Motor Control with Darlington BJT, Learn how to safely drive a 12V DC motor using a high-gain Darlington NPN transistor with pull-up resistor logic.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/bjt-motor-control-simple/index.php";
-$parent_url = "/diy/bjt-motor-control-simple";
-$title      = "A circuit and description for a simple BJT motor control for a DC motor.";
-$template   = "Generic";
-$meta_title = "Free Circuits";
-$meta_desc  = "DIY: Simple 12V DC Motor Control with Darlington BJT, Learn how to safely drive a 12V DC motor using a high-gain Darlington NPN transistor with pull-up resistor logic.";
 
 trackVisit(
     slug:      $url,

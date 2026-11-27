@@ -18,7 +18,21 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/autodiag/index.php";
+$parent_url = "/diy/autodiag";
+$title      = "Automotive UDS CAN diagnostic Simulator";
+$template   = "Generic";
+$meta_title = "Free Open Source UDS CAN diagnostic tool";
+$meta_desc  = "Send AT commands and CAN bytes for UDS diagnostic under ISO to check how automotive testing is done.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -28,14 +42,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/autodiag/index.php";
-$parent_url = "/diy/autodiag";
-$title      = "Automotive UDS CAN diagnostic Simulator";
-$template   = "Generic";
-$meta_title = "Free Open Source UDS CAN diagnostic tool";
-$meta_desc  = "Send AT commands and CAN bytes for UDS diagnostic under ISO to check how automotive testing is done.";
 
 trackVisit(
     slug:      $url,

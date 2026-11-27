@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/esp8266-lcd/index.php";
+$parent_url = "/diy/esp8266-lcd";
+$title      = "ESP8266 I2C LCD Display";
+$template   = "Generic";
+$meta_title = "ESP8266 I2C LCD Display";
+$meta_desc  = "This simple DIY project demonstrates how to connect an ESP8266 microcontroller to a 16×2 I2C LCD display and print a message. It uses the Wire and LiquidCrystal_I2C libraries to initialize and control the LCD.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/esp8266-lcd/index.php";
-$parent_url = "/diy/esp8266-lcd";
-$title      = "ESP8266 I2C LCD Display";
-$template   = "Generic";
-$meta_title = "ESP8266 I2C LCD Display";
-$meta_desc  = "This simple DIY project demonstrates how to connect an ESP8266 microcontroller to a 16×2 I2C LCD display and print a message. It uses the Wire and LiquidCrystal_I2C libraries to initialize and control the LCD.";
 
 trackVisit(
     slug:      $url,

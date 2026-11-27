@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
 // settings_local.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/numbers/index.php";
+$parent_url = "/diy/numbers";
+$title      = "Numbers Directory";
+$template   = "Generic";
+$meta_title = "Numbers Directory";
+$meta_desc  = "Search and explore phone numbers and their associations.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/numbers/index.php";
-$parent_url = "/diy/numbers";
-$title      = "Numbers Directory";
-$template   = "Generic";
-$meta_title = "Numbers Directory";
-$meta_desc  = "Search and explore phone numbers and their associations.";
 
 trackVisit(
     slug:      $url,

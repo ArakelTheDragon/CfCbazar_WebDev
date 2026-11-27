@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/python-alarm-wifi/index.php";
+$parent_url = "/diy/python-alarm-wifi";
+$title      = "Python Internet Drop Alarm";
+$template   = "Generic";
+$meta_title = "Python Internet Drop Alarm";
+$meta_desc  = "A simple Python + pygame script that plays a sound whenever your internet connection drops. Useful for monitoring unstable Wi-Fi, servers, and routers.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/python-alarm-wifi/index.php";
-$parent_url = "/diy/python-alarm-wifi";
-$title      = "Python Internet Drop Alarm";
-$template   = "Generic";
-$meta_title = "Python Internet Drop Alarm";
-$meta_desc  = "A simple Python + pygame script that plays a sound whenever your internet connection drops. Useful for monitoring unstable Wi-Fi, servers, and routers.";
 
 trackVisit(
     slug:      $url,

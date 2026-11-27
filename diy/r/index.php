@@ -13,11 +13,10 @@ if (file_exists($reusablePath)) {
 }
 
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
 
 // Public by default — do NOT force login here
 $NEED_SESSION = true;
-$NEED_LOGIN   = true;
+$NEED_LOGIN   = false;
 $NEED_CART    = false;
 $NEED_ADMIN   = false;
 
@@ -32,7 +31,7 @@ if (empty($conn)) {
     exit;
 }
 
-$SITE_BASE  = 'https://cfcbazar.8bit.ca';
+$SITE_BASE  = 'https://cfcbazar.42web.io';
 $SHORT_PATH = '/diy/r/index.php';
 
 // ============================================================

@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/mhr/index.php";
+$parent_url = "/diy/mhr";
+$title      = "MHR Portal - Search Accounts";
+$template   = "Generic";
+$meta_title = "MHR Portal - Search Accounts";
+$meta_desc  = "Search MHR accounts, verify callers, and open account records.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,7 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
 // --- Local notice include ----------------------------------------------------
 include __DIR__ . '/notice.php';
 
@@ -161,13 +174,6 @@ if (isset($_GET['select_acc']) && isset($allAccounts[$_GET['select_acc']])) {
     $selectedAcc = $allAccounts[$_GET['select_acc']];
 }
 
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/mhr/index.php";
-$parent_url = "/diy/mhr";
-$title      = "MHR Portal - Search Accounts";
-$template   = "Generic";
-$meta_title = "MHR Portal - Search Accounts";
-$meta_desc  = "Search MHR accounts, verify callers, and open account records.";
 
 trackVisit(
     slug:      $url,

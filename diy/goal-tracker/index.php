@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/goal-tracker/index.php";
+$parent_url = "/diy";
+$title      = "Daily Goal Tracker & Weekly Log";
+$template   = "Generic";
+$meta_title = "Daily Goal Tracker & Weekly Log";
+$meta_desc  = "Track daily objectives, micro-metrics, reflection and weekly progress. Export to CSV, PNG or PDF.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,7 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
 // --- Data directory ----------------------------------------------------------
 $dataDir = __DIR__ . '/data';
 if (!file_exists($dataDir)) {
@@ -115,13 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/goal-tracker/index.php";
-$parent_url = "/diy";
-$title      = "Daily Goal Tracker & Weekly Log";
-$template   = "Generic";
-$meta_title = "Daily Goal Tracker & Weekly Log";
-$meta_desc  = "Track daily objectives, micro-metrics, reflection and weekly progress. Export to CSV, PNG or PDF.";
 
 trackVisit(
     slug:      $url,

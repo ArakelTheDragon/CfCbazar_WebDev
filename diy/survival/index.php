@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/survival/index.php";
+$parent_url = "/diy/survival";
+$title      = "Survival Budget Tool | CfCbazar";
+$template   = "Generic";
+$meta_title = "💸 Survival Budget Tool | CfCbazar";
+$meta_desc  = "Explore essential monthly expenses with CfCbazar's Survival Budget Tool. Calculate food, transport, hygiene, and more to manage your budget effectively.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/survival/index.php";
-$parent_url = "/diy/survival";
-$title      = "Survival Budget Tool | CfCbazar";
-$template   = "Generic";
-$meta_title = "💸 Survival Budget Tool | CfCbazar";
-$meta_desc  = "Explore essential monthly expenses with CfCbazar's Survival Budget Tool. Calculate food, transport, hygiene, and more to manage your budget effectively.";
 
 trackVisit(
     slug:      $url,

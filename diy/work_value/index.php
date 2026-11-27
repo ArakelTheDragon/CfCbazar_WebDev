@@ -18,12 +18,27 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// Page metadata
+// ------------------------
+$url        = "/diy/work-value/index.php";
+$parent_url = "/diy/work-value";
+$title      = "Work Value Directory | CfCbazar";
+$template   = "Generic";
+$meta_title = "💼 Work Value Directory | CfCbazar";
+$meta_desc  = "Submit and explore real-world work values in USD. CfCbazar's Work Value Directory helps estimate fair compensation for professions, products, and services.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,7 +48,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
 // ------------------------
 // Flash message (PRG pattern)
 // ------------------------
@@ -106,14 +120,6 @@ if (!$query) {
 }
 
 // ------------------------
-// Page metadata
-// ------------------------
-$url        = "/diy/work-value/index.php";
-$parent_url = "/diy/work-value";
-$title      = "Work Value Directory | CfCbazar";
-$template   = "Generic";
-$meta_title = "💼 Work Value Directory | CfCbazar";
-$meta_desc  = "Submit and explore real-world work values in USD. CfCbazar's Work Value Directory helps estimate fair compensation for professions, products, and services.";
 
 trackVisit(
     slug:      $url,

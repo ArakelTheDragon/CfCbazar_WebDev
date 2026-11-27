@@ -16,23 +16,31 @@ if (!is_file($reusablePath)) {
 }
 require_once $reusablePath;
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
 
-$NEED_SESSION = true;
+$NEED_SESSION = false;
 $NEED_LOGIN = false;
 $NEED_CART = false;
 $NEED_ADMIN = false;
-enforce_https();
-checkSystemFlags();
-if (bootstrap() !== 0) {
-    exit(1);
-}
 
 $url = $articleUrl;
 $parent_url = '/diy/sky-fix/';
 $title = $articleTitle;
 $template = 'Generic';
 $meta_title = $articleTitle . ' — CfCbazar Sky Fix';
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
+
+// ------------------------
+// System
+// ------------------------
+enforce_https();
+checkSystemFlags();
+if (bootstrap() !== 0) {
+    exit(1);
+}
 $plainDescription = trim(preg_replace('/\s+/', ' ', $articleContent) ?? $articleContent);
 $meta_desc = function_exists('mb_substr') ? mb_substr($plainDescription, 0, 160) : substr($plainDescription, 0, 160);
 

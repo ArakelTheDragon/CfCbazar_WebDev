@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
 // settings_local.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/lm317-basic/index.php";
+$parent_url = "/diy/lm317-basic";
+$title      = "LM317 — Basic Adjustable Linear Regulator";
+$template   = "Generic";
+$meta_title = "LM317 — Basic Adjustable Linear Regulator";
+$meta_desc  = "Simple LM317 linear voltage regulator tutorial: pinout, adjustable output formula, dropout voltage, and heatsink requirements.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/lm317-basic/index.php";
-$parent_url = "/diy/lm317-basic";
-$title      = "LM317 — Basic Adjustable Linear Regulator";
-$template   = "Generic";
-$meta_title = "LM317 — Basic Adjustable Linear Regulator";
-$meta_desc  = "Simple LM317 linear voltage regulator tutorial: pinout, adjustable output formula, dropout voltage, and heatsink requirements.";
 
 trackVisit(
     slug:      $url,

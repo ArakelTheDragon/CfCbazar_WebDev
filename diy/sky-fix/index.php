@@ -12,17 +12,64 @@ if (file_exists($reusablePath)) {
 }
 
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
 
 $NEED_SESSION = true;
 $NEED_LOGIN   = false;
 $NEED_CART    = false;
 $NEED_ADMIN   = false;
 
+$url        = "/diy/sky-fix/index.php";
+$parent_url = "/help";
+$title      = "CfCbazar Sky Fix Center";
+$template   = "Generic";
+$meta_title = "CfCbazar Sky Fix Help | Guides, Troubleshooting & FAQs";
+$meta_desc  = "Find answers, guides, and troubleshooting tips for Sky TV and BB.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
+
+// ------------------------
+// System
+// ------------------------
 enforce_https();
 checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
+}
+// -----------------------------------------------------------------------------
+// Article summary helper — collapses whitespace, cuts on word boundary.
+// -----------------------------------------------------------------------------
+if (!function_exists('sky_fix_summary')) {
+    function sky_fix_summary(string $text, int $limit = 180): string
+    {
+        $text = trim((string)preg_replace('/\s+/u', ' ', $text));
+        if ($text === '') {
+            return '';
+        }
+
+        $len = function_exists('mb_strlen') ? mb_strlen($text, 'UTF-8') : strlen($text);
+        if ($len <= $limit) {
+            return $text;
+        }
+
+        $cut = function_exists('mb_substr')
+            ? mb_substr($text, 0, $limit, 'UTF-8')
+            : substr($text, 0, $limit);
+
+        $space = function_exists('mb_strrpos')
+            ? mb_strrpos($cut, ' ', 0, 'UTF-8')
+            : strrpos($cut, ' ');
+
+        if ($space !== false && $space > (int)($limit * 0.55)) {
+            $cut = function_exists('mb_substr')
+                ? mb_substr($cut, 0, $space, 'UTF-8')
+                : substr($cut, 0, $space);
+        }
+
+        return rtrim($cut, " \t\n\r\0\x0B.,;:!-") . '…';
+    }
 }
 
 $articles_file = __DIR__ . '/articles.json';
@@ -50,12 +97,6 @@ if ($email) {
     }
 }
 
-$url        = "/diy/sky-fix/index.php";
-$parent_url = "/help";
-$title      = "CfCbazar Sky Fix Center";
-$template   = "Generic";
-$meta_title = "CfCbazar Sky Fix Help | Guides, Troubleshooting & FAQs";
-$meta_desc  = "Find answers, guides, and troubleshooting tips for Sky TV and BB.";
 
 trackVisit(
     slug:      $url,
@@ -69,62 +110,22 @@ trackVisit(
 render_header($title);
 ?>
 
-<style>
-.help-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-.help-card {
-    background: #fff;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    border: 1px solid #e5e7eb;
-    transition: transform 0.15s ease;
-}
-.help-card:hover { transform: translateY(-2px); }
-.help-card h3 { margin: 0 0 8px 0; color: #0077cc; font-size: 1.05rem; }
-.help-card p { color: #555; margin: 0 0 10px 0; font-size: 0.92rem; line-height: 1.5; }
-.help-card a { display: inline-block; color: #0077cc; text-decoration: underline; font-size: 0.9rem; }
-.help-search {
-    width: 100%;
-    max-width: 600px;
-    padding: 12px;
-    font-size: 16px;
-    margin: 20px auto;
-    display: block;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-.help-status { text-align: center; font-weight: 600; margin-top: 10px; color: #555; }
-.help-admin-bar {
-    text-align: center;
-    margin: 10px auto 0;
-    font-size: 0.85rem;
-}
-.help-admin-bar a {
-    color: #0077cc;
-    text-decoration: none;
-    padding: 6px 14px;
-    border: 1px solid #0077cc;
-    border-radius: 6px;
-}
-.help-admin-bar a:hover { background: #0077cc; color: #fff; }
-</style>
-
 <main class="content">
     <div class="container">
 
-        <h1 style="text-align:center;">📘 CfCbazar Sky Fix Center</h1>
-        <p style="text-align:center;max-width:600px;margin:0 auto;color:#666;">
-            Find answers, guides, and troubleshooting tips for Sky TV and BB.
-        </p>
+        <div class="help-hero">
+            <h1>📘 CfCbazar Sky Fix Center</h1>
+            <p>Find answers, guides, and troubleshooting tips for Sky TV and BB.</p>
+            <?php if (!empty($articles)): ?>
+                <span class="help-count">
+                    <?= count($articles) ?> article<?= count($articles) === 1 ? '' : 's' ?>
+                </span>
+            <?php endif; ?>
+        </div>
 
         <?php if ($is_admin): ?>
             <div class="help-admin-bar">
-                <a href="/diy/sky-fix/admin.php">✏️ Admin: manage articles</a>
+                <a href="/diy/sky-fix/sky-fix.php">✏️ Admin: manage articles</a>
             </div>
         <?php endif; ?>
 
@@ -140,10 +141,12 @@ render_header($title);
 
         <div id="help-articles" class="help-grid" aria-live="polite">
             <?php if (empty($articles)): ?>
-                <p style="text-align:center;color:#777;">No Sky Fix articles yet.</p>
+                <p class="help-empty">No Sky Fix articles yet.</p>
             <?php else: ?>
                 <?php foreach ($articles as $article):
-                    $link = trim((string)($article['link'] ?? ''));
+                    $titleRaw   = (string)($article['title'] ?? '');
+                    $contentRaw = (string)($article['content'] ?? '');
+                    $link       = trim((string)($article['link'] ?? ''));
 
                     if ($link === '') {
                         $href = '';
@@ -152,12 +155,34 @@ render_header($title);
                     } else {
                         $href = '/' . ltrim($link, '/');
                     }
+
+                    $hasLink = $href !== '';
+                    $displayContent = $hasLink
+                        ? sky_fix_summary($contentRaw, 180)
+                        : $contentRaw;
+
+                    $searchBlob = mb_strtolower($titleRaw . ' ' . $contentRaw, 'UTF-8');
                 ?>
-                    <article class="help-card" id="article<?= htmlspecialchars((string)($article['id'] ?? '')) ?>">
-                        <h3><?= htmlspecialchars($article['title'] ?? '') ?></h3>
-                        <p><?= htmlspecialchars($article['content'] ?? '') ?></p>
-                        <?php if ($href !== ''): ?>
-                            <a href="<?= htmlspecialchars($href) ?>" target="_blank" rel="noopener">Read more →</a>
+                    <article
+                        class="help-card"
+                        id="article<?= htmlspecialchars((string)($article['id'] ?? '')) ?>"
+                        data-search="<?= htmlspecialchars($searchBlob, ENT_QUOTES, 'UTF-8') ?>"
+                    >
+                        <h3><?= htmlspecialchars($titleRaw) ?></h3>
+
+                        <?php if ($displayContent !== ''): ?>
+                            <p class="help-card-summary"><?= htmlspecialchars($displayContent) ?></p>
+                        <?php endif; ?>
+
+                        <?php if ($hasLink): ?>
+                            <a
+                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                                class="help-card-link"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Read more <span class="arrow" aria-hidden="true">→</span>
+                            </a>
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>
@@ -170,25 +195,67 @@ render_header($title);
 <script>
 (function () {
     'use strict';
+
     const searchBox = document.getElementById('help-search');
-    const cards     = Array.from(document.querySelectorAll('.help-card'));
+    const container = document.getElementById('help-articles');
     const status    = document.getElementById('help-status');
+    const cards     = Array.from(container.querySelectorAll('.help-card'));
+
+    const index = cards.map((card, i) => ({
+        card,
+        originalIndex: i,
+        title: (card.querySelector('h3')?.textContent || '').toLowerCase(),
+        text:  (card.dataset.search
+                    || card.textContent
+                    || '').toLowerCase()
+    }));
+
+    function reset() {
+        index
+            .slice()
+            .sort((a, b) => a.originalIndex - b.originalIndex)
+            .forEach(item => {
+                item.card.style.display = '';
+                container.appendChild(item.card);
+            });
+        status.textContent = '';
+    }
 
     searchBox.addEventListener('input', () => {
-        const term = searchBox.value.trim().toLowerCase();
-        let visible = 0;
+        const words = [...new Set(
+            searchBox.value.trim().toLowerCase().split(/\s+/).filter(Boolean)
+        )];
 
-        cards.forEach(card => {
-            const title   = (card.querySelector('h3')?.textContent || '').toLowerCase();
-            const content = (card.querySelector('p')?.textContent  || '').toLowerCase();
-            const match   = title.includes(term) || content.includes(term);
-            card.style.display = match ? '' : 'none';
-            if (match) visible++;
+        if (words.length === 0) {
+            reset();
+            return;
+        }
+
+        const scored = index.map(item => {
+            let score = 0;
+            for (const w of words) {
+                if (item.title.includes(w)) score += 2;
+                else if (item.text.includes(w)) score += 1;
+            }
+            return { ...item, score };
         });
 
-        status.textContent = term
-            ? `${visible} article${visible === 1 ? '' : 's'} found.`
-            : '';
+        const matches = scored
+            .filter(item => item.score > 0)
+            .sort((a, b) =>
+                b.score - a.score ||
+                a.originalIndex - b.originalIndex
+            );
+
+        scored.forEach(item => { item.card.style.display = 'none'; });
+        matches.forEach(item => {
+            item.card.style.display = '';
+            container.appendChild(item.card);
+        });
+
+        status.textContent = matches.length
+            ? `${matches.length} article${matches.length === 1 ? '' : 's'} found.`
+            : 'No articles found.';
     });
 })();
 </script>

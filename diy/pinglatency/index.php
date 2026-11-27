@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/pinglatency/index.php";
+$parent_url = "/diy/pinglatency";
+$title      = "Ping & Latency Monitor — CfCbazar DIY Tool";
+$template   = "Generic";
+$meta_title = "Ping & Latency Monitor — CfCbazar DIY Tool";
+$meta_desc  = "Real-time Ping & Latency Monitor by CfCbazar. Track network latency, router response, and connection stability with live charts and historical data.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/pinglatency/index.php";
-$parent_url = "/diy/pinglatency";
-$title      = "Ping & Latency Monitor — CfCbazar DIY Tool";
-$template   = "Generic";
-$meta_title = "Ping & Latency Monitor — CfCbazar DIY Tool";
-$meta_desc  = "Real-time Ping & Latency Monitor by CfCbazar. Track network latency, router response, and connection stability with live charts and historical data.";
 
 trackVisit(
     slug:      $url,

@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+// settings_global.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/lm2576-adjustable/index.php";
+$parent_url = "/diy/lm2576-adjustable";
+$title      = "LM2576HV Adjustable Power Supply (1.2V–50V, 3A)";
+$template   = "Generic";
+$meta_title = "LM2576HV Adjustable Power Supply Tutorial";
+$meta_desc  = "DIY adjustable DC power supply using the LM2576HV-ADJ switching regulator. Works with 12V, 24V, 36V and 48V inputs, providing 1.2V to ~50V at up to 3A.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,14 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/lm2576-adjustable/index.php";
-$parent_url = "/diy/lm2576-adjustable";
-$title      = "LM2576HV Adjustable Power Supply (1.2V–50V, 3A)";
-$template   = "Generic";
-$meta_title = "LM2576HV Adjustable Power Supply Tutorial";
-$meta_desc  = "DIY adjustable DC power supply using the LM2576HV-ADJ switching regulator. Works with 12V, 24V, 36V and 48V inputs, providing 1.2V to ~50V at up to 3A.";
 
 trackVisit(
     slug:      $url,

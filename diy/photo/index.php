@@ -18,12 +18,26 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
 // settings_local.php sets:
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
 // $NEED_ADMIN   = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/photo/index.php";
+$parent_url = "/diy/photo";
+$title      = "Upload & Lookup Photo — CfCbazar DIY";
+$template   = "Generic";
+$meta_title = "Upload & Lookup Photo — CfCbazar DIY";
+$meta_desc  = "Upload a JPG/PNG photo (max 10MB), get a 6-digit reference number, and retrieve it for up to 5 days.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -33,7 +47,6 @@ checkSystemFlags();
 if (bootstrap() !== 0) {
     exit(1);
 }
-
 // -----------------------------------------------------------------------------
 // Configuration
 // -----------------------------------------------------------------------------
@@ -238,13 +251,6 @@ if (isset($_GET['ref']) && preg_match('/^[0-9]{6}$/', $_GET['ref'])) {
     $referenceNumber = $_GET['ref'];
 }
 
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/photo/index.php";
-$parent_url = "/diy/photo";
-$title      = "Upload & Lookup Photo — CfCbazar DIY";
-$template   = "Generic";
-$meta_title = "Upload & Lookup Photo — CfCbazar DIY";
-$meta_desc  = "Upload a JPG/PNG photo (max 10MB), get a 6-digit reference number, and retrieve it for up to 5 days.";
 
 trackVisit(
     slug:      $url,

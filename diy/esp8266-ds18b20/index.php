@@ -18,12 +18,32 @@ if (file_exists($reusablePath)) {
 // Settings
 // ------------------------
 require_once __DIR__ . '/../../includes/settings_global.php';
-require_once __DIR__ . '/../../includes/settings_local.php';
-// settings_local.php sets:
+//require_once __DIR__ . '/../../includes/settings_local.php'; // deleted
 // $NEED_SESSION = false;
 // $NEED_LOGIN   = false;
 // $NEED_CART    = false;
-// $NEED_ADMIN   = false;
+// $NEED_ADMIN         = false;   // 1
+// $NEED_MODERATOR     = false;   // 2
+// $NEED_CONTRIBUTOR   = false;   // 3
+// $NEED_VIP           = false;   // 4
+// $NEED_STANDARD_USER = false;   // 5
+// $IS_FRONTEND        = true;
+// $IS_BACKEND         = false;
+
+// ------------------------
+
+// --- Page metadata -----------------------------------------------------------
+$url        = "/diy/esp8266-ds18b20/index.php";
+$parent_url = "/diy/esp8266-ds18b20";
+$title      = "Interfacing DS18B20 Temperature Sensor with ESP8266 NodeMCU";
+$template   = "Generic";
+$meta_title = "Free Circuits";
+$meta_desc  = "Learn how to connect a DS18B20 1-Wire digital temperature sensor to an ESP8266 (NodeMCU) board and read temperature values via the Serial Monitor in Celsius.";
+
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
+
+setReturnUrl($url);
 
 // ------------------------
 // System
@@ -34,13 +54,8 @@ if (bootstrap() !== 0) {
     exit(1);
 }
 
-// --- Page metadata -----------------------------------------------------------
-$url        = "/diy/esp8266-ds18b20/index.php";
-$parent_url = "/diy/esp8266-ds18b20";
-$title      = "Interfacing DS18B20 Temperature Sensor with ESP8266 NodeMCU";
-$template   = "Generic";
-$meta_title = "Free Circuits";
-$meta_desc  = "Learn how to connect a DS18B20 1-Wire digital temperature sensor to an ESP8266 (NodeMCU) board and read temperature values via the Serial Monitor in Celsius.";
+// Absolute URL for canonical / share links
+$full_url   = build_full_url($url);
 
 trackVisit(
     slug:      $url,
@@ -50,90 +65,89 @@ trackVisit(
     metaTitle: $meta_title,
     metaDesc:  $meta_desc
 );
+// <head>, CSS/JS from /assets/, nav
+render_header($title, $meta_desc);
 
-render_header($title);
-?>
+// --- page body (high-level functions only) ---
+echo '<main class="content">';
+echo '<div class="container">';
 
-<main class="content">
-    <div class="container">
+echo '<h1>Interfacing DS18B20 Temperature Sensor with ESP8266 NodeMCU</h1>';
 
-        <h1>Interfacing DS18B20 Temperature Sensor with ESP8266 NodeMCU</h1>
+render_project_stats([
+    'status'     => 'Untested',
+    'build_time' => '15-20 mins',
+    'learn_time' => '30 mins',
+    'experience' => '1 year',
+]);
 
-        <?php
-        render_project_stats([
-            'status'     => 'Untested',
-            'build_time' => '15-20 mins',
-            'learn_time' => '30 mins',
-            'experience' => '1 year',
-        ]);
-        ?>
+echo <<<'HTML'
+<div class="info-card">
+    <p>Learn how to connect a <strong>DS18B20 1-Wire digital temperature sensor</strong> to an <strong>ESP8266 (NodeMCU)</strong> board and read temperature values via the Serial Monitor in Celsius.</p>
+</div>
 
-        <div class="info-card">
-            <p>Learn how to connect a <strong>DS18B20 1-Wire digital temperature sensor</strong> to an <strong>ESP8266 (NodeMCU)</strong> board and read temperature values via the Serial Monitor in Celsius.</p>
-        </div>
+<h2>1. Overview &amp; Specifications</h2>
+<p>The DS18B20 is a 1-Wire digital temperature sensor that measures temperatures from <strong>-55°C to +125°C</strong> with <strong>±0.5°C accuracy</strong> (between -10°C and +85°C). It operates on a supply voltage from <strong>3.0V to 5.5V</strong>, making it fully compatible with the 3.3V logic level of the ESP8266.</p>
 
-        <h2>1. Overview &amp; Specifications</h2>
-        <p>The DS18B20 is a 1-Wire digital temperature sensor that measures temperatures from <strong>-55°C to +125°C</strong> with <strong>±0.5°C accuracy</strong> (between -10°C and +85°C). It operates on a supply voltage from <strong>3.0V to 5.5V</strong>, making it fully compatible with the 3.3V logic level of the ESP8266.</p>
+<h2>2. Bill of Materials (BOM)</h2>
+<div class="info-card">
+    <ul>
+        <li><strong>1x</strong> ESP8266 Development Board (NodeMCU)</li>
+        <li><strong>1x</strong> DS18B20 Temperature Sensor (TO-92 or Waterproof Probe)</li>
+        <li><strong>1x</strong> 4.7 kΩ Resistor (1/4W)</li>
+        <li><strong>1x</strong> Breadboard &amp; Jumper Wires</li>
+    </ul>
+</div>
 
-        <h2>2. Bill of Materials (BOM)</h2>
-        <div class="info-card">
-            <ul>
-                <li><strong>1x</strong> ESP8266 Development Board (NodeMCU)</li>
-                <li><strong>1x</strong> DS18B20 Temperature Sensor (TO-92 or Waterproof Probe)</li>
-                <li><strong>1x</strong> 4.7 kΩ Resistor (1/4W)</li>
-                <li><strong>1x</strong> Breadboard &amp; Jumper Wires</li>
-            </ul>
-        </div>
+<h2>3. Hardware Connections &amp; Pinout</h2>
+<p>The DS18B20 uses a single data line for communication (1-Wire protocol). A <strong>4.7 kΩ pull-up resistor</strong> is required between the <strong>DQ (Data)</strong> line and the <strong>3.3V</strong> supply line for stable communication.</p>
 
-        <h2>3. Hardware Connections &amp; Pinout</h2>
-        <p>The DS18B20 uses a single data line for communication (1-Wire protocol). A <strong>4.7 kΩ pull-up resistor</strong> is required between the <strong>DQ (Data)</strong> line and the <strong>3.3V</strong> supply line for stable communication.</p>
+<h3>DS18B20 Pinout Table</h3>
 
-        <h3>DS18B20 Pinout Table</h3>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>DS18B20 Pin</th>
+                <th>Function</th>
+                <th>ESP8266 Connection</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Pin 1 (GND)</strong></td>
+                <td>Ground</td>
+                <td>GND</td>
+            </tr>
+            <tr>
+                <td><strong>Pin 2 (DQ)</strong></td>
+                <td>1-Wire Data Line</td>
+                <td><strong>D4 (GPIO2)</strong> <em>(Requires 4.7 kΩ pull-up to 3.3V)</em></td>
+            </tr>
+            <tr>
+                <td><strong>Pin 3 (VDD)</strong></td>
+                <td>Power Supply (3.0V – 5.5V)</td>
+                <td>3.3V</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>DS18B20 Pin</th>
-                        <th>Function</th>
-                        <th>ESP8266 Connection</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Pin 1 (GND)</strong></td>
-                        <td>Ground</td>
-                        <td>GND</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pin 2 (DQ)</strong></td>
-                        <td>1-Wire Data Line</td>
-                        <td><strong>D4 (GPIO2)</strong> <em>(Requires 4.7 kΩ pull-up to 3.3V)</em></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pin 3 (VDD)</strong></td>
-                        <td>Power Supply (3.0V – 5.5V)</td>
-                        <td>3.3V</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="warning">
+    <strong>Note:</strong> Multiple DS18B20 sensors can be connected in parallel on the exact same DQ line because each sensor has a unique 64-bit factory-lasered ROM ID code.
+</div>
 
-        <div class="warning">
-            <strong>Note:</strong> Multiple DS18B20 sensors can be connected in parallel on the exact same DQ line because each sensor has a unique 64-bit factory-lasered ROM ID code.
-        </div>
+<h2>4. Required Arduino Libraries</h2>
+<p>Before uploading the code, install the following libraries via the Arduino IDE Library Manager (<strong>Tools &gt; Manage Libraries</strong>):</p>
+<ul>
+    <li><strong>OneWire</strong> by Paul Stoffregen</li>
+    <li><strong>DallasTemperature</strong> by Miles Burton</li>
+</ul>
 
-        <h2>4. Required Arduino Libraries</h2>
-        <p>Before uploading the code, install the following libraries via the Arduino IDE Library Manager (<strong>Tools &gt; Manage Libraries</strong>):</p>
-        <ul>
-            <li><strong>OneWire</strong> by Paul Stoffregen</li>
-            <li><strong>DallasTemperature</strong> by Miles Burton</li>
-        </ul>
+<h2>5. Source Code</h2>
+<p>Upload the following low-level ANSI-compatible C++ Arduino sketch to your NodeMCU board:</p>
 
-        <h2>5. Source Code</h2>
-        <p>Upload the following low-level ANSI-compatible C++ Arduino sketch to your NodeMCU board:</p>
-
-        <pre class="code-block"><code>#include &lt;OneWire.h&gt;
+<pre class="code-block"><code>#include &lt;OneWire.h&gt;
 #include &lt;DallasTemperature.h&gt;
 
 // Data wire is connected to NodeMCU Pin D4 (GPIO2)
@@ -169,19 +183,19 @@ void loop() {
   delay(1000);
 }</code></pre>
 
-        <h2>6. Testing &amp; Verification</h2>
-        <ol>
-            <li>Connect your NodeMCU board to your PC via Micro-USB.</li>
-            <li>Select board <strong>NodeMCU 1.0 (ESP-12E Module)</strong> and correct COM port in Arduino IDE.</li>
-            <li>Compile and upload the sketch.</li>
-            <li>Open the <strong>Serial Monitor</strong> set to <strong>115200 baud</strong>.</li>
-            <li>You should see real-time temperature updates printed every second.</li>
-        </ol>
+<h2>6. Testing &amp; Verification</h2>
+<ol>
+    <li>Connect your NodeMCU board to your PC via Micro-USB.</li>
+    <li>Select board <strong>NodeMCU 1.0 (ESP-12E Module)</strong> and correct COM port in Arduino IDE.</li>
+    <li>Compile and upload the sketch.</li>
+    <li>Open the <strong>Serial Monitor</strong> set to <strong>115200 baud</strong>.</li>
+    <li>You should see real-time temperature updates printed every second.</li>
+</ol>
+HTML;
 
-    </div>
-</main>
+echo '</div>';
+echo '</main>';
 
-<?php
 // --- mandatory footer ---
 cfc_footer(
     "https://github.com/ArakelTheDragon/CfCbazar_WebDev/tree/main/diy/esp8266-ds18b20",
